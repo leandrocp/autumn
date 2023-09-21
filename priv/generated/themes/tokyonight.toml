@@ -1,3 +1,4 @@
+"background" = "style=\"background-color: #1a1b26; \""
 "comment" = "style=\"text-decoration: underline; color: #565f89; \""
 "constant" = "style=\"color: #ff9e64; \""
 "constant.character.escape" = "style=\"color: #bb9af7; \""

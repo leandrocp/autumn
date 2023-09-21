@@ -1,3 +1,4 @@
+"background" = "style=\"background-color: #ffffea; \""
 "comment" = "style=\"color: #065905;\""
 "diff.delta" = "style=\"color: #aeeeee; \""
 "diff.minus" = "style=\"color: #a0342f; \""

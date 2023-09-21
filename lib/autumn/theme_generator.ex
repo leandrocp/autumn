@@ -28,10 +28,7 @@ defmodule Autumn.ThemeGenerator do
       end)
       |> Enum.sort()
 
-    # IO.inspect(inline_theme_config, pretty: true, limit: :infinity, printable_limit: :infinity)
-
-    inline_theme_config = IO.iodata_to_binary(inline_theme_config)
-
+    inline_theme_config = IO.iodata_to_binary([background(palette, config) | inline_theme_config])
     dest_path = Path.join([:code.priv_dir(:autumn), "generated", "themes", file_name])
     File.write!(dest_path, inline_theme_config)
 
@@ -48,6 +45,40 @@ defmodule Autumn.ThemeGenerator do
     else
       config
     end
+  end
+
+  def background(palette, %{"ui.background" => %{"bg" => bg}}) do
+    do_background(palette, bg)
+  end
+
+  def background(palette, %{"ui.background" => bg}) do
+    do_background(palette, bg)
+  end
+
+  def background(palette, %{"ui.window" => %{"bg" => bg}}) do
+    do_background(palette, bg)
+  end
+
+  def background(palette, _config) do
+    do_background(palette, "#ffffff")
+  end
+
+  defp do_background(palette, bg) do
+    [
+      @double_quote,
+      "background",
+      @double_quote,
+      " = ",
+      @double_quote,
+      "style=",
+      @escape,
+      @double_quote,
+      bg(palette, bg),
+      @escape,
+      @double_quote,
+      @double_quote,
+      @eol
+    ]
   end
 
   # remove unnecessary ui styles

@@ -1,3 +1,4 @@
+"background" = "style=\"background-color: #161617; \""
 "attribute" = "style=\"text-decoration: underline; color: #aca1cf; \""
 "comment" = "style=\"text-decoration: underline; color: #757581; \""
 "constant" = "style=\"color: #ea83a5;\""

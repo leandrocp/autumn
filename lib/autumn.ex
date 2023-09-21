@@ -8,8 +8,12 @@ defmodule Autumn do
   @langs_path Path.join([:code.priv_dir(:autumn), "generated", "langs.exs"])
   @external_resource @langs_path
 
+  @themes_path Path.join([:code.priv_dir(:autumn), "generated", "themes"])
+  @external_resource @themes_path
+
   @double_quote ?"
   @gt ?>
+  @space " "
   @eol "\n"
 
   @doc """
@@ -27,7 +31,11 @@ defmodule Autumn do
   """
   def highlight(lang_filename_ext, source, opts \\ []) do
     language = language(lang_filename_ext)
-    theme = Keyword.get(opts, :theme, "OneDark")
+    theme = Keyword.get(opts, :theme, "onedark")
+
+    # TODO: error handling
+    background_style = Toml.decode_file!(Path.join(@themes_path, "#{theme}.toml"))["background"]
+
     pre_class = Keyword.get(opts, :pre_class, "autumn highlight")
     code_class = Keyword.get(opts, :code_class, "language-#{language}")
 
@@ -36,7 +44,10 @@ defmodule Autumn do
       @double_quote,
       pre_class,
       @double_quote,
+      @space,
+      background_style,
       @gt,
+      @eol,
       "<code class=",
       @double_quote,
       code_class,

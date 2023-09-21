@@ -37,6 +37,13 @@ defmodule Autumn.ThemeGeneratorTest do
     |> String.trim()
   end
 
+  defp background(config) do
+    @palette
+    |> ThemeGenerator.background(config)
+    |> IO.iodata_to_binary()
+    |> String.trim()
+  end
+
   @tag :tmp_dir
   test "inheritance", %{tmp_dir: tmp_dir} do
     parent_theme_path = Path.join(tmp_dir, "parent.toml")
@@ -45,11 +52,23 @@ defmodule Autumn.ThemeGeneratorTest do
     child_theme_path = Path.join(tmp_dir, "child.toml")
     File.write!(child_theme_path, @child_theme)
 
-    assert {:ok, "\"variable\" = \"style=\\\"color: blue_parent;\\\"\"\n"} =
+    assert {:ok,
+            "\"background\" = \"style=\\\"background-color: #ffffff; \\\"\"\n\"variable\" = \"style=\\\"color: blue_parent;\\\"\"\n"} =
              ThemeGenerator.generate(parent_theme_path)
 
-    assert {:ok, "\"variable\" = \"style=\\\"color: blue_child;\\\"\"\n"} =
+    assert {:ok,
+            "\"background\" = \"style=\\\"background-color: #ffffff; \\\"\"\n\"variable\" = \"style=\\\"color: blue_child;\\\"\"\n"} =
              ThemeGenerator.generate(child_theme_path)
+  end
+
+  test "background" do
+    expected = "\"background\" = \"style=\\\"background-color: black; \\\"\""
+    assert background(%{"ui.background" => "black"}) == expected
+    assert background(%{"ui.background" => %{"bg" => "black"}}) == expected
+    assert background(%{"ui.window" => %{"bg" => "black"}}) == expected
+
+    assert background(%{"ui.window" => %{}}) ==
+             "\"background\" = \"style=\\\"background-color: #ffffff; \\\"\""
   end
 
   describe "line" do

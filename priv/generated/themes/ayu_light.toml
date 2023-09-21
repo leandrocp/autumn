@@ -1,3 +1,4 @@
+"background" = "style=\"background-color: #fafafa; \""
 "comment" = "style=\"text-decoration: underline; color: #828c9a; \""
 "constant" = "style=\"color: #a37acc;\""
 "constructor" = "style=\"color: #86b300;\""

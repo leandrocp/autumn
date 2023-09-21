@@ -4,8 +4,8 @@ defmodule AutumnTest do
   defp expected(html), do: String.trim(html)
 
   test "overwrite pre class" do
-    assert Autumn.highlight("elixir", ":elixir", pre_class: "pre") =~ ~s|<pre class="pre">|
-    assert Autumn.highlight("elixir", ":elixir", pre_class: "") =~ ~s|<pre class="">|
+    assert Autumn.highlight("elixir", ":elixir", pre_class: "pre") =~ ~s|<pre class="pre"|
+    assert Autumn.highlight("elixir", ":elixir", pre_class: "") =~ ~s|<pre class=""|
   end
 
   test "overwrite code class" do
@@ -17,7 +17,8 @@ defmodule AutumnTest do
     test "default opts" do
       assert Autumn.highlight("elixir", ":elixir") ==
                expected(~s"""
-               <pre class="autumn highlight"><code class="language-elixir">
+               <pre class="autumn highlight" style="background-color: #282C34; ">
+               <code class="language-elixir">
                <span style="color: #ff79c6; ">:elixir</span>
                </code></pre>
                """)
@@ -26,7 +27,8 @@ defmodule AutumnTest do
     test "another language with default opts" do
       assert Autumn.highlight("script.rb", ~s|puts "autumn season"|) ==
                expected(~s"""
-               <pre class="autumn highlight"><code class="language-ruby">
+               <pre class="autumn highlight" style="background-color: #282C34; ">
+               <code class="language-ruby">
                <span style="color: #50fa7b; ">puts</span> <span style="color: #f1fa8c; ">&quot;autumn season&quot;</span>
                </code></pre>
                """)
