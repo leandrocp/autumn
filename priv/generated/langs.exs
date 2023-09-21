@@ -1,0 +1,1 @@
+%{"elixir" => ["ex", "exs"], "ruby" => ["rb"]}

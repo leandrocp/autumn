@@ -1,0 +1,8 @@
+[submodule "priv/langs/tree-sitter-elixir"]
+	path = priv/langs/tree-sitter-elixir
+	url = https://github.com/elixir-lang/tree-sitter-elixir.git
+	shallow = true
+[submodule "priv/langs/tree-sitter-ruby"]
+	path = priv/langs/tree-sitter-ruby
+	url = https://github.com/tree-sitter/tree-sitter-ruby.git
+	shallow = true
