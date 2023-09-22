@@ -1,2 +1,5 @@
-"background" = "style=\"background-color: #ffffff; \""
-"variable" = "style=\"color: blue_child;\""
+"background" = "class=\"background\" style=\"background-color: #ffffff; \""
+"module" = "class=\"module\" style=\"color: black_parent; \""
+"namespace" = "class=\"namespace\" style=\"color: black_parent;\""
+"operator" = "class=\"operator\" style=\"\""
+"variable" = "class=\"variable\" style=\"color: blue_child;\""

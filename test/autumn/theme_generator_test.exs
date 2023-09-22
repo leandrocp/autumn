@@ -3,9 +3,11 @@ defmodule Autumn.ThemeGeneratorTest do
   alias Autumn.ThemeGenerator
 
   @parent_theme ~S"""
+  namespace = "black"
   variable = "blue"
 
   [palette]
+  black = "black_parent"
   blue = "blue_parent"
   """
 
@@ -16,6 +18,13 @@ defmodule Autumn.ThemeGeneratorTest do
   blue = "blue_child"
   """
 
+  @theme_with_module ~S"""
+  module = "black"
+
+  [palette]
+  black = "black"
+  """
+
   @palette %{
     "foreground" => "blue",
     "background" => "black",
@@ -23,25 +32,19 @@ defmodule Autumn.ThemeGeneratorTest do
     "black" => "black"
   }
 
-  defp line(scope, style) do
-    @palette
-    |> ThemeGenerator.line(scope, style)
-    |> IO.iodata_to_binary()
-    |> String.trim()
-  end
-
   defp style(style) do
     @palette
-    |> ThemeGenerator.attrs(style)
+    |> ThemeGenerator.style(style)
     |> IO.iodata_to_binary()
     |> String.trim()
   end
 
   defp background(config) do
-    @palette
-    |> ThemeGenerator.background(config)
-    |> IO.iodata_to_binary()
-    |> String.trim()
+    ThemeGenerator.scope_background(config, @palette)
+  end
+
+  defp module(config) do
+    ThemeGenerator.scope_module(config, @palette)
   end
 
   @tag :tmp_dir
@@ -52,41 +55,91 @@ defmodule Autumn.ThemeGeneratorTest do
     child_theme_path = Path.join(tmp_dir, "child.toml")
     File.write!(child_theme_path, @child_theme)
 
-    assert {:ok,
-            "\"background\" = \"style=\\\"background-color: #ffffff; \\\"\"\n\"variable\" = \"style=\\\"color: blue_parent;\\\"\"\n"} =
-             ThemeGenerator.generate(parent_theme_path)
+    assert {
+             :ok,
+             "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black_parent; \\\"\"\n\"namespace\" = \"class=\\\"namespace\\\" style=\\\"color: black_parent;\\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"variable\" = \"class=\\\"variable\\\" style=\\\"color: blue_parent;\\\"\"\n"
+           } = ThemeGenerator.generate(parent_theme_path)
 
-    assert {:ok,
-            "\"background\" = \"style=\\\"background-color: #ffffff; \\\"\"\n\"variable\" = \"style=\\\"color: blue_child;\\\"\"\n"} =
-             ThemeGenerator.generate(child_theme_path)
+    assert {
+             :ok,
+             "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black_parent; \\\"\"\n\"namespace\" = \"class=\\\"namespace\\\" style=\\\"color: black_parent;\\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"variable\" = \"class=\\\"variable\\\" style=\\\"color: blue_child;\\\"\"\n"
+           } = ThemeGenerator.generate(child_theme_path)
   end
 
   test "background" do
-    expected = "\"background\" = \"style=\\\"background-color: black; \\\"\""
-    assert background(%{"ui.background" => "black"}) == expected
-    assert background(%{"ui.background" => %{"bg" => "black"}}) == expected
-    assert background(%{"ui.window" => %{"bg" => "black"}}) == expected
+    assert %{
+             "background" => %{
+               "class" => ["background"],
+               "style" => [["background-color: ", "black", 59, " "]]
+             }
+           } = background(%{"ui.background" => "black"})
 
-    assert background(%{"ui.window" => %{}}) ==
-             "\"background\" = \"style=\\\"background-color: #ffffff; \\\"\""
+    assert %{
+             "background" => %{
+               "class" => ["background"],
+               "style" => [["background-color: ", "black", 59, " "]]
+             }
+           } = background(%{"ui.background" => "black"})
+
+    assert %{
+             "background" => %{
+               "class" => ["background"],
+               "style" => [["background-color: ", "black", 59, " "]]
+             }
+           } = background(%{"ui.background" => %{"bg" => "black"}})
+
+    assert %{
+             "background" => %{
+               "class" => ["background"],
+               "style" => [["background-color: ", "black", 59, " "]]
+             }
+           } = background(%{"ui.window" => %{"bg" => "black"}})
+
+    assert %{
+             "background" => %{
+               "class" => ["background"],
+               "style" => [["background-color: ", "#ffffff", 59, " "]]
+             }
+           } = background(%{"ui.window" => %{}})
   end
 
-  describe "line" do
-    test "render" do
-      assert line("variable", %{
-               "fg" => "blue",
-               "bg" => "black",
-               "modifiers" => ["italic", "bold"]
-             }) ==
-               "\"variable\" = \"style=\\\"font-weight: bold; text-decoration: underline; color: blue; background-color: black; \\\"\""
+  describe "module" do
+    @tag :tmp_dir
+    test "generate", %{tmp_dir: tmp_dir} do
+      module_theme_path = Path.join(tmp_dir, "module.toml")
+      File.write!(module_theme_path, @theme_with_module)
+
+      assert {
+               :ok,
+               "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black; \\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n"
+             } = ThemeGenerator.generate(module_theme_path)
     end
 
-    test "remove interface styles" do
-      assert line("ui.menu", %{"fg" => "blue"}) == ""
+    test "style" do
+      assert %{"module" => %{"class" => ["module"], "style" => [["color: ", "black", 59, " "]]}} =
+               module(%{"module" => "black"})
+
+      assert %{"module" => %{"class" => ["module"], "style" => [["color: ", "black", 59, " "]]}} =
+               module(%{"module" => %{"fg" => "black"}})
+
+      assert %{"module" => %{"class" => ["module"], "style" => [["color: ", "black", 59, " "]]}} =
+               module(%{"namespace" => "black"})
+
+      assert %{"module" => %{"class" => ["module"], "style" => [["color: ", "black", 59, " "]]}} =
+               module(%{"namespace" => %{"fg" => "black"}})
+
+      assert %{"module" => %{"class" => ["module"], "style" => [["color: ", "black", 59, " "]]}} =
+               module(%{"keyword" => "black"})
+
+      assert %{"module" => %{"class" => ["module"], "style" => [["color: ", "black", 59, " "]]}} =
+               module(%{"keyword" => %{"fg" => "black"}})
+
+      assert %{"module" => %{"class" => ["module"], "style" => [[]]}} =
+               module(%{"other" => "black"})
     end
   end
 
-  describe "attrs" do
+  describe "style" do
     test "all" do
       assert style(%{"fg" => "blue", "bg" => "black", "modifiers" => ["italic", "bold"]}) ==
                "font-weight: bold; text-decoration: underline; color: blue; background-color: black;"

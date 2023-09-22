@@ -7,102 +7,138 @@ defmodule Autumn.ThemeGenerator do
   @semicolon ?;
   @space " "
   @eol "\n"
+  @default_bg_color "#ffffff"
 
   def generate(path) when is_binary(path) do
     file_name = Path.basename(path)
-    {:ok, config} = Toml.decode_file(path)
-    config = maybe_merge_parent(path, config)
-    {palette, config} = Map.pop(config, "palette", %{})
+    {:ok, theme_config} = Toml.decode_file(path)
+    {palette, theme_config} = Map.pop(theme_config, "palette", %{})
+    {inherits, theme_config} = Map.pop(theme_config, "inherits", "")
 
-    inline_theme_config =
-      config
-      |> Enum.reduce([], fn
-        {"palette", _}, acc ->
+    {parent_palette, parent_theme_config} =
+      path
+      |> parent_theme_config(inherits)
+      |> Map.pop("palette", %{})
+
+    palette = Map.merge(parent_palette, palette)
+
+    theme_config =
+      parent_theme_config
+      |> Map.merge(theme_config)
+      |> scope_background(palette)
+      |> scope_module(palette)
+      |> scope_operator(palette)
+
+    theme_config =
+      theme_config
+      |> Enum.reduce(theme_config, fn
+        {"background", _style}, acc ->
           acc
 
-        {"inherits", _}, acc ->
+        {"module", _style}, acc ->
           acc
+
+        {"operator", _style}, acc ->
+          acc
+
+        {<<"ui."::binary, _rest::binary>> = scope, _style}, acc ->
+          Map.drop(acc, [scope])
+
+        {<<"diagnostic"::binary, _rest::binary>> = scope, _style}, acc ->
+          Map.drop(acc, [scope])
+
+        {<<"warning"::binary, _rest::binary>> = scope, _style}, acc ->
+          Map.drop(acc, [scope])
+
+        {<<"error"::binary, _rest::binary>> = scope, _style}, acc ->
+          Map.drop(acc, [scope])
+
+        {<<"info"::binary, _rest::binary>> = scope, _style}, acc ->
+          Map.drop(acc, [scope])
+
+        {<<"hint"::binary, _rest::binary>> = scope, _style}, acc ->
+          Map.drop(acc, [scope])
 
         {scope, style}, acc ->
-          [line(palette, scope, style) | acc]
+          attrs = %{
+            "class" => String.replace(scope, ".", " "),
+            "style" => style(palette, style)
+          }
+
+          Map.put(acc, scope, attrs)
       end)
-      |> Enum.sort()
+      |> Enum.map(&line/1)
+      |> IO.iodata_to_binary()
 
-    inline_theme_config = IO.iodata_to_binary([background(palette, config) | inline_theme_config])
     dest_path = Path.join([:code.priv_dir(:autumn), "generated", "themes", file_name])
-    File.write!(dest_path, inline_theme_config)
+    File.write!(dest_path, theme_config)
 
-    {:ok, inline_theme_config}
+    {:ok, theme_config}
   end
 
-  defp maybe_merge_parent(path, config) do
-    {inherits, config} = Map.pop(config, "inherits", "")
-    parent_path = Path.join(Path.dirname(path), "#{inherits}.toml")
-
-    if File.exists?(parent_path) do
-      {:ok, parent_config} = Toml.decode_file(parent_path)
-      Map.merge(parent_config, config)
-    else
-      config
-    end
+  defp parent_theme_config(path, inherits) do
+    path = Path.join(Path.dirname(path), "#{inherits}.toml")
+    if File.exists?(path), do: Toml.decode_file!(path), else: %{}
   end
 
-  def background(palette, %{"ui.background" => %{"bg" => bg}}) do
-    do_background(palette, bg)
+  def scope_background(theme_config, palette) do
+    Map.put(theme_config, "background", %{
+      "class" => ["background"],
+      "style" => [background_style(theme_config, palette)]
+    })
   end
 
-  def background(palette, %{"ui.background" => bg}) do
-    do_background(palette, bg)
+  defp background_style(%{"ui.background" => %{"bg" => bg}}, palette), do: bg(palette, bg)
+  defp background_style(%{"ui.background" => bg}, palette), do: bg(palette, bg)
+  defp background_style(%{"ui.window" => %{"bg" => bg}}, palette), do: bg(palette, bg)
+  defp background_style(_config, palette), do: bg(palette, @default_bg_color)
+
+  def scope_module(theme_config, palette) do
+    Map.put(theme_config, "module", %{
+      "class" => ["module"],
+      "style" => [module_style(theme_config, palette)]
+    })
   end
 
-  def background(palette, %{"ui.window" => %{"bg" => bg}}) do
-    do_background(palette, bg)
+  defp module_style(%{"module" => %{"fg" => fg}}, palette), do: fg(palette, fg)
+  defp module_style(%{"module" => fg}, palette), do: fg(palette, fg)
+  defp module_style(%{"namespace" => %{"fg" => fg}}, palette), do: fg(palette, fg)
+  defp module_style(%{"namespace" => fg}, palette), do: fg(palette, fg)
+  defp module_style(%{"keyword" => %{"fg" => fg}}, palette), do: fg(palette, fg)
+  defp module_style(%{"keyword" => fg}, palette), do: fg(palette, fg)
+  defp module_style(_scope, _palette), do: []
+
+  def scope_operator(theme_config, palette) do
+    Map.put(theme_config, "operator", %{
+      "class" => ["operator"],
+      "style" => [operator_style(theme_config, palette)]
+    })
   end
 
-  def background(palette, _config) do
-    do_background(palette, "#ffffff")
-  end
+  defp operator_style(%{"operator" => %{"fg" => fg}}, palette), do: fg(palette, fg)
+  defp operator_style(%{"operator" => fg}, palette), do: fg(palette, fg)
+  defp operator_style(%{"keyword.operator" => %{"fg" => fg}}, palette), do: fg(palette, fg)
+  defp operator_style(%{"keyword.operator" => fg}, palette), do: fg(palette, fg)
+  defp operator_style(_scope, _palette), do: []
 
-  defp do_background(palette, bg) do
-    [
-      @double_quote,
-      "background",
-      @double_quote,
-      " = ",
-      @double_quote,
-      "style=",
-      @escape,
-      @double_quote,
-      bg(palette, bg),
-      @escape,
-      @double_quote,
-      @double_quote,
-      @eol
-    ]
-  end
-
-  # remove unnecessary ui styles
-  # https://docs.helix-editor.com/themes.html#interface
-  def line(_palette, <<"ui."::binary, _rest::binary>>, _style), do: []
-  def line(_palette, <<"diagnostic"::binary, _rest::binary>>, _style), do: []
-  def line(_palette, "warning", _style), do: []
-  def line(_palette, "error", _style), do: []
-  def line(_palette, "info", _style), do: []
-  def line(_palette, "hint", _style), do: []
-
-  def line(palette, scope, style) do
-    attrs = attrs(palette, style)
-
+  def line({scope, %{"class" => class, "style" => style}}) do
     [
       @double_quote,
       scope,
       @double_quote,
       " = ",
       @double_quote,
+      "class=",
+      @escape,
+      @double_quote,
+      class,
+      @escape,
+      @double_quote,
+      @space,
       "style=",
       @escape,
       @double_quote,
-      attrs,
+      style,
       @escape,
       @double_quote,
       @double_quote,
@@ -115,15 +151,15 @@ defmodule Autumn.ThemeGenerator do
   # https://docs.helix-editor.com/themes.html#color-palettes
   defp palette_color(palette, color_name), do: Map.get(palette, color_name, "")
 
-  def attrs(_palette, <<"#"::binary, _rest::binary>> = color) do
+  def style(_palette, <<"#"::binary, _rest::binary>> = color) do
     ["color: ", color, @semicolon]
   end
 
-  def attrs(palette, fg) when is_binary(fg) do
+  def style(palette, fg) when is_binary(fg) do
     ["color: ", palette_color(palette, fg), @semicolon]
   end
 
-  def attrs(palette, style) when is_map(style) do
+  def style(palette, style) when is_map(style) do
     Enum.reduce(style, [], fn
       {"fg", fg}, acc ->
         [fg(palette, fg) | acc]

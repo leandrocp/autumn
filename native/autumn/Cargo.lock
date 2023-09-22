@@ -23,6 +23,7 @@ dependencies = [
  "tree-sitter-elixir",
  "tree-sitter-highlight",
  "tree-sitter-ruby",
+ "tree-sitter-rust",
 ]
 
 [[package]]
@@ -298,6 +299,14 @@ dependencies = [
 [[package]]
 name = "tree-sitter-ruby"
 version = "0.20.0"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
+name = "tree-sitter-rust"
+version = "0.20.4"
 dependencies = [
  "cc",
  "tree-sitter",

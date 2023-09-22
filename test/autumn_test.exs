@@ -14,22 +14,22 @@ defmodule AutumnTest do
   end
 
   describe "highlight" do
-    test "default opts" do
+    test "elixir with default opts" do
       assert Autumn.highlight("elixir", ":elixir") ==
                expected(~s"""
-               <pre class="autumn highlight" style="background-color: #282C34; ">
+               <pre class="autumn highlight" class="background" style="background-color: #282C34; ">
                <code class="language-elixir">
-               <span style="color: #ff79c6; ">:elixir</span>
+               <span class="string special" style="color: #ffb86c; ">:elixir</span>
                </code></pre>
                """)
     end
 
-    test "another language with default opts" do
+    test "ruby with default opts" do
       assert Autumn.highlight("script.rb", ~s|puts "autumn season"|) ==
                expected(~s"""
-               <pre class="autumn highlight" style="background-color: #282C34; ">
+               <pre class="autumn highlight" class="background" style="background-color: #282C34; ">
                <code class="language-ruby">
-               <span style="color: #50fa7b; ">puts</span> <span style="color: #f1fa8c; ">&quot;autumn season&quot;</span>
+               <span class="function method" style="color: #50fa7b; ">puts</span> <span class="string" style="color: #f1fa8c; ">&quot;autumn season&quot;</span>
                </code></pre>
                """)
     end
