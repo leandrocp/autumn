@@ -30,7 +30,7 @@ Autumn.highlight("elixir", ":elixir", theme: "Dracula")
 ```
 ## Roadmap
 - [ ] Change theme
-- [ ] Load themes with https://crates.io/crates/lazy_static
+- [ ] Load themes and langs with https://crates.io/crates/lazy_static
 - [ ] Option to disable italic
 - [ ] Option to disable bold
 - [ ] Option to disable underline
