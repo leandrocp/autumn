@@ -68,8 +68,8 @@ defmodule Autumn.MixProject do
     [
       generate_checksum: "rustler_precompiled.download Autumn.Native --all --print",
       test: [fn _ -> System.put_env("AUTUMN_BUILD", "true") end, "test"],
-      "rust.lint": ["cmd cargo clippy --manifest-path=native/comrak_nif/Cargo.toml -- -Dwarnings"],
-      "rust.fmt": ["cmd cargo fmt --manifest-path=native/comrak_nif/Cargo.toml --all"]
+      "rust.lint": ["cmd cargo clippy --manifest-path=native/autumn/Cargo.toml -- -Dwarnings"],
+      "rust.fmt": ["cmd cargo fmt --manifest-path=native/autumn/Cargo.toml --all"]
     ]
   end
 end

@@ -152,7 +152,7 @@ impl Lang {
             &_ => todo!(),
         };
 
-        config.configure(&HIGHLIGHT_NAMES);
+        config.configure(HIGHLIGHT_NAMES);
         config
     }
 }

@@ -17,7 +17,7 @@ fn do_highlight(lang: &str, source: &str, _theme: &str) -> String {
     let mut renderer = HtmlRenderer::new();
 
     // TODO: themes
-    let theme_config: toml::Value = toml::from_str(&THEME).unwrap();
+    let theme_config: toml::Value = toml::from_str(THEME).unwrap();
 
     renderer
         .render(events, source.as_bytes(), &|h| {
@@ -38,7 +38,7 @@ fn style<'v>(theme_config: &'v toml::Value, scope: &str) -> &'v [u8] {
     match theme_config.get(scope) {
         Some(value) => value.as_str().unwrap().as_bytes(),
         None => {
-            if scope.contains(".") {
+            if scope.contains('.') {
                 let mut split: Vec<&str> = scope.split('.').collect();
                 split.pop();
                 style(theme_config, split.join(".").as_str())
