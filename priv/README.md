@@ -1,7 +1,9 @@
-# Priv files
+# Support files
 
-Support files to generate langs and themes.
+Used to generate langs and themes:
 
 * `generated` - files generated automatically by mix tasks.
 * `langs` - git submodules for each supported lang.
-* `themes` - original theme files sourced from https://github.com/helix-editor/helix/tree/master/runtime/themes
+* `themes` - theme files.
+
+For more info see the included README.md in each subdirectory
