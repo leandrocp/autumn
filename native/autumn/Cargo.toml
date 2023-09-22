@@ -19,6 +19,9 @@ tree-sitter-highlight = "0.20"
 tree-sitter-elixir = { path = "../../priv/langs/tree-sitter-elixir" }
 tree-sitter-ruby = { path = "../../priv/langs/tree-sitter-ruby" }
 tree-sitter-rust = { path = "../../priv/langs/tree-sitter-rust" }
+tree-sitter-html = { path = "../../priv/langs/tree-sitter-html" }
+tree-sitter-javascript = { path = "../../priv/langs/tree-sitter-javascript" }
+tree-sitter-swift = { path = "../../priv/langs/tree-sitter-swift" }
 
 [features]
 default = ["nif_version_2_15"]

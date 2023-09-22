@@ -19,11 +19,14 @@ dependencies = [
  "serde",
  "serde_rustler",
  "toml",
- "tree-sitter",
+ "tree-sitter 0.20.10",
  "tree-sitter-elixir",
  "tree-sitter-highlight",
+ "tree-sitter-html",
+ "tree-sitter-javascript",
  "tree-sitter-ruby",
  "tree-sitter-rust",
+ "tree-sitter-swift",
 ]
 
 [[package]]
@@ -269,6 +272,16 @@ dependencies = [
 
 [[package]]
 name = "tree-sitter"
+version = "0.19.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ad726ec26496bf4c083fff0f43d4eb3a2ad1bba305323af5ff91383c0b6ecac0"
+dependencies = [
+ "cc",
+ "regex",
+]
+
+[[package]]
+name = "tree-sitter"
 version = "0.20.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e747b1f9b7b931ed39a548c1fae149101497de3c1fc8d9e18c62c1a66c683d3d"
@@ -282,7 +295,7 @@ name = "tree-sitter-elixir"
 version = "0.1.0"
 dependencies = [
  "cc",
- "tree-sitter",
+ "tree-sitter 0.20.10",
 ]
 
 [[package]]
@@ -293,7 +306,23 @@ checksum = "042342584c5a7a0b833d9fc4e2bdab3f9868ddc6c4b339a1e01451c6720868bc"
 dependencies = [
  "regex",
  "thiserror",
- "tree-sitter",
+ "tree-sitter 0.20.10",
+]
+
+[[package]]
+name = "tree-sitter-html"
+version = "0.19.0"
+dependencies = [
+ "cc",
+ "tree-sitter 0.19.5",
+]
+
+[[package]]
+name = "tree-sitter-javascript"
+version = "0.20.1"
+dependencies = [
+ "cc",
+ "tree-sitter 0.20.10",
 ]
 
 [[package]]
@@ -301,7 +330,7 @@ name = "tree-sitter-ruby"
 version = "0.20.0"
 dependencies = [
  "cc",
- "tree-sitter",
+ "tree-sitter 0.20.10",
 ]
 
 [[package]]
@@ -309,7 +338,15 @@ name = "tree-sitter-rust"
 version = "0.20.4"
 dependencies = [
  "cc",
- "tree-sitter",
+ "tree-sitter 0.20.10",
+]
+
+[[package]]
+name = "tree-sitter-swift"
+version = "0.3.6"
+dependencies = [
+ "cc",
+ "tree-sitter 0.20.10",
 ]
 
 [[package]]

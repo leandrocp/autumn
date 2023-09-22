@@ -110,7 +110,7 @@ impl Lang {
             "elixir" => HighlightConfiguration::new(
                 tree_sitter_elixir::language(),
                 tree_sitter_elixir::HIGHLIGHTS_QUERY,
-                "",
+                include_str!("../../../priv/langs/tree-sitter-elixir/queries/injections.scm"),
                 "",
             )
             .unwrap(),
@@ -126,6 +126,27 @@ impl Lang {
                 tree_sitter_rust::HIGHLIGHT_QUERY,
                 tree_sitter_rust::INJECTIONS_QUERY,
                 "",
+            )
+            .unwrap(),
+            // "html" => HighlightConfiguration::new(
+            //     tree_sitter_html::language(),
+            //     include_str!("../../../priv/langs/tree-sitter-html/queries/highlights.scm"),
+            //     include_str!("../../../priv/langs/tree-sitter-html/queries/injections.scm"),
+            //     "",
+            // )
+            // .unwrap(),
+            "javascript" => HighlightConfiguration::new(
+                tree_sitter_javascript::language(),
+                tree_sitter_javascript::HIGHLIGHT_QUERY,
+                tree_sitter_javascript::INJECTION_QUERY,
+                tree_sitter_javascript::LOCALS_QUERY,
+            )
+            .unwrap(),
+            "swift" => HighlightConfiguration::new(
+                tree_sitter_swift::language(),
+                tree_sitter_swift::HIGHLIGHTS_QUERY,
+                "",
+                tree_sitter_swift::LOCALS_QUERY,
             )
             .unwrap(),
             &_ => todo!(),
