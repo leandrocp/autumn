@@ -1,5 +1,5 @@
 "background" = "class=\"background\" style=\"background-color: #000000; \""
-"comment" = "class=\"comment\" style=\"text-decoration: underline; color: #bd5173; \""
+"comment" = "class=\"comment\" style=\"font-style: italic; color: #bd5173; \""
 "constant" = "class=\"constant\" style=\"color: #f7b90c; \""
 "constructor" = "class=\"constructor\" style=\"color: #009669; \""
 "diff.delta" = "class=\"diff delta\" style=\"color: #ff8f40; \""

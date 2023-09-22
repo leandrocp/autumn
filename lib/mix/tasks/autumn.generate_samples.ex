@@ -31,8 +31,10 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   """
 
   @langs [
-    {"elixir", ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/kernel.ex"},
-    {"rust", ~c"https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/highlight/src/lib.rs"},
+    {"elixir",
+     ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/kernel.ex"},
+    {"rust",
+     ~c"https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/highlight/src/lib.rs"},
     {"ruby", ~c"https://raw.githubusercontent.com/rack/rack/main/lib/rack/request.rb"}
   ]
 
@@ -40,6 +42,8 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   def run(_args) do
     :inets.start()
     :ssl.start()
+
+    debug()
 
     for {lang, url} <- @langs do
       generate(lang, url)
@@ -52,6 +56,16 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     code = Autumn.highlight(lang, source)
     html = EEx.eval_string(@layout, assigns: %{inner_content: code, lang: lang})
     dest_path = Path.join([:code.priv_dir(:autumn), "generated", "samples", "#{lang}.html"])
+    File.write!(dest_path, html)
+  end
+
+  defp debug() do
+    lang = "elixir"
+    source_path = Path.join([File.cwd!(), "lib", "autumn.ex"])
+    source = File.read!(source_path)
+    code = Autumn.highlight(lang, source)
+    html = EEx.eval_string(@layout, assigns: %{inner_content: code, lang: lang})
+    dest_path = Path.join([:code.priv_dir(:autumn), "generated", "samples", "debug.html"])
     File.write!(dest_path, html)
   end
 

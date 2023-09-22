@@ -14,7 +14,7 @@
 "operator" = "class=\"operator\" style=\"\""
 "diff.plus" = "class=\"diff plus\" style=\"color: ;\""
 "special" = "class=\"special\" style=\"color: ;\""
-"markup.italic" = "class=\"markup italic\" style=\"text-decoration: underline; color: ; \""
+"markup.italic" = "class=\"markup italic\" style=\"font-style: italic; color: ; \""
 "background" = "class=\"background\" style=\"background-color: ; \""
 "markup.link.text" = "class=\"markup link text\" style=\"color: ;\""
 "comment" = "class=\"comment\" style=\"color: ;\""

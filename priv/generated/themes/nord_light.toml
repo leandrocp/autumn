@@ -16,7 +16,7 @@
 "markup.heading" = "class=\"markup heading\" style=\"font-weight: bold; color: #2E3440; \""
 "markup.link.text" = "class=\"markup link text\" style=\"color: #D08770; \""
 "markup.link.url" = "class=\"markup link url\" style=\"color: #4C566A; \""
-"markup.quote" = "class=\"markup quote\" style=\"text-decoration: underline; color: #4C566A; \""
+"markup.quote" = "class=\"markup quote\" style=\"font-style: italic; color: #4C566A; \""
 "markup.raw" = "class=\"markup raw\" style=\"color: #5E81AC; \""
 "module" = "class=\"module\" style=\"color: #5E81AC; \""
 "namespace" = "class=\"namespace\" style=\"color: #5E81AC; \""

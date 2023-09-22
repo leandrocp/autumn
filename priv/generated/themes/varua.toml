@@ -14,7 +14,7 @@
 "variable.parameter" = "class=\"variable parameter\" style=\"color: #dfbf8e;\""
 "punctuation.delimiter" = "class=\"punctuation delimiter\" style=\"color: #9da9a0;\""
 "variable.builtin" = "class=\"variable builtin\" style=\"color: #7fbbb3;\""
-"markup.link.url" = "class=\"markup link url\" style=\"color: #7fbbb3; \""
+"markup.link.url" = "class=\"markup link url\" style=\"text-decoration: underline; color: #7fbbb3; \""
 "constant.character.escape" = "class=\"constant character escape\" style=\"color: #e69875;\""
 "operator" = "class=\"operator\" style=\"color: #e69875; \""
 "diff.plus" = "class=\"diff plus\" style=\"color: #a7c080;\""

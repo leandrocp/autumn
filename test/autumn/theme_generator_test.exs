@@ -141,8 +141,8 @@ defmodule Autumn.ThemeGeneratorTest do
 
   describe "style" do
     test "all" do
-      assert style(%{"fg" => "blue", "bg" => "black", "modifiers" => ["italic", "bold"]}) ==
-               "font-weight: bold; text-decoration: underline; color: blue; background-color: black;"
+      assert style(%{"fg" => "blue", "bg" => "black", "modifiers" => ["italic", "bold", "underlined"]}) ==
+               "text-decoration: underline; font-weight: bold; font-style: italic; color: blue; background-color: black;"
     end
 
     test "foreground" do
@@ -159,10 +159,10 @@ defmodule Autumn.ThemeGeneratorTest do
 
     test "with modifiers" do
       assert style(%{"fg" => "blue", "modifiers" => ["italic"]}) ==
-               "text-decoration: underline; color: blue;"
+               "font-style: italic; color: blue;"
 
       assert style(%{"fg" => "blue", "modifiers" => ["italic", "bold"]}) ==
-               "font-weight: bold; text-decoration: underline; color: blue;"
+               "font-weight: bold; font-style: italic; color: blue;"
     end
 
     test "underline" do

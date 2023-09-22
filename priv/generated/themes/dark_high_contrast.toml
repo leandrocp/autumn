@@ -13,7 +13,7 @@
 "operator" = "class=\"operator\" style=\"color: #ffffff; \""
 "diff.plus" = "class=\"diff plus\" style=\"color: #427a2d;\""
 "special" = "class=\"special\" style=\"color: #f38518;\""
-"markup.italic" = "class=\"markup italic\" style=\"text-decoration: underline; color: #66a4ff; \""
+"markup.italic" = "class=\"markup italic\" style=\"font-style: italic; color: #66a4ff; \""
 "background" = "class=\"background\" style=\"background-color: #000000; \""
 "string.special.url" = "class=\"string special url\" style=\"color: #ce9178;\""
 "markup.link.text" = "class=\"markup link text\" style=\"color: #ff5c8d;\""

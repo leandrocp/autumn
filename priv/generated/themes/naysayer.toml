@@ -17,7 +17,7 @@
 "function.special" = "class=\"function special\" style=\"color: #8cde94;\""
 "keyword" = "class=\"keyword\" style=\"color: #ffffff;\""
 "markup.bold" = "class=\"markup bold\" style=\"font-weight: bold; \""
-"markup.italic" = "class=\"markup italic\" style=\"text-decoration: underline; \""
+"markup.italic" = "class=\"markup italic\" style=\"font-style: italic; \""
 "markup.strikethrough" = "class=\"markup strikethrough\" style=\"\""
 "module" = "class=\"module\" style=\"color: #ffffff; \""
 "operator" = "class=\"operator\" style=\"\""

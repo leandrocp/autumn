@@ -11,7 +11,7 @@
 "function.macro" = "class=\"function macro\" style=\"font-weight: bold; color: #ffcfaf; \""
 "keyword" = "class=\"keyword\" style=\"font-weight: bold; color: #f0dfaf; \""
 "keyword.storage-class" = "class=\"keyword storage-class\" style=\"font-weight: bold; color: #c3bf9f; \""
-"label" = "class=\"label\" style=\"color: #dfcfaf; \""
+"label" = "class=\"label\" style=\"text-decoration: underline; color: #dfcfaf; \""
 "module" = "class=\"module\" style=\"color: #f0dfaf; \""
 "operator" = "class=\"operator\" style=\"color: #f0efd0; \""
 "punctuation.delimiter" = "class=\"punctuation delimiter\" style=\"color: #8f8f8f;\""

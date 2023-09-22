@@ -198,8 +198,11 @@ defmodule Autumn.ThemeGenerator do
   # https://docs.helix-editor.com/themes.html#modifiers
   defp modifiers(modifiers) do
     Enum.reduce(modifiers, [], fn
-      "italic", acc ->
+      "underlined", acc ->
         ["text-decoration: underline; " | acc]
+
+      "italic", acc ->
+        ["font-style: italic; " | acc]
 
       "bold", acc ->
         ["font-weight: bold; " | acc]
