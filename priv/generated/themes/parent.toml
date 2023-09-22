@@ -2,4 +2,5 @@
 "module" = "class=\"module\" style=\"color: black_parent; \""
 "namespace" = "class=\"namespace\" style=\"color: black_parent;\""
 "operator" = "class=\"operator\" style=\"\""
+"text" = "class=\"text\" style=\"color: #000000; \""
 "variable" = "class=\"variable\" style=\"color: blue_parent;\""

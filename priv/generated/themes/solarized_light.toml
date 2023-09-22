@@ -24,6 +24,7 @@
 "diff.minus" = "class=\"diff minus\" style=\"color: #dc322f; \""
 "type.builtin" = "class=\"type builtin\" style=\"font-weight: bold; color: #b58900; \""
 "constructor" = "class=\"constructor\" style=\"color: #268bd2; \""
+"text" = "class=\"text\" style=\"color: #586e75; \""
 "module" = "class=\"module\" style=\"color: #6c71c4; \""
 "constant" = "class=\"constant\" style=\"color: #2aa198; \""
 "type" = "class=\"type\" style=\"color: #b58900; \""

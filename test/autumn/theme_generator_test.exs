@@ -39,6 +39,10 @@ defmodule Autumn.ThemeGeneratorTest do
     |> String.trim()
   end
 
+  defp text(config) do
+    ThemeGenerator.scope_text(config, @palette)
+  end
+
   defp background(config) do
     ThemeGenerator.scope_background(config, @palette)
   end
@@ -57,23 +61,32 @@ defmodule Autumn.ThemeGeneratorTest do
 
     assert {
              :ok,
-             "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black_parent; \\\"\"\n\"namespace\" = \"class=\\\"namespace\\\" style=\\\"color: black_parent;\\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"variable\" = \"class=\\\"variable\\\" style=\\\"color: blue_parent;\\\"\"\n"
+             "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black_parent; \\\"\"\n\"namespace\" = \"class=\\\"namespace\\\" style=\\\"color: black_parent;\\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"text\" = \"class=\\\"text\\\" style=\\\"color: #000000; \\\"\"\n\"variable\" = \"class=\\\"variable\\\" style=\\\"color: blue_parent;\\\"\"\n"
            } = ThemeGenerator.generate(parent_theme_path)
 
     assert {
              :ok,
-             "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black_parent; \\\"\"\n\"namespace\" = \"class=\\\"namespace\\\" style=\\\"color: black_parent;\\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"variable\" = \"class=\\\"variable\\\" style=\\\"color: blue_child;\\\"\"\n"
+             "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black_parent; \\\"\"\n\"namespace\" = \"class=\\\"namespace\\\" style=\\\"color: black_parent;\\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"text\" = \"class=\\\"text\\\" style=\\\"color: #000000; \\\"\"\n\"variable\" = \"class=\\\"variable\\\" style=\\\"color: blue_child;\\\"\"\n"
            } = ThemeGenerator.generate(child_theme_path)
   end
 
-  test "background" do
+  test "text" do
     assert %{
-             "background" => %{
-               "class" => ["background"],
-               "style" => [["background-color: ", "black", 59, " "]]
+             "text" => %{
+               "class" => ["text"],
+               "style" => [["color: ", "black", 59, " "]]
              }
-           } = background(%{"ui.background" => "black"})
+           } = text(%{"ui.text" => "black"})
 
+    assert %{
+             "text" => %{
+               "class" => ["text"],
+               "style" => [["color: ", "#000000", 59, " "]]
+             }
+           } = text(%{"ui.text" => %{}})
+  end
+
+  test "background" do
     assert %{
              "background" => %{
                "class" => ["background"],
@@ -91,16 +104,9 @@ defmodule Autumn.ThemeGeneratorTest do
     assert %{
              "background" => %{
                "class" => ["background"],
-               "style" => [["background-color: ", "black", 59, " "]]
-             }
-           } = background(%{"ui.window" => %{"bg" => "black"}})
-
-    assert %{
-             "background" => %{
-               "class" => ["background"],
                "style" => [["background-color: ", "#ffffff", 59, " "]]
              }
-           } = background(%{"ui.window" => %{}})
+           } = background(%{"ui.background" => %{}})
   end
 
   describe "module" do
@@ -111,7 +117,7 @@ defmodule Autumn.ThemeGeneratorTest do
 
       assert {
                :ok,
-               "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black; \\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n"
+               "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black; \\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"text\" = \"class=\\\"text\\\" style=\\\"color: #000000; \\\"\"\n"
              } = ThemeGenerator.generate(module_theme_path)
     end
 
@@ -141,7 +147,11 @@ defmodule Autumn.ThemeGeneratorTest do
 
   describe "style" do
     test "all" do
-      assert style(%{"fg" => "blue", "bg" => "black", "modifiers" => ["italic", "bold", "underlined"]}) ==
+      assert style(%{
+               "fg" => "blue",
+               "bg" => "black",
+               "modifiers" => ["italic", "bold", "underlined"]
+             }) ==
                "text-decoration: underline; font-weight: bold; font-style: italic; color: blue; background-color: black;"
     end
 

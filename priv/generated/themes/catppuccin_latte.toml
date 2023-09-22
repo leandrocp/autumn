@@ -28,6 +28,7 @@
 "markup.heading.2" = "class=\"markup heading 2\" style=\"color: #8839ef;\""
 "constructor" = "class=\"constructor\" style=\"color: #209fb5;\""
 "variable" = "class=\"variable\" style=\"color: #4c4f69;\""
+"text" = "class=\"text\" style=\"color: #4c4f69; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #fe640b;\""
 "module" = "class=\"module\" style=\"color: #1e66f5; \""
 "punctuation.special" = "class=\"punctuation special\" style=\"color: #04a5e5;\""

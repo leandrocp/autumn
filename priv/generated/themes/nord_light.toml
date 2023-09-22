@@ -22,6 +22,7 @@
 "namespace" = "class=\"namespace\" style=\"color: #5E81AC; \""
 "operator" = "class=\"operator\" style=\"\""
 "string" = "class=\"string\" style=\"color: #A3BE8C;\""
+"text" = "class=\"text\" style=\"color: #2E3440; \""
 "type" = "class=\"type\" style=\"color: #5E81AC; \""
 "variable" = "class=\"variable\" style=\"color: #2E3440; \""
 "variable.builtin" = "class=\"variable builtin\" style=\"color: #4C566A; \""

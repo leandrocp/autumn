@@ -32,6 +32,7 @@
 "markup.heading.2" = "class=\"markup heading 2\" style=\"font-weight: bold; color: #E6C384; \""
 "constructor" = "class=\"constructor\" style=\"color: #7FB4CA;\""
 "variable" = "class=\"variable\" style=\"color: #DCD7BA;\""
+"text" = "class=\"text\" style=\"color: #DCD7BA; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #C0A36E;\""
 "module" = "class=\"module\" style=\"color: #FFA066; \""
 "constant" = "class=\"constant\" style=\"color: #FFA066;\""

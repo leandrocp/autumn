@@ -23,6 +23,7 @@
 "markup.raw" = "class=\"markup raw\" style=\"\""
 "markup.raw.inline.completion" = "class=\"markup raw inline completion\" style=\"\""
 "markup.heading.2" = "class=\"markup heading 2\" style=\"\""
+"text" = "class=\"text\" style=\"color: #000000; \""
 "string.regexp" = "class=\"string regexp\" style=\"\""
 "module" = "class=\"module\" style=\"\""
 "comment.block" = "class=\"comment block\" style=\"\""

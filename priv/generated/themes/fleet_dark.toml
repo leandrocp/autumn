@@ -29,6 +29,7 @@
 "diff.minus" = "class=\"diff minus\" style=\"color: #ce364d;\""
 "constructor" = "class=\"constructor\" style=\"color: #EBC88D;\""
 "variable" = "class=\"variable\" style=\"color: #d1d1d1;\""
+"text" = "class=\"text\" style=\"color: #d1d1d1; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #82D2CE;\""
 "module" = "class=\"module\" style=\"color: #87C3FF; \""
 "constant.builtin.boolean" = "class=\"constant builtin boolean\" style=\"color: #82D2CE;\""

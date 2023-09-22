@@ -26,6 +26,7 @@
 "operator" = "class=\"operator\" style=\"\""
 "special" = "class=\"special\" style=\"color: ;\""
 "string" = "class=\"string\" style=\"color: ;\""
+"text" = "class=\"text\" style=\"color: #000000; \""
 "type" = "class=\"type\" style=\"color: ;\""
 "variable" = "class=\"variable\" style=\"color: ;\""
 "variable.other.member" = "class=\"variable other member\" style=\"color: ;\""

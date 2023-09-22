@@ -33,6 +33,7 @@
 "markup.heading.2" = "class=\"markup heading 2\" style=\"font-weight: bold; color: #e69875; \""
 "constructor" = "class=\"constructor\" style=\"color: #a7c080;\""
 "variable" = "class=\"variable\" style=\"color: #d3c6aa;\""
+"text" = "class=\"text\" style=\"color: #d3c6aa; \""
 "keyword.storage" = "class=\"keyword storage\" style=\"color: #e67e80;\""
 "string.regexp" = "class=\"string regexp\" style=\"color: #a7c080;\""
 "module" = "class=\"module\" style=\"color: #dbbc7f; \""

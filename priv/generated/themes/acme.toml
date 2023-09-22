@@ -6,3 +6,4 @@
 "module" = "class=\"module\" style=\"\""
 "operator" = "class=\"operator\" style=\"\""
 "string" = "class=\"string\" style=\"color: #a0342f;\""
+"text" = "class=\"text\" style=\"color: #000000; \""

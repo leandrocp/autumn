@@ -17,6 +17,7 @@
 "punctuation.delimiter" = "class=\"punctuation delimiter\" style=\"color: #8f8f8f;\""
 "special" = "class=\"special\" style=\"color: #cfbfaf;\""
 "string" = "class=\"string\" style=\"color: #cc9393;\""
+"text" = "class=\"text\" style=\"color: #dcdccc; \""
 "type" = "class=\"type\" style=\"font-weight: bold; color: #dfdfbf; \""
 "variable" = "class=\"variable\" style=\"color: #dcdccc;\""
 "variable.builtin" = "class=\"variable builtin\" style=\"font-weight: bold; color: #dca3a3; \""

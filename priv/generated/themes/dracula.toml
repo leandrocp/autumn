@@ -42,6 +42,7 @@
 "type.builtin" = "class=\"type builtin\" style=\"color: #8be9fd; \""
 "constructor" = "class=\"constructor\" style=\"color: #BD93F9; \""
 "variable" = "class=\"variable\" style=\"color: #f8f8f2; \""
+"text" = "class=\"text\" style=\"color: #f8f8f2; \""
 "type.enum.variant" = "class=\"type enum variant\" style=\"font-style: italic; color: #f8f8f2; \""
 "keyword.storage" = "class=\"keyword storage\" style=\"color: #ff79c6; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #ff5555; \""

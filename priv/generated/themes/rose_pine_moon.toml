@@ -31,6 +31,7 @@
 "markup.heading.2" = "class=\"markup heading 2\" style=\"font-weight: bold; color: #9ccfd8; \""
 "constructor" = "class=\"constructor\" style=\"color: #9ccfd8;\""
 "variable" = "class=\"variable\" style=\"color: #e0def4;\""
+"text" = "class=\"text\" style=\"color: #e0def4; \""
 "module" = "class=\"module\" style=\"color: #c4a7e7; \""
 "markup.link" = "class=\"markup link\" style=\"color: #c4a7e7;\""
 "constant" = "class=\"constant\" style=\"color: #9ccfd8;\""

@@ -30,6 +30,7 @@
 "type.builtin" = "class=\"type builtin\" style=\"color: #4EC9B0; \""
 "constructor" = "class=\"constructor\" style=\"color: #4EC9B0; \""
 "variable" = "class=\"variable\" style=\"color: #9CDCFE; \""
+"text" = "class=\"text\" style=\"color: #d4d4d4; \""
 "type.enum.variant" = "class=\"type enum variant\" style=\"color: #4FC1FF; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #d7ba7d; \""
 "module" = "class=\"module\" style=\"color: #4EC9B0; \""

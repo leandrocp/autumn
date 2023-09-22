@@ -25,6 +25,7 @@
 "comment" = "class=\"comment\" style=\"font-style: italic; color: #5c606b; \""
 "diff.minus" = "class=\"diff minus\" style=\"color: #bd7476;\""
 "constructor" = "class=\"constructor\" style=\"color: #7ca8dd; \""
+"text" = "class=\"text\" style=\"color: #a8adb7; \""
 "module" = "class=\"module\" style=\"color: #a8adb7; \""
 "constant.builtin.boolean" = "class=\"constant builtin boolean\" style=\"color: #dac18c; \""
 "constant" = "class=\"constant\" style=\"color: #dac18c; \""

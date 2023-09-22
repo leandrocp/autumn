@@ -16,7 +16,6 @@ fn do_highlight(lang: &str, source: &str, _theme: &str) -> String {
         .unwrap();
     let mut renderer = HtmlRenderer::new();
 
-    //
     // TODO: themes
     let theme_config: toml::Value = toml::from_str(&THEME).unwrap();
 
@@ -24,6 +23,10 @@ fn do_highlight(lang: &str, source: &str, _theme: &str) -> String {
         .render(events, source.as_bytes(), &|h| {
             let scope = lang::HIGHLIGHT_NAMES.get(h.0).unwrap();
             let style = style(&theme_config, scope);
+
+            // println!("{:?}", scope);
+            // println!("{:?}", std::str::from_utf8(style).unwrap());
+
             style
         })
         .unwrap();
@@ -40,7 +43,12 @@ fn style<'v>(theme_config: &'v toml::Value, scope: &str) -> &'v [u8] {
                 split.pop();
                 style(theme_config, split.join(".").as_str())
             } else {
-                "".as_bytes()
+                theme_config
+                    .get("text")
+                    .unwrap()
+                    .as_str()
+                    .unwrap()
+                    .as_bytes()
             }
         }
     }
@@ -53,7 +61,7 @@ mod tests {
     #[test]
     fn test_highlight() {
         let result = do_highlight("elixir", "@type foo :: :bar", "Dracula");
-        assert_eq!(result, "<span class=\"attribute\" style=\"text-decoration: underline; color: #50fa7b; \">@</span><span class=\"attribute\" style=\"text-decoration: underline; color: #50fa7b; \">type</span> <span class=\"variable\" style=\"color: #f8f8f2; \">foo</span> <span class=\"operator\" style=\"color: #ff79c6; \">::</span> <span class=\"string special\" style=\"color: #ffb86c; \">:bar</span>\n");
+        assert_eq!(result, "<span class=\"attribute\" style=\"font-style: italic; color: #50fa7b; \">@</span><span class=\"attribute\" style=\"font-style: italic; color: #50fa7b; \">type</span> <span class=\"variable\" style=\"color: #f8f8f2; \">foo</span> <span class=\"operator\" style=\"color: #ff79c6; \">::</span> <span class=\"string special\" style=\"color: #ffb86c; \">:bar</span>\n")
     }
 
     #[test]
@@ -61,12 +69,13 @@ mod tests {
         let config: toml::Value = toml::from_str(
             r#"
             "string" = "color:blue"
+            "text" = "color:#000000"
             "#,
         )
         .unwrap();
 
         let result = std::str::from_utf8(style(&config, "function.special")).unwrap();
-        assert_eq!(result, "");
+        assert_eq!(result, "color:#000000");
     }
 
     #[test]

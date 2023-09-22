@@ -36,6 +36,7 @@
 "type.builtin" = "class=\"type builtin\" style=\"color: #7ad4d6; \""
 "constructor" = "class=\"constructor\" style=\"color: #9d79d6; \""
 "variable" = "class=\"variable\" style=\"color: #dfdfe0; \""
+"text" = "class=\"text\" style=\"color: #cdcecf; \""
 "type.enum.variant" = "class=\"type enum variant\" style=\"color: #f6b079; \""
 "keyword.storage" = "class=\"keyword storage\" style=\"color: #9d79d6; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #e0c989; \""

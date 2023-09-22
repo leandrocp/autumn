@@ -25,6 +25,7 @@
 "punctuation" = "class=\"punctuation\" style=\"color: #C7B8E0; \""
 "string" = "class=\"string\" style=\"color: #E3C0A8; \""
 "tag" = "class=\"tag\" style=\"color: #E3C0A8; \""
+"text" = "class=\"text\" style=\"color: #C7B8E0; \""
 "type" = "class=\"type\" style=\"color: #C78DFC; \""
 "variable" = "class=\"variable\" style=\"color: #C7B8E0; \""
 "variable.builtin" = "class=\"variable builtin\" style=\"color: #C78DFC; \""

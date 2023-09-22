@@ -31,6 +31,7 @@
 "type.builtin" = "class=\"type builtin\" style=\"color: #5BC8AF;\""
 "constructor" = "class=\"constructor\" style=\"color: #62A0EA;\""
 "variable" = "class=\"variable\" style=\"color: #DEDDDA;\""
+"text" = "class=\"text\" style=\"color: #DEDDDA; \""
 "keyword.storage" = "class=\"keyword storage\" style=\"font-weight: bold; color: #FFA348; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #C061CB;\""
 "module" = "class=\"module\" style=\"color: #FFA348; \""

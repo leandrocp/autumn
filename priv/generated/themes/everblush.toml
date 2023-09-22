@@ -34,6 +34,7 @@
 "type.builtin" = "class=\"type builtin\" style=\"color: #e5c76b; \""
 "constructor" = "class=\"constructor\" style=\"color: #67b0e8; \""
 "variable" = "class=\"variable\" style=\"color: #b3b9b8; \""
+"text" = "class=\"text\" style=\"color: #dadada; \""
 "module" = "class=\"module\" style=\"color: #ef7e7e; \""
 "punctuation.special" = "class=\"punctuation special\" style=\"color: #b3b9b8; \""
 "string.regex" = "class=\"string regex\" style=\"color: #8ccf7e; \""

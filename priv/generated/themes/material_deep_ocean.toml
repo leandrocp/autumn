@@ -24,6 +24,7 @@
 "markup.heading.2" = "class=\"markup heading 2\" style=\"color: #f07178;\""
 "constructor" = "class=\"constructor\" style=\"color: #82aaff;\""
 "variable" = "class=\"variable\" style=\"color: #a6accd;\""
+"text" = "class=\"text\" style=\"color: #a6accd; \""
 "keyword.storage" = "class=\"keyword storage\" style=\"color: #89ddff;\""
 "string.regexp" = "class=\"string regexp\" style=\"color: #ffcb6b;\""
 "module" = "class=\"module\" style=\"color: #ffcb6b; \""

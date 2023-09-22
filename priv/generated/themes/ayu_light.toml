@@ -22,6 +22,7 @@
 "type.builtin" = "class=\"type builtin\" style=\"color: #399ee6;\""
 "constructor" = "class=\"constructor\" style=\"color: #86b300;\""
 "variable" = "class=\"variable\" style=\"color: #5c6166;\""
+"text" = "class=\"text\" style=\"color: #5c6166; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #fa8d3e;\""
 "module" = "class=\"module\" style=\"color: #399ee6; \""
 "constant" = "class=\"constant\" style=\"color: #a37acc;\""

@@ -23,6 +23,7 @@
 "diff.minus" = "class=\"diff minus\" style=\"color: #ff0900; \""
 "keyword.storage.modifier" = "class=\"keyword storage modifier\" style=\"color: #d85c60; \""
 "variable" = "class=\"variable\" style=\"color: #656869; \""
+"text" = "class=\"text\" style=\"color: #656869; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #6e8789; \""
 "module" = "class=\"module\" style=\"color: #6e8789; \""
 "constant" = "class=\"constant\" style=\"color: #f78c5e; \""

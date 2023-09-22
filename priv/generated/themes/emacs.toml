@@ -28,6 +28,7 @@
 "type.builtin" = "class=\"type builtin\" style=\"color: #483d8b; \""
 "constructor" = "class=\"constructor\" style=\"color: #228b22; \""
 "variable" = "class=\"variable\" style=\"color: #a0522d; \""
+"text" = "class=\"text\" style=\"color: #000000; \""
 "module" = "class=\"module\" style=\"color: #008b8b; \""
 "function.call" = "class=\"function call\" style=\"color: #0000ff; \""
 "constant" = "class=\"constant\" style=\"color: #008b8b; \""

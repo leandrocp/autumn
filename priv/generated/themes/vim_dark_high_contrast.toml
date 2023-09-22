@@ -16,4 +16,5 @@
 "operator" = "class=\"operator\" style=\"\""
 "special" = "class=\"special\" style=\"color: #3a97d4;\""
 "string" = "class=\"string\" style=\"color: #ed5f74;\""
+"text" = "class=\"text\" style=\"color: #c1c9d2; \""
 "type" = "class=\"type\" style=\"color: #1ea672;\""

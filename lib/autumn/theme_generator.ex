@@ -7,6 +7,7 @@ defmodule Autumn.ThemeGenerator do
   @semicolon ?;
   @space " "
   @eol "\n"
+  @default_text_color "#000000"
   @default_bg_color "#ffffff"
 
   def generate(path) when is_binary(path) do
@@ -25,6 +26,7 @@ defmodule Autumn.ThemeGenerator do
     theme_config =
       parent_theme_config
       |> Map.merge(theme_config)
+      |> scope_text(palette)
       |> scope_background(palette)
       |> scope_module(palette)
       |> scope_operator(palette)
@@ -32,6 +34,9 @@ defmodule Autumn.ThemeGenerator do
     theme_config =
       theme_config
       |> Enum.reduce(theme_config, fn
+        {"text", _style}, acc ->
+          acc
+
         {"background", _style}, acc ->
           acc
 
@@ -81,6 +86,19 @@ defmodule Autumn.ThemeGenerator do
     if File.exists?(path), do: Toml.decode_file!(path), else: %{}
   end
 
+  def scope_text(theme_config, palette) do
+    Map.put(theme_config, "text", %{
+      "class" => ["text"],
+      "style" => [text_style(theme_config, palette)]
+    })
+  end
+
+  defp text_style(%{"text" => %{"fg" => fg}}, palette), do: fg(palette, fg)
+  defp text_style(%{"text" => fg}, palette) when is_binary(fg), do: fg(palette, fg)
+  defp text_style(%{"ui.text" => %{"fg" => fg}}, palette), do: fg(palette, fg)
+  defp text_style(%{"ui.text" => fg}, palette) when is_binary(fg), do: fg(palette, fg)
+  defp text_style(_config, palette), do: fg(palette, @default_text_color)
+
   def scope_background(theme_config, palette) do
     Map.put(theme_config, "background", %{
       "class" => ["background"],
@@ -88,8 +106,10 @@ defmodule Autumn.ThemeGenerator do
     })
   end
 
+  defp background_style(%{"background" => %{"bg" => bg}}, palette), do: bg(palette, bg)
+  defp background_style(%{"background" => bg}, palette) when is_binary(bg), do: bg(palette, bg)
   defp background_style(%{"ui.background" => %{"bg" => bg}}, palette), do: bg(palette, bg)
-  defp background_style(%{"ui.background" => bg}, palette), do: bg(palette, bg)
+  defp background_style(%{"ui.background" => bg}, palette) when is_binary(bg), do: bg(palette, bg)
   defp background_style(%{"ui.window" => %{"bg" => bg}}, palette), do: bg(palette, bg)
   defp background_style(_config, palette), do: bg(palette, @default_bg_color)
 

@@ -26,6 +26,7 @@
 "markup.raw" = "class=\"markup raw\" style=\"color: #7dcfff; \""
 "diff.minus" = "class=\"diff minus\" style=\"color: #f7768e; \""
 "variable" = "class=\"variable\" style=\"color: #c0caf5; \""
+"text" = "class=\"text\" style=\"color: #a9b1d6; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: ; \""
 "module" = "class=\"module\" style=\"color: #7aa2f7; \""
 "constant" = "class=\"constant\" style=\"color: #ff9e64; \""

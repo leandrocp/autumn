@@ -51,6 +51,7 @@
 "type.builtin" = "class=\"type builtin\" style=\"color: #FF6F00; \""
 "constructor" = "class=\"constructor\" style=\"color: #0061FF; \""
 "markup.list.checked" = "class=\"markup list checked\" style=\"color: #24A443; \""
+"text" = "class=\"text\" style=\"color: #282C34; \""
 "type.enum.variant" = "class=\"type enum variant\" style=\"color: #0086C1; \""
 "keyword.storage" = "class=\"keyword storage\" style=\"color: #B500A9; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #B500A9; \""

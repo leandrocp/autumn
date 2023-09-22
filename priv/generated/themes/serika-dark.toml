@@ -25,6 +25,7 @@
 "diff.minus" = "class=\"diff minus\" style=\"color: #ca4754; \""
 "constructor" = "class=\"constructor\" style=\"color: #e2b714;\""
 "variable" = "class=\"variable\" style=\"color: #e2b714;\""
+"text" = "class=\"text\" style=\"color: #d1d0c5; \""
 "module" = "class=\"module\" style=\"color: #bdcadb; \""
 "constant" = "class=\"constant\" style=\"color: #d0c4d4;\""
 "type" = "class=\"type\" style=\"color: #e2b714;\""

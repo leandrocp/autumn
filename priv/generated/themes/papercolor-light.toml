@@ -48,6 +48,7 @@
 "constructor" = "class=\"constructor\" style=\"color: #444444;\""
 "variable" = "class=\"variable\" style=\"color: #444444;\""
 "keyword.special" = "class=\"keyword special\" style=\"color: #d70000;\""
+"text" = "class=\"text\" style=\"color: #444444; \""
 "type.enum.variant" = "class=\"type enum variant\" style=\"color: #444444; \""
 "keyword.storage" = "class=\"keyword storage\" style=\"color: #d70087;\""
 "string.regexp" = "class=\"string regexp\" style=\"color: #8700af;\""

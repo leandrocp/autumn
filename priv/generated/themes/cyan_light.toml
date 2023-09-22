@@ -30,6 +30,7 @@
 "diff.minus" = "class=\"diff minus\" style=\"color: #EBBCBC;\""
 "constructor" = "class=\"constructor\" style=\"color: #25293c;\""
 "variable" = "class=\"variable\" style=\"color: #458383;\""
+"text" = "class=\"text\" style=\"color: #434b6c; \""
 "type.enum.variant" = "class=\"type enum variant\" style=\"color: #660E7A;\""
 "string.regexp" = "class=\"string regexp\" style=\"color: #0073E6;\""
 "module" = "class=\"module\" style=\"color: #000080; \""

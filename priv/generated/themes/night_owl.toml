@@ -29,6 +29,7 @@
 "markup.heading.2" = "class=\"markup heading 2\" style=\"font-weight: bold; color: #7fdbca; \""
 "constructor" = "class=\"constructor\" style=\"color: #82aaff; \""
 "variable" = "class=\"variable\" style=\"color: #addb67; \""
+"text" = "class=\"text\" style=\"color: #d6deeb; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #addb67; \""
 "module" = "class=\"module\" style=\"color: #eeeeee; \""
 "markup.link" = "class=\"markup link\" style=\"text-decoration: underline; color: #c792ea; \""

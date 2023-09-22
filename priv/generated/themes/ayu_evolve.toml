@@ -23,6 +23,7 @@
 "type.builtin" = "class=\"type builtin\" style=\"font-style: italic; color: #59c2ff; \""
 "constructor" = "class=\"constructor\" style=\"color: #d2a6ff;\""
 "variable" = "class=\"variable\" style=\"color: #dedede;\""
+"text" = "class=\"text\" style=\"color: #bfbdb6; \""
 "keyword.storage" = "class=\"keyword storage\" style=\"color: #e6b450;\""
 "string.regexp" = "class=\"string regexp\" style=\"color: #ff8f40;\""
 "module" = "class=\"module\" style=\"color: #59c2ff; \""

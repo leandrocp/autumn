@@ -27,5 +27,6 @@
 "string" = "class=\"string\" style=\"color: #c9b58e; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #cbab8a; \""
 "tag" = "class=\"tag\" style=\"color: #d29595; \""
+"text" = "class=\"text\" style=\"color: #dad7d5; \""
 "type" = "class=\"type\" style=\"color: #c2b4a8; \""
 "variable" = "class=\"variable\" style=\"color: #dad7d5; \""

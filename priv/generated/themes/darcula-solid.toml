@@ -26,6 +26,7 @@
 "markup.heading.2" = "class=\"markup heading 2\" style=\"color: #eedd82;\""
 "constructor" = "class=\"constructor\" style=\"color: #eedd82;\""
 "variable" = "class=\"variable\" style=\"color: #d0d0d0;\""
+"text" = "class=\"text\" style=\"color: #d0d0d0; \""
 "module" = "class=\"module\" style=\"color: #9876aa; \""
 "constant" = "class=\"constant\" style=\"color: #6897bb;\""
 "type" = "class=\"type\" style=\"color: #cc7832;\""

@@ -22,6 +22,7 @@
 "string" = "class=\"string\" style=\"color: #f1fa8c; \""
 "string.regexp" = "class=\"string regexp\" style=\"color: #ff5555; \""
 "tag" = "class=\"tag\" style=\"color: #ff79c6; \""
+"text" = "class=\"text\" style=\"color: #f8f8f2; \""
 "type" = "class=\"type\" style=\"font-style: italic; color: #8be9fd; \""
 "type.enum.variant" = "class=\"type enum variant\" style=\"font-style: italic; color: #f8f8f2; \""
 "variable" = "class=\"variable\" style=\"color: #f8f8f2; \""

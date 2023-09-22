@@ -21,6 +21,7 @@
 "constant.character" = "class=\"constant character\" style=\"color: #A48FE1;\""
 "diff.minus" = "class=\"diff minus\" style=\"color: #DF7F78;\""
 "variable" = "class=\"variable\" style=\"color: #9E9E9E;\""
+"text" = "class=\"text\" style=\"color: #9E9E9E; \""
 "type.enum.variant" = "class=\"type enum variant\" style=\"color: #50B584;\""
 "module" = "class=\"module\" style=\"color: #9E9E9E; \""
 "constant" = "class=\"constant\" style=\"color: #A48FE1;\""
