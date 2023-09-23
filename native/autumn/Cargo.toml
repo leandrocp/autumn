@@ -14,6 +14,7 @@ rustler = "0.29"
 serde = "1.0"
 serde_rustler = { git = "https://github.com/avencera/serde_rustler.git", branch = "rustler-0-29" }
 toml = { version = "0.8", default-features = false, features = ["parse"] }
+once_cell = "1.18"
 tree-sitter = "0.20"
 tree-sitter-highlight = "0.20"
 tree-sitter-elixir = { path = "../../priv/langs/tree-sitter-elixir" }

@@ -1,28 +1,25 @@
-mod lang;
+mod langs;
+mod themes;
 use tree_sitter_highlight::{Highlighter, HtmlRenderer};
-
-static THEME: &str = include_str!("../../../priv/generated/themes/dracula.toml");
 
 #[rustler::nif]
 fn highlight(lang: &str, source: &str, theme: &str) -> String {
     do_highlight(lang, source, theme)
 }
 
-fn do_highlight(lang: &str, source: &str, _theme: &str) -> String {
+fn do_highlight(lang: &str, source: &str, theme: &str) -> String {
     let mut highlighter = Highlighter::new();
-    let lang_config = lang::Lang::config(lang);
+    let lang_config = langs::lang(lang);
     let events = highlighter
         .highlight(&lang_config, source.as_bytes(), None, |_| None)
         .unwrap();
     let mut renderer = HtmlRenderer::new();
-
-    // TODO: themes
-    let theme_config: toml::Value = toml::from_str(THEME).unwrap();
+    let theme_config = themes::theme(theme);
 
     renderer
         .render(events, source.as_bytes(), &|h| {
-            let scope = lang::HIGHLIGHT_NAMES.get(h.0).unwrap();
-            let style = style(&theme_config, scope);
+            let scope = langs::HIGHLIGHT_NAMES.get(h.0).unwrap();
+            let style = style(theme_config, scope);
 
             // println!("{:?}", scope);
             // println!("{:?}", std::str::from_utf8(style).unwrap());
@@ -60,7 +57,7 @@ mod tests {
 
     #[test]
     fn test_highlight() {
-        let result = do_highlight("elixir", "@type foo :: :bar", "Dracula");
+        let result = do_highlight("elixir", "@type foo :: :bar", "dracula");
         assert_eq!(result, "<span class=\"attribute\" style=\"font-style: italic; color: #50fa7b; \">@</span><span class=\"attribute\" style=\"font-style: italic; color: #50fa7b; \">type</span> <span class=\"variable\" style=\"color: #f8f8f2; \">foo</span> <span class=\"operator\" style=\"color: #ff79c6; \">::</span> <span class=\"string special\" style=\"color: #ffb86c; \">:bar</span>\n")
     }
 
