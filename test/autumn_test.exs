@@ -3,6 +3,10 @@ defmodule AutumnTest do
 
   defp expected(html), do: String.trim(html)
 
+  test "invalid lang" do
+    assert Autumn.highlight("invalid", ":elixir") == {:error, "invalid lang"}
+  end
+
   test "overwrite pre class" do
     assert Autumn.highlight("elixir", ":elixir", pre_class: "pre") =~ ~s|<pre class="pre"|
     assert Autumn.highlight("elixir", ":elixir", pre_class: "") =~ ~s|<pre class=""|
@@ -19,7 +23,7 @@ defmodule AutumnTest do
                expected(~s"""
                <pre class="autumn highlight" class="background" style="background-color: #282C34; ">
                <code class="language-elixir">
-               <span class="string special" style="color: #ffb86c; ">:elixir</span>
+               <span class="string" style="color: #98C379; ">:elixir</span>
                </code></pre>
                """)
     end
@@ -29,43 +33,42 @@ defmodule AutumnTest do
                expected(~s"""
                <pre class="autumn highlight" class="background" style="background-color: #282C34; ">
                <code class="language-ruby">
-               <span class="function method" style="color: #50fa7b; ">puts</span> <span class="string" style="color: #f1fa8c; ">&quot;autumn season&quot;</span>
+               <span class="function" style="color: #61AFEF; ">puts</span> <span class="string" style="color: #98C379; ">&quot;autumn season&quot;</span>
                </code></pre>
                """)
     end
   end
 
-  # test "change theme" do
-  #   assert Autumn.highlight("elixir", ":elixir", theme: "Dracula") ==
-  #            expected(~s"""
-  #            <pre class="highlight"><code class="language-elixir">
-  #            <span style="color: #">:elixir</span>
-  #            </code></pre>
-  #            """)
-  # end
+  test "change theme" do
+    assert Autumn.highlight("elixir", ":elixir", theme: "dracula") ==
+             expected(~s"""
+             <pre class="autumn highlight" class="background" style="background-color: #282A36; ">
+             <code class="language-elixir">
+             <span class="string special" style="color: #ffb86c; ">:elixir</span>
+             </code></pre>
+             """)
+  end
 
   describe "languages" do
     test "by name" do
-      assert Autumn.language("elixir") == "elixir"
-      assert Autumn.language("Elixir") == "elixir"
-      assert Autumn.language("ELIXIR") == "elixir"
+      assert Autumn.language("elixir") == {:ok, "elixir"}
+      assert Autumn.language("Elixir") == {:ok, "elixir"}
+      assert Autumn.language("ELIXIR") == {:ok, "elixir"}
     end
 
     test "by extension" do
-      assert Autumn.language("ex") == "elixir"
-      assert Autumn.language(".ex") == "elixir"
+      assert Autumn.language("ex") == {:ok, "elixir"}
+      assert Autumn.language(".ex") == {:ok, "elixir"}
     end
 
     test "by file name" do
-      assert Autumn.language("file.rb") == "ruby"
-      assert Autumn.language("/path/to/file.rb") == "ruby"
-      assert Autumn.language("../file.rb") == "ruby"
+      assert Autumn.language("file.rb") == {:ok, "ruby"}
+      assert Autumn.language("/path/to/file.rb") == {:ok, "ruby"}
+      assert Autumn.language("../file.rb") == {:ok, "ruby"}
     end
 
-    test "raise if not loaded" do
-      assert_raise RuntimeError, "failed to find a loaded language for undefined", fn ->
-        Autumn.language("undefined")
-      end
+    test "invalid" do
+        assert Autumn.language("undefined") == {:error, "invalid lang"}
     end
   end
 end

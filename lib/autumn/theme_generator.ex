@@ -75,6 +75,11 @@ defmodule Autumn.ThemeGenerator do
       |> Enum.map(&line/1)
       |> IO.iodata_to_binary()
 
+    file_name =
+      file_name
+      |> String.replace(" ", "_")
+      |> String.replace("-", "_")
+
     dest_path = Path.join([:code.priv_dir(:autumn), "generated", "themes", file_name])
     File.write!(dest_path, theme_config)
 

@@ -1,25 +1,38 @@
 mod langs;
 mod themes;
+use langs::{Lang, HIGHLIGHT_NAMES};
+use rustler::{Atom, Error};
+use tree_sitter::Parser;
 use tree_sitter_highlight::{Highlighter, HtmlRenderer};
 
-#[rustler::nif]
-fn highlight(lang: &str, source: &str, theme: &str) -> String {
-    do_highlight(lang, source, theme)
+rustler::atoms! {
+    ok,
+    error,
 }
 
-fn do_highlight(lang: &str, source: &str, theme: &str) -> String {
+#[rustler::nif]
+fn highlight(lang: &str, source: &str, theme: &str) -> Result<(Atom, String), Error> {
+    let lang = match Lang::new(lang) {
+        Some(lang) => lang,
+        None => return Err(Error::Atom("invalid lang")),
+    };
+
+    let theme = match themes::theme(theme) {
+        Some(theme) => theme,
+        None => return Err(Error::Atom("invalid theme")),
+    };
+
     let mut highlighter = Highlighter::new();
-    let lang_config = langs::lang(lang);
     let events = highlighter
-        .highlight(&lang_config, source.as_bytes(), None, |_| None)
+        .highlight(lang.highlight_config, source.as_bytes(), None, |_| None)
         .unwrap();
+
     let mut renderer = HtmlRenderer::new();
-    let theme_config = themes::theme(theme);
 
     renderer
         .render(events, source.as_bytes(), &|h| {
-            let scope = langs::HIGHLIGHT_NAMES.get(h.0).unwrap();
-            let style = style(theme_config, scope);
+            let scope = HIGHLIGHT_NAMES.get(h.0).unwrap();
+            let style = style(theme, scope);
 
             // println!("{:?}", scope);
             // println!("{:?}", std::str::from_utf8(style).unwrap());
@@ -28,7 +41,9 @@ fn do_highlight(lang: &str, source: &str, theme: &str) -> String {
         })
         .unwrap();
 
-    String::from(std::str::from_utf8(&renderer.html).unwrap())
+    let rendered = String::from(std::str::from_utf8(&renderer.html).unwrap());
+
+    Ok((ok(), rendered))
 }
 
 fn style<'v>(theme_config: &'v toml::Value, scope: &str) -> &'v [u8] {
@@ -51,14 +66,29 @@ fn style<'v>(theme_config: &'v toml::Value, scope: &str) -> &'v [u8] {
     }
 }
 
+#[allow(dead_code)]
+fn parse(lang: &str, source: &str) -> String {
+    let lang = Lang::new(lang).expect("invalid lang");
+    let mut parser = Parser::new();
+    parser.set_language(lang.grammar).unwrap();
+    parser.parse(source, None).unwrap().root_node().to_sexp()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn test_highlight() {
-        let result = do_highlight("elixir", "@type foo :: :bar", "dracula");
-        assert_eq!(result, "<span class=\"attribute\" style=\"font-style: italic; color: #50fa7b; \">@</span><span class=\"attribute\" style=\"font-style: italic; color: #50fa7b; \">type</span> <span class=\"variable\" style=\"color: #f8f8f2; \">foo</span> <span class=\"operator\" style=\"color: #ff79c6; \">::</span> <span class=\"string special\" style=\"color: #ffb86c; \">:bar</span>\n")
+    fn test_parse() {
+        let tree = parse(
+            "elixir",
+            r#"
+            defmodule Foo do
+            end
+            "#,
+        );
+
+        println!("{:?}", tree);
     }
 
     #[test]

@@ -1,4 +1,5 @@
 use once_cell::sync::Lazy;
+use tree_sitter::Language;
 use tree_sitter_highlight::HighlightConfiguration;
 
 // https://github.com/Colonial-Dev/inkjet/blob/d53ddb0fe4de60b299368286ae7e602ea4d48169/src/constants.rs#L6
@@ -160,13 +161,35 @@ static SWIFT: Lazy<HighlightConfiguration> = Lazy::new(|| {
     config
 });
 
-pub fn lang(name: &str) -> &HighlightConfiguration {
-    match name {
-        "elixir" => &ELIXIR,
-        "ruby" => &RUBY,
-        "rust" => &RUST,
-        "javascript" => &JAVASCRIPT,
-        "swift" => &SWIFT,
-        &_ => todo!(),
+pub struct Lang<'a> {
+    pub grammar: Language,
+    pub highlight_config: &'a HighlightConfiguration,
+}
+
+impl<'a> Lang<'a> {
+    pub fn new(lang: &str) -> Option<Lang<'a>> {
+        match lang {
+            "elixir" => Some(Lang {
+                grammar: tree_sitter_elixir::language(),
+                highlight_config: &ELIXIR,
+            }),
+            "ruby" => Some(Lang {
+                grammar: tree_sitter_ruby::language(),
+                highlight_config: &RUBY,
+            }),
+            "rust" => Some(Lang {
+                grammar: tree_sitter_rust::language(),
+                highlight_config: &RUST,
+            }),
+            "javascript" => Some(Lang {
+                grammar: tree_sitter_javascript::language(),
+                highlight_config: &JAVASCRIPT,
+            }),
+            "swift" => Some(Lang {
+                grammar: tree_sitter_swift::language(),
+                highlight_config: &SWIFT,
+            }),
+            &_ => None,
+        }
     }
 }

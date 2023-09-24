@@ -30,33 +30,39 @@ defmodule Autumn do
 
   """
   def highlight(lang_filename_ext, source, opts \\ []) do
-    language = language(lang_filename_ext)
-    theme = Keyword.get(opts, :theme, "onedark")
-
-    # TODO: error handling
-    background_style = Toml.decode_file!(Path.join(@themes_path, "#{theme}.toml"))["background"]
-
+    theme_name = Keyword.get(opts, :theme, "onedark")
     pre_class = Keyword.get(opts, :pre_class, "autumn highlight")
-    code_class = Keyword.get(opts, :code_class, "language-#{language}")
 
-    IO.iodata_to_binary([
-      "<pre class=",
-      @double_quote,
-      pre_class,
-      @double_quote,
-      @space,
-      background_style,
-      @gt,
-      @eol,
-      "<code class=",
-      @double_quote,
-      code_class,
-      @double_quote,
-      @gt,
-      @eol,
-      Native.highlight(language, source, theme),
-      "</code></pre>"
-    ])
+    with {:ok, lang} <- language(lang_filename_ext),
+         {:ok, theme} <- theme(theme_name) do
+      background_style = theme["background"]
+      code_class = Keyword.get(opts, :code_class, "language-#{lang}")
+
+      case Native.highlight(lang, source, theme_name) do
+        {:ok, highlighted} ->
+          IO.iodata_to_binary([
+            "<pre class=",
+            @double_quote,
+            pre_class,
+            @double_quote,
+            @space,
+            background_style,
+            @gt,
+            @eol,
+            "<code class=",
+            @double_quote,
+            code_class,
+            @double_quote,
+            @gt,
+            @eol,
+            highlighted,
+            "</code></pre>"
+          ])
+
+        error ->
+          error
+      end
+    end
   end
 
   def langs do
@@ -71,16 +77,19 @@ defmodule Autumn do
       |> String.downcase()
       |> Path.basename()
 
-    cond do
-      String.starts_with?(lang_filename_ext, ".") ->
-        find_lang_by_extension(lang_filename_ext)
+    lang =
+      cond do
+        String.starts_with?(lang_filename_ext, ".") ->
+          find_lang_by_extension(lang_filename_ext)
 
-      String.contains?(lang_filename_ext, ".") ->
-        lang_filename_ext |> Path.basename() |> Path.extname() |> find_lang_by_extension
+        String.contains?(lang_filename_ext, ".") ->
+          lang_filename_ext |> Path.basename() |> Path.extname() |> find_lang_by_extension
 
-      :else ->
-        find_lang_by_name(lang_filename_ext) || find_lang_by_extension(lang_filename_ext)
-    end || raise "failed to find a loaded language for #{lang_filename_ext}"
+        :else ->
+          find_lang_by_name(lang_filename_ext) || find_lang_by_extension(lang_filename_ext)
+      end
+
+    if lang, do: {:ok, lang}, else: {:error, "invalid lang"}
   end
 
   defp find_lang_by_name(name) do
@@ -95,5 +104,11 @@ defmodule Autumn do
     Enum.find_value(langs(), nil, fn {name, exts} ->
       if ext in exts, do: name, else: nil
     end)
+  end
+
+  defp theme(name) do
+    @themes_path
+    |> Path.join("#{name}.toml")
+    |> Toml.decode_file()
   end
 end
