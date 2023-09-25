@@ -40,28 +40,46 @@ defmodule Autumn do
 
       case Native.highlight(lang, source, theme_name) do
         {:ok, highlighted} ->
-          IO.iodata_to_binary([
-            "<pre class=",
-            @double_quote,
-            pre_class,
-            @double_quote,
-            @space,
-            background_style,
-            @gt,
-            @eol,
-            "<code class=",
-            @double_quote,
-            code_class,
-            @double_quote,
-            @gt,
-            @eol,
-            highlighted,
-            "</code></pre>"
-          ])
+          {:ok,
+           IO.iodata_to_binary([
+             "<pre class=",
+             @double_quote,
+             pre_class,
+             @double_quote,
+             @space,
+             background_style,
+             @gt,
+             @eol,
+             "<code class=",
+             @double_quote,
+             code_class,
+             @double_quote,
+             @gt,
+             @eol,
+             highlighted,
+             "</code></pre>"
+           ])}
 
         error ->
           error
       end
+    end
+  end
+
+  def highlight!(lang_filename_ext, source, opts \\ []) do
+    case highlight(lang_filename_ext, source, opts) do
+      {:ok, highlighted} ->
+        highlighted
+
+      {:error, error} ->
+        raise """
+        failed to highlight source code for #{lang_filename_ext}
+
+        Got:
+
+          #{inspect(error)}
+
+        """
     end
   end
 

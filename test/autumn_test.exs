@@ -8,18 +8,18 @@ defmodule AutumnTest do
   end
 
   test "overwrite pre class" do
-    assert Autumn.highlight("elixir", ":elixir", pre_class: "pre") =~ ~s|<pre class="pre"|
-    assert Autumn.highlight("elixir", ":elixir", pre_class: "") =~ ~s|<pre class=""|
+    assert Autumn.highlight!("elixir", ":elixir", pre_class: "pre") =~ ~s|<pre class="pre"|
+    assert Autumn.highlight!("elixir", ":elixir", pre_class: "") =~ ~s|<pre class=""|
   end
 
   test "overwrite code class" do
-    assert Autumn.highlight("elixir", ":elixir", code_class: "code") =~ ~s|<code class="code">|
-    assert Autumn.highlight("elixir", ":elixir", code_class: "") =~ ~s|<code class="">|
+    assert Autumn.highlight!("elixir", ":elixir", code_class: "code") =~ ~s|<code class="code">|
+    assert Autumn.highlight!("elixir", ":elixir", code_class: "") =~ ~s|<code class="">|
   end
 
   describe "highlight" do
     test "elixir with default opts" do
-      assert Autumn.highlight("elixir", ":elixir") ==
+      assert Autumn.highlight!("elixir", ":elixir") ==
                expected(~s"""
                <pre class="autumn highlight" class="background" style="background-color: #282C34; ">
                <code class="language-elixir">
@@ -29,7 +29,7 @@ defmodule AutumnTest do
     end
 
     test "ruby with default opts" do
-      assert Autumn.highlight("script.rb", ~s|puts "autumn season"|) ==
+      assert Autumn.highlight!("script.rb", ~s|puts "autumn season"|) ==
                expected(~s"""
                <pre class="autumn highlight" class="background" style="background-color: #282C34; ">
                <code class="language-ruby">
@@ -40,7 +40,7 @@ defmodule AutumnTest do
   end
 
   test "change theme" do
-    assert Autumn.highlight("elixir", ":elixir", theme: "dracula") ==
+    assert Autumn.highlight!("elixir", ":elixir", theme: "dracula") ==
              expected(~s"""
              <pre class="autumn highlight" class="background" style="background-color: #282A36; ">
              <code class="language-elixir">
