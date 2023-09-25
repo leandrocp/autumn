@@ -16,7 +16,7 @@
 "special" = "class=\"special\" style=\"color: #cb4b16; \""
 "function.macro" = "class=\"function macro\" style=\"color: #d33682; \""
 "markup.italic" = "class=\"markup italic\" style=\"font-style: italic; color: #d33682; \""
-"background" = "class=\"background\" style=\"background-color: #fdf6e3; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #fdf6e3; \""
 "markup.link.text" = "class=\"markup link text\" style=\"color: #dc322f;\""
 "comment" = "class=\"comment\" style=\"color: #93a1a1; \""
 "tag" = "class=\"tag\" style=\"color: #d33682; \""

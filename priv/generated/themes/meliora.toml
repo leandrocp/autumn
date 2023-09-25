@@ -1,4 +1,4 @@
-"background" = "class=\"background\" style=\"background-color: #1c1917; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #1c1917; \""
 "comment" = "class=\"comment\" style=\"color: #707035; \""
 "constant" = "class=\"constant\" style=\"color: #b494af; \""
 "diff.delta" = "class=\"diff delta\" style=\"color: #b494af; \""

@@ -36,9 +36,13 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
      "github_light"},
     {"rust",
      ~c"https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/highlight/src/lib.rs",
-     "catppuccin_macchiato"},
+     "onedark"},
+    {"rust",
+     ~c"https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/highlight/src/lib.rs",
+     "github_light"},
+    {"ruby", ~c"https://raw.githubusercontent.com/rack/rack/main/lib/rack/request.rb", "onedark"},
     {"ruby", ~c"https://raw.githubusercontent.com/rack/rack/main/lib/rack/request.rb",
-     "base16_default_dark"}
+     "github_light"}
   ]
 
   @impl true

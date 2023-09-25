@@ -22,7 +22,7 @@
 "special" = "class=\"special\" style=\"color: #519FDF; \""
 "function.macro" = "class=\"function macro\" style=\"color: #B668CD; \""
 "markup.italic" = "class=\"markup italic\" style=\"font-style: italic; color: #B668CD; \""
-"background" = "class=\"background\" style=\"background-color: #16181A; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #16181A; \""
 "markup.link.text" = "class=\"markup link text\" style=\"color: #ABB2BF; \""
 "comment" = "class=\"comment\" style=\"font-style: italic; color: #636C6E; \""
 "diff.minus" = "class=\"diff minus\" style=\"color: #D05C65;\""

@@ -13,7 +13,7 @@
 "special" = "class=\"special\" style=\"font-weight: bold; color: #d85c60; \""
 "function.macro" = "class=\"function macro\" style=\"color: #d85c60; \""
 "markup.italic" = "class=\"markup italic\" style=\"color: #656869; \""
-"background" = "class=\"background\" style=\"background-color: #1d1e1b; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #1d1e1b; \""
 "punctuation" = "class=\"punctuation\" style=\"color: #b5c5c5; \""
 "markup.link.text" = "class=\"markup link text\" style=\"color: #656869; \""
 "comment" = "class=\"comment\" style=\"color: #d4d987; \""

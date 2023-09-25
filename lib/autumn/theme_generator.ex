@@ -17,7 +17,7 @@ defmodule Autumn.ThemeGenerator do
   use once_cell::sync::Lazy;
   use toml::Value;
 
-  <%= for {filename, name, name_upcase} <- @themes do %>
+  <%= for {filename, _name, name_upcase} <- @themes do %>
   static <%= name_upcase %>: Lazy<Value> = Lazy::new(|| {
       let theme = include_str!("../../../priv/generated/themes/<%= filename %>");
       toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "<%= filename %>"))
@@ -26,7 +26,7 @@ defmodule Autumn.ThemeGenerator do
 
   pub fn theme(name: &str) -> Option<&Value> {
       match name {
-          <%= for {_, name, name_upcase} <- @themes do %>
+          <%= for {_filename, name, name_upcase} <- @themes do %>
           "<%= name %>" => Some(&<%= name_upcase %>),
           <% end %>
           &_ => None,
@@ -143,7 +143,7 @@ defmodule Autumn.ThemeGenerator do
 
   def scope_background(theme_config, palette) do
     Map.put(theme_config, "background", %{
-      "class" => ["background"],
+      "class" => ["autumn highlight background"],
       "style" => [background_style(theme_config, palette)]
     })
   end

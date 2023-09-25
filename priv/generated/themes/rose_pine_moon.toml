@@ -20,7 +20,7 @@
 "diff.plus" = "class=\"diff plus\" style=\"color: #9ccfd8;\""
 "special" = "class=\"special\" style=\"color: #ea9a97;\""
 "markup.italic" = "class=\"markup italic\" style=\"font-style: italic; \""
-"background" = "class=\"background\" style=\"background-color: #232136; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #232136; \""
 "punctuation" = "class=\"punctuation\" style=\"color: #908caa;\""
 "markup.link.text" = "class=\"markup link text\" style=\"color: #e0def4;\""
 "comment" = "class=\"comment\" style=\"font-style: italic; color: #6e6a86; \""

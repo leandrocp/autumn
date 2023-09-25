@@ -34,7 +34,7 @@
 "special" = "class=\"special\" style=\"color: #651FFF; \""
 "function.macro" = "class=\"function macro\" style=\"font-weight: bold; color: #C2185B; \""
 "markup.italic" = "class=\"markup italic\" style=\"font-style: italic; color: #B500A9; \""
-"background" = "class=\"background\" style=\"background-color: #FAFAFA; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #FAFAFA; \""
 "punctuation" = "class=\"punctuation\" style=\"color: #282C34; \""
 "string.special.url" = "class=\"string special url\" style=\"color: #0091EA; \""
 "markup.link.text" = "class=\"markup link text\" style=\"color: #0091EA; \""

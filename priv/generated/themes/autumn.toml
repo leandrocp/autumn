@@ -1,5 +1,5 @@
 "attribute" = "class=\"attribute\" style=\"color: #86c1b9;\""
-"background" = "class=\"background\" style=\"background-color: #232323; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #232323; \""
 "comment" = "class=\"comment\" style=\"color: #646f69; \""
 "constant" = "class=\"constant\" style=\"color: #F3F2CC;\""
 "constant.character.escape" = "class=\"constant character escape\" style=\"color: #86c1b9;\""

@@ -21,7 +21,7 @@
 "diff.plus" = "class=\"diff plus\" style=\"color: #33B2A4;\""
 "function.macro" = "class=\"function macro\" style=\"font-weight: bold; color: #62A0EA; \""
 "markup.italic" = "class=\"markup italic\" style=\"font-style: italic; color: #DEDDDA; \""
-"background" = "class=\"background\" style=\"background-color: #1D1D1D; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #1D1D1D; \""
 "punctuation" = "class=\"punctuation\" style=\"color: #DEDDDA;\""
 "comment" = "class=\"comment\" style=\"color: #5E5C64;\""
 "tag" = "class=\"tag\" style=\"color: #5BC8AF;\""

@@ -1,5 +1,5 @@
 "attribute" = "class=\"attribute\" style=\"color: #C7B8E0; \""
-"background" = "class=\"background\" style=\"background-color: #3A2A4D; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #3A2A4D; \""
 "comment" = "class=\"comment\" style=\"color: #886C9C; \""
 "constant" = "class=\"constant\" style=\"color: #E3C0A8; \""
 "diff.delta" = "class=\"diff delta\" style=\"color: #E3C0A8; \""

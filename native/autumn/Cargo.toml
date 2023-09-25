@@ -13,16 +13,21 @@ crate-type = ["cdylib"]
 rustler = "0.29"
 serde = "1.0"
 serde_rustler = { git = "https://github.com/avencera/serde_rustler.git", branch = "rustler-0-29" }
-toml = { version = "0.8", default-features = false, features = ["parse"] }
+toml = "0.7"
 once_cell = "1.18"
 tree-sitter = "0.20"
 tree-sitter-highlight = "0.20"
-tree-sitter-elixir = { path = "../../priv/langs/tree-sitter-elixir" }
-tree-sitter-ruby = { path = "../../priv/langs/tree-sitter-ruby" }
-tree-sitter-rust = { path = "../../priv/langs/tree-sitter-rust" }
-tree-sitter-html = { path = "../../priv/langs/tree-sitter-html" }
-tree-sitter-javascript = { path = "../../priv/langs/tree-sitter-javascript" }
-tree-sitter-swift = { path = "../../priv/langs/tree-sitter-swift" }
+v_htmlescape = "0.15"
+inkjet = { version = "0.8", default-features = false, features = [
+  "html",
+  "language-html",
+  "language-javascript",
+  "language-typescript",
+  "language-elixir",
+  "language-rust",
+  "language-ruby",
+  "language-swift",
+] }
 
 [features]
 default = ["nif_version_2_15"]

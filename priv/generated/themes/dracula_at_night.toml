@@ -1,4 +1,4 @@
-"background" = "class=\"background\" style=\"background-color: #0e1419; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #0e1419; \""
 "comment" = "class=\"comment\" style=\"color: #6272a4; \""
 "constant" = "class=\"constant\" style=\"color: #bd93f9; \""
 "constant.character.escape" = "class=\"constant character escape\" style=\"color: #ff79c6; \""

@@ -17,7 +17,7 @@
 "variable.function" = "class=\"variable function\" style=\"\""
 "markup.link.url" = "class=\"markup link url\" style=\"\""
 "operator" = "class=\"operator\" style=\"color: ; \""
-"background" = "class=\"background\" style=\"background-color: #00262a; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #00262a; \""
 "string.special.url" = "class=\"string special url\" style=\"\""
 "markup.normal.raw" = "class=\"markup normal raw\" style=\"\""
 "markup.raw" = "class=\"markup raw\" style=\"\""

@@ -16,7 +16,7 @@
 "diff.plus" = "class=\"diff plus\" style=\"color: #79D836; \""
 "special" = "class=\"special\" style=\"color: #D85F00; \""
 "markup.italic" = "class=\"markup italic\" style=\"font-style: italic; color: #8041D8; \""
-"background" = "class=\"background\" style=\"background-color: #0D0E16; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #0D0E16; \""
 "markup.link.text" = "class=\"markup link text\" style=\"color: #D85F00; \""
 "comment" = "class=\"comment\" style=\"font-style: italic; color: #767676; \""
 "tag" = "class=\"tag\" style=\"color: #36D8BD; \""

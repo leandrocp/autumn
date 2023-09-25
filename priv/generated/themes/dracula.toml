@@ -29,7 +29,7 @@
 "special" = "class=\"special\" style=\"color: #ff79c6; \""
 "function.macro" = "class=\"function macro\" style=\"color: #BD93F9; \""
 "markup.italic" = "class=\"markup italic\" style=\"font-style: italic; color: #f1fa8c; \""
-"background" = "class=\"background\" style=\"background-color: #282A36; \""
+"background" = "class=\"autumn highlight background\" style=\"background-color: #282A36; \""
 "punctuation" = "class=\"punctuation\" style=\"color: #f8f8f2; \""
 "markup.link.text" = "class=\"markup link text\" style=\"color: #ff79c6; \""
 "comment" = "class=\"comment\" style=\"color: #6272A4; \""
