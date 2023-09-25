@@ -10,17 +10,14 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Autumn Sample - <%= @lang %></title>
+    <title>Autumn Sample - <%= @lang %> - <%= @theme %></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <style>
       * {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 16px;
-      }
-      body {
-        background-color: #282C34;
+        font-size: 14px;
       }
     </style>
   </head>
@@ -32,10 +29,16 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
 
   @langs [
     {"elixir",
-     ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/kernel.ex"},
+     ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/list.ex",
+     "onedark"},
+    {"elixir",
+     ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/list.ex",
+     "github_light"},
     {"rust",
-     ~c"https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/highlight/src/lib.rs"},
-    {"ruby", ~c"https://raw.githubusercontent.com/rack/rack/main/lib/rack/request.rb"}
+     ~c"https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/highlight/src/lib.rs",
+     "catppuccin_macchiato"},
+    {"ruby", ~c"https://raw.githubusercontent.com/rack/rack/main/lib/rack/request.rb",
+     "base16_default_dark"}
   ]
 
   @impl true
@@ -45,17 +48,20 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
 
     debug()
 
-    for {lang, url} <- @langs do
-      generate(lang, url)
+    for {lang, url, theme} <- @langs do
+      generate(lang, url, theme)
     end
   end
 
-  defp generate(lang, url) do
-    Mix.shell().info("Generating sample HTML for #{lang}...")
+  defp generate(lang, url, theme) do
+    Mix.shell().info("Generating sample HTML for #{lang} using theme #{theme}")
     source = download_source(url)
-    code = Autumn.highlight(lang, source)
-    html = EEx.eval_string(@layout, assigns: %{inner_content: code, lang: lang})
-    dest_path = Path.join([:code.priv_dir(:autumn), "generated", "samples", "#{lang}.html"])
+    code = Autumn.highlight!(lang, source, theme: theme)
+    html = EEx.eval_string(@layout, assigns: %{inner_content: code, lang: lang, theme: theme})
+
+    dest_path =
+      Path.join([:code.priv_dir(:autumn), "generated", "samples", "#{lang}_#{theme}.html"])
+
     File.write!(dest_path, html)
   end
 
@@ -68,8 +74,11 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     # import Kernel, except: [def: 1]
     # """
 
-    code = Autumn.highlight(lang, source)
-    html = EEx.eval_string(@layout, assigns: %{inner_content: code, lang: "debug"})
+    code = Autumn.highlight!(lang, source)
+
+    html =
+      EEx.eval_string(@layout, assigns: %{inner_content: code, lang: "debug", theme: "onedark"})
+
     dest_path = Path.join([:code.priv_dir(:autumn), "generated", "samples", "debug.html"])
     File.write!(dest_path, html)
   end

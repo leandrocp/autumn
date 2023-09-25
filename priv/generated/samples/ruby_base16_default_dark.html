@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Autumn Sample - ruby - base16_default_dark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <pre class="autumn highlight" class="background" style="background-color: #181818; ">
+<code class="language-ruby">
+<span class="comment" style="font-style: italic; color: #585858; "># frozen_string_literal: true</span>
+
+<span class="function" style="color: #7cafc2;">require_relative</span> <span class="string" style="color: #a1b56c;">&#39;constants&#39;</span>
+<span class="function" style="color: #7cafc2;">require_relative</span> <span class="string" style="color: #a1b56c;">&#39;utils&#39;</span>
+<span class="function" style="color: #7cafc2;">require_relative</span> <span class="string" style="color: #a1b56c;">&#39;media_type&#39;</span>
+
+<span class="keyword" style="color: #ba8baf;">module</span> <span class="constructor" style="color: #7cafc2;">Rack</span>
+  <span class="comment" style="font-style: italic; color: #585858; "># Rack::Request provides a convenient interface to a Rack</span>
+  <span class="comment" style="font-style: italic; color: #585858; "># environment.  It is stateless, the environment +env+ passed to the</span>
+  <span class="comment" style="font-style: italic; color: #585858; "># constructor will be directly modified.</span>
+  <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+  <span class="comment" style="font-style: italic; color: #585858; ">#   req = Rack::Request.new(env)</span>
+  <span class="comment" style="font-style: italic; color: #585858; ">#   req.post?</span>
+  <span class="comment" style="font-style: italic; color: #585858; ">#   req.params[&quot;data&quot;]</span>
+
+  <span class="keyword" style="color: #ba8baf;">class</span> <span class="constructor" style="color: #7cafc2;">Request</span>
+    <span class="keyword" style="color: #ba8baf;">class</span> &lt;&lt; <span class="variable" style="color: #ab4642;">self</span>
+      <span class="function" style="color: #7cafc2;">attr_accessor</span> <span class="string" style="color: #a1b56c;">:ip_filter</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The priority when checking forwarded headers. The default</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># is &lt;tt&gt;[:forwarded, :x_forwarded]&lt;/tt&gt;, which means, check the</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># +Forwarded+ header first, followed by the appropriate</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># &lt;tt&gt;X-Forwarded-*&lt;/tt&gt; header.  You can revert the priority by</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># reversing the priority, or remove checking of either</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># or both headers by removing elements from the array.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># This should be set as appropriate in your environment</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># based on what reverse proxies are in use.  If you are not</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># using reverse proxies, you should probably use an empty</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># array.</span>
+      <span class="function" style="color: #7cafc2;">attr_accessor</span> <span class="string" style="color: #a1b56c;">:forwarded_priority</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The priority when checking either the &lt;tt&gt;X-Forwarded-Proto&lt;/tt&gt;</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># or &lt;tt&gt;X-Forwarded-Scheme&lt;/tt&gt; header for the forwarded protocol.</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># The default is &lt;tt&gt;[:proto, :scheme]&lt;/tt&gt;, to try the</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># &lt;tt&gt;X-Forwarded-Proto&lt;/tt&gt; header before the</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># &lt;tt&gt;X-Forwarded-Scheme&lt;/tt&gt; header.  Rack 2 had behavior</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># similar to &lt;tt&gt;[:scheme, :proto]&lt;/tt&gt;.  You can remove either or</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># both of the entries in array to ignore that respective header.</span>
+      <span class="function" style="color: #7cafc2;">attr_accessor</span> <span class="string" style="color: #a1b56c;">:x_forwarded_proto_priority</span>
+    <span class="keyword" style="color: #ba8baf;">end</span>
+
+    <span class="text" style="color: #d8d8d8; ">@forwarded_priority</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="text" style="color: #d8d8d8; ">[</span><span class="string" style="color: #a1b56c;">:forwarded</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">:x_forwarded</span><span class="text" style="color: #d8d8d8; ">]</span>
+    <span class="text" style="color: #d8d8d8; ">@x_forwarded_proto_priority</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="text" style="color: #d8d8d8; ">[</span><span class="string" style="color: #a1b56c;">:proto</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">:scheme</span><span class="text" style="color: #d8d8d8; ">]</span>
+
+    <span class="variable" style="color: #ab4642;">valid_ipv4_octet</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\.</span>(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])/</span>
+
+    <span class="variable" style="color: #ab4642;">trusted_proxies</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constructor" style="color: #7cafc2;">Regexp</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">union</span><span class="text" style="color: #d8d8d8; ">(</span>
+      <span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\A</span>127<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="variable" style="color: #ab4642;">valid_ipv4_octet</span><span class="text" style="color: #d8d8d8; ">}</span></span>{3}<span class="text" style="color: #d8d8d8; ">\z</span>/</span><span class="text" style="color: #d8d8d8; ">,</span>                          <span class="comment" style="font-style: italic; color: #585858; "># localhost IPv4 range 127.x.x.x, per RFC-3330</span>
+      <span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\A</span>::1<span class="text" style="color: #d8d8d8; ">\z</span>/</span><span class="text" style="color: #d8d8d8; ">,</span>                                                <span class="comment" style="font-style: italic; color: #585858; "># localhost IPv6 ::1</span>
+      <span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\A</span>f[cd][0-9a-f]{2}(?::[0-9a-f]{0,4}){0,7}<span class="text" style="color: #d8d8d8; ">\z</span>/i</span><span class="text" style="color: #d8d8d8; ">,</span>           <span class="comment" style="font-style: italic; color: #585858; "># private IPv6 range fc00 .. fdff</span>
+      <span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\A</span>10<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="variable" style="color: #ab4642;">valid_ipv4_octet</span><span class="text" style="color: #d8d8d8; ">}</span></span>{3}<span class="text" style="color: #d8d8d8; ">\z</span>/</span><span class="text" style="color: #d8d8d8; ">,</span>                           <span class="comment" style="font-style: italic; color: #585858; "># private IPv4 range 10.x.x.x</span>
+      <span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\A</span>172<span class="text" style="color: #d8d8d8; ">\.</span>(1[6-9]|2[0-9]|3[01])<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="variable" style="color: #ab4642;">valid_ipv4_octet</span><span class="text" style="color: #d8d8d8; ">}</span></span>{2}<span class="text" style="color: #d8d8d8; ">\z</span>/</span><span class="text" style="color: #d8d8d8; ">,</span>   <span class="comment" style="font-style: italic; color: #585858; "># private IPv4 range 172.16.0.0 .. 172.31.255.255</span>
+      <span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\A</span>192<span class="text" style="color: #d8d8d8; ">\.</span>168<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="variable" style="color: #ab4642;">valid_ipv4_octet</span><span class="text" style="color: #d8d8d8; ">}</span></span>{2}<span class="text" style="color: #d8d8d8; ">\z</span>/</span><span class="text" style="color: #d8d8d8; ">,</span>                     <span class="comment" style="font-style: italic; color: #585858; "># private IPv4 range 192.168.x.x</span>
+      <span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\A</span>localhost<span class="text" style="color: #d8d8d8; ">\z</span>|<span class="text" style="color: #d8d8d8; ">\A</span>unix(<span class="text" style="color: #d8d8d8; ">\z</span>|:)/i</span><span class="text" style="color: #d8d8d8; ">,</span>                            <span class="comment" style="font-style: italic; color: #585858; "># localhost hostname, and unix domain sockets</span>
+    <span class="text" style="color: #d8d8d8; ">)</span>
+
+    <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">ip_filter</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">lambda</span> <span class="text" style="color: #d8d8d8; ">{</span> |<span class="variable" style="color: #ab4642;">ip</span>| <span class="variable" style="color: #ab4642;">trusted_proxies</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">match?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">ip</span><span class="text" style="color: #d8d8d8; ">)</span> <span class="text" style="color: #d8d8d8; ">}</span>
+
+    <span class="constant" style="color: #dc9656;">ALLOWED_SCHEMES</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="text" style="color: #d8d8d8; ">%w(</span><span class="string" style="color: #a1b56c;">https</span> <span class="string" style="color: #a1b56c;">http</span> <span class="string" style="color: #a1b56c;">wss</span> <span class="string" style="color: #a1b56c;">ws</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">freeze</span>
+
+    <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">initialize</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">env</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="text" style="color: #d8d8d8; ">@env</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">env</span>
+      <span class="text" style="color: #d8d8d8; ">@params</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constant" style="color: #dc9656;">nil</span>
+    <span class="keyword" style="color: #ba8baf;">end</span>
+
+    <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">params</span>
+      <span class="text" style="color: #d8d8d8; ">@params</span> ||= <span class="variable" style="color: #ab4642;">super</span>
+    <span class="keyword" style="color: #ba8baf;">end</span>
+
+    <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">update_param</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">v</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="variable" style="color: #ab4642;">super</span>
+      <span class="text" style="color: #d8d8d8; ">@params</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constant" style="color: #dc9656;">nil</span>
+    <span class="keyword" style="color: #ba8baf;">end</span>
+
+    <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">delete_param</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="variable" style="color: #ab4642;">v</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">super</span>
+      <span class="text" style="color: #d8d8d8; ">@params</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constant" style="color: #dc9656;">nil</span>
+      <span class="variable" style="color: #ab4642;">v</span>
+    <span class="keyword" style="color: #ba8baf;">end</span>
+
+    <span class="keyword" style="color: #ba8baf;">module</span> <span class="constructor" style="color: #7cafc2;">Env</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># The environment of the request.</span>
+      <span class="function" style="color: #7cafc2;">attr_reader</span> <span class="string" style="color: #a1b56c;">:env</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">initialize</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">env</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="text" style="color: #d8d8d8; ">@env</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">env</span>
+        <span class="comment" style="font-style: italic; color: #585858; "># This module is included at least in `ActionDispatch::Request`</span>
+        <span class="comment" style="font-style: italic; color: #585858; "># The call to `super()` allows additional mixed-in initializers are called</span>
+        <span class="variable" style="color: #ab4642;">super</span><span class="text" style="color: #d8d8d8; ">(</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Predicate method to test to see if `name` has been set as request</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># specific data</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">has_header?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">name</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="text" style="color: #d8d8d8; ">@env</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">key?</span> <span class="variable" style="color: #ab4642;">name</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Get a request specific value for `name`.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">name</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="text" style="color: #d8d8d8; ">@env</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">name</span><span class="text" style="color: #d8d8d8; ">]</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># If a block is given, it yields to the block if the value hasn&#39;t been set</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># on the request.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">fetch_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">name</span><span class="text" style="color: #d8d8d8; ">,</span> &amp;<span class="variable" style="color: #ab4642;">block</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="text" style="color: #d8d8d8; ">@env</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">fetch</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">name</span><span class="text" style="color: #d8d8d8; ">,</span> &amp;<span class="variable" style="color: #ab4642;">block</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Loops through each key / value pair in the request specific data.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">each_header</span><span class="text" style="color: #d8d8d8; ">(</span>&amp;<span class="variable" style="color: #ab4642;">block</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="text" style="color: #d8d8d8; ">@env</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">each</span><span class="text" style="color: #d8d8d8; ">(</span>&amp;<span class="variable" style="color: #ab4642;">block</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Set a request specific value for `name` to `v`</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">name</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">v</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="text" style="color: #d8d8d8; ">@env</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">name</span><span class="text" style="color: #d8d8d8; ">]</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">v</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Add a header that may have multiple values.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># Example:</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#   request.add_header &#39;Accept&#39;, &#39;image/png&#39;</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#   request.add_header &#39;Accept&#39;, &#39;*/*&#39;</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#   assert_equal &#39;image/png,*/*&#39;, request.get_header(&#39;Accept&#39;)</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">add_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">v</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">v</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">nil?</span>
+          <span class="function" style="color: #7cafc2;">get_header</span> <span class="variable" style="color: #ab4642;">key</span>
+        <span class="keyword" style="color: #ba8baf;">elsif</span> <span class="function" style="color: #7cafc2;">has_header?</span> <span class="variable" style="color: #ab4642;">key</span>
+          <span class="function" style="color: #7cafc2;">set_header</span> <span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">&quot;<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="function" style="color: #7cafc2;">get_header</span> <span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">}</span></span>,<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="variable" style="color: #ab4642;">v</span><span class="text" style="color: #d8d8d8; ">}</span></span>&quot;</span>
+        <span class="keyword" style="color: #ba8baf;">else</span>
+          <span class="function" style="color: #7cafc2;">set_header</span> <span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">v</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Delete a request specific value for `name`.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">delete_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">name</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="text" style="color: #d8d8d8; ">@env</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">delete</span> <span class="variable" style="color: #ab4642;">name</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">initialize_copy</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">other</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="text" style="color: #d8d8d8; ">@env</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">other</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">env</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">dup</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+    <span class="keyword" style="color: #ba8baf;">end</span>
+
+    <span class="keyword" style="color: #ba8baf;">module</span> <span class="constructor" style="color: #7cafc2;">Helpers</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># The set of form-data media-types. Requests that do not indicate</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># one of the media types present in this list will not be eligible</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># for form-data / param parsing.</span>
+      <span class="constant" style="color: #dc9656;">FORM_DATA_MEDIA_TYPES</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="text" style="color: #d8d8d8; ">[</span>
+        <span class="string" style="color: #a1b56c;">&#39;application/x-www-form-urlencoded&#39;</span><span class="text" style="color: #d8d8d8; ">,</span>
+        <span class="string" style="color: #a1b56c;">&#39;multipart/form-data&#39;</span>
+      <span class="text" style="color: #d8d8d8; ">]</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The set of media-types. Requests that do not indicate</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># one of the media types present in this list will not be eligible</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># for param parsing like soap attachments or generic multiparts</span>
+      <span class="constant" style="color: #dc9656;">PARSEABLE_DATA_MEDIA_TYPES</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="text" style="color: #d8d8d8; ">[</span>
+        <span class="string" style="color: #a1b56c;">&#39;multipart/related&#39;</span><span class="text" style="color: #d8d8d8; ">,</span>
+        <span class="string" style="color: #a1b56c;">&#39;multipart/mixed&#39;</span>
+      <span class="text" style="color: #d8d8d8; ">]</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Default ports depending on scheme. Used to decide whether or not</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># to include the port in a generated URI.</span>
+      <span class="constant" style="color: #dc9656;">DEFAULT_PORTS</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="text" style="color: #d8d8d8; ">{</span> <span class="string" style="color: #a1b56c;">&#39;http&#39;</span> <span class="operator" style="color: #d8d8d8; ">=&gt;</span> <span class="text" style="color: #d8d8d8; ">80</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">&#39;https&#39;</span> <span class="operator" style="color: #d8d8d8; ">=&gt;</span> <span class="text" style="color: #d8d8d8; ">443</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">&#39;coffee&#39;</span> <span class="operator" style="color: #d8d8d8; ">=&gt;</span> <span class="text" style="color: #d8d8d8; ">80</span> <span class="text" style="color: #d8d8d8; ">}</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The address of the client which connected to the proxy.</span>
+      <span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_FOR</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">&#39;HTTP_X_FORWARDED_FOR&#39;</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The contents of the host/:authority header sent to the proxy.</span>
+      <span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_HOST</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">&#39;HTTP_X_FORWARDED_HOST&#39;</span>
+
+      <span class="constant" style="color: #dc9656;">HTTP_FORWARDED</span>          <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">&#39;HTTP_FORWARDED&#39;</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The value of the scheme sent to the proxy.</span>
+      <span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_SCHEME</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">&#39;HTTP_X_FORWARDED_SCHEME&#39;</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The protocol used to connect to the proxy.</span>
+      <span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_PROTO</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">&#39;HTTP_X_FORWARDED_PROTO&#39;</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The port used to connect to the proxy.</span>
+      <span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_PORT</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">&#39;HTTP_X_FORWARDED_PORT&#39;</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Another way for specifying https scheme was used.</span>
+      <span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_SSL</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">&#39;HTTP_X_FORWARDED_SSL&#39;</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">body</span><span class="text" style="color: #d8d8d8; ">;</span>            <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_INPUT</span><span class="text" style="color: #d8d8d8; ">)</span>                         <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">script_name</span><span class="text" style="color: #d8d8d8; ">;</span>     <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">SCRIPT_NAME</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_s</span>                   <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">script_name</span><span class="operator" style="color: #d8d8d8; ">=</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">s</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">;</span> <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">SCRIPT_NAME</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">s</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_s</span><span class="text" style="color: #d8d8d8; ">)</span>                <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">path_info</span><span class="text" style="color: #d8d8d8; ">;</span>       <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">PATH_INFO</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_s</span>                     <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">path_info</span><span class="operator" style="color: #d8d8d8; ">=</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">s</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">;</span>   <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">PATH_INFO</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">s</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_s</span><span class="text" style="color: #d8d8d8; ">)</span>                  <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">request_method</span><span class="text" style="color: #d8d8d8; ">;</span>  <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">REQUEST_METHOD</span><span class="text" style="color: #d8d8d8; ">)</span>                     <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">query_string</span><span class="text" style="color: #d8d8d8; ">;</span>    <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">QUERY_STRING</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_s</span>                  <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">content_length</span><span class="text" style="color: #d8d8d8; ">;</span>  <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&#39;CONTENT_LENGTH&#39;</span><span class="text" style="color: #d8d8d8; ">)</span>                   <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">logger</span><span class="text" style="color: #d8d8d8; ">;</span>          <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_LOGGER</span><span class="text" style="color: #d8d8d8; ">)</span>                        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">user_agent</span><span class="text" style="color: #d8d8d8; ">;</span>      <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&#39;HTTP_USER_AGENT&#39;</span><span class="text" style="color: #d8d8d8; ">)</span>                  <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># the referer of the client</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">referer</span><span class="text" style="color: #d8d8d8; ">;</span>         <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&#39;HTTP_REFERER&#39;</span><span class="text" style="color: #d8d8d8; ">)</span>                     <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">alias</span> <span class="function" style="color: #7cafc2;">referrer</span> <span class="function" style="color: #7cafc2;">referer</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">session</span>
+        <span class="function" style="color: #7cafc2;">fetch_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_SESSION</span><span class="text" style="color: #d8d8d8; ">)</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">k</span>|
+          <span class="function" style="color: #7cafc2;">set_header</span> <span class="constant" style="color: #dc9656;">RACK_SESSION</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="function" style="color: #7cafc2;">default_session</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">session_options</span>
+        <span class="function" style="color: #7cafc2;">fetch_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_SESSION_OPTIONS</span><span class="text" style="color: #d8d8d8; ">)</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">k</span>|
+          <span class="function" style="color: #7cafc2;">set_header</span> <span class="constant" style="color: #dc9656;">RACK_SESSION_OPTIONS</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="text" style="color: #d8d8d8; ">{</span><span class="text" style="color: #d8d8d8; ">}</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type DELETE</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">delete?</span><span class="text" style="color: #d8d8d8; ">;</span>  <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">DELETE</span>  <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type GET</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">get?</span><span class="text" style="color: #d8d8d8; ">;</span>     <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">GET</span>     <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type HEAD</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">head?</span><span class="text" style="color: #d8d8d8; ">;</span>    <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">HEAD</span>    <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type OPTIONS</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">options?</span><span class="text" style="color: #d8d8d8; ">;</span> <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">OPTIONS</span> <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type LINK</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">link?</span><span class="text" style="color: #d8d8d8; ">;</span>    <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">LINK</span>    <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type PATCH</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">patch?</span><span class="text" style="color: #d8d8d8; ">;</span>   <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">PATCH</span>   <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type POST</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">post?</span><span class="text" style="color: #d8d8d8; ">;</span>    <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">POST</span>    <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type PUT</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">put?</span><span class="text" style="color: #d8d8d8; ">;</span>     <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">PUT</span>     <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type TRACE</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">trace?</span><span class="text" style="color: #d8d8d8; ">;</span>   <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">TRACE</span>   <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Checks the HTTP request method (or verb) to see if it was of type UNLINK</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">unlink?</span><span class="text" style="color: #d8d8d8; ">;</span>  <span class="function" style="color: #7cafc2;">request_method</span> == <span class="constant" style="color: #dc9656;">UNLINK</span>  <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">scheme</span>
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">HTTPS</span><span class="text" style="color: #d8d8d8; ">)</span> == <span class="string" style="color: #a1b56c;">&#39;on&#39;</span>
+          <span class="string" style="color: #a1b56c;">&#39;https&#39;</span>
+        <span class="keyword" style="color: #ba8baf;">elsif</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_SSL</span><span class="text" style="color: #d8d8d8; ">)</span> == <span class="string" style="color: #a1b56c;">&#39;on&#39;</span>
+          <span class="string" style="color: #a1b56c;">&#39;https&#39;</span>
+        <span class="keyword" style="color: #ba8baf;">elsif</span> <span class="function" style="color: #7cafc2;">forwarded_scheme</span>
+          <span class="function" style="color: #7cafc2;">forwarded_scheme</span>
+        <span class="keyword" style="color: #ba8baf;">else</span>
+          <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_URL_SCHEME</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The authority of the incoming request as defined by RFC3976.</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># https://tools.ietf.org/html/rfc3986#section-3.2</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># In HTTP/1, this is the `host` header.</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># In HTTP/2, this is the `:authority` pseudo-header.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">authority</span>
+        <span class="function" style="color: #7cafc2;">forwarded_authority</span> || <span class="function" style="color: #7cafc2;">host_authority</span> || <span class="function" style="color: #7cafc2;">server_authority</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The authority as defined by the `SERVER_NAME` and `SERVER_PORT`</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># variables.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">server_authority</span>
+        <span class="variable" style="color: #ab4642;">host</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">server_name</span>
+        <span class="variable" style="color: #ab4642;">port</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">server_port</span>
+
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">host</span>
+          <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">port</span>
+            <span class="string" style="color: #a1b56c;">&quot;<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="variable" style="color: #ab4642;">host</span><span class="text" style="color: #d8d8d8; ">}</span></span>:<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="variable" style="color: #ab4642;">port</span><span class="text" style="color: #d8d8d8; ">}</span></span>&quot;</span>
+          <span class="keyword" style="color: #ba8baf;">else</span>
+            <span class="variable" style="color: #ab4642;">host</span>
+          <span class="keyword" style="color: #ba8baf;">end</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">server_name</span>
+        <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">SERVER_NAME</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">server_port</span>
+        <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">SERVER_PORT</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">cookies</span>
+        <span class="variable" style="color: #ab4642;">hash</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">fetch_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_COOKIE_HASH</span><span class="text" style="color: #d8d8d8; ">)</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">key</span>|
+          <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="text" style="color: #d8d8d8; ">{</span><span class="text" style="color: #d8d8d8; ">}</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="variable" style="color: #ab4642;">string</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">HTTP_COOKIE</span><span class="text" style="color: #d8d8d8; ">)</span>
+
+        <span class="keyword" style="color: #ba8baf;">unless</span> <span class="variable" style="color: #ab4642;">string</span> == <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_COOKIE_STRING</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="variable" style="color: #ab4642;">hash</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">replace</span> <span class="constructor" style="color: #7cafc2;">Utils</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">parse_cookies_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">string</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_COOKIE_STRING</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">string</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="variable" style="color: #ab4642;">hash</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">content_type</span>
+        <span class="variable" style="color: #ab4642;">content_type</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&#39;CONTENT_TYPE&#39;</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">content_type</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">nil?</span> || <span class="variable" style="color: #ab4642;">content_type</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">empty?</span> ? <span class="constant" style="color: #dc9656;">nil</span> : <span class="variable" style="color: #ab4642;">content_type</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">xhr?</span>
+        <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&quot;HTTP_X_REQUESTED_WITH&quot;</span><span class="text" style="color: #d8d8d8; ">)</span> == <span class="string" style="color: #a1b56c;">&quot;XMLHttpRequest&quot;</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The `HTTP_HOST` header.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">host_authority</span>
+        <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">HTTP_HOST</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">host_with_port</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">authority</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="variable" style="color: #ab4642;">authority</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">host</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">_</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">port</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">split_authority</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">authority</span><span class="text" style="color: #d8d8d8; ">)</span>
+
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">port</span> == <span class="constant" style="color: #dc9656;">DEFAULT_PORTS</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">scheme</span><span class="text" style="color: #d8d8d8; ">]</span>
+          <span class="variable" style="color: #ab4642;">host</span>
+        <span class="keyword" style="color: #ba8baf;">else</span>
+          <span class="variable" style="color: #ab4642;">authority</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Returns a formatted host, suitable for being used in a URI.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">host</span>
+        <span class="function" style="color: #7cafc2;">split_authority</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">authority</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">[</span><span class="text" style="color: #d8d8d8; ">0</span><span class="text" style="color: #d8d8d8; ">]</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Returns an address suitable for being to resolve to an address.</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># In the case of a domain name or IPv4 address, the result is the same</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># as +host+. In the case of IPv6 or future address formats, the square</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># brackets are removed.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">hostname</span>
+        <span class="function" style="color: #7cafc2;">split_authority</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">authority</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">[</span><span class="text" style="color: #d8d8d8; ">1</span><span class="text" style="color: #d8d8d8; ">]</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">port</span>
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">authority</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="variable" style="color: #ab4642;">authority</span>
+          <span class="variable" style="color: #ab4642;">_</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">_</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">port</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">split_authority</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">authority</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="variable" style="color: #ab4642;">port</span> || <span class="function" style="color: #7cafc2;">forwarded_port</span>&amp;.<span class="function" style="color: #7cafc2;">last</span> || <span class="constant" style="color: #dc9656;">DEFAULT_PORTS</span><span class="text" style="color: #d8d8d8; ">[</span><span class="function" style="color: #7cafc2;">scheme</span><span class="text" style="color: #d8d8d8; ">]</span> || <span class="function" style="color: #7cafc2;">server_port</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">forwarded_for</span>
+        <span class="function" style="color: #7cafc2;">forwarded_priority</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">each</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">type</span>|
+          <span class="keyword" style="color: #ba8baf;">case</span> <span class="variable" style="color: #ab4642;">type</span>
+          <span class="keyword" style="color: #ba8baf;">when</span> <span class="string" style="color: #a1b56c;">:forwarded</span>
+            <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">forwarded_for</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_http_forwarded</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">:for</span><span class="text" style="color: #d8d8d8; ">)</span>
+              <span class="keyword" style="color: #ba8baf;">return</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">forwarded_for</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">map!</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">authority</span>|
+                <span class="function" style="color: #7cafc2;">split_authority</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">authority</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">[</span><span class="text" style="color: #d8d8d8; ">1</span><span class="text" style="color: #d8d8d8; ">]</span>
+              <span class="keyword" style="color: #ba8baf;">end</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="keyword" style="color: #ba8baf;">when</span> <span class="string" style="color: #a1b56c;">:x_forwarded</span>
+            <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">value</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_FOR</span><span class="text" style="color: #d8d8d8; ">)</span>
+              <span class="keyword" style="color: #ba8baf;">return</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">split_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">value</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">map</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">authority</span>|
+                <span class="function" style="color: #7cafc2;">split_authority</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">wrap_ipv6</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">authority</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">[</span><span class="text" style="color: #d8d8d8; ">1</span><span class="text" style="color: #d8d8d8; ">]</span>
+              <span class="keyword" style="color: #ba8baf;">end</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="keyword" style="color: #ba8baf;">end</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="constant" style="color: #dc9656;">nil</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">forwarded_port</span>
+        <span class="function" style="color: #7cafc2;">forwarded_priority</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">each</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">type</span>|
+          <span class="keyword" style="color: #ba8baf;">case</span> <span class="variable" style="color: #ab4642;">type</span>
+          <span class="keyword" style="color: #ba8baf;">when</span> <span class="string" style="color: #a1b56c;">:forwarded</span>
+            <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">forwarded</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_http_forwarded</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">:for</span><span class="text" style="color: #d8d8d8; ">)</span>
+              <span class="keyword" style="color: #ba8baf;">return</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">forwarded</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">map</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">authority</span>|
+                <span class="function" style="color: #7cafc2;">split_authority</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">authority</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">[</span><span class="text" style="color: #d8d8d8; ">2</span><span class="text" style="color: #d8d8d8; ">]</span>
+              <span class="keyword" style="color: #ba8baf;">end</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">compact</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="keyword" style="color: #ba8baf;">when</span> <span class="string" style="color: #a1b56c;">:x_forwarded</span>
+            <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">value</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_PORT</span><span class="text" style="color: #d8d8d8; ">)</span>
+              <span class="keyword" style="color: #ba8baf;">return</span> <span class="function" style="color: #7cafc2;">split_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">value</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">map</span><span class="text" style="color: #d8d8d8; ">(</span>&amp;<span class="string" style="color: #a1b56c;">:to_i</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="keyword" style="color: #ba8baf;">end</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="constant" style="color: #dc9656;">nil</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">forwarded_authority</span>
+        <span class="function" style="color: #7cafc2;">forwarded_priority</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">each</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">type</span>|
+          <span class="keyword" style="color: #ba8baf;">case</span> <span class="variable" style="color: #ab4642;">type</span>
+          <span class="keyword" style="color: #ba8baf;">when</span> <span class="string" style="color: #a1b56c;">:forwarded</span>
+            <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">forwarded</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_http_forwarded</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">:host</span><span class="text" style="color: #d8d8d8; ">)</span>
+              <span class="keyword" style="color: #ba8baf;">return</span> <span class="variable" style="color: #ab4642;">forwarded</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">last</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="keyword" style="color: #ba8baf;">when</span> <span class="string" style="color: #a1b56c;">:x_forwarded</span>
+            <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">value</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_HOST</span><span class="text" style="color: #d8d8d8; ">)</span>
+              <span class="keyword" style="color: #ba8baf;">return</span> <span class="function" style="color: #7cafc2;">wrap_ipv6</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">split_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">value</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">last</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="keyword" style="color: #ba8baf;">end</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="constant" style="color: #dc9656;">nil</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">ssl?</span>
+        <span class="function" style="color: #7cafc2;">scheme</span> == <span class="string" style="color: #a1b56c;">&#39;https&#39;</span> || <span class="function" style="color: #7cafc2;">scheme</span> == <span class="string" style="color: #a1b56c;">&#39;wss&#39;</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">ip</span>
+        <span class="variable" style="color: #ab4642;">remote_addresses</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">split_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&#39;REMOTE_ADDR&#39;</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">external_addresses</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">reject_trusted_ip_addresses</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">remote_addresses</span><span class="text" style="color: #d8d8d8; ">)</span>
+
+        <span class="keyword" style="color: #ba8baf;">unless</span> <span class="variable" style="color: #ab4642;">external_addresses</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">empty?</span>
+          <span class="keyword" style="color: #ba8baf;">return</span> <span class="variable" style="color: #ab4642;">external_addresses</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">last</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">forwarded_for</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="variable" style="color: #ab4642;">forwarded_for</span><span class="text" style="color: #d8d8d8; ">)</span> &amp;&amp; !<span class="variable" style="color: #ab4642;">forwarded_for</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">empty?</span>
+          <span class="comment" style="font-style: italic; color: #585858; "># The forwarded for addresses are ordered: client, proxy1, proxy2.</span>
+          <span class="comment" style="font-style: italic; color: #585858; "># So we reject all the trusted addresses (proxy*) and return the</span>
+          <span class="comment" style="font-style: italic; color: #585858; "># last client. Or if we trust everyone, we just return the first</span>
+          <span class="comment" style="font-style: italic; color: #585858; "># address.</span>
+          <span class="keyword" style="color: #ba8baf;">return</span> <span class="function" style="color: #7cafc2;">reject_trusted_ip_addresses</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">forwarded_for</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">last</span> || <span class="variable" style="color: #ab4642;">forwarded_for</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">first</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="comment" style="font-style: italic; color: #585858; "># If all the addresses are trusted, and we aren&#39;t forwarded, just return</span>
+        <span class="comment" style="font-style: italic; color: #585858; "># the first remote address, which represents the source of the request.</span>
+        <span class="variable" style="color: #ab4642;">remote_addresses</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">first</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The media type (type/subtype) portion of the CONTENT_TYPE header</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># without any media type parameters. e.g., when CONTENT_TYPE is</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># &quot;text/plain;charset=utf-8&quot;, the media-type is &quot;text/plain&quot;.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># For more information on the use of media types in HTTP, see:</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">media_type</span>
+        <span class="constructor" style="color: #7cafc2;">MediaType</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">type</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">content_type</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The media type parameters provided in CONTENT_TYPE as a Hash, or</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># an empty Hash if no CONTENT_TYPE or media-type parameters were</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># provided.  e.g., when the CONTENT_TYPE is &quot;text/plain;charset=utf-8&quot;,</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># this method responds with the following Hash:</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#   { &#39;charset&#39; =&gt; &#39;utf-8&#39; }</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">media_type_params</span>
+        <span class="constructor" style="color: #7cafc2;">MediaType</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">params</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">content_type</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The character set of the request body if a &quot;charset&quot; media type</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># parameter was given, or nil if no &quot;charset&quot; was specified. Note</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># that, per RFC2616, text/* media types that specify no explicit</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># charset are to be considered ISO-8859-1.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">content_charset</span>
+        <span class="function" style="color: #7cafc2;">media_type_params</span><span class="text" style="color: #d8d8d8; ">[</span><span class="string" style="color: #a1b56c;">&#39;charset&#39;</span><span class="text" style="color: #d8d8d8; ">]</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Determine whether the request body contains form-data by checking</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># the request content-type for one of the media-types:</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># &quot;application/x-www-form-urlencoded&quot; or &quot;multipart/form-data&quot;. The</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># list of form-data media types can be modified through the</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># +FORM_DATA_MEDIA_TYPES+ array.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># A request body is also assumed to contain form-data when no</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># content-type header is provided and the request_method is POST.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">form_data?</span>
+        <span class="variable" style="color: #ab4642;">type</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">media_type</span>
+        <span class="variable" style="color: #ab4642;">meth</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_METHODOVERRIDE_ORIGINAL_METHOD</span><span class="text" style="color: #d8d8d8; ">)</span> || <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">REQUEST_METHOD</span><span class="text" style="color: #d8d8d8; ">)</span>
+
+        <span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">meth</span> == <span class="constant" style="color: #dc9656;">POST</span> &amp;&amp; <span class="variable" style="color: #ab4642;">type</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">nil?</span><span class="text" style="color: #d8d8d8; ">)</span> || <span class="constant" style="color: #dc9656;">FORM_DATA_MEDIA_TYPES</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">include?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">type</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Determine whether the request body contains data by checking</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># the request media_type against registered parse-data media-types</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">parseable_data?</span>
+        <span class="constant" style="color: #dc9656;">PARSEABLE_DATA_MEDIA_TYPES</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">include?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">media_type</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Returns the data received in the query string.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">GET</span>
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_QUERY_STRING</span><span class="text" style="color: #d8d8d8; ">)</span> == <span class="function" style="color: #7cafc2;">query_string</span>
+          <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_QUERY_HASH</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">else</span>
+          <span class="variable" style="color: #ab4642;">query_hash</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">parse_query</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">query_string</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">&#39;&amp;&#39;</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_QUERY_STRING</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="function" style="color: #7cafc2;">query_string</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_QUERY_HASH</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">query_hash</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Returns the data received in the request body.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># This method support both application/x-www-form-urlencoded and</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># multipart/form-data.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">POST</span>
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">error</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_ERROR</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="function" style="color: #7cafc2;">raise</span> <span class="variable" style="color: #ab4642;">error</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">class</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">error</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">message</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">cause</span>: <span class="variable" style="color: #ab4642;">error</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">cause</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="keyword" style="color: #ba8baf;">begin</span>
+          <span class="variable" style="color: #ab4642;">rack_input</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_INPUT</span><span class="text" style="color: #d8d8d8; ">)</span>
+
+          <span class="comment" style="font-style: italic; color: #585858; "># If the form hash was already memoized:</span>
+          <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">form_hash</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_HASH</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="comment" style="font-style: italic; color: #585858; "># And it was memoized from the same input:</span>
+            <span class="keyword" style="color: #ba8baf;">if</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_INPUT</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">equal?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">rack_input</span><span class="text" style="color: #d8d8d8; ">)</span>
+              <span class="keyword" style="color: #ba8baf;">return</span> <span class="variable" style="color: #ab4642;">form_hash</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="keyword" style="color: #ba8baf;">end</span>
+
+          <span class="comment" style="font-style: italic; color: #585858; "># Otherwise, figure out how to parse the input:</span>
+          <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">rack_input</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">nil?</span>
+            <span class="function" style="color: #7cafc2;">set_header</span> <span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_INPUT</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="constant" style="color: #dc9656;">nil</span>
+            <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_HASH</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="text" style="color: #d8d8d8; ">{</span><span class="text" style="color: #d8d8d8; ">}</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="keyword" style="color: #ba8baf;">elsif</span> <span class="function" style="color: #7cafc2;">form_data?</span> || <span class="function" style="color: #7cafc2;">parseable_data?</span>
+            <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">pairs</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constructor" style="color: #7cafc2;">Rack</span>::<span class="constructor" style="color: #7cafc2;">Multipart</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">parse_multipart</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">env</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="constructor" style="color: #7cafc2;">Rack</span>::<span class="constructor" style="color: #7cafc2;">Multipart</span>::<span class="constructor" style="color: #7cafc2;">ParamList</span><span class="text" style="color: #d8d8d8; ">)</span>
+              <span class="function" style="color: #7cafc2;">set_header</span> <span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_PAIRS</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">pairs</span>
+              <span class="function" style="color: #7cafc2;">set_header</span> <span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_HASH</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="function" style="color: #7cafc2;">expand_param_pairs</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">pairs</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="keyword" style="color: #ba8baf;">else</span>
+              <span class="variable" style="color: #ab4642;">form_vars</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_INPUT</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">read</span>
+
+              <span class="comment" style="font-style: italic; color: #585858; "># Fix for Safari Ajax postings that always append \0</span>
+              <span class="comment" style="font-style: italic; color: #585858; "># form_vars.sub!(/\0\z/, &#39;&#39;) # performance replacement:</span>
+              <span class="variable" style="color: #ab4642;">form_vars</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">slice!</span><span class="text" style="color: #d8d8d8; ">(</span>-<span class="text" style="color: #d8d8d8; ">1</span><span class="text" style="color: #d8d8d8; ">)</span> <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">form_vars</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">end_with?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&quot;<span class="text" style="color: #d8d8d8; ">\0</span>&quot;</span><span class="text" style="color: #d8d8d8; ">)</span>
+
+              <span class="function" style="color: #7cafc2;">set_header</span> <span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_VARS</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">form_vars</span>
+              <span class="function" style="color: #7cafc2;">set_header</span> <span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_HASH</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="function" style="color: #7cafc2;">parse_query</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">form_vars</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">&#39;&amp;&#39;</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+
+            <span class="function" style="color: #7cafc2;">set_header</span> <span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_INPUT</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_INPUT</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="function" style="color: #7cafc2;">get_header</span> <span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_HASH</span>
+          <span class="keyword" style="color: #ba8baf;">else</span>
+            <span class="function" style="color: #7cafc2;">set_header</span> <span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_INPUT</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_INPUT</span><span class="text" style="color: #d8d8d8; ">)</span>
+            <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_HASH</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="text" style="color: #d8d8d8; ">{</span><span class="text" style="color: #d8d8d8; ">}</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="keyword" style="color: #ba8baf;">end</span>
+        <span class="keyword" style="color: #ba8baf;">rescue</span> <span class="operator" style="color: #d8d8d8; ">=&gt;</span> <span class="variable" style="color: #ab4642;">error</span>
+          <span class="function" style="color: #7cafc2;">set_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">RACK_REQUEST_FORM_ERROR</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">error</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="function" style="color: #7cafc2;">raise</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># The union of GET and POST data.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># Note that modifications will not be persisted in the env. Use update_param or delete_param if you want to destructively modify params.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">params</span>
+        <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">GET</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">merge</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">POST</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Destructively update a parameter, whether it&#39;s in GET and/or POST. Returns nil.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># The parameter is updated wherever it was previous defined, so GET, POST, or both. If it wasn&#39;t previously defined, it&#39;s inserted into GET.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># &lt;tt&gt;env[&#39;rack.input&#39;]&lt;/tt&gt; is not touched.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">update_param</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">v</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">found</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constant" style="color: #dc9656;">false</span>
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">GET</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">has_key?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="variable" style="color: #ab4642;">found</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constant" style="color: #dc9656;">true</span>
+          <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">GET</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">]</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">v</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+        <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">POST</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">has_key?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="variable" style="color: #ab4642;">found</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constant" style="color: #dc9656;">true</span>
+          <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">POST</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">]</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">v</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+        <span class="keyword" style="color: #ba8baf;">unless</span> <span class="variable" style="color: #ab4642;">found</span>
+          <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">GET</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">]</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">v</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Destructively delete a parameter, whether it&#39;s in GET or POST. Returns the value of the deleted parameter.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># If the parameter is in both GET and POST, the POST value takes precedence since that&#39;s how #params works.</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># &lt;tt&gt;env[&#39;rack.input&#39;]&lt;/tt&gt; is not touched.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">delete_param</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">post_value</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">get_value</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">POST</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">delete</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">GET</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">delete</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">post_value</span> || <span class="variable" style="color: #ab4642;">get_value</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">base_url</span>
+        <span class="string" style="color: #a1b56c;">&quot;<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="function" style="color: #7cafc2;">scheme</span><span class="text" style="color: #d8d8d8; ">}</span></span>://<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="function" style="color: #7cafc2;">host_with_port</span><span class="text" style="color: #d8d8d8; ">}</span></span>&quot;</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Tries to return a remake of the original request URL as a string.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">url</span>
+        <span class="function" style="color: #7cafc2;">base_url</span> + <span class="function" style="color: #7cafc2;">fullpath</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">path</span>
+        <span class="function" style="color: #7cafc2;">script_name</span> + <span class="function" style="color: #7cafc2;">path_info</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">fullpath</span>
+        <span class="function" style="color: #7cafc2;">query_string</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">empty?</span> ? <span class="function" style="color: #7cafc2;">path</span> : <span class="string" style="color: #a1b56c;">&quot;<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="function" style="color: #7cafc2;">path</span><span class="text" style="color: #d8d8d8; ">}</span></span>?<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="function" style="color: #7cafc2;">query_string</span><span class="text" style="color: #d8d8d8; ">}</span></span>&quot;</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">accept_encoding</span>
+        <span class="function" style="color: #7cafc2;">parse_http_accept_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&quot;HTTP_ACCEPT_ENCODING&quot;</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">accept_language</span>
+        <span class="function" style="color: #7cafc2;">parse_http_accept_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&quot;HTTP_ACCEPT_LANGUAGE&quot;</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">trusted_proxy?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">ip</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="constructor" style="color: #7cafc2;">Rack</span>::<span class="constructor" style="color: #7cafc2;">Request</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">ip_filter</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">call</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">ip</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># shortcut for &lt;tt&gt;request.params[key]&lt;/tt&gt;</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> []<span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="function" style="color: #7cafc2;">warn</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&quot;Request#[] is deprecated and will be removed in a future version of Rack. Please use request.params[] instead&quot;</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">uplevel</span>: <span class="text" style="color: #d8d8d8; ">1</span><span class="text" style="color: #d8d8d8; ">)</span>
+
+        <span class="function" style="color: #7cafc2;">params</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_s</span><span class="text" style="color: #d8d8d8; ">]</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># shortcut for &lt;tt&gt;request.params[key] = value&lt;/tt&gt;</span>
+      <span class="comment" style="font-style: italic; color: #585858; ">#</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># Note that modifications will not be persisted in the env. Use update_param or delete_param if you want to destructively modify params.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> []=<span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">value</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="function" style="color: #7cafc2;">warn</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&quot;Request#[]= is deprecated and will be removed in a future version of Rack. Please use request.params[]= instead&quot;</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="string" style="color: #a1b56c;">uplevel</span>: <span class="text" style="color: #d8d8d8; ">1</span><span class="text" style="color: #d8d8d8; ">)</span>
+
+        <span class="function" style="color: #7cafc2;">params</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_s</span><span class="text" style="color: #d8d8d8; ">]</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">value</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># like Hash#values_at</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">values_at</span><span class="text" style="color: #d8d8d8; ">(</span>*<span class="variable" style="color: #ab4642;">keys</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">keys</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">map</span> <span class="text" style="color: #d8d8d8; ">{</span> |<span class="variable" style="color: #ab4642;">key</span>| <span class="function" style="color: #7cafc2;">params</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">key</span><span class="text" style="color: #d8d8d8; ">]</span> <span class="text" style="color: #d8d8d8; ">}</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">private</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">default_session</span><span class="text" style="color: #d8d8d8; ">;</span> <span class="text" style="color: #d8d8d8; ">{</span><span class="text" style="color: #d8d8d8; ">}</span><span class="text" style="color: #d8d8d8; ">;</span> <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Assist with compatibility when processing `X-Forwarded-For`.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">wrap_ipv6</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">host</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="comment" style="font-style: italic; color: #585858; "># Even thought IPv6 addresses should be wrapped in square brackets,</span>
+        <span class="comment" style="font-style: italic; color: #585858; "># sometimes this is not done in various legacy/underspecified headers.</span>
+        <span class="comment" style="font-style: italic; color: #585858; "># So we try to fix this situation for compatibility reasons.</span>
+
+        <span class="comment" style="font-style: italic; color: #585858; "># Try to detect IPv6 addresses which aren&#39;t escaped yet:</span>
+        <span class="keyword" style="color: #ba8baf;">if</span> !<span class="variable" style="color: #ab4642;">host</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">start_with?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&#39;[&#39;</span><span class="text" style="color: #d8d8d8; ">)</span> &amp;&amp; <span class="variable" style="color: #ab4642;">host</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">count</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">&#39;:&#39;</span><span class="text" style="color: #d8d8d8; ">)</span> &gt; <span class="text" style="color: #d8d8d8; ">1</span>
+          <span class="string" style="color: #a1b56c;">&quot;[<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="variable" style="color: #ab4642;">host</span><span class="text" style="color: #d8d8d8; ">}</span></span>]&quot;</span>
+        <span class="keyword" style="color: #ba8baf;">else</span>
+          <span class="variable" style="color: #ab4642;">host</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">parse_http_accept_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">header</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">header</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_s</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">split</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\s</span>*,<span class="text" style="color: #d8d8d8; ">\s</span>*/</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">map</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">part</span>|
+          <span class="variable" style="color: #ab4642;">attribute</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">parameters</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">part</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">split</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\s</span>*;<span class="text" style="color: #d8d8d8; ">\s</span>*/</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="text" style="color: #d8d8d8; ">2</span><span class="text" style="color: #d8d8d8; ">)</span>
+          <span class="variable" style="color: #ab4642;">quality</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="text" style="color: #d8d8d8; ">1.0</span>
+          <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">parameters</span> <span class="keyword" style="color: #ba8baf;">and</span> <span class="string" style="color: #a1b56c;">/<span class="text" style="color: #d8d8d8; ">\A</span>q=([<span class="text" style="color: #d8d8d8; ">\d</span>.]+)/</span> =~ <span class="variable" style="color: #ab4642;">parameters</span>
+            <span class="variable" style="color: #ab4642;">quality</span> <span class="operator" style="color: #d8d8d8; ">=</span> $1<span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_f</span>
+          <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">attribute</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">quality</span><span class="text" style="color: #d8d8d8; ">]</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># Get an array of values set in the RFC 7239 `Forwarded` request header.</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">get_http_forwarded</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">token</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="constructor" style="color: #7cafc2;">Utils</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">forwarded_values</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constant" style="color: #dc9656;">HTTP_FORWARDED</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">)</span>&amp;.[]<span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">token</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">query_parser</span>
+        <span class="constructor" style="color: #7cafc2;">Utils</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">default_query_parser</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">parse_query</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">qs</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">d</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">&#39;&amp;&#39;</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="function" style="color: #7cafc2;">query_parser</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">parse_nested_query</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">qs</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">d</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">parse_multipart</span>
+        <span class="constructor" style="color: #7cafc2;">Rack</span>::<span class="constructor" style="color: #7cafc2;">Multipart</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">extract_multipart</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">self</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="function" style="color: #7cafc2;">query_parser</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">expand_param_pairs</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">pairs</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">query_parser</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">query_parser</span><span class="text" style="color: #d8d8d8; ">(</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">params</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="variable" style="color: #ab4642;">query_parser</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">make_params</span>
+
+        <span class="variable" style="color: #ab4642;">pairs</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">each</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">v</span>|
+          <span class="variable" style="color: #ab4642;">query_parser</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">normalize_params</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">params</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">k</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">v</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="variable" style="color: #ab4642;">params</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">to_params_hash</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">split_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">value</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">value</span> ? <span class="variable" style="color: #ab4642;">value</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">strip</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">split</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">/[,<span class="text" style="color: #d8d8d8; ">\s</span>]+/</span><span class="text" style="color: #d8d8d8; ">)</span> : <span class="text" style="color: #d8d8d8; ">[</span><span class="text" style="color: #d8d8d8; ">]</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="comment" style="font-style: italic; color: #585858; "># ipv6 extracted from resolv stdlib, simplified</span>
+      <span class="comment" style="font-style: italic; color: #585858; "># to remove numbered match group creation.</span>
+      <span class="variable" style="color: #ab4642;">ipv6</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constructor" style="color: #7cafc2;">Regexp</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">union</span><span class="text" style="color: #d8d8d8; ">(</span>
+        <span class="string" style="color: #a1b56c;">/(?:[0-9A-Fa-f]{1,4}:){7}</span>
+<span class="string" style="color: #a1b56c;">         [0-9A-Fa-f]{1,4}/x</span><span class="text" style="color: #d8d8d8; ">,</span>
+        <span class="string" style="color: #a1b56c;">/(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)? ::</span>
+<span class="string" style="color: #a1b56c;">         (?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?/x</span><span class="text" style="color: #d8d8d8; ">,</span>
+        <span class="string" style="color: #a1b56c;">/(?:[0-9A-Fa-f]{1,4}:){6,6}</span>
+<span class="string" style="color: #a1b56c;">         <span class="text" style="color: #d8d8d8; ">\d</span>+<span class="text" style="color: #d8d8d8; ">\.</span><span class="text" style="color: #d8d8d8; ">\d</span>+<span class="text" style="color: #d8d8d8; ">\.</span><span class="text" style="color: #d8d8d8; ">\d</span>+<span class="text" style="color: #d8d8d8; ">\.</span><span class="text" style="color: #d8d8d8; ">\d</span>+/x</span><span class="text" style="color: #d8d8d8; ">,</span>
+        <span class="string" style="color: #a1b56c;">/(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)? ::</span>
+<span class="string" style="color: #a1b56c;">         (?:[0-9A-Fa-f]{1,4}:)*</span>
+<span class="string" style="color: #a1b56c;">         <span class="text" style="color: #d8d8d8; ">\d</span>+<span class="text" style="color: #d8d8d8; ">\.</span><span class="text" style="color: #d8d8d8; ">\d</span>+<span class="text" style="color: #d8d8d8; ">\.</span><span class="text" style="color: #d8d8d8; ">\d</span>+<span class="text" style="color: #d8d8d8; ">\.</span><span class="text" style="color: #d8d8d8; ">\d</span>+/x</span><span class="text" style="color: #d8d8d8; ">,</span>
+        <span class="string" style="color: #a1b56c;">/[Ff][Ee]80</span>
+<span class="string" style="color: #a1b56c;">         (?::[0-9A-Fa-f]{1,4}){7}</span>
+<span class="string" style="color: #a1b56c;">         %[-0-9A-Za-z._~]+/x</span><span class="text" style="color: #d8d8d8; ">,</span>
+        <span class="string" style="color: #a1b56c;">/[Ff][Ee]80:</span>
+<span class="string" style="color: #a1b56c;">         (?:</span>
+<span class="string" style="color: #a1b56c;">           (?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)? ::</span>
+<span class="string" style="color: #a1b56c;">           (?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?</span>
+<span class="string" style="color: #a1b56c;">           |</span>
+<span class="string" style="color: #a1b56c;">           :(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?</span>
+<span class="string" style="color: #a1b56c;">         )?</span>
+<span class="string" style="color: #a1b56c;">         :[0-9A-Fa-f]{1,4}%[-0-9A-Za-z._~]+/x</span><span class="text" style="color: #d8d8d8; ">)</span>
+
+      <span class="constant" style="color: #dc9656;">AUTHORITY</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="string" style="color: #a1b56c;">/</span>
+<span class="string" style="color: #a1b56c;">        <span class="text" style="color: #d8d8d8; ">\A</span></span>
+<span class="string" style="color: #a1b56c;">        (?&lt;host&gt;</span>
+<span class="string" style="color: #a1b56c;">          # Match IPv6 as a string of hex digits and colons in square brackets</span>
+<span class="string" style="color: #a1b56c;">          <span class="text" style="color: #d8d8d8; ">\[</span>(?&lt;address&gt;<span class="text" style="color: #d8d8d8; "><span class="text" style="color: #d8d8d8; ">#{</span><span class="variable" style="color: #ab4642;">ipv6</span><span class="text" style="color: #d8d8d8; ">}</span></span>)<span class="text" style="color: #d8d8d8; ">\]</span></span>
+<span class="string" style="color: #a1b56c;">          |</span>
+<span class="string" style="color: #a1b56c;">          # Match any other printable string (except square brackets) as a hostname</span>
+<span class="string" style="color: #a1b56c;">          (?&lt;address&gt;[[[:graph:]&amp;&amp;[^<span class="text" style="color: #d8d8d8; ">\[</span><span class="text" style="color: #d8d8d8; ">\]</span>]]]*?)</span>
+<span class="string" style="color: #a1b56c;">        )</span>
+<span class="string" style="color: #a1b56c;">        (:(?&lt;port&gt;<span class="text" style="color: #d8d8d8; ">\d</span>+))?</span>
+<span class="string" style="color: #a1b56c;">        <span class="text" style="color: #d8d8d8; ">\z</span></span>
+<span class="string" style="color: #a1b56c;">      /x</span>
+
+      <span class="function" style="color: #7cafc2;">private_constant</span> <span class="string" style="color: #a1b56c;">:AUTHORITY</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">split_authority</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">authority</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">return</span> <span class="text" style="color: #d8d8d8; ">[</span><span class="text" style="color: #d8d8d8; ">]</span> <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">authority</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">nil?</span>
+        <span class="keyword" style="color: #ba8baf;">return</span> <span class="text" style="color: #d8d8d8; ">[</span><span class="text" style="color: #d8d8d8; ">]</span> <span class="keyword" style="color: #ba8baf;">unless</span> <span class="variable" style="color: #ab4642;">match</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constant" style="color: #dc9656;">AUTHORITY</span><span class="text" style="color: #d8d8d8; ">.</span><span class="variable" style="color: #ab4642;">match</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">authority</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="keyword" style="color: #ba8baf;">return</span> <span class="variable" style="color: #ab4642;">match</span><span class="text" style="color: #d8d8d8; ">[</span><span class="string" style="color: #a1b56c;">:host</span><span class="text" style="color: #d8d8d8; ">]</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">match</span><span class="text" style="color: #d8d8d8; ">[</span><span class="string" style="color: #a1b56c;">:address</span><span class="text" style="color: #d8d8d8; ">]</span><span class="text" style="color: #d8d8d8; ">,</span> <span class="variable" style="color: #ab4642;">match</span><span class="text" style="color: #d8d8d8; ">[</span><span class="string" style="color: #a1b56c;">:port</span><span class="text" style="color: #d8d8d8; ">]</span>&amp;.<span class="function" style="color: #7cafc2;">to_i</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">reject_trusted_ip_addresses</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">ip_addresses</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">ip_addresses</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">reject</span> <span class="text" style="color: #d8d8d8; ">{</span> |<span class="variable" style="color: #ab4642;">ip</span>| <span class="function" style="color: #7cafc2;">trusted_proxy?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">ip</span><span class="text" style="color: #d8d8d8; ">)</span> <span class="text" style="color: #d8d8d8; ">}</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="constant" style="color: #dc9656;">FORWARDED_SCHEME_HEADERS</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="text" style="color: #d8d8d8; ">{</span>
+        <span class="string" style="color: #a1b56c;">proto</span>: <span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_PROTO</span><span class="text" style="color: #d8d8d8; ">,</span>
+        <span class="string" style="color: #a1b56c;">scheme</span>: <span class="constant" style="color: #dc9656;">HTTP_X_FORWARDED_SCHEME</span>
+      <span class="text" style="color: #d8d8d8; ">}</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">freeze</span>
+      <span class="function" style="color: #7cafc2;">private_constant</span> <span class="string" style="color: #a1b56c;">:FORWARDED_SCHEME_HEADERS</span>
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">forwarded_scheme</span>
+        <span class="function" style="color: #7cafc2;">forwarded_priority</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">each</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">type</span>|
+          <span class="keyword" style="color: #ba8baf;">case</span> <span class="variable" style="color: #ab4642;">type</span>
+          <span class="keyword" style="color: #ba8baf;">when</span> <span class="string" style="color: #a1b56c;">:forwarded</span>
+            <span class="keyword" style="color: #ba8baf;">if</span> <span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">forwarded_proto</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">get_http_forwarded</span><span class="text" style="color: #d8d8d8; ">(</span><span class="string" style="color: #a1b56c;">:proto</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">)</span> &amp;&amp;
+               <span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">scheme</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="function" style="color: #7cafc2;">allowed_scheme</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">forwarded_proto</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">last</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">)</span>
+              <span class="keyword" style="color: #ba8baf;">return</span> <span class="variable" style="color: #ab4642;">scheme</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="keyword" style="color: #ba8baf;">when</span> <span class="string" style="color: #a1b56c;">:x_forwarded</span>
+            <span class="function" style="color: #7cafc2;">x_forwarded_proto_priority</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">each</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">x_type</span>|
+              <span class="keyword" style="color: #ba8baf;">if</span> <span class="variable" style="color: #ab4642;">header</span> <span class="operator" style="color: #d8d8d8; ">=</span> <span class="constant" style="color: #dc9656;">FORWARDED_SCHEME_HEADERS</span><span class="text" style="color: #d8d8d8; ">[</span><span class="variable" style="color: #ab4642;">x_type</span><span class="text" style="color: #d8d8d8; ">]</span>
+                <span class="function" style="color: #7cafc2;">split_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="function" style="color: #7cafc2;">get_header</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">header</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">)</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">reverse_each</span> <span class="keyword" style="color: #ba8baf;">do</span> |<span class="variable" style="color: #ab4642;">scheme</span>|
+                  <span class="keyword" style="color: #ba8baf;">if</span> <span class="function" style="color: #7cafc2;">allowed_scheme</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">scheme</span><span class="text" style="color: #d8d8d8; ">)</span>
+                    <span class="keyword" style="color: #ba8baf;">return</span> <span class="variable" style="color: #ab4642;">scheme</span>
+                  <span class="keyword" style="color: #ba8baf;">end</span>
+                <span class="keyword" style="color: #ba8baf;">end</span>
+              <span class="keyword" style="color: #ba8baf;">end</span>
+            <span class="keyword" style="color: #ba8baf;">end</span>
+          <span class="keyword" style="color: #ba8baf;">end</span>
+        <span class="keyword" style="color: #ba8baf;">end</span>
+
+        <span class="constant" style="color: #dc9656;">nil</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">allowed_scheme</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">header</span><span class="text" style="color: #d8d8d8; ">)</span>
+        <span class="variable" style="color: #ab4642;">header</span> <span class="keyword" style="color: #ba8baf;">if</span> <span class="constant" style="color: #dc9656;">ALLOWED_SCHEMES</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">include?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="variable" style="color: #ab4642;">header</span><span class="text" style="color: #d8d8d8; ">)</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">forwarded_priority</span>
+        <span class="constructor" style="color: #7cafc2;">Request</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">forwarded_priority</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+
+      <span class="keyword" style="color: #ba8baf;">def</span> <span class="function" style="color: #7cafc2;">x_forwarded_proto_priority</span>
+        <span class="constructor" style="color: #7cafc2;">Request</span><span class="text" style="color: #d8d8d8; ">.</span><span class="function" style="color: #7cafc2;">x_forwarded_proto_priority</span>
+      <span class="keyword" style="color: #ba8baf;">end</span>
+    <span class="keyword" style="color: #ba8baf;">end</span>
+
+    <span class="function" style="color: #7cafc2;">include</span> <span class="constructor" style="color: #7cafc2;">Env</span>
+    <span class="function" style="color: #7cafc2;">include</span> <span class="constructor" style="color: #7cafc2;">Helpers</span>
+  <span class="keyword" style="color: #ba8baf;">end</span>
+<span class="keyword" style="color: #ba8baf;">end</span>
+
+<span class="comment" style="font-style: italic; color: #585858; "># :nocov:</span>
+<span class="function" style="color: #7cafc2;">require_relative</span> <span class="string" style="color: #a1b56c;">&#39;multipart&#39;</span> <span class="keyword" style="color: #ba8baf;">unless</span> <span class="function" style="color: #7cafc2;">defined?</span><span class="text" style="color: #d8d8d8; ">(</span><span class="constructor" style="color: #7cafc2;">Rack</span>::<span class="constructor" style="color: #7cafc2;">Multipart</span><span class="text" style="color: #d8d8d8; ">)</span>
+<span class="comment" style="font-style: italic; color: #585858; "># :nocov:</span>
+</code></pre>
+</body>
+</html>

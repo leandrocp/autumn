@@ -62,12 +62,12 @@ defmodule Autumn.ThemeGeneratorTest do
     assert {
              :ok,
              "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black_parent; \\\"\"\n\"namespace\" = \"class=\\\"namespace\\\" style=\\\"color: black_parent;\\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"text\" = \"class=\\\"text\\\" style=\\\"color: #000000; \\\"\"\n\"variable\" = \"class=\\\"variable\\\" style=\\\"color: blue_parent;\\\"\"\n"
-           } = ThemeGenerator.generate(parent_theme_path)
+           } = ThemeGenerator.generate_theme_file(parent_theme_path)
 
     assert {
              :ok,
              "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black_parent; \\\"\"\n\"namespace\" = \"class=\\\"namespace\\\" style=\\\"color: black_parent;\\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"text\" = \"class=\\\"text\\\" style=\\\"color: #000000; \\\"\"\n\"variable\" = \"class=\\\"variable\\\" style=\\\"color: blue_child;\\\"\"\n"
-           } = ThemeGenerator.generate(child_theme_path)
+           } = ThemeGenerator.generate_theme_file(child_theme_path)
   end
 
   test "text" do
@@ -118,7 +118,7 @@ defmodule Autumn.ThemeGeneratorTest do
       assert {
                :ok,
                "\"background\" = \"class=\\\"background\\\" style=\\\"background-color: #ffffff; \\\"\"\n\"module\" = \"class=\\\"module\\\" style=\\\"color: black; \\\"\"\n\"operator\" = \"class=\\\"operator\\\" style=\\\"\\\"\"\n\"text\" = \"class=\\\"text\\\" style=\\\"color: #000000; \\\"\"\n"
-             } = ThemeGenerator.generate(module_theme_path)
+             } = ThemeGenerator.generate_theme_file(module_theme_path)
     end
 
     test "style" do

@@ -68,7 +68,7 @@ defmodule AutumnTest do
     end
 
     test "invalid" do
-        assert Autumn.language("undefined") == {:error, "invalid lang"}
+      assert Autumn.language("undefined") == {:error, "invalid lang"}
     end
   end
 end

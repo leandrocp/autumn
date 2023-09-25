@@ -291,14 +291,11 @@ defmodule Autumn.ThemeGenerator do
   end
 
   def generate_themes_rs(themes) do
-
     themes =
       Enum.map(themes, fn theme ->
         name = Path.basename(theme, ".toml")
         {Path.basename(theme), name, String.upcase(name)}
       end)
-
-    dbg themes
 
     themes_rs = EEx.eval_string(@themes_rs_template, assigns: %{themes: themes})
     dest_path = Path.join(["native", "autumn", "src", "themes.rs"])
