@@ -6,10 +6,6 @@
 
 `mix autumn.generate_themes`
 
-### langs.exs
-
-`mix autumn.generate_langs`
-
 ### Samples
 
 `mix autumn.generate_samples`
