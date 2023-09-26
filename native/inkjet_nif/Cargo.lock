@@ -142,9 +142,8 @@ checksum = "1e186cfbae8084e513daff4240b4797e342f988cecda4fb6c939150f96315fd8"
 
 [[package]]
 name = "inkjet"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d3915aba1983638d7815633ebaac269b126adfd68b2b726b36f8f050b7c16b5"
+version = "0.8.1"
+source = "git+https://github.com/Colonial-Dev/inkjet.git#10abafe997784b627d716c210384257a34ef1212"
 dependencies = [
  "ahash",
  "anyhow",

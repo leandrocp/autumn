@@ -14,12 +14,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    <style>
-      * {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 14px;
-      }
-    </style>
+    <%= @style %>
   </head>
   <body>
     <%= @inner_content %>
@@ -27,22 +22,72 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   </html>
   """
 
+  @dark_style ~S"""
+  <style>
+    * {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      line-height: 24px;
+      color: #ABB2BF;
+    }
+    body {
+      background-color: #282C34;
+    }
+    pre {
+      margin: 20px;
+    }
+  </style>
+  """
+
+  @light_style ~S"""
+  <style>
+    * {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      line-height: 24px;
+    }
+    body {
+      background-color: #ffffff;
+    }
+    pre {
+      margin: 20px;
+    }
+  </style>
+  """
+
   @langs [
-    {"elixir",
-     ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/list.ex",
-     "onedark"},
-    {"elixir",
-     ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/list.ex",
-     "github_light"},
-    {"rust",
-     ~c"https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/highlight/src/lib.rs",
-     "onedark"},
-    {"rust",
-     ~c"https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/highlight/src/lib.rs",
-     "github_light"},
-    {"ruby", ~c"https://raw.githubusercontent.com/rack/rack/main/lib/rack/request.rb", "onedark"},
-    {"ruby", ~c"https://raw.githubusercontent.com/rack/rack/main/lib/rack/request.rb",
-     "github_light"}
+    {
+      "elixir",
+      ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/list.ex"
+    },
+    {
+      "rust",
+      ~c"https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/highlight/src/lib.rs"
+    },
+    {
+      "ruby",
+      ~c"https://raw.githubusercontent.com/rack/rack/main/lib/rack/request.rb"
+    },
+    {
+      "swift",
+      ~c"https://raw.githubusercontent.com/apple/swift/main/test/Parse/async.swift"
+    },
+    {
+      "php",
+      ~c"https://raw.githubusercontent.com/php/php-src/master/pear/fetch.php"
+    },
+    {
+      "javascript",
+      ~c"https://raw.githubusercontent.com/phoenixframework/phoenix_live_view/main/assets/js/phoenix_live_view/view.js"
+    },
+    {
+      "css",
+      ~c"https://raw.githubusercontent.com/phoenixframework/phoenix/main/installer/templates/phx_static/home.css"
+    },
+    {
+      "html",
+      ~c"https://raw.githubusercontent.com/h5bp/html5-boilerplate/main/src/index.html"
+    }
   ]
 
   @impl true
@@ -50,18 +95,24 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     :inets.start()
     :ssl.start()
 
-    debug()
+    # debug()
 
-    for {lang, url, theme} <- @langs do
-      generate(lang, url, theme)
+    for {lang, url} <- @langs do
+      generate(lang, url)
     end
   end
 
-  defp generate(lang, url, theme) do
-    Mix.shell().info("Generating sample HTML for #{lang} using theme #{theme}")
+  defp generate(lang, url) do
     source = download_source(url)
+    do_generage(lang, source, "onedark", @dark_style)
+    do_generage(lang, source, "github_light", @light_style)
+  end
+
+  defp do_generage(lang, source, theme, style) do
+    Mix.shell().info("#{lang} - #{theme}")
+
     code = Autumn.highlight!(lang, source, theme: theme)
-    html = EEx.eval_string(@layout, assigns: %{inner_content: code, lang: lang, theme: theme})
+    html = EEx.eval_string(@layout, assigns: %{style: style, inner_content: code, lang: lang, theme: theme})
 
     dest_path =
       Path.join([:code.priv_dir(:autumn), "generated", "samples", "#{lang}_#{theme}.html"])

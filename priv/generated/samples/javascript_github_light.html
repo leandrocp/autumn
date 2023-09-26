@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Autumn Sample - javascript - github_light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+  * {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  body {
+    background-color: #ffffff;
+  }
+  pre {
+    margin: 20px;
+  }
+</style>
+
+</head>
+<body>
+  <pre class="autumn highlight background" style="background-color: #ffffff; ">
+<code class="language-javascript">
+import {
+  BEFORE_UNLOAD_LOADER_TIMEOUT,
+  CHECKABLE_INPUTS,
+  CONSECUTIVE_RELOADS,
+  PHX_AUTO_RECOVER,
+  PHX_COMPONENT,
+  PHX_CONNECTED_CLASS,
+  PHX_DISABLE_WITH,
+  PHX_DISABLE_WITH_RESTORE,
+  PHX_DISABLED,
+  PHX_LOADING_CLASS,
+  PHX_EVENT_CLASSES,
+  PHX_ERROR_CLASS,
+  PHX_CLIENT_ERROR_CLASS,
+  PHX_SERVER_ERROR_CLASS,
+  PHX_FEEDBACK_FOR,
+  PHX_HAS_SUBMITTED,
+  PHX_HOOK,
+  PHX_PAGE_LOADING,
+  PHX_PARENT_ID,
+  PHX_PROGRESS,
+  PHX_READONLY,
+  PHX_REF,
+  PHX_REF_SRC,
+  PHX_ROOT_ID,
+  PHX_SESSION,
+  PHX_STATIC,
+  PHX_TRACK_STATIC,
+  PHX_TRACK_UPLOADS,
+  PHX_UPDATE,
+  PHX_UPLOAD_REF,
+  PHX_VIEW_SELECTOR,
+  PHX_MAIN,
+  PHX_MOUNTED,
+  PUSH_TIMEOUT,
+  PHX_VIEWPORT_TOP,
+  PHX_VIEWPORT_BOTTOM,
+} from &quot;.&#x2f;constants&quot;
+
+import {
+  clone,
+  closestPhxBinding,
+  isEmpty,
+  isEqualObj,
+  logError,
+  maybe,
+  isCid,
+} from &quot;.&#x2f;utils&quot;
+
+import Browser from &quot;.&#x2f;browser&quot;
+import DOM from &quot;.&#x2f;dom&quot;
+import DOMPatch from &quot;.&#x2f;dom_patch&quot;
+import LiveUploader from &quot;.&#x2f;live_uploader&quot;
+import Rendered from &quot;.&#x2f;rendered&quot;
+import ViewHook from &quot;.&#x2f;view_hook&quot;
+import JS from &quot;.&#x2f;js&quot;
+
+let serializeForm = (<span class="variable parameter" style="color: #953800;">form</span>, <span class="variable parameter" style="color: #953800;">metadata</span>, <span class="variable parameter" style="color: #953800;">onlyNames</span> = []) =&gt; {
+  let {submitter, ...meta} = metadata
+
+  &#x2f;&#x2f; TODO: Replace with `new FormData(form, submitter)` when supported by latest browsers,
+  &#x2f;&#x2f;       and mention `formdata-submitter-polyfill` in the docs.
+  let formData = new FormData(form)
+
+  &#x2f;&#x2f; TODO: Remove when FormData constructor supports the submitter argument.
+  if(submitter &amp;&amp; submitter.hasAttribute(&quot;name&quot;) &amp;&amp; submitter.form &amp;&amp; submitter.form === form){
+    formData.append(submitter.name, submitter.value)
+  }
+
+  let toRemove = []
+
+  formData.forEach((<span class="variable parameter" style="color: #953800;">val</span>, <span class="variable parameter" style="color: #953800;">key</span>, <span class="variable parameter" style="color: #953800;">_index</span>) =&gt; {
+    if(val instanceof File){ toRemove.push(key) }
+  })
+
+  &#x2f;&#x2f; Cleanup after building fileData
+  toRemove.forEach(key =&gt; formData.delete(key))
+
+  let params = new URLSearchParams()
+  for(let [key, val] of formData.entries()){
+    if(onlyNames.length === 0 || onlyNames.indexOf(key) &gt;= 0){
+      params.append(key, val)
+    }
+  }
+  for(let metaKey in meta){ params.append(metaKey, meta[metaKey]) }
+
+  return params.toString()
+}
+
+export default class View {
+  constructor(<span class="variable parameter" style="color: #953800;">el</span>, <span class="variable parameter" style="color: #953800;">liveSocket</span>, <span class="variable parameter" style="color: #953800;">parentView</span>, <span class="variable parameter" style="color: #953800;">flash</span>, <span class="variable parameter" style="color: #953800;">liveReferer</span>){
+    this.isDead = false
+    this.liveSocket = liveSocket
+    this.flash = flash
+    this.parent = parentView
+    this.root = parentView ? parentView.root : this
+    this.el = el
+    this.id = this.el.id
+    this.ref = 0
+    this.childJoins = 0
+    this.loaderTimer = null
+    this.pendingDiffs = []
+    this.pruningCIDs = []
+    this.redirect = false
+    this.href = null
+    this.joinCount = this.parent ? this.parent.joinCount - 1 : 0
+    this.joinPending = true
+    this.destroyed = false
+    this.joinCallback = function(<span class="variable parameter" style="color: #953800;">onDone</span>){ onDone &amp;&amp; onDone() }
+    this.stopCallback = function(){ }
+    this.pendingJoinOps = this.parent ? null : []
+    this.viewHooks = {}
+    this.uploaders = {}
+    this.formSubmits = []
+    this.children = this.parent ? null : {}
+    this.root.children[this.id] = {}
+    this.channel = this.liveSocket.channel(`lv:${this.id}`, () =&gt; {
+      return {
+        redirect: this.redirect ? this.href : undefined,
+        url: this.redirect ? undefined : this.href || undefined,
+        params: this.connectParams(liveReferer),
+        session: this.getSession(),
+        static: this.getStatic(),
+        flash: this.flash,
+      }
+    })
+  }
+
+  setHref(<span class="variable parameter" style="color: #953800;">href</span>){ this.href = href }
+
+  setRedirect(<span class="variable parameter" style="color: #953800;">href</span>){
+    this.redirect = true
+    this.href = href
+  }
+
+  isMain(){ return this.el.hasAttribute(PHX_MAIN) }
+
+  connectParams(<span class="variable parameter" style="color: #953800;">liveReferer</span>){
+    let params = this.liveSocket.params(this.el)
+    let manifest =
+      DOM.all(document, `[${this.binding(PHX_TRACK_STATIC)}]`)
+        .map(node =&gt; node.src || node.href).filter(url =&gt; typeof (url) === &quot;string&quot;)
+
+    if(manifest.length &gt; 0){ params[&quot;_track_static&quot;] = manifest }
+    params[&quot;_mounts&quot;] = this.joinCount
+    params[&quot;_live_referer&quot;] = liveReferer
+
+    return params
+  }
+
+  isConnected(){ return this.channel.canPush() }
+
+  getSession(){ return this.el.getAttribute(PHX_SESSION) }
+
+  getStatic(){
+    let val = this.el.getAttribute(PHX_STATIC)
+    return val === &quot;&quot; ? null : val
+  }
+
+  destroy(<span class="variable parameter" style="color: #953800;">callback</span> = function (){ }){
+    this.destroyAllChildren()
+    this.destroyed = true
+    delete this.root.children[this.id]
+    if(this.parent){ delete this.root.children[this.parent.id][this.id] }
+    clearTimeout(this.loaderTimer)
+    let onFinished = () =&gt; {
+      callback()
+      for(let id in this.viewHooks){
+        this.destroyHook(this.viewHooks[id])
+      }
+    }
+
+    DOM.markPhxChildDestroyed(this.el)
+
+    this.log(&quot;destroyed&quot;, () =&gt; [&quot;the child has been removed from the parent&quot;])
+    this.channel.leave()
+      .receive(&quot;ok&quot;, onFinished)
+      .receive(&quot;error&quot;, onFinished)
+      .receive(&quot;timeout&quot;, onFinished)
+  }
+
+  setContainerClasses(...<span class="variable parameter" style="color: #953800;">classes</span>){
+    this.el.classList.remove(
+      PHX_CONNECTED_CLASS,
+      PHX_LOADING_CLASS,
+      PHX_ERROR_CLASS,
+      PHX_CLIENT_ERROR_CLASS,
+      PHX_SERVER_ERROR_CLASS
+    )
+    this.el.classList.add(...classes)
+  }
+
+  showLoader(<span class="variable parameter" style="color: #953800;">timeout</span>){
+    clearTimeout(this.loaderTimer)
+    if(timeout){
+      this.loaderTimer = setTimeout(() =&gt; this.showLoader(), timeout)
+    } else {
+      for(let id in this.viewHooks){ this.viewHooks[id].__disconnected() }
+      this.setContainerClasses(PHX_LOADING_CLASS)
+    }
+  }
+
+  execAll(<span class="variable parameter" style="color: #953800;">binding</span>){
+    DOM.all(this.el, `[${binding}]`, el =&gt; this.liveSocket.execJS(el, el.getAttribute(binding)))
+  }
+
+  hideLoader(){
+    clearTimeout(this.loaderTimer)
+    this.setContainerClasses(PHX_CONNECTED_CLASS)
+    this.execAll(this.binding(&quot;connected&quot;))
+  }
+
+  triggerReconnected(){
+    for(let id in this.viewHooks){ this.viewHooks[id].__reconnected() }
+  }
+
+  log(<span class="variable parameter" style="color: #953800;">kind</span>, <span class="variable parameter" style="color: #953800;">msgCallback</span>){
+    this.liveSocket.log(this, kind, msgCallback)
+  }
+
+  transition(<span class="variable parameter" style="color: #953800;">time</span>, <span class="variable parameter" style="color: #953800;">onStart</span>, <span class="variable parameter" style="color: #953800;">onDone</span> = function(){}){
+    this.liveSocket.transition(time, onStart, onDone)
+  }
+
+  withinTargets(<span class="variable parameter" style="color: #953800;">phxTarget</span>, <span class="variable parameter" style="color: #953800;">callback</span>){
+    if(phxTarget instanceof HTMLElement || phxTarget instanceof SVGElement){
+      return this.liveSocket.owner(phxTarget, view =&gt; callback(view, phxTarget))
+    }
+
+    if(isCid(phxTarget)){
+      let targets = DOM.findComponentNodeList(this.el, phxTarget)
+      if(targets.length === 0){
+        logError(`no component found matching phx-target of ${phxTarget}`)
+      } else {
+        callback(this, parseInt(phxTarget))
+      }
+    } else {
+      let targets = Array.from(document.querySelectorAll(phxTarget))
+      if(targets.length === 0){ logError(`nothing found matching the phx-target selector &quot;${phxTarget}&quot;`) }
+      targets.forEach(target =&gt; this.liveSocket.owner(target, view =&gt; callback(view, target)))
+    }
+  }
+
+  applyDiff(<span class="variable parameter" style="color: #953800;">type</span>, <span class="variable parameter" style="color: #953800;">rawDiff</span>, <span class="variable parameter" style="color: #953800;">callback</span>){
+    this.log(type, () =&gt; [&quot;&quot;, clone(rawDiff)])
+    let {diff, reply, events, title} = Rendered.extract(rawDiff)
+    callback({diff, reply, events})
+    if(title){ window.requestAnimationFrame(() =&gt; DOM.putTitle(title)) }
+  }
+
+  onJoin(<span class="variable parameter" style="color: #953800;">resp</span>){
+    let {rendered, container} = resp
+    if(container){
+      let [tag, attrs] = container
+      this.el = DOM.replaceRootContainer(this.el, tag, attrs)
+    }
+    this.childJoins = 0
+    this.joinPending = true
+    this.flash = null
+
+    Browser.dropLocal(this.liveSocket.localStorage, window.location.pathname, CONSECUTIVE_RELOADS)
+    this.applyDiff(&quot;mount&quot;, rendered, ({<span class="variable parameter" style="color: #953800;">diff</span>, <span class="variable parameter" style="color: #953800;">events</span>}) =&gt; {
+      this.rendered = new Rendered(this.id, diff)
+      let [html, streams] = this.renderContainer(null, &quot;join&quot;)
+      this.dropPendingRefs()
+      let forms = this.formsForRecovery(html)
+      this.joinCount++
+
+      if(forms.length &gt; 0){
+        forms.forEach(([<span class="variable parameter" style="color: #953800;">form</span>, <span class="variable parameter" style="color: #953800;">newForm</span>, <span class="variable parameter" style="color: #953800;">newCid</span>], <span class="variable parameter" style="color: #953800;">i</span>) =&gt; {
+          this.pushFormRecovery(form, newCid, resp =&gt; {
+            if(i === forms.length - 1){
+              this.onJoinComplete(resp, html, streams, events)
+            }
+          })
+        })
+      } else {
+        this.onJoinComplete(resp, html, streams, events)
+      }
+    })
+  }
+
+  dropPendingRefs(){
+    DOM.all(document, `[${PHX_REF_SRC}=&quot;${this.id}&quot;][${PHX_REF}]`, el =&gt; {
+      el.removeAttribute(PHX_REF)
+      el.removeAttribute(PHX_REF_SRC)
+    })
+  }
+
+  onJoinComplete({<span class="variable parameter" style="color: #953800;">live_patch</span>}, <span class="variable parameter" style="color: #953800;">html</span>, <span class="variable parameter" style="color: #953800;">streams</span>, <span class="variable parameter" style="color: #953800;">events</span>){
+    &#x2f;&#x2f; In order to provide a better experience, we want to join
+    &#x2f;&#x2f; all LiveViews first and only then apply their patches.
+    if(this.joinCount &gt; 1 || (this.parent &amp;&amp; !this.parent.isJoinPending())){
+      return this.applyJoinPatch(live_patch, html, streams, events)
+    }
+
+    &#x2f;&#x2f; One downside of this approach is that we need to find phxChildren
+    &#x2f;&#x2f; in the html fragment, instead of directly on the DOM. The fragment
+    &#x2f;&#x2f; also does not include PHX_STATIC, so we need to copy it over from
+    &#x2f;&#x2f; the DOM.
+    let newChildren = DOM.findPhxChildrenInFragment(html, this.id).filter(toEl =&gt; {
+      let fromEl = toEl.id &amp;&amp; this.el.querySelector(`[id=&quot;${toEl.id}&quot;]`)
+      let phxStatic = fromEl &amp;&amp; fromEl.getAttribute(PHX_STATIC)
+      if(phxStatic){ toEl.setAttribute(PHX_STATIC, phxStatic) }
+      return this.joinChild(toEl)
+    })
+
+    if(newChildren.length === 0){
+      if(this.parent){
+        this.root.pendingJoinOps.push([this, () =&gt; this.applyJoinPatch(live_patch, html, streams, events)])
+        this.parent.ackJoin(this)
+      } else {
+        this.onAllChildJoinsComplete()
+        this.applyJoinPatch(live_patch, html, streams, events)
+      }
+    } else {
+      this.root.pendingJoinOps.push([this, () =&gt; this.applyJoinPatch(live_patch, html, streams, events)])
+    }
+  }
+
+  attachTrueDocEl(){
+    this.el = DOM.byId(this.id)
+    this.el.setAttribute(PHX_ROOT_ID, this.root.id)
+  }
+
+  execNewMounted(){
+    let phxViewportTop = this.binding(PHX_VIEWPORT_TOP)
+    let phxViewportBottom = this.binding(PHX_VIEWPORT_BOTTOM)
+    DOM.all(this.el, `[${phxViewportTop}], [${phxViewportBottom}]`, hookEl =&gt; {
+      DOM.maybeAddPrivateHooks(hookEl, phxViewportTop, phxViewportBottom)
+      this.maybeAddNewHook(hookEl)
+    })
+    DOM.all(this.el, `[${this.binding(PHX_HOOK)}], [data-phx-${PHX_HOOK}]`, hookEl =&gt; {
+      this.maybeAddNewHook(hookEl)
+    })
+    DOM.all(this.el, `[${this.binding(PHX_MOUNTED)}]`, el =&gt; this.maybeMounted(el))
+  }
+
+  applyJoinPatch(<span class="variable parameter" style="color: #953800;">live_patch</span>, <span class="variable parameter" style="color: #953800;">html</span>, <span class="variable parameter" style="color: #953800;">streams</span>, <span class="variable parameter" style="color: #953800;">events</span>){
+    this.attachTrueDocEl()
+    let patch = new DOMPatch(this, this.el, this.id, html, streams, null)
+    patch.markPrunableContentForRemoval()
+    this.performPatch(patch, false)
+    this.joinNewChildren()
+    this.execNewMounted()
+
+    this.joinPending = false
+    this.liveSocket.dispatchEvents(events)
+    this.applyPendingUpdates()
+
+    if(live_patch){
+      let {kind, to} = live_patch
+      this.liveSocket.historyPatch(to, kind)
+    }
+    this.hideLoader()
+    if(this.joinCount &gt; 1){ this.triggerReconnected() }
+    this.stopCallback()
+  }
+
+  triggerBeforeUpdateHook(<span class="variable parameter" style="color: #953800;">fromEl</span>, <span class="variable parameter" style="color: #953800;">toEl</span>){
+    this.liveSocket.triggerDOM(&quot;onBeforeElUpdated&quot;, [fromEl, toEl])
+    let hook = this.getHook(fromEl)
+    let isIgnored = hook &amp;&amp; DOM.isIgnored(fromEl, this.binding(PHX_UPDATE))
+    if(hook &amp;&amp; !fromEl.isEqualNode(toEl) &amp;&amp; !(isIgnored &amp;&amp; isEqualObj(fromEl.dataset, toEl.dataset))){
+      hook.__beforeUpdate()
+      return hook
+    }
+  }
+
+  maybeMounted(<span class="variable parameter" style="color: #953800;">el</span>){
+    let phxMounted = el.getAttribute(this.binding(PHX_MOUNTED))
+    let hasBeenInvoked = phxMounted &amp;&amp; DOM.private(el, &quot;mounted&quot;)
+    if(phxMounted &amp;&amp; !hasBeenInvoked){
+      this.liveSocket.execJS(el, phxMounted)
+      DOM.putPrivate(el, &quot;mounted&quot;, true)
+    }
+  }
+
+  maybeAddNewHook(<span class="variable parameter" style="color: #953800;">el</span>, <span class="variable parameter" style="color: #953800;">force</span>){
+    let newHook = this.addHook(el)
+    if(newHook){ newHook.__mounted() }
+  }
+
+  performPatch(<span class="variable parameter" style="color: #953800;">patch</span>, <span class="variable parameter" style="color: #953800;">pruneCids</span>){
+    let removedEls = []
+    let phxChildrenAdded = false
+    let updatedHookIds = new Set()
+
+    patch.after(&quot;added&quot;, el =&gt; {
+      this.liveSocket.triggerDOM(&quot;onNodeAdded&quot;, [el])
+      this.maybeAddNewHook(el)
+      if(el.getAttribute){ this.maybeMounted(el) }
+    })
+
+    patch.after(&quot;phxChildAdded&quot;, el =&gt; {
+      if(DOM.isPhxSticky(el)){
+        this.liveSocket.joinRootViews()
+      } else {
+        phxChildrenAdded = true
+      }
+    })
+
+    patch.before(&quot;updated&quot;, (<span class="variable parameter" style="color: #953800;">fromEl</span>, <span class="variable parameter" style="color: #953800;">toEl</span>) =&gt; {
+      let hook = this.triggerBeforeUpdateHook(fromEl, toEl)
+      if(hook){ updatedHookIds.add(fromEl.id) }
+    })
+
+    patch.after(&quot;updated&quot;, el =&gt; {
+      if(updatedHookIds.has(el.id)){ this.getHook(el).__updated() }
+    })
+
+    patch.after(&quot;discarded&quot;, (<span class="variable parameter" style="color: #953800;">el</span>) =&gt; {
+      if(el.nodeType === Node.ELEMENT_NODE){ removedEls.push(el) }
+    })
+
+    patch.after(&quot;transitionsDiscarded&quot;, els =&gt; this.afterElementsRemoved(els, pruneCids))
+    patch.perform()
+    this.afterElementsRemoved(removedEls, pruneCids)
+
+    return phxChildrenAdded
+  }
+
+  afterElementsRemoved(<span class="variable parameter" style="color: #953800;">elements</span>, <span class="variable parameter" style="color: #953800;">pruneCids</span>){
+    let destroyedCIDs = []
+    elements.forEach(parent =&gt; {
+      let components = DOM.all(parent, `[${PHX_COMPONENT}]`)
+      let hooks = DOM.all(parent, `[${this.binding(PHX_HOOK)}]`)
+      components.concat(parent).forEach(el =&gt; {
+        let cid = this.componentID(el)
+        if(isCid(cid) &amp;&amp; destroyedCIDs.indexOf(cid) === -1){ destroyedCIDs.push(cid) }
+      })
+      hooks.concat(parent).forEach(hookEl =&gt; {
+        let hook = this.getHook(hookEl)
+        hook &amp;&amp; this.destroyHook(hook)
+      })
+    })
+    &#x2f;&#x2f; We should not pruneCids on joins. Otherwise, in case of
+    &#x2f;&#x2f; rejoins, we may notify cids that no longer belong to the
+    &#x2f;&#x2f; current LiveView to be removed.
+    if(pruneCids){
+      this.maybePushComponentsDestroyed(destroyedCIDs)
+    }
+  }
+
+  joinNewChildren(){
+    DOM.findPhxChildren(this.el, this.id).forEach(el =&gt; this.joinChild(el))
+  }
+
+  getChildById(<span class="variable parameter" style="color: #953800;">id</span>){ return this.root.children[this.id][id] }
+
+  getDescendentByEl(<span class="variable parameter" style="color: #953800;">el</span>){
+    if(el.id === this.id){
+      return this
+    } else {
+      return this.children[el.getAttribute(PHX_PARENT_ID)][el.id]
+    }
+  }
+
+  destroyDescendent(<span class="variable parameter" style="color: #953800;">id</span>){
+    for(let parentId in this.root.children){
+      for(let childId in this.root.children[parentId]){
+        if(childId === id){ return this.root.children[parentId][childId].destroy() }
+      }
+    }
+  }
+
+  joinChild(<span class="variable parameter" style="color: #953800;">el</span>){
+    let child = this.getChildById(el.id)
+    if(!child){
+      let view = new View(el, this.liveSocket, this)
+      this.root.children[this.id][view.id] = view
+      view.join()
+      this.childJoins++
+      return true
+    }
+  }
+
+  isJoinPending(){ return this.joinPending }
+
+  ackJoin(<span class="variable parameter" style="color: #953800;">_child</span>){
+    this.childJoins--
+
+    if(this.childJoins === 0){
+      if(this.parent){
+        this.parent.ackJoin(this)
+      } else {
+        this.onAllChildJoinsComplete()
+      }
+    }
+  }
+
+  onAllChildJoinsComplete(){
+    this.joinCallback(() =&gt; {
+      this.pendingJoinOps.forEach(([<span class="variable parameter" style="color: #953800;">view</span>, <span class="variable parameter" style="color: #953800;">op</span>]) =&gt; {
+        if(!view.isDestroyed()){ op() }
+      })
+      this.pendingJoinOps = []
+    })
+  }
+
+  update(<span class="variable parameter" style="color: #953800;">diff</span>, <span class="variable parameter" style="color: #953800;">events</span>){
+    if(this.isJoinPending() || (this.liveSocket.hasPendingLink() &amp;&amp; this.root.isMain())){
+      return this.pendingDiffs.push({diff, events})
+    }
+
+    this.rendered.mergeDiff(diff)
+    let phxChildrenAdded = false
+
+    &#x2f;&#x2f; When the diff only contains component diffs, then walk components
+    &#x2f;&#x2f; and patch only the parent component containers found in the diff.
+    &#x2f;&#x2f; Otherwise, patch entire LV container.
+    if(this.rendered.isComponentOnlyDiff(diff)){
+      this.liveSocket.time(&quot;component patch complete&quot;, () =&gt; {
+        let parentCids = DOM.findParentCIDs(this.el, this.rendered.componentCIDs(diff))
+        parentCids.forEach(parentCID =&gt; {
+          if(this.componentPatch(this.rendered.getComponent(diff, parentCID), parentCID)){ phxChildrenAdded = true }
+        })
+      })
+    } else if(!isEmpty(diff)){
+      this.liveSocket.time(&quot;full patch complete&quot;, () =&gt; {
+        let [html, streams] = this.renderContainer(diff, &quot;update&quot;)
+        let patch = new DOMPatch(this, this.el, this.id, html, streams, null)
+        phxChildrenAdded = this.performPatch(patch, true)
+      })
+    }
+
+    this.liveSocket.dispatchEvents(events)
+    if(phxChildrenAdded){ this.joinNewChildren() }
+  }
+
+  renderContainer(<span class="variable parameter" style="color: #953800;">diff</span>, <span class="variable parameter" style="color: #953800;">kind</span>){
+    return this.liveSocket.time(`toString diff (${kind})`, () =&gt; {
+      let tag = this.el.tagName
+      &#x2f;&#x2f; Don&#x27;t skip any component in the diff nor any marked as pruned
+      &#x2f;&#x2f; (as they may have been added back)
+      let cids = diff ? this.rendered.componentCIDs(diff).concat(this.pruningCIDs) : null
+      let [html, streams] = this.rendered.toString(cids)
+      return [`&lt;${tag}&gt;${html}&lt;&#x2f;${tag}&gt;`, streams]
+    })
+  }
+
+  componentPatch(<span class="variable parameter" style="color: #953800;">diff</span>, <span class="variable parameter" style="color: #953800;">cid</span>){
+    if(isEmpty(diff)) return false
+    let [html, streams] = this.rendered.componentToString(cid)
+    let patch = new DOMPatch(this, this.el, this.id, html, streams, cid)
+    let childrenAdded = this.performPatch(patch, true)
+    return childrenAdded
+  }
+
+  getHook(<span class="variable parameter" style="color: #953800;">el</span>){ return this.viewHooks[ViewHook.elementID(el)] }
+
+  addHook(<span class="variable parameter" style="color: #953800;">el</span>){
+    if(ViewHook.elementID(el) || !el.getAttribute){ return }
+    let hookName = el.getAttribute(`data-phx-${PHX_HOOK}`) || el.getAttribute(this.binding(PHX_HOOK))
+    if(hookName &amp;&amp; !this.ownsElement(el)){ return }
+    let callbacks = this.liveSocket.getHookCallbacks(hookName)
+
+    if(callbacks){
+      if(!el.id){ logError(`no DOM ID for hook &quot;${hookName}&quot;. Hooks require a unique ID on each element.`, el) }
+      let hook = new ViewHook(this, el, callbacks)
+      this.viewHooks[ViewHook.elementID(hook.el)] = hook
+      return hook
+    } else if(hookName !== null){
+      logError(`unknown hook found for &quot;${hookName}&quot;`, el)
+    }
+  }
+
+  destroyHook(<span class="variable parameter" style="color: #953800;">hook</span>){
+    hook.__destroyed()
+    hook.__cleanup__()
+    delete this.viewHooks[ViewHook.elementID(hook.el)]
+  }
+
+  applyPendingUpdates(){
+    this.pendingDiffs.forEach(({<span class="variable parameter" style="color: #953800;">diff</span>, <span class="variable parameter" style="color: #953800;">events</span>}) =&gt; this.update(diff, events))
+    this.pendingDiffs = []
+    this.eachChild(child =&gt; child.applyPendingUpdates())
+  }
+
+  eachChild(<span class="variable parameter" style="color: #953800;">callback</span>){
+    let children = this.root.children[this.id] || {}
+    for(let id in children){ callback(this.getChildById(id)) }
+  }
+
+  onChannel(<span class="variable parameter" style="color: #953800;">event</span>, <span class="variable parameter" style="color: #953800;">cb</span>){
+    this.liveSocket.onChannel(this.channel, event, resp =&gt; {
+      if(this.isJoinPending()){
+        this.root.pendingJoinOps.push([this, () =&gt; cb(resp)])
+      } else {
+        this.liveSocket.requestDOMUpdate(() =&gt; cb(resp))
+      }
+    })
+  }
+
+  bindChannel(){
+    &#x2f;&#x2f; The diff event should be handled by the regular update operations.
+    &#x2f;&#x2f; All other operations are queued to be applied only after join.
+    this.liveSocket.onChannel(this.channel, &quot;diff&quot;, (<span class="variable parameter" style="color: #953800;">rawDiff</span>) =&gt; {
+      this.liveSocket.requestDOMUpdate(() =&gt; {
+        this.applyDiff(&quot;update&quot;, rawDiff, ({<span class="variable parameter" style="color: #953800;">diff</span>, <span class="variable parameter" style="color: #953800;">events</span>}) =&gt; this.update(diff, events))
+      })
+    })
+    this.onChannel(&quot;redirect&quot;, ({<span class="variable parameter" style="color: #953800;">to</span>, <span class="variable parameter" style="color: #953800;">flash</span>}) =&gt; this.onRedirect({to, flash}))
+    this.onChannel(&quot;live_patch&quot;, (<span class="variable parameter" style="color: #953800;">redir</span>) =&gt; this.onLivePatch(redir))
+    this.onChannel(&quot;live_redirect&quot;, (<span class="variable parameter" style="color: #953800;">redir</span>) =&gt; this.onLiveRedirect(redir))
+    this.channel.onError(reason =&gt; this.onError(reason))
+    this.channel.onClose(reason =&gt; this.onClose(reason))
+  }
+
+  destroyAllChildren(){ this.eachChild(child =&gt; child.destroy()) }
+
+  onLiveRedirect(<span class="variable parameter" style="color: #953800;">redir</span>){
+    let {to, kind, flash} = redir
+    let url = this.expandURL(to)
+    this.liveSocket.historyRedirect(url, kind, flash)
+  }
+
+  onLivePatch(<span class="variable parameter" style="color: #953800;">redir</span>){
+    let {to, kind} = redir
+    this.href = this.expandURL(to)
+    this.liveSocket.historyPatch(to, kind)
+  }
+
+  expandURL(<span class="variable parameter" style="color: #953800;">to</span>){
+    return to.startsWith(&quot;&#x2f;&quot;) ? `${window.location.protocol}&#x2f;&#x2f;${window.location.host}${to}` : to
+  }
+
+  onRedirect({<span class="variable parameter" style="color: #953800;">to</span>, <span class="variable parameter" style="color: #953800;">flash</span>}){ this.liveSocket.redirect(to, flash) }
+
+  isDestroyed(){ return this.destroyed }
+
+  joinDead(){ this.isDead = true }
+
+  join(<span class="variable parameter" style="color: #953800;">callback</span>){
+    this.showLoader(this.liveSocket.loaderTimeout)
+    this.bindChannel()
+    if(this.isMain()){
+      this.stopCallback = this.liveSocket.withPageLoading({to: this.href, kind: &quot;initial&quot;})
+    }
+    this.joinCallback = (<span class="variable parameter" style="color: #953800;">onDone</span>) =&gt; {
+      onDone = onDone || function(){}
+      callback ? callback(this.joinCount, onDone) : onDone()
+    }
+    this.liveSocket.wrapPush(this, {timeout: false}, () =&gt; {
+      return this.channel.join()
+        .receive(&quot;ok&quot;, data =&gt; {
+          if(!this.isDestroyed()){
+            this.liveSocket.requestDOMUpdate(() =&gt; this.onJoin(data))
+          }
+        })
+        .receive(&quot;error&quot;, resp =&gt; !this.isDestroyed() &amp;&amp; this.onJoinError(resp))
+        .receive(&quot;timeout&quot;, () =&gt; !this.isDestroyed() &amp;&amp; this.onJoinError({reason: &quot;timeout&quot;}))
+    })
+  }
+
+  onJoinError(<span class="variable parameter" style="color: #953800;">resp</span>){
+    if(resp.reason === &quot;reload&quot;){
+      this.log(&quot;error&quot;, () =&gt; [`failed mount with ${resp.status}. Falling back to page request`, resp])
+      if(this.isMain()){ this.onRedirect({to: this.href}) }
+      return
+    } else if(resp.reason === &quot;unauthorized&quot; || resp.reason === &quot;stale&quot;){
+      this.log(&quot;error&quot;, () =&gt; [&quot;unauthorized live_redirect. Falling back to page request&quot;, resp])
+      if(this.isMain()){ this.onRedirect({to: this.href}) }
+      return
+    }
+    if(resp.redirect || resp.live_redirect){
+      this.joinPending = false
+      this.channel.leave()
+    }
+    if(resp.redirect){ return this.onRedirect(resp.redirect) }
+    if(resp.live_redirect){ return this.onLiveRedirect(resp.live_redirect) }
+    this.displayError([PHX_LOADING_CLASS, PHX_ERROR_CLASS, PHX_SERVER_ERROR_CLASS])
+    this.log(&quot;error&quot;, () =&gt; [&quot;unable to join&quot;, resp])
+    if(this.liveSocket.isConnected()){ this.liveSocket.reloadWithJitter(this) }
+  }
+
+  onClose(<span class="variable parameter" style="color: #953800;">reason</span>){
+    if(this.isDestroyed()){ return }
+    if(this.liveSocket.hasPendingLink() &amp;&amp; reason !== &quot;leave&quot;){
+      return this.liveSocket.reloadWithJitter(this)
+    }
+    this.destroyAllChildren()
+    this.liveSocket.dropActiveElement(this)
+    &#x2f;&#x2f; document.activeElement can be null in Internet Explorer 11
+    if(document.activeElement){ document.activeElement.blur() }
+    if(this.liveSocket.isUnloaded()){
+      this.showLoader(BEFORE_UNLOAD_LOADER_TIMEOUT)
+    }
+  }
+
+  onError(<span class="variable parameter" style="color: #953800;">reason</span>){
+    this.onClose(reason)
+    if(this.liveSocket.isConnected()){ this.log(&quot;error&quot;, () =&gt; [&quot;view crashed&quot;, reason]) }
+    if(!this.liveSocket.isUnloaded()){
+      if(this.liveSocket.isConnected()){
+        this.displayError([PHX_LOADING_CLASS, PHX_ERROR_CLASS, PHX_SERVER_ERROR_CLASS])
+      } else {
+        this.displayError([PHX_LOADING_CLASS, PHX_ERROR_CLASS, PHX_CLIENT_ERROR_CLASS])
+      }
+    }
+  }
+
+  displayError(<span class="variable parameter" style="color: #953800;">classes</span>){
+    if(this.isMain()){ DOM.dispatchEvent(window, &quot;phx:page-loading-start&quot;, {detail: {to: this.href, kind: &quot;error&quot;}}) }
+    this.showLoader()
+    this.setContainerClasses(...classes)
+    this.execAll(this.binding(&quot;disconnected&quot;))
+  }
+
+  pushWithReply(<span class="variable parameter" style="color: #953800;">refGenerator</span>, <span class="variable parameter" style="color: #953800;">event</span>, <span class="variable parameter" style="color: #953800;">payload</span>, <span class="variable parameter" style="color: #953800;">onReply</span> = function (){ }){
+    if(!this.isConnected()){ return }
+
+    let [ref, [el], opts] = refGenerator ? refGenerator() : [null, [], {}]
+    let onLoadingDone = function(){ }
+    if(opts.page_loading || (el &amp;&amp; (el.getAttribute(this.binding(PHX_PAGE_LOADING)) !== null))){
+      onLoadingDone = this.liveSocket.withPageLoading({kind: &quot;element&quot;, target: el})
+    }
+
+    if(typeof (payload.cid) !== &quot;number&quot;){ delete payload.cid }
+    return (
+      this.liveSocket.wrapPush(this, {timeout: true}, () =&gt; {
+        return this.channel.push(event, payload, PUSH_TIMEOUT).receive(&quot;ok&quot;, resp =&gt; {
+          let finish = (<span class="variable parameter" style="color: #953800;">hookReply</span>) =&gt; {
+            if(resp.redirect){ this.onRedirect(resp.redirect) }
+            if(resp.live_patch){ this.onLivePatch(resp.live_patch) }
+            if(resp.live_redirect){ this.onLiveRedirect(resp.live_redirect) }
+            onLoadingDone()
+            onReply(resp, hookReply)
+          }
+          if(resp.diff){
+            this.liveSocket.requestDOMUpdate(() =&gt; {
+              this.applyDiff(&quot;update&quot;, resp.diff, ({<span class="variable parameter" style="color: #953800;">diff</span>, <span class="variable parameter" style="color: #953800;">reply</span>, <span class="variable parameter" style="color: #953800;">events</span>}) =&gt; {
+                if(ref !== null){ this.undoRefs(ref) }
+                this.update(diff, events)
+                finish(reply)
+              })
+            })
+          } else {
+            if(ref !== null){ this.undoRefs(ref) }
+            finish(null)
+          }
+        })
+      })
+    )
+  }
+
+  undoRefs(<span class="variable parameter" style="color: #953800;">ref</span>){
+    if(!this.isConnected()){ return } &#x2f;&#x2f; exit if external form triggered
+
+    DOM.all(document, `[${PHX_REF_SRC}=&quot;${this.id}&quot;][${PHX_REF}=&quot;${ref}&quot;]`, el =&gt; {
+      let disabledVal = el.getAttribute(PHX_DISABLED)
+      &#x2f;&#x2f; remove refs
+      el.removeAttribute(PHX_REF)
+      el.removeAttribute(PHX_REF_SRC)
+      &#x2f;&#x2f; restore inputs
+      if(el.getAttribute(PHX_READONLY) !== null){
+        el.readOnly = false
+        el.removeAttribute(PHX_READONLY)
+      }
+      if(disabledVal !== null){
+        el.disabled = disabledVal === &quot;true&quot; ? true : false
+        el.removeAttribute(PHX_DISABLED)
+      }
+      &#x2f;&#x2f; remove classes
+      PHX_EVENT_CLASSES.forEach(className =&gt; DOM.removeClass(el, className))
+      &#x2f;&#x2f; restore disables
+      let disableRestore = el.getAttribute(PHX_DISABLE_WITH_RESTORE)
+      if(disableRestore !== null){
+        el.innerText = disableRestore
+        el.removeAttribute(PHX_DISABLE_WITH_RESTORE)
+      }
+      let toEl = DOM.private(el, PHX_REF)
+      if(toEl){
+        let hook = this.triggerBeforeUpdateHook(el, toEl)
+        DOMPatch.patchEl(el, toEl, this.liveSocket.getActiveElement())
+        if(hook){ hook.__updated() }
+        DOM.deletePrivate(el, PHX_REF)
+      }
+    })
+  }
+
+  putRef(<span class="variable parameter" style="color: #953800;">elements</span>, <span class="variable parameter" style="color: #953800;">event</span>, <span class="variable parameter" style="color: #953800;">opts</span> = {}){
+    let newRef = this.ref++
+    let disableWith = this.binding(PHX_DISABLE_WITH)
+    if(opts.loading){ elements = elements.concat(DOM.all(document, opts.loading))}
+
+    elements.forEach(el =&gt; {
+      el.classList.add(`phx-${event}-loading`)
+      el.setAttribute(PHX_REF, newRef)
+      el.setAttribute(PHX_REF_SRC, this.el.id)
+      let disableText = el.getAttribute(disableWith)
+      if(disableText !== null){
+        if(!el.getAttribute(PHX_DISABLE_WITH_RESTORE)){
+          el.setAttribute(PHX_DISABLE_WITH_RESTORE, el.innerText)
+        }
+        if(disableText !== &quot;&quot;){ el.innerText = disableText }
+        el.setAttribute(&quot;disabled&quot;, &quot;&quot;)
+      }
+    })
+    return [newRef, elements, opts]
+  }
+
+  componentID(<span class="variable parameter" style="color: #953800;">el</span>){
+    let cid = el.getAttribute &amp;&amp; el.getAttribute(PHX_COMPONENT)
+    return cid ? parseInt(cid) : null
+  }
+
+  targetComponentID(<span class="variable parameter" style="color: #953800;">target</span>, <span class="variable parameter" style="color: #953800;">targetCtx</span>, <span class="variable parameter" style="color: #953800;">opts</span> = {}){
+    if(isCid(targetCtx)){ return targetCtx }
+
+    let cidOrSelector = target.getAttribute(this.binding(&quot;target&quot;))
+    if(isCid(cidOrSelector)){
+      return parseInt(cidOrSelector)
+    } else if(targetCtx &amp;&amp; (cidOrSelector !== null || opts.target)){
+      return this.closestComponentID(targetCtx)
+    } else {
+      return null
+    }
+  }
+
+  closestComponentID(<span class="variable parameter" style="color: #953800;">targetCtx</span>){
+    if(isCid(targetCtx)){
+      return targetCtx
+    } else if(targetCtx){
+      return maybe(targetCtx.closest(`[${PHX_COMPONENT}]`), el =&gt; this.ownsElement(el) &amp;&amp; this.componentID(el))
+    } else {
+      return null
+    }
+  }
+
+  pushHookEvent(<span class="variable parameter" style="color: #953800;">el</span>, <span class="variable parameter" style="color: #953800;">targetCtx</span>, <span class="variable parameter" style="color: #953800;">event</span>, <span class="variable parameter" style="color: #953800;">payload</span>, <span class="variable parameter" style="color: #953800;">onReply</span>){
+    if(!this.isConnected()){
+      this.log(&quot;hook&quot;, () =&gt; [&quot;unable to push hook event. LiveView not connected&quot;, event, payload])
+      return false
+    }
+    let [ref, els, opts] = this.putRef([el], &quot;hook&quot;)
+    this.pushWithReply(() =&gt; [ref, els, opts], &quot;event&quot;, {
+      type: &quot;hook&quot;,
+      event: event,
+      value: payload,
+      cid: this.closestComponentID(targetCtx)
+    }, (<span class="variable parameter" style="color: #953800;">resp</span>, <span class="variable parameter" style="color: #953800;">reply</span>) =&gt; onReply(reply, ref))
+
+    return ref
+  }
+
+  extractMeta(<span class="variable parameter" style="color: #953800;">el</span>, <span class="variable parameter" style="color: #953800;">meta</span>, <span class="variable parameter" style="color: #953800;">value</span>){
+    let prefix = this.binding(&quot;value-&quot;)
+    for(let i = 0; i &lt; el.attributes.length; i++){
+      if(!meta){ meta = {} }
+      let name = el.attributes[i].name
+      if(name.startsWith(prefix)){ meta[name.replace(prefix, &quot;&quot;)] = el.getAttribute(name) }
+    }
+    if(el.value !== undefined &amp;&amp; !(el instanceof HTMLFormElement)){
+      if(!meta){ meta = {} }
+      meta.value = el.value
+
+      if(el.tagName === &quot;INPUT&quot; &amp;&amp; CHECKABLE_INPUTS.indexOf(el.type) &gt;= 0 &amp;&amp; !el.checked){
+        delete meta.value
+      }
+    }
+    if(value){
+      if(!meta){ meta = {} }
+      for(let key in value){ meta[key] = value[key] }
+    }
+    return meta
+  }
+
+
+  pushEvent(<span class="variable parameter" style="color: #953800;">type</span>, <span class="variable parameter" style="color: #953800;">el</span>, <span class="variable parameter" style="color: #953800;">targetCtx</span>, <span class="variable parameter" style="color: #953800;">phxEvent</span>, <span class="variable parameter" style="color: #953800;">meta</span>, <span class="variable parameter" style="color: #953800;">opts</span> = {}, <span class="variable parameter" style="color: #953800;">onReply</span>){
+    this.pushWithReply(() =&gt; this.putRef([el], type, opts), &quot;event&quot;, {
+      type: type,
+      event: phxEvent,
+      value: this.extractMeta(el, meta, opts.value),
+      cid: this.targetComponentID(el, targetCtx, opts)
+    }, (<span class="variable parameter" style="color: #953800;">resp</span>, <span class="variable parameter" style="color: #953800;">reply</span>) =&gt; onReply &amp;&amp; onReply(reply))
+  }
+
+  pushFileProgress(<span class="variable parameter" style="color: #953800;">fileEl</span>, <span class="variable parameter" style="color: #953800;">entryRef</span>, <span class="variable parameter" style="color: #953800;">progress</span>, <span class="variable parameter" style="color: #953800;">onReply</span> = function (){ }){
+    this.liveSocket.withinOwners(fileEl.form, (<span class="variable parameter" style="color: #953800;">view</span>, <span class="variable parameter" style="color: #953800;">targetCtx</span>) =&gt; {
+      view.pushWithReply(null, &quot;progress&quot;, {
+        event: fileEl.getAttribute(view.binding(PHX_PROGRESS)),
+        ref: fileEl.getAttribute(PHX_UPLOAD_REF),
+        entry_ref: entryRef,
+        progress: progress,
+        cid: view.targetComponentID(fileEl.form, targetCtx)
+      }, onReply)
+    })
+  }
+
+  pushInput(<span class="variable parameter" style="color: #953800;">inputEl</span>, <span class="variable parameter" style="color: #953800;">targetCtx</span>, <span class="variable parameter" style="color: #953800;">forceCid</span>, <span class="variable parameter" style="color: #953800;">phxEvent</span>, <span class="variable parameter" style="color: #953800;">opts</span>, <span class="variable parameter" style="color: #953800;">callback</span>){
+    let uploads
+    let cid = isCid(forceCid) ? forceCid : this.targetComponentID(inputEl.form, targetCtx)
+    let refGenerator = () =&gt; this.putRef([inputEl, inputEl.form], &quot;change&quot;, opts)
+    let formData
+    let meta  = this.extractMeta(inputEl.form)
+    if(inputEl.getAttribute(this.binding(&quot;change&quot;))){
+      formData = serializeForm(inputEl.form, {_target: opts._target, ...meta}, [inputEl.name])
+    } else {
+      formData = serializeForm(inputEl.form, {_target: opts._target, ...meta})
+    }
+    if(DOM.isUploadInput(inputEl) &amp;&amp; inputEl.files &amp;&amp; inputEl.files.length &gt; 0){
+      LiveUploader.trackFiles(inputEl, Array.from(inputEl.files))
+    }
+    uploads = LiveUploader.serializeUploads(inputEl)
+
+    let event = {
+      type: &quot;form&quot;,
+      event: phxEvent,
+      value: formData,
+      uploads: uploads,
+      cid: cid
+    }
+    this.pushWithReply(refGenerator, &quot;event&quot;, event, resp =&gt; {
+      DOM.showError(inputEl, this.liveSocket.binding(PHX_FEEDBACK_FOR))
+      if(DOM.isUploadInput(inputEl) &amp;&amp; DOM.isAutoUpload(inputEl)){
+        if(LiveUploader.filesAwaitingPreflight(inputEl).length &gt; 0){
+          let [ref, _els] = refGenerator()
+          this.uploadFiles(inputEl.form, targetCtx, ref, cid, (<span class="variable parameter" style="color: #953800;">_uploads</span>) =&gt; {
+            callback &amp;&amp; callback(resp)
+            this.triggerAwaitingSubmit(inputEl.form)
+          })
+        }
+      } else {
+        callback &amp;&amp; callback(resp)
+      }
+    })
+  }
+
+  triggerAwaitingSubmit(<span class="variable parameter" style="color: #953800;">formEl</span>){
+    let awaitingSubmit = this.getScheduledSubmit(formEl)
+    if(awaitingSubmit){
+      let [_el, _ref, _opts, callback] = awaitingSubmit
+      this.cancelSubmit(formEl)
+      callback()
+    }
+  }
+
+  getScheduledSubmit(<span class="variable parameter" style="color: #953800;">formEl</span>){
+    return this.formSubmits.find(([<span class="variable parameter" style="color: #953800;">el</span>, <span class="variable parameter" style="color: #953800;">_ref</span>, <span class="variable parameter" style="color: #953800;">_opts</span>, <span class="variable parameter" style="color: #953800;">_callback</span>]) =&gt; el.isSameNode(formEl))
+  }
+
+  scheduleSubmit(<span class="variable parameter" style="color: #953800;">formEl</span>, <span class="variable parameter" style="color: #953800;">ref</span>, <span class="variable parameter" style="color: #953800;">opts</span>, <span class="variable parameter" style="color: #953800;">callback</span>){
+    if(this.getScheduledSubmit(formEl)){ return true }
+    this.formSubmits.push([formEl, ref, opts, callback])
+  }
+
+  cancelSubmit(<span class="variable parameter" style="color: #953800;">formEl</span>){
+    this.formSubmits = this.formSubmits.filter(([<span class="variable parameter" style="color: #953800;">el</span>, <span class="variable parameter" style="color: #953800;">ref</span>, <span class="variable parameter" style="color: #953800;">_callback</span>]) =&gt; {
+      if(el.isSameNode(formEl)){
+        this.undoRefs(ref)
+        return false
+      } else {
+        return true
+      }
+    })
+  }
+
+  disableForm(<span class="variable parameter" style="color: #953800;">formEl</span>, <span class="variable parameter" style="color: #953800;">opts</span> = {}){
+    let filterIgnored = el =&gt; {
+      let userIgnored = closestPhxBinding(el, `${this.binding(PHX_UPDATE)}=ignore`, el.form)
+      return !(userIgnored || closestPhxBinding(el, &quot;data-phx-update=ignore&quot;, el.form))
+    }
+    let filterDisables = el =&gt; {
+      return el.hasAttribute(this.binding(PHX_DISABLE_WITH))
+    }
+    let filterButton = el =&gt; el.tagName == &quot;BUTTON&quot;
+
+    let filterInput = el =&gt; [&quot;INPUT&quot;, &quot;TEXTAREA&quot;, &quot;SELECT&quot;].includes(el.tagName)
+
+    let formElements = Array.from(formEl.elements)
+    let disables = formElements.filter(filterDisables)
+    let buttons = formElements.filter(filterButton).filter(filterIgnored)
+    let inputs = formElements.filter(filterInput).filter(filterIgnored)
+
+    buttons.forEach(button =&gt; {
+      button.setAttribute(PHX_DISABLED, button.disabled)
+      button.disabled = true
+    })
+    inputs.forEach(input =&gt; {
+      input.setAttribute(PHX_READONLY, input.readOnly)
+      input.readOnly = true
+      if(input.files){
+        input.setAttribute(PHX_DISABLED, input.disabled)
+        input.disabled = true
+      }
+    })
+    formEl.setAttribute(this.binding(PHX_PAGE_LOADING), &quot;&quot;)
+    return this.putRef([formEl].concat(disables).concat(buttons).concat(inputs), &quot;submit&quot;, opts)
+  }
+
+  pushFormSubmit(<span class="variable parameter" style="color: #953800;">formEl</span>, <span class="variable parameter" style="color: #953800;">targetCtx</span>, <span class="variable parameter" style="color: #953800;">phxEvent</span>, <span class="variable parameter" style="color: #953800;">submitter</span>, <span class="variable parameter" style="color: #953800;">opts</span>, <span class="variable parameter" style="color: #953800;">onReply</span>){
+    let refGenerator = () =&gt; this.disableForm(formEl, opts)
+    let cid = this.targetComponentID(formEl, targetCtx)
+    if(LiveUploader.hasUploadsInProgress(formEl)){
+      let [ref, _els] = refGenerator()
+      let push = () =&gt; this.pushFormSubmit(formEl, submitter, targetCtx, phxEvent, opts, onReply)
+      return this.scheduleSubmit(formEl, ref, opts, push)
+    } else if(LiveUploader.inputsAwaitingPreflight(formEl).length &gt; 0){
+      let [ref, els] = refGenerator()
+      let proxyRefGen = () =&gt; [ref, els, opts]
+      this.uploadFiles(formEl, targetCtx, ref, cid, (<span class="variable parameter" style="color: #953800;">_uploads</span>) =&gt; {
+        let meta = this.extractMeta(formEl)
+        let formData = serializeForm(formEl, {submitter, ...meta})
+        this.pushWithReply(proxyRefGen, &quot;event&quot;, {
+          type: &quot;form&quot;,
+          event: phxEvent,
+          value: formData,
+          cid: cid
+        }, onReply)
+      })
+    } else if(!(formEl.hasAttribute(PHX_REF) &amp;&amp; formEl.classList.contains(&quot;phx-submit-loading&quot;))){
+      let meta = this.extractMeta(formEl)
+      let formData = serializeForm(formEl, {submitter, ...meta})
+      this.pushWithReply(refGenerator, &quot;event&quot;, {
+        type: &quot;form&quot;,
+        event: phxEvent,
+        value: formData,
+        cid: cid
+      }, onReply)
+    }
+  }
+
+  uploadFiles(<span class="variable parameter" style="color: #953800;">formEl</span>, <span class="variable parameter" style="color: #953800;">targetCtx</span>, <span class="variable parameter" style="color: #953800;">ref</span>, <span class="variable parameter" style="color: #953800;">cid</span>, <span class="variable parameter" style="color: #953800;">onComplete</span>){
+    let joinCountAtUpload = this.joinCount
+    let inputEls = LiveUploader.activeFileInputs(formEl)
+    let numFileInputsInProgress = inputEls.length
+
+    &#x2f;&#x2f; get each file input
+    inputEls.forEach(inputEl =&gt; {
+      let uploader = new LiveUploader(inputEl, this, () =&gt; {
+        numFileInputsInProgress--
+        if(numFileInputsInProgress === 0){ onComplete() }
+      });
+
+      this.uploaders[inputEl] = uploader
+      let entries = uploader.entries().map(entry =&gt; entry.toPreflightPayload())
+
+      let payload = {
+        ref: inputEl.getAttribute(PHX_UPLOAD_REF),
+        entries: entries,
+        cid: this.targetComponentID(inputEl.form, targetCtx)
+      }
+
+      this.log(&quot;upload&quot;, () =&gt; [&quot;sending preflight request&quot;, payload])
+
+      this.pushWithReply(null, &quot;allow_upload&quot;, payload, resp =&gt; {
+        this.log(&quot;upload&quot;, () =&gt; [&quot;got preflight response&quot;, resp])
+        if(resp.error){
+          this.undoRefs(ref)
+          let [entry_ref, reason] = resp.error
+          this.log(&quot;upload&quot;, () =&gt; [`error for entry ${entry_ref}`, reason])
+        } else {
+          let onError = (<span class="variable parameter" style="color: #953800;">callback</span>) =&gt; {
+            this.channel.onError(() =&gt; {
+              if(this.joinCount === joinCountAtUpload){ callback() }
+            })
+          }
+          uploader.initAdapterUpload(resp, onError, this.liveSocket)
+        }
+      })
+    })
+  }
+
+  dispatchUploads(<span class="variable parameter" style="color: #953800;">name</span>, <span class="variable parameter" style="color: #953800;">filesOrBlobs</span>){
+    let inputs = DOM.findUploadInputs(this.el).filter(el =&gt; el.name === name)
+    if(inputs.length === 0){ logError(`no live file inputs found matching the name &quot;${name}&quot;`) }
+    else if(inputs.length &gt; 1){ logError(`duplicate live file inputs found matching the name &quot;${name}&quot;`) }
+    else { DOM.dispatchEvent(inputs[0], PHX_TRACK_UPLOADS, {detail: {files: filesOrBlobs}}) }
+  }
+
+  pushFormRecovery(<span class="variable parameter" style="color: #953800;">form</span>, <span class="variable parameter" style="color: #953800;">newCid</span>, <span class="variable parameter" style="color: #953800;">callback</span>){
+    this.liveSocket.withinOwners(form, (<span class="variable parameter" style="color: #953800;">view</span>, <span class="variable parameter" style="color: #953800;">targetCtx</span>) =&gt; {
+      let phxChange = this.binding(&quot;change&quot;)
+      let inputs = Array.from(form.elements).filter(el =&gt; DOM.isFormInput(el) &amp;&amp; el.name &amp;&amp; !el.hasAttribute(phxChange))
+      if(inputs.length === 0){ return }
+
+      &#x2f;&#x2f; we must clear tracked uploads before recovery as they no longer have valid refs
+      inputs.forEach(input =&gt; input.hasAttribute(PHX_UPLOAD_REF) &amp;&amp; LiveUploader.clearFiles(input))
+      let input = inputs.find(el =&gt; el.type !== &quot;hidden&quot;) || inputs[0]
+
+      let phxEvent = form.getAttribute(this.binding(PHX_AUTO_RECOVER)) || form.getAttribute(this.binding(&quot;change&quot;))
+      JS.exec(&quot;change&quot;, phxEvent, view, input, [&quot;push&quot;, {_target: input.name, newCid: newCid, callback: callback}])
+    })
+  }
+
+  pushLinkPatch(<span class="variable parameter" style="color: #953800;">href</span>, <span class="variable parameter" style="color: #953800;">targetEl</span>, <span class="variable parameter" style="color: #953800;">callback</span>){
+    let linkRef = this.liveSocket.setPendingLink(href)
+    let refGen = targetEl ? () =&gt; this.putRef([targetEl], &quot;click&quot;) : null
+    let fallback = () =&gt; this.liveSocket.redirect(window.location.href)
+    let url = href.startsWith(&quot;&#x2f;&quot;) ? `${location.protocol}&#x2f;&#x2f;${location.host}${href}` : href
+
+    let push = this.pushWithReply(refGen, &quot;live_patch&quot;, {url}, resp =&gt; {
+      this.liveSocket.requestDOMUpdate(() =&gt; {
+        if(resp.link_redirect){
+          this.liveSocket.replaceMain(href, null, callback, linkRef)
+        } else {
+          if(this.liveSocket.commitPendingLink(linkRef)){
+            this.href = href
+          }
+          this.applyPendingUpdates()
+          callback &amp;&amp; callback(linkRef)
+        }
+      })
+    })
+
+    if(push){
+      push.receive(&quot;timeout&quot;, fallback)
+    } else {
+      fallback()
+    }
+  }
+
+  formsForRecovery(<span class="variable parameter" style="color: #953800;">html</span>){
+    if(this.joinCount === 0){ return [] }
+
+    let phxChange = this.binding(&quot;change&quot;)
+    let template = document.createElement(&quot;template&quot;)
+    template.innerHTML = html
+
+    return (
+      DOM.all(this.el, `form[${phxChange}]`)
+        .filter(form =&gt; form.id &amp;&amp; this.ownsElement(form))
+        .filter(form =&gt; form.elements.length &gt; 0)
+        .filter(form =&gt; form.getAttribute(this.binding(PHX_AUTO_RECOVER)) !== &quot;ignore&quot;)
+        .map(form =&gt; {
+          &#x2f;&#x2f; attribute given via JS module needs to be escaped as it contains the symbols []&quot;,
+          &#x2f;&#x2f; which result in an invalid css selector otherwise.
+          const phxChangeValue = form.getAttribute(phxChange).replaceAll(&#x2f;([\[\]&quot;])&#x2f;g, &#x27;\\$1&#x27;)
+          let newForm = template.content.querySelector(`form[id=&quot;${form.id}&quot;][${phxChange}=&quot;${phxChangeValue}&quot;]`)
+          if(newForm){
+            return [form, newForm, this.targetComponentID(newForm)]
+          } else {
+            return [form, form, this.targetComponentID(form)]
+          }
+        })
+        .filter(([<span class="variable parameter" style="color: #953800;">form</span>, <span class="variable parameter" style="color: #953800;">newForm</span>, <span class="variable parameter" style="color: #953800;">newCid</span>]) =&gt; newForm)
+    )
+  }
+
+  maybePushComponentsDestroyed(<span class="variable parameter" style="color: #953800;">destroyedCIDs</span>){
+    let willDestroyCIDs = destroyedCIDs.filter(cid =&gt; {
+      return DOM.findComponentNodeList(this.el, cid).length === 0
+    })
+    if(willDestroyCIDs.length &gt; 0){
+      this.pruningCIDs.push(...willDestroyCIDs)
+
+      this.pushWithReply(null, &quot;cids_will_destroy&quot;, {cids: willDestroyCIDs}, () =&gt; {
+        &#x2f;&#x2f; The cids are either back on the page or they will be fully removed,
+        &#x2f;&#x2f; so we can remove them from the pruningCIDs.
+        this.pruningCIDs = this.pruningCIDs.filter(cid =&gt; willDestroyCIDs.indexOf(cid) !== -1)
+
+        &#x2f;&#x2f; See if any of the cids we wanted to destroy were added back,
+        &#x2f;&#x2f; if they were added back, we don&#x27;t actually destroy them.
+        let completelyDestroyCIDs = willDestroyCIDs.filter(cid =&gt; {
+          return DOM.findComponentNodeList(this.el, cid).length === 0
+        })
+
+        if(completelyDestroyCIDs.length &gt; 0){
+          this.pushWithReply(null, &quot;cids_destroyed&quot;, {cids: completelyDestroyCIDs}, (<span class="variable parameter" style="color: #953800;">resp</span>) =&gt; {
+            this.rendered.pruneCIDs(resp.cids)
+          })
+        }
+      })
+    }
+  }
+
+  ownsElement(<span class="variable parameter" style="color: #953800;">el</span>){
+    let parentViewEl = el.closest(PHX_VIEW_SELECTOR)
+    return el.getAttribute(PHX_PARENT_ID) === this.id ||
+      (parentViewEl &amp;&amp; parentViewEl.id === this.id) ||
+      (!parentViewEl &amp;&amp; this.isDead)
+  }
+
+  submitForm(<span class="variable parameter" style="color: #953800;">form</span>, <span class="variable parameter" style="color: #953800;">targetCtx</span>, <span class="variable parameter" style="color: #953800;">phxEvent</span>, <span class="variable parameter" style="color: #953800;">submitter</span>, <span class="variable parameter" style="color: #953800;">opts</span> = {}){
+    DOM.putPrivate(form, PHX_HAS_SUBMITTED, true)
+    let phxFeedback = this.liveSocket.binding(PHX_FEEDBACK_FOR)
+    let inputs = Array.from(form.elements)
+    inputs.forEach(input =&gt; DOM.putPrivate(input, PHX_HAS_SUBMITTED, true))
+    this.liveSocket.blurActiveElement(this)
+    this.pushFormSubmit(form, targetCtx, phxEvent, submitter, opts, () =&gt; {
+      inputs.forEach(input =&gt; DOM.showError(input, phxFeedback))
+      this.liveSocket.restorePreviouslyActiveFocus()
+    })
+  }
+
+  binding(<span class="variable parameter" style="color: #953800;">kind</span>){ return this.liveSocket.binding(kind) }
+}
+
+</code></pre>
+
+</body>
+</html>
