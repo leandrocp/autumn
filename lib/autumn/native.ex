@@ -8,7 +8,7 @@ defmodule Autumn.Native do
 
   use RustlerPrecompiled,
     otp_app: :autumn,
-    crate: "autumn",
+    crate: "inkjet_nif",
     base_url: "#{github_url}/releases/download/v#{version}",
     version: version,
     nif_versions: ["2.15"],

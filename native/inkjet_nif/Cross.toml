@@ -1,0 +1,7 @@
+[build.env]
+passthrough = [
+  "RUSTLER_NIF_VERSION"
+]
+
+[target.riscv64gc-unknown-linux-gnu]
+pre-build = ["apt update && apt install -y cmake"]
