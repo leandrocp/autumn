@@ -3,7 +3,11 @@
 [![Documentation](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/autumn)
 [![Package](https://img.shields.io/hexpm/v/autumn.svg)](https://hex.pm/packages/autumn)
 
+<!-- MDOC -->
+
 Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes.
+
+Support [multiple languages](https://github.com/leandrocp/autumn/blob/06767957a26bf1217aab7c082645eda0635d711c/native/inkjet_nif/Cargo.toml#L21) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/generated/themes).
 
 ## Installation
 
@@ -31,8 +35,6 @@ Autumn.highlight!("elixir", "Atom.to_string(:elixir)") |> IO.puts()
 #=> <span class="text" style="color: #ABB2BF; ">)</span>
 #=> </code></pre>
 
-![Elixir](https://raw.github.com/leandrocp/autumn/main/assets/elixir.png)
-
 Autumn.highlight!("rb", "Math.sqrt(9)", theme: "dracula") |> IO.puts()
 #=> <pre class="autumn highlight background" style="background-color: #282A36; ">
 #=> <code class="language-rb">
@@ -47,11 +49,11 @@ Autumn.highlight!("rb", "Math.sqrt(9)", theme: "dracula") |> IO.puts()
 
 ## Samples
 
-A set of samples is available at [priv/generated/samples](https://github.com/leandrocp/autumn/tree/main/priv/generated/samples).
+A set of samples is available at [priv/generated/samples](https://github.com/leandrocp/autumn/tree/main/priv/generated/samples) as the ones belows:
 
 ![elixir_onedark](https://raw.github.com/leandrocp/autumn/main/assets/elixir_onedark.png)
 ![elixir_github_light](https://raw.github.com/leandrocp/autumn/main/assets/elixir_github_light.png)
 
 ## Acknowledgements
 
-[Inkjet](https://crates.io/crates/inkjet)
+[Inkjet](https://crates.io/crates/inkjet) for providing the underlying lib to load language grammars.

@@ -1,31 +1,48 @@
 defmodule Autumn do
-  @moduledoc """
-  TODO
-  """
+  @external_resource "README.md"
+
+  @moduledoc "README.md"
+             |> File.read!()
+             |> String.split("<!-- MDOC -->")
+             |> Enum.fetch!(1)
 
   alias Autumn.Native
 
+  @typedoc """
+  A language name, filename, or extesion.
+
+  The following values are valid to highlight an Elixir source code:
+
+    - "elixir", "my_module.ex", "my_script.exs", "ex", "exs"
+
+  And any other language can be highlighted in the same way.
+
+  """
+  @type lang_filename_ext :: String.t()
+
   @doc """
-  TODO
-
-  ## Examples
-
-      iex> Autumn.highlight("elixir", ":elixir")
-      "<span style=\"color: #ff79c6\">:elixir</span>\n"
+  Highlight the `source_code` with the rules of `lang_filename_ext`.
 
   ## Options
 
-      TODO
+  * `:theme` (default `"onedark"`) - accepts any theme listed [here](https://github.com/leandrocp/autumn/tree/main/priv/generated/themes),
+  you should pass the filename without extension, for example you should pass `theme: "github_light"` to use the [GitHub Light](https://github.com/leandrocp/autumn/blob/main/priv/generated/themes/github_light.toml) theme.
 
   """
-  def highlight(lang_filename_ext, source, opts \\ []) do
+  @spec highlight(lang_filename_ext(), String.t(), keyword()) ::
+          {:ok, String.t()} | {:error, term()}
+  def highlight(lang_filename_ext, source_code, opts \\ []) do
     lang = language(lang_filename_ext)
     theme = Keyword.get(opts, :theme, "onedark")
-    Native.highlight(lang, source, theme)
+    Native.highlight(lang, source_code, theme)
   end
 
-  def highlight!(lang_filename_ext, source, opts \\ []) do
-    case highlight(lang_filename_ext, source, opts) do
+  @doc """
+  Same as `highlight/3` but raises in case of failure.
+  """
+  @spec highlight!(lang_filename_ext(), String.t(), keyword()) :: String.t()
+  def highlight!(lang_filename_ext, source_code, opts \\ []) do
+    case highlight(lang_filename_ext, source_code, opts) do
       {:ok, highlighted} ->
         highlighted
 

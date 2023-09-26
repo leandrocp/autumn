@@ -38,9 +38,16 @@ defmodule Autumn.MixProject do
       },
       files: ~w[
         lib
-        priv
+        priv/generated/themes
+        native/inkjet_nif/src
+        native/inkjet_nif/Cargo.*
+        native/inkjet_nif/Cross.toml
+        native/inkjet_nif/.cargo
+        checksum-Elixir.Autumn.Native.exs
         mix.exs
         README.md
+        LICENSE.md
+        CHANGELOG.md
       ]
     ]
   end
@@ -59,8 +66,7 @@ defmodule Autumn.MixProject do
       {:rustler, ">= 0.0.0", optional: true},
       {:rustler_precompiled, "~> 0.6"},
       {:ex_doc, "~> 0.29", only: :dev},
-      {:toml, "~> 0.7", runtime: false},
-      {:jason, "~> 1.0", runtime: false}
+      {:toml, "~> 0.7", runtime: false}
     ]
   end
 
@@ -68,8 +74,8 @@ defmodule Autumn.MixProject do
     [
       generate_checksum: "rustler_precompiled.download Autumn.Native --all --print",
       test: [fn _ -> System.put_env("AUTUMN_BUILD", "true") end, "test"],
-      "rust.lint": ["cmd cargo clippy --manifest-path=native/autumn/Cargo.toml -- -Dwarnings"],
-      "rust.fmt": ["cmd cargo fmt --manifest-path=native/autumn/Cargo.toml --all"]
+      "rust.lint": ["cmd cargo clippy --manifest-path=native/inkjet_nif/Cargo.toml -- -Dwarnings"],
+      "rust.fmt": ["cmd cargo fmt --manifest-path=native/inkjet_nif/Cargo.toml --all"]
     ]
   end
 end

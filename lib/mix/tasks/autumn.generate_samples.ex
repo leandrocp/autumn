@@ -112,7 +112,11 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     Mix.shell().info("#{lang} - #{theme}")
 
     code = Autumn.highlight!(lang, source, theme: theme)
-    html = EEx.eval_string(@layout, assigns: %{style: style, inner_content: code, lang: lang, theme: theme})
+
+    html =
+      EEx.eval_string(@layout,
+        assigns: %{style: style, inner_content: code, lang: lang, theme: theme}
+      )
 
     dest_path =
       Path.join([:code.priv_dir(:autumn), "generated", "samples", "#{lang}_#{theme}.html"])
