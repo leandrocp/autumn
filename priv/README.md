@@ -1,9 +1,5 @@
 # Support files
 
-Used to generate langs and themes:
+Used to generate themes and samples.
 
-* `generated` - files generated automatically by mix tasks.
-* `langs` - git submodules for each supported lang.
-* `themes` - theme files.
-
-For more info see the included README.md in each subdirectory
+For more info see the included README.md in each subdirectory.
