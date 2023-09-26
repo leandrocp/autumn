@@ -124,23 +124,19 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     File.write!(dest_path, html)
   end
 
-  defp debug() do
-    lang = "elixir"
-    source_path = Path.join([File.cwd!(), "lib", "autumn.ex"])
-    source = File.read!(source_path)
-
-    # source = ~S"""
-    # import Kernel, except: [def: 1]
-    # """
-
-    code = Autumn.highlight!(lang, source)
-
-    html =
-      EEx.eval_string(@layout, assigns: %{inner_content: code, lang: "debug", theme: "onedark"})
-
-    dest_path = Path.join([:code.priv_dir(:autumn), "generated", "samples", "debug.html"])
-    File.write!(dest_path, html)
-  end
+  # defp debug() do
+  #   lang = "elixir"
+  #   source_path = Path.join([File.cwd!(), "lib", "autumn.ex"])
+  #   source = File.read!(source_path)
+  #
+  #   code = Autumn.highlight!(lang, source)
+  #
+  #   html =
+  #     EEx.eval_string(@layout, assigns: %{inner_content: code, lang: "debug", theme: "onedark"})
+  #
+  #   dest_path = Path.join([:code.priv_dir(:autumn), "generated", "samples", "debug.html"])
+  #   File.write!(dest_path, html)
+  # end
 
   defp download_source(url) do
     {:ok, {_, _, body}} = :httpc.request(url)

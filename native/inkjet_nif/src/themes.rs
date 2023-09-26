@@ -5,557 +5,557 @@ use once_cell::sync::Lazy;
 use toml::Value;
 
 static ACME: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/acme.toml");
+    let theme = include_str!("../themes/acme.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "acme.toml"))
 });
 
 static ADWAITA_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/adwaita_dark.toml");
+    let theme = include_str!("../themes/adwaita_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "adwaita_dark.toml"))
 });
 
 static AMBERWOOD: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/amberwood.toml");
+    let theme = include_str!("../themes/amberwood.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "amberwood.toml"))
 });
 
 static AUTUMN: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/autumn.toml");
+    let theme = include_str!("../themes/autumn.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "autumn.toml"))
 });
 
 static AUTUMN_NIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/autumn_night.toml");
+    let theme = include_str!("../themes/autumn_night.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "autumn_night.toml"))
 });
 
 static AYU_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/ayu_dark.toml");
+    let theme = include_str!("../themes/ayu_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "ayu_dark.toml"))
 });
 
 static AYU_EVOLVE: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/ayu_evolve.toml");
+    let theme = include_str!("../themes/ayu_evolve.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "ayu_evolve.toml"))
 });
 
 static AYU_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/ayu_light.toml");
+    let theme = include_str!("../themes/ayu_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "ayu_light.toml"))
 });
 
 static AYU_MIRAGE: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/ayu_mirage.toml");
+    let theme = include_str!("../themes/ayu_mirage.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "ayu_mirage.toml"))
 });
 
 static BASE16_DEFAULT_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/base16_default_dark.toml");
+    let theme = include_str!("../themes/base16_default_dark.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "base16_default_dark.toml"))
 });
 
 static BASE16_DEFAULT_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/base16_default_light.toml");
+    let theme = include_str!("../themes/base16_default_light.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "base16_default_light.toml"))
 });
 
 static BASE16_TERMINAL: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/base16_terminal.toml");
+    let theme = include_str!("../themes/base16_terminal.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "base16_terminal.toml"))
 });
 
 static BASE16_TRANSPARENT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/base16_transparent.toml");
+    let theme = include_str!("../themes/base16_transparent.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "base16_transparent.toml"))
 });
 
 static BOGSTER: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/bogster.toml");
+    let theme = include_str!("../themes/bogster.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "bogster.toml"))
 });
 
 static BOGSTER_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/bogster_light.toml");
+    let theme = include_str!("../themes/bogster_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "bogster_light.toml"))
 });
 
 static BOO_BERRY: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/boo_berry.toml");
+    let theme = include_str!("../themes/boo_berry.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "boo_berry.toml"))
 });
 
 static CATPPUCCIN_FRAPPE: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/catppuccin_frappe.toml");
+    let theme = include_str!("../themes/catppuccin_frappe.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "catppuccin_frappe.toml"))
 });
 
 static CATPPUCCIN_LATTE: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/catppuccin_latte.toml");
+    let theme = include_str!("../themes/catppuccin_latte.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "catppuccin_latte.toml"))
 });
 
 static CATPPUCCIN_MACCHIATO: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/catppuccin_macchiato.toml");
+    let theme = include_str!("../themes/catppuccin_macchiato.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "catppuccin_macchiato.toml"))
 });
 
 static CATPPUCCIN_MOCHA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/catppuccin_mocha.toml");
+    let theme = include_str!("../themes/catppuccin_mocha.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "catppuccin_mocha.toml"))
 });
 
 static CYAN_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/cyan_light.toml");
+    let theme = include_str!("../themes/cyan_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "cyan_light.toml"))
 });
 
 static DARCULA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/darcula.toml");
+    let theme = include_str!("../themes/darcula.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "darcula.toml"))
 });
 
 static DARCULA_SOLID: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/darcula_solid.toml");
+    let theme = include_str!("../themes/darcula_solid.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "darcula_solid.toml"))
 });
 
 static DARK_HIGH_CONTRAST: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/dark_high_contrast.toml");
+    let theme = include_str!("../themes/dark_high_contrast.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "dark_high_contrast.toml"))
 });
 
 static DARK_PLUS: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/dark_plus.toml");
+    let theme = include_str!("../themes/dark_plus.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "dark_plus.toml"))
 });
 
 static DOOM_ACARIO_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/doom_acario_dark.toml");
+    let theme = include_str!("../themes/doom_acario_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "doom_acario_dark.toml"))
 });
 
 static DRACULA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/dracula.toml");
+    let theme = include_str!("../themes/dracula.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "dracula.toml"))
 });
 
 static DRACULA_AT_NIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/dracula_at_night.toml");
+    let theme = include_str!("../themes/dracula_at_night.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "dracula_at_night.toml"))
 });
 
 static EMACS: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/emacs.toml");
+    let theme = include_str!("../themes/emacs.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "emacs.toml"))
 });
 
 static EVERBLUSH: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/everblush.toml");
+    let theme = include_str!("../themes/everblush.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "everblush.toml"))
 });
 
 static EVERFOREST_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/everforest_dark.toml");
+    let theme = include_str!("../themes/everforest_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "everforest_dark.toml"))
 });
 
 static EVERFOREST_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/everforest_light.toml");
+    let theme = include_str!("../themes/everforest_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "everforest_light.toml"))
 });
 
 static FERRA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/ferra.toml");
+    let theme = include_str!("../themes/ferra.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "ferra.toml"))
 });
 
 static FLATWHITE: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/flatwhite.toml");
+    let theme = include_str!("../themes/flatwhite.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "flatwhite.toml"))
 });
 
 static FLEET_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/fleet_dark.toml");
+    let theme = include_str!("../themes/fleet_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "fleet_dark.toml"))
 });
 
 static GITHUB_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/github_dark.toml");
+    let theme = include_str!("../themes/github_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "github_dark.toml"))
 });
 
 static GITHUB_DARK_COLORBLIND: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/github_dark_colorblind.toml");
+    let theme = include_str!("../themes/github_dark_colorblind.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "github_dark_colorblind.toml"))
 });
 
 static GITHUB_DARK_DIMMED: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/github_dark_dimmed.toml");
+    let theme = include_str!("../themes/github_dark_dimmed.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "github_dark_dimmed.toml"))
 });
 
 static GITHUB_DARK_HIGH_CONTRAST: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/github_dark_high_contrast.toml");
+    let theme = include_str!("../themes/github_dark_high_contrast.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "github_dark_high_contrast.toml"))
 });
 
 static GITHUB_DARK_TRITANOPIA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/github_dark_tritanopia.toml");
+    let theme = include_str!("../themes/github_dark_tritanopia.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "github_dark_tritanopia.toml"))
 });
 
 static GITHUB_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/github_light.toml");
+    let theme = include_str!("../themes/github_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "github_light.toml"))
 });
 
 static GITHUB_LIGHT_COLORBLIND: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/github_light_colorblind.toml");
+    let theme = include_str!("../themes/github_light_colorblind.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "github_light_colorblind.toml"))
 });
 
 static GITHUB_LIGHT_HIGH_CONTRAST: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/github_light_high_contrast.toml");
+    let theme = include_str!("../themes/github_light_high_contrast.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "github_light_high_contrast.toml"))
 });
 
 static GITHUB_LIGHT_TRITANOPIA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/github_light_tritanopia.toml");
+    let theme = include_str!("../themes/github_light_tritanopia.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "github_light_tritanopia.toml"))
 });
 
 static GRUVBOX: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/gruvbox.toml");
+    let theme = include_str!("../themes/gruvbox.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "gruvbox.toml"))
 });
 
 static GRUVBOX_DARK_HARD: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/gruvbox_dark_hard.toml");
+    let theme = include_str!("../themes/gruvbox_dark_hard.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "gruvbox_dark_hard.toml"))
 });
 
 static GRUVBOX_DARK_SOFT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/gruvbox_dark_soft.toml");
+    let theme = include_str!("../themes/gruvbox_dark_soft.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "gruvbox_dark_soft.toml"))
 });
 
 static GRUVBOX_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/gruvbox_light.toml");
+    let theme = include_str!("../themes/gruvbox_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "gruvbox_light.toml"))
 });
 
 static HEISENBERG: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/heisenberg.toml");
+    let theme = include_str!("../themes/heisenberg.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "heisenberg.toml"))
 });
 
 static HEX_LAVENDER: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/hex_lavender.toml");
+    let theme = include_str!("../themes/hex_lavender.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "hex_lavender.toml"))
 });
 
 static HEX_STEEL: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/hex_steel.toml");
+    let theme = include_str!("../themes/hex_steel.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "hex_steel.toml"))
 });
 
 static HEX_TOXIC: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/hex_toxic.toml");
+    let theme = include_str!("../themes/hex_toxic.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "hex_toxic.toml"))
 });
 
 static INGRID: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/ingrid.toml");
+    let theme = include_str!("../themes/ingrid.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "ingrid.toml"))
 });
 
 static JELLYBEANS: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/jellybeans.toml");
+    let theme = include_str!("../themes/jellybeans.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "jellybeans.toml"))
 });
 
 static KANAGAWA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/kanagawa.toml");
+    let theme = include_str!("../themes/kanagawa.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "kanagawa.toml"))
 });
 
 static KAOLIN_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/kaolin_dark.toml");
+    let theme = include_str!("../themes/kaolin_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "kaolin_dark.toml"))
 });
 
 static KAOLIN_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/kaolin_light.toml");
+    let theme = include_str!("../themes/kaolin_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "kaolin_light.toml"))
 });
 
 static KAOLIN_VALLEY_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/kaolin_valley_dark.toml");
+    let theme = include_str!("../themes/kaolin_valley_dark.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "kaolin_valley_dark.toml"))
 });
 
 static MATERIAL_DARKER: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/material_darker.toml");
+    let theme = include_str!("../themes/material_darker.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "material_darker.toml"))
 });
 
 static MATERIAL_DEEP_OCEAN: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/material_deep_ocean.toml");
+    let theme = include_str!("../themes/material_deep_ocean.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "material_deep_ocean.toml"))
 });
 
 static MATERIAL_OCEANIC: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/material_oceanic.toml");
+    let theme = include_str!("../themes/material_oceanic.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "material_oceanic.toml"))
 });
 
 static MATERIAL_PALENIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/material_palenight.toml");
+    let theme = include_str!("../themes/material_palenight.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "material_palenight.toml"))
 });
 
 static MELIORA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/meliora.toml");
+    let theme = include_str!("../themes/meliora.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "meliora.toml"))
 });
 
 static MELLOW: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/mellow.toml");
+    let theme = include_str!("../themes/mellow.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "mellow.toml"))
 });
 
 static MERIONETTE: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/merionette.toml");
+    let theme = include_str!("../themes/merionette.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "merionette.toml"))
 });
 
 static MOLOKAI: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/molokai.toml");
+    let theme = include_str!("../themes/molokai.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "molokai.toml"))
 });
 
 static MONOKAI: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/monokai.toml");
+    let theme = include_str!("../themes/monokai.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "monokai.toml"))
 });
 
 static MONOKAI_AQUA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/monokai_aqua.toml");
+    let theme = include_str!("../themes/monokai_aqua.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "monokai_aqua.toml"))
 });
 
 static MONOKAI_PRO: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/monokai_pro.toml");
+    let theme = include_str!("../themes/monokai_pro.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "monokai_pro.toml"))
 });
 
 static MONOKAI_PRO_MACHINE: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/monokai_pro_machine.toml");
+    let theme = include_str!("../themes/monokai_pro_machine.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "monokai_pro_machine.toml"))
 });
 
 static MONOKAI_PRO_OCTAGON: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/monokai_pro_octagon.toml");
+    let theme = include_str!("../themes/monokai_pro_octagon.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "monokai_pro_octagon.toml"))
 });
 
 static MONOKAI_PRO_RISTRETTO: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/monokai_pro_ristretto.toml");
+    let theme = include_str!("../themes/monokai_pro_ristretto.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "monokai_pro_ristretto.toml"))
 });
 
 static MONOKAI_PRO_SPECTRUM: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/monokai_pro_spectrum.toml");
+    let theme = include_str!("../themes/monokai_pro_spectrum.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "monokai_pro_spectrum.toml"))
 });
 
 static NAYSAYER: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/naysayer.toml");
+    let theme = include_str!("../themes/naysayer.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "naysayer.toml"))
 });
 
 static NEW_MOON: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/new_moon.toml");
+    let theme = include_str!("../themes/new_moon.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "new_moon.toml"))
 });
 
 static NIGHT_OWL: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/night_owl.toml");
+    let theme = include_str!("../themes/night_owl.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "night_owl.toml"))
 });
 
 static NIGHTFOX: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/nightfox.toml");
+    let theme = include_str!("../themes/nightfox.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "nightfox.toml"))
 });
 
 static NOCTIS: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/noctis.toml");
+    let theme = include_str!("../themes/noctis.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "noctis.toml"))
 });
 
 static NOCTIS_BORDO: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/noctis_bordo.toml");
+    let theme = include_str!("../themes/noctis_bordo.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "noctis_bordo.toml"))
 });
 
 static NORD: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/nord.toml");
+    let theme = include_str!("../themes/nord.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "nord.toml"))
 });
 
 static NORD_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/nord_light.toml");
+    let theme = include_str!("../themes/nord_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "nord_light.toml"))
 });
 
 static ONEDARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/onedark.toml");
+    let theme = include_str!("../themes/onedark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "onedark.toml"))
 });
 
 static ONEDARKER: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/onedarker.toml");
+    let theme = include_str!("../themes/onedarker.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "onedarker.toml"))
 });
 
 static ONELIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/onelight.toml");
+    let theme = include_str!("../themes/onelight.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "onelight.toml"))
 });
 
 static PAPERCOLOR_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/papercolor_dark.toml");
+    let theme = include_str!("../themes/papercolor_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "papercolor_dark.toml"))
 });
 
 static PAPERCOLOR_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/papercolor_light.toml");
+    let theme = include_str!("../themes/papercolor_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "papercolor_light.toml"))
 });
 
 static PENUMBRA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/penumbra.toml");
+    let theme = include_str!("../themes/penumbra.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "penumbra.toml"))
 });
 
 static POP_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/pop_dark.toml");
+    let theme = include_str!("../themes/pop_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "pop_dark.toml"))
 });
 
 static RASMUS: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/rasmus.toml");
+    let theme = include_str!("../themes/rasmus.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "rasmus.toml"))
 });
 
 static ROSE_PINE: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/rose_pine.toml");
+    let theme = include_str!("../themes/rose_pine.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "rose_pine.toml"))
 });
 
 static ROSE_PINE_DAWN: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/rose_pine_dawn.toml");
+    let theme = include_str!("../themes/rose_pine_dawn.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "rose_pine_dawn.toml"))
 });
 
 static ROSE_PINE_MOON: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/rose_pine_moon.toml");
+    let theme = include_str!("../themes/rose_pine_moon.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "rose_pine_moon.toml"))
 });
 
 static SERIKA_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/serika_dark.toml");
+    let theme = include_str!("../themes/serika_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "serika_dark.toml"))
 });
 
 static SERIKA_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/serika_light.toml");
+    let theme = include_str!("../themes/serika_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "serika_light.toml"))
 });
 
 static SNAZZY: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/snazzy.toml");
+    let theme = include_str!("../themes/snazzy.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "snazzy.toml"))
 });
 
 static SOLARIZED_DARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/solarized_dark.toml");
+    let theme = include_str!("../themes/solarized_dark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "solarized_dark.toml"))
 });
 
 static SOLARIZED_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/solarized_light.toml");
+    let theme = include_str!("../themes/solarized_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "solarized_light.toml"))
 });
 
 static SONOKAI: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/sonokai.toml");
+    let theme = include_str!("../themes/sonokai.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "sonokai.toml"))
 });
 
 static SPACEBONES_LIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/spacebones_light.toml");
+    let theme = include_str!("../themes/spacebones_light.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "spacebones_light.toml"))
 });
 
 static TOKYONIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/tokyonight.toml");
+    let theme = include_str!("../themes/tokyonight.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "tokyonight.toml"))
 });
 
 static TOKYONIGHT_STORM: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/tokyonight_storm.toml");
+    let theme = include_str!("../themes/tokyonight_storm.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "tokyonight_storm.toml"))
 });
 
 static VARUA: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/varua.toml");
+    let theme = include_str!("../themes/varua.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "varua.toml"))
 });
 
 static VIM_DARK_HIGH_CONTRAST: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/vim_dark_high_contrast.toml");
+    let theme = include_str!("../themes/vim_dark_high_contrast.toml");
     toml::from_str(theme)
         .unwrap_or_else(|_| panic!("failed to parse {}", "vim_dark_high_contrast.toml"))
 });
 
 static YELLOWED: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/yellowed.toml");
+    let theme = include_str!("../themes/yellowed.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "yellowed.toml"))
 });
 
 static ZED_ONEDARK: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/zed_onedark.toml");
+    let theme = include_str!("../themes/zed_onedark.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "zed_onedark.toml"))
 });
 
 static ZED_ONELIGHT: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/zed_onelight.toml");
+    let theme = include_str!("../themes/zed_onelight.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "zed_onelight.toml"))
 });
 
 static ZENBURN: Lazy<Value> = Lazy::new(|| {
-    let theme = include_str!("../../../priv/generated/themes/zenburn.toml");
+    let theme = include_str!("../themes/zenburn.toml");
     toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "zenburn.toml"))
 });
 

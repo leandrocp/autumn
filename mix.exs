@@ -38,7 +38,6 @@ defmodule Autumn.MixProject do
       },
       files: ~w[
         lib
-        priv/generated/themes
         native/inkjet_nif/src
         native/inkjet_nif/Cargo.*
         native/inkjet_nif/Cross.toml

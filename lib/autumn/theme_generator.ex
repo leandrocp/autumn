@@ -19,7 +19,7 @@ defmodule Autumn.ThemeGenerator do
 
   <%= for {filename, _name, name_upcase} <- @themes do %>
   static <%= name_upcase %>: Lazy<Value> = Lazy::new(|| {
-      let theme = include_str!("../../../priv/generated/themes/<%= filename %>");
+      let theme = include_str!("../themes/<%= filename %>");
       toml::from_str(theme).unwrap_or_else(|_| panic!("failed to parse {}", "<%= filename %>"))
   });
   <% end %>
@@ -117,7 +117,7 @@ defmodule Autumn.ThemeGenerator do
       |> String.replace("-", "_")
       |> String.replace("+", "")
 
-    dest_path = Path.join([:code.priv_dir(:autumn), "generated", "themes", file_name])
+    dest_path = Path.join([File.cwd!(), "native", "inkjet_nif", "themes", file_name])
     File.write!(dest_path, theme_config)
 
     {:ok, theme_config}
@@ -298,7 +298,7 @@ defmodule Autumn.ThemeGenerator do
       end)
 
     themes_rs = EEx.eval_string(@themes_rs_template, assigns: %{themes: themes})
-    dest_path = Path.join(["native", "autumn", "src", "themes.rs"])
+    dest_path = Path.join([File.cwd!(), "native", "inkjet_nif", "src", "themes.rs"])
 
     File.write!(dest_path, themes_rs)
 
