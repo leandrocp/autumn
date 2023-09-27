@@ -2,7 +2,7 @@ defmodule Autumn.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/leandrocp/autumn"
-  @version "0.1.0-dev"
+  @version "0.1.0"
 
   def project do
     [
@@ -18,7 +18,7 @@ defmodule Autumn.MixProject do
       name: "Autumn",
       homepage_url: "https://github.com/leandrocp/autumn",
       description:
-        "Syntax highlighter for source code using Tree-Sitter parsing and Helix Editor themes."
+        "Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes."
     ]
   end
 
