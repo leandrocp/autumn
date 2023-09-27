@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.Autumn.GenerateSamples do
   use Mix.Task
 
-  @shortdoc "Parse and generate langs module"
+  @shortdoc "Generate samples."
 
   @layout ~S"""
   <!DOCTYPE html>
