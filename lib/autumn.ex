@@ -25,8 +25,8 @@ defmodule Autumn do
 
   ## Options
 
-  * `:theme` (default `"onedark"`) - accepts any theme listed [here](https://github.com/leandrocp/autumn/tree/main/priv/generated/themes),
-  you should pass the filename without extension, for example you should pass `theme: "github_light"` to use the [GitHub Light](https://github.com/leandrocp/autumn/blob/main/priv/generated/themes/github_light.toml) theme.
+  * `:theme` (default `"onedark"`) - accepts any theme listed [here](https://github.com/leandrocp/autumn/tree/main/priv/themes),
+  you should pass the filename without special chars and without extension, for example you should pass `theme: "adwaita_dark"` to use the [Adwaita Dark](https://github.com/leandrocp/autumn/blob/main/priv/themes/adwaita-dark.toml) theme.
   * `:pre_class` (default: `"autumn highlight"`) - the CSS class to inject into the `<pre>` tag.
 
   """
