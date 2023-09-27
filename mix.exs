@@ -73,6 +73,7 @@ defmodule Autumn.MixProject do
     [
       generate_checksum: "rustler_precompiled.download Autumn.Native --all --print",
       test: [fn _ -> System.put_env("AUTUMN_BUILD", "true") end, "test"],
+      format: ["rust.fmt", "format"],
       "rust.lint": ["cmd cargo clippy --manifest-path=native/inkjet_nif/Cargo.toml -- -Dwarnings"],
       "rust.fmt": ["cmd cargo fmt --manifest-path=native/inkjet_nif/Cargo.toml --all"]
     ]
