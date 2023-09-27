@@ -20,7 +20,7 @@ impl<'a> InlineHTML<'a> {
 }
 
 impl<'a> Formatter for InlineHTML<'a> {
-    fn write<W>(&self, source: &str, w: &mut W, event: HighlightEvent) -> Result<()>
+    fn write<W>(&self, source: &str, output: &mut W, event: HighlightEvent) -> Result<()>
     where
         W: std::fmt::Write,
     {
@@ -30,15 +30,15 @@ impl<'a> Formatter for InlineHTML<'a> {
                     .get(start..end)
                     .expect("Source bounds should be in bounds!");
                 let span = v_htmlescape::escape(span).to_string();
-                w.write_str(&span)?;
+                output.write_str(&span)?;
             }
             HighlightEvent::HighlightStart(idx) => {
                 let scope = constants::HIGHLIGHT_NAMES[idx.0];
                 let (class, style) = self.theme.get_scope(scope);
-                write!(w, "<span class=\"{}\" style=\"{}\">", class, style)?;
+                write!(output, "<span class=\"{}\" style=\"{}\">", class, style)?;
             }
             HighlightEvent::HighlightEnd => {
-                w.write_str("</span>")?;
+                output.write_str("</span>")?;
             }
         }
 
