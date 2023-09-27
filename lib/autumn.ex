@@ -27,6 +27,7 @@ defmodule Autumn do
 
   * `:theme` (default `"onedark"`) - accepts any theme listed [here](https://github.com/leandrocp/autumn/tree/main/priv/generated/themes),
   you should pass the filename without extension, for example you should pass `theme: "github_light"` to use the [GitHub Light](https://github.com/leandrocp/autumn/blob/main/priv/generated/themes/github_light.toml) theme.
+  * `:pre_class` (default: `"autumn highlight"`) - the CSS class to inject into the `<pre>` tag.
 
   """
   @spec highlight(lang_filename_ext(), String.t(), keyword()) ::
@@ -34,7 +35,8 @@ defmodule Autumn do
   def highlight(lang_filename_ext, source_code, opts \\ []) do
     lang = language(lang_filename_ext)
     theme = Keyword.get(opts, :theme, "onedark")
-    Native.highlight(lang, source_code, theme)
+    pre_class = Keyword.get(opts, :pre_class, "autumn highlight")
+    Native.highlight(lang, source_code, theme, pre_class)
   end
 
   @doc """

@@ -25,7 +25,7 @@
 
 </head>
 <body>
-  <pre class="autumn highlight background" style="background-color: #282C34; ">
+  <pre class="" style="background-color: #282C34;">
 <code class="language-javascript">
 import {
   BEFORE_UNLOAD_LOADER_TIMEOUT,
@@ -84,7 +84,7 @@ import Rendered from &quot;.&#x2f;rendered&quot;
 import ViewHook from &quot;.&#x2f;view_hook&quot;
 import JS from &quot;.&#x2f;js&quot;
 
-let serializeForm = (<span class="variable parameter" style="color: #E06C75; ">form</span>, <span class="variable parameter" style="color: #E06C75; ">metadata</span>, <span class="variable parameter" style="color: #E06C75; ">onlyNames</span> = []) =&gt; {
+let serializeForm = (<span class="variable parameter" style="color: #E06C75;">form</span>, <span class="variable parameter" style="color: #E06C75;">metadata</span>, <span class="variable parameter" style="color: #E06C75;">onlyNames</span> = []) =&gt; {
   let {submitter, ...meta} = metadata
 
   &#x2f;&#x2f; TODO: Replace with `new FormData(form, submitter)` when supported by latest browsers,
@@ -98,7 +98,7 @@ let serializeForm = (<span class="variable parameter" style="color: #E06C75; ">f
 
   let toRemove = []
 
-  formData.forEach((<span class="variable parameter" style="color: #E06C75; ">val</span>, <span class="variable parameter" style="color: #E06C75; ">key</span>, <span class="variable parameter" style="color: #E06C75; ">_index</span>) =&gt; {
+  formData.forEach((<span class="variable parameter" style="color: #E06C75;">val</span>, <span class="variable parameter" style="color: #E06C75;">key</span>, <span class="variable parameter" style="color: #E06C75;">_index</span>) =&gt; {
     if(val instanceof File){ toRemove.push(key) }
   })
 
@@ -117,7 +117,7 @@ let serializeForm = (<span class="variable parameter" style="color: #E06C75; ">f
 }
 
 export default class View {
-  constructor(<span class="variable parameter" style="color: #E06C75; ">el</span>, <span class="variable parameter" style="color: #E06C75; ">liveSocket</span>, <span class="variable parameter" style="color: #E06C75; ">parentView</span>, <span class="variable parameter" style="color: #E06C75; ">flash</span>, <span class="variable parameter" style="color: #E06C75; ">liveReferer</span>){
+  constructor(<span class="variable parameter" style="color: #E06C75;">el</span>, <span class="variable parameter" style="color: #E06C75;">liveSocket</span>, <span class="variable parameter" style="color: #E06C75;">parentView</span>, <span class="variable parameter" style="color: #E06C75;">flash</span>, <span class="variable parameter" style="color: #E06C75;">liveReferer</span>){
     this.isDead = false
     this.liveSocket = liveSocket
     this.flash = flash
@@ -135,7 +135,7 @@ export default class View {
     this.joinCount = this.parent ? this.parent.joinCount - 1 : 0
     this.joinPending = true
     this.destroyed = false
-    this.joinCallback = function(<span class="variable parameter" style="color: #E06C75; ">onDone</span>){ onDone &amp;&amp; onDone() }
+    this.joinCallback = function(<span class="variable parameter" style="color: #E06C75;">onDone</span>){ onDone &amp;&amp; onDone() }
     this.stopCallback = function(){ }
     this.pendingJoinOps = this.parent ? null : []
     this.viewHooks = {}
@@ -155,16 +155,16 @@ export default class View {
     })
   }
 
-  setHref(<span class="variable parameter" style="color: #E06C75; ">href</span>){ this.href = href }
+  setHref(<span class="variable parameter" style="color: #E06C75;">href</span>){ this.href = href }
 
-  setRedirect(<span class="variable parameter" style="color: #E06C75; ">href</span>){
+  setRedirect(<span class="variable parameter" style="color: #E06C75;">href</span>){
     this.redirect = true
     this.href = href
   }
 
   isMain(){ return this.el.hasAttribute(PHX_MAIN) }
 
-  connectParams(<span class="variable parameter" style="color: #E06C75; ">liveReferer</span>){
+  connectParams(<span class="variable parameter" style="color: #E06C75;">liveReferer</span>){
     let params = this.liveSocket.params(this.el)
     let manifest =
       DOM.all(document, `[${this.binding(PHX_TRACK_STATIC)}]`)
@@ -186,7 +186,7 @@ export default class View {
     return val === &quot;&quot; ? null : val
   }
 
-  destroy(<span class="variable parameter" style="color: #E06C75; ">callback</span> = function (){ }){
+  destroy(<span class="variable parameter" style="color: #E06C75;">callback</span> = function (){ }){
     this.destroyAllChildren()
     this.destroyed = true
     delete this.root.children[this.id]
@@ -208,7 +208,7 @@ export default class View {
       .receive(&quot;timeout&quot;, onFinished)
   }
 
-  setContainerClasses(...<span class="variable parameter" style="color: #E06C75; ">classes</span>){
+  setContainerClasses(...<span class="variable parameter" style="color: #E06C75;">classes</span>){
     this.el.classList.remove(
       PHX_CONNECTED_CLASS,
       PHX_LOADING_CLASS,
@@ -219,7 +219,7 @@ export default class View {
     this.el.classList.add(...classes)
   }
 
-  showLoader(<span class="variable parameter" style="color: #E06C75; ">timeout</span>){
+  showLoader(<span class="variable parameter" style="color: #E06C75;">timeout</span>){
     clearTimeout(this.loaderTimer)
     if(timeout){
       this.loaderTimer = setTimeout(() =&gt; this.showLoader(), timeout)
@@ -229,7 +229,7 @@ export default class View {
     }
   }
 
-  execAll(<span class="variable parameter" style="color: #E06C75; ">binding</span>){
+  execAll(<span class="variable parameter" style="color: #E06C75;">binding</span>){
     DOM.all(this.el, `[${binding}]`, el =&gt; this.liveSocket.execJS(el, el.getAttribute(binding)))
   }
 
@@ -243,15 +243,15 @@ export default class View {
     for(let id in this.viewHooks){ this.viewHooks[id].__reconnected() }
   }
 
-  log(<span class="variable parameter" style="color: #E06C75; ">kind</span>, <span class="variable parameter" style="color: #E06C75; ">msgCallback</span>){
+  log(<span class="variable parameter" style="color: #E06C75;">kind</span>, <span class="variable parameter" style="color: #E06C75;">msgCallback</span>){
     this.liveSocket.log(this, kind, msgCallback)
   }
 
-  transition(<span class="variable parameter" style="color: #E06C75; ">time</span>, <span class="variable parameter" style="color: #E06C75; ">onStart</span>, <span class="variable parameter" style="color: #E06C75; ">onDone</span> = function(){}){
+  transition(<span class="variable parameter" style="color: #E06C75;">time</span>, <span class="variable parameter" style="color: #E06C75;">onStart</span>, <span class="variable parameter" style="color: #E06C75;">onDone</span> = function(){}){
     this.liveSocket.transition(time, onStart, onDone)
   }
 
-  withinTargets(<span class="variable parameter" style="color: #E06C75; ">phxTarget</span>, <span class="variable parameter" style="color: #E06C75; ">callback</span>){
+  withinTargets(<span class="variable parameter" style="color: #E06C75;">phxTarget</span>, <span class="variable parameter" style="color: #E06C75;">callback</span>){
     if(phxTarget instanceof HTMLElement || phxTarget instanceof SVGElement){
       return this.liveSocket.owner(phxTarget, view =&gt; callback(view, phxTarget))
     }
@@ -270,14 +270,14 @@ export default class View {
     }
   }
 
-  applyDiff(<span class="variable parameter" style="color: #E06C75; ">type</span>, <span class="variable parameter" style="color: #E06C75; ">rawDiff</span>, <span class="variable parameter" style="color: #E06C75; ">callback</span>){
+  applyDiff(<span class="variable parameter" style="color: #E06C75;">type</span>, <span class="variable parameter" style="color: #E06C75;">rawDiff</span>, <span class="variable parameter" style="color: #E06C75;">callback</span>){
     this.log(type, () =&gt; [&quot;&quot;, clone(rawDiff)])
     let {diff, reply, events, title} = Rendered.extract(rawDiff)
     callback({diff, reply, events})
     if(title){ window.requestAnimationFrame(() =&gt; DOM.putTitle(title)) }
   }
 
-  onJoin(<span class="variable parameter" style="color: #E06C75; ">resp</span>){
+  onJoin(<span class="variable parameter" style="color: #E06C75;">resp</span>){
     let {rendered, container} = resp
     if(container){
       let [tag, attrs] = container
@@ -288,7 +288,7 @@ export default class View {
     this.flash = null
 
     Browser.dropLocal(this.liveSocket.localStorage, window.location.pathname, CONSECUTIVE_RELOADS)
-    this.applyDiff(&quot;mount&quot;, rendered, ({<span class="variable parameter" style="color: #E06C75; ">diff</span>, <span class="variable parameter" style="color: #E06C75; ">events</span>}) =&gt; {
+    this.applyDiff(&quot;mount&quot;, rendered, ({<span class="variable parameter" style="color: #E06C75;">diff</span>, <span class="variable parameter" style="color: #E06C75;">events</span>}) =&gt; {
       this.rendered = new Rendered(this.id, diff)
       let [html, streams] = this.renderContainer(null, &quot;join&quot;)
       this.dropPendingRefs()
@@ -296,7 +296,7 @@ export default class View {
       this.joinCount++
 
       if(forms.length &gt; 0){
-        forms.forEach(([<span class="variable parameter" style="color: #E06C75; ">form</span>, <span class="variable parameter" style="color: #E06C75; ">newForm</span>, <span class="variable parameter" style="color: #E06C75; ">newCid</span>], <span class="variable parameter" style="color: #E06C75; ">i</span>) =&gt; {
+        forms.forEach(([<span class="variable parameter" style="color: #E06C75;">form</span>, <span class="variable parameter" style="color: #E06C75;">newForm</span>, <span class="variable parameter" style="color: #E06C75;">newCid</span>], <span class="variable parameter" style="color: #E06C75;">i</span>) =&gt; {
           this.pushFormRecovery(form, newCid, resp =&gt; {
             if(i === forms.length - 1){
               this.onJoinComplete(resp, html, streams, events)
@@ -316,7 +316,7 @@ export default class View {
     })
   }
 
-  onJoinComplete({<span class="variable parameter" style="color: #E06C75; ">live_patch</span>}, <span class="variable parameter" style="color: #E06C75; ">html</span>, <span class="variable parameter" style="color: #E06C75; ">streams</span>, <span class="variable parameter" style="color: #E06C75; ">events</span>){
+  onJoinComplete({<span class="variable parameter" style="color: #E06C75;">live_patch</span>}, <span class="variable parameter" style="color: #E06C75;">html</span>, <span class="variable parameter" style="color: #E06C75;">streams</span>, <span class="variable parameter" style="color: #E06C75;">events</span>){
     &#x2f;&#x2f; In order to provide a better experience, we want to join
     &#x2f;&#x2f; all LiveViews first and only then apply their patches.
     if(this.joinCount &gt; 1 || (this.parent &amp;&amp; !this.parent.isJoinPending())){
@@ -365,7 +365,7 @@ export default class View {
     DOM.all(this.el, `[${this.binding(PHX_MOUNTED)}]`, el =&gt; this.maybeMounted(el))
   }
 
-  applyJoinPatch(<span class="variable parameter" style="color: #E06C75; ">live_patch</span>, <span class="variable parameter" style="color: #E06C75; ">html</span>, <span class="variable parameter" style="color: #E06C75; ">streams</span>, <span class="variable parameter" style="color: #E06C75; ">events</span>){
+  applyJoinPatch(<span class="variable parameter" style="color: #E06C75;">live_patch</span>, <span class="variable parameter" style="color: #E06C75;">html</span>, <span class="variable parameter" style="color: #E06C75;">streams</span>, <span class="variable parameter" style="color: #E06C75;">events</span>){
     this.attachTrueDocEl()
     let patch = new DOMPatch(this, this.el, this.id, html, streams, null)
     patch.markPrunableContentForRemoval()
@@ -386,7 +386,7 @@ export default class View {
     this.stopCallback()
   }
 
-  triggerBeforeUpdateHook(<span class="variable parameter" style="color: #E06C75; ">fromEl</span>, <span class="variable parameter" style="color: #E06C75; ">toEl</span>){
+  triggerBeforeUpdateHook(<span class="variable parameter" style="color: #E06C75;">fromEl</span>, <span class="variable parameter" style="color: #E06C75;">toEl</span>){
     this.liveSocket.triggerDOM(&quot;onBeforeElUpdated&quot;, [fromEl, toEl])
     let hook = this.getHook(fromEl)
     let isIgnored = hook &amp;&amp; DOM.isIgnored(fromEl, this.binding(PHX_UPDATE))
@@ -396,7 +396,7 @@ export default class View {
     }
   }
 
-  maybeMounted(<span class="variable parameter" style="color: #E06C75; ">el</span>){
+  maybeMounted(<span class="variable parameter" style="color: #E06C75;">el</span>){
     let phxMounted = el.getAttribute(this.binding(PHX_MOUNTED))
     let hasBeenInvoked = phxMounted &amp;&amp; DOM.private(el, &quot;mounted&quot;)
     if(phxMounted &amp;&amp; !hasBeenInvoked){
@@ -405,12 +405,12 @@ export default class View {
     }
   }
 
-  maybeAddNewHook(<span class="variable parameter" style="color: #E06C75; ">el</span>, <span class="variable parameter" style="color: #E06C75; ">force</span>){
+  maybeAddNewHook(<span class="variable parameter" style="color: #E06C75;">el</span>, <span class="variable parameter" style="color: #E06C75;">force</span>){
     let newHook = this.addHook(el)
     if(newHook){ newHook.__mounted() }
   }
 
-  performPatch(<span class="variable parameter" style="color: #E06C75; ">patch</span>, <span class="variable parameter" style="color: #E06C75; ">pruneCids</span>){
+  performPatch(<span class="variable parameter" style="color: #E06C75;">patch</span>, <span class="variable parameter" style="color: #E06C75;">pruneCids</span>){
     let removedEls = []
     let phxChildrenAdded = false
     let updatedHookIds = new Set()
@@ -429,7 +429,7 @@ export default class View {
       }
     })
 
-    patch.before(&quot;updated&quot;, (<span class="variable parameter" style="color: #E06C75; ">fromEl</span>, <span class="variable parameter" style="color: #E06C75; ">toEl</span>) =&gt; {
+    patch.before(&quot;updated&quot;, (<span class="variable parameter" style="color: #E06C75;">fromEl</span>, <span class="variable parameter" style="color: #E06C75;">toEl</span>) =&gt; {
       let hook = this.triggerBeforeUpdateHook(fromEl, toEl)
       if(hook){ updatedHookIds.add(fromEl.id) }
     })
@@ -438,7 +438,7 @@ export default class View {
       if(updatedHookIds.has(el.id)){ this.getHook(el).__updated() }
     })
 
-    patch.after(&quot;discarded&quot;, (<span class="variable parameter" style="color: #E06C75; ">el</span>) =&gt; {
+    patch.after(&quot;discarded&quot;, (<span class="variable parameter" style="color: #E06C75;">el</span>) =&gt; {
       if(el.nodeType === Node.ELEMENT_NODE){ removedEls.push(el) }
     })
 
@@ -449,7 +449,7 @@ export default class View {
     return phxChildrenAdded
   }
 
-  afterElementsRemoved(<span class="variable parameter" style="color: #E06C75; ">elements</span>, <span class="variable parameter" style="color: #E06C75; ">pruneCids</span>){
+  afterElementsRemoved(<span class="variable parameter" style="color: #E06C75;">elements</span>, <span class="variable parameter" style="color: #E06C75;">pruneCids</span>){
     let destroyedCIDs = []
     elements.forEach(parent =&gt; {
       let components = DOM.all(parent, `[${PHX_COMPONENT}]`)
@@ -475,9 +475,9 @@ export default class View {
     DOM.findPhxChildren(this.el, this.id).forEach(el =&gt; this.joinChild(el))
   }
 
-  getChildById(<span class="variable parameter" style="color: #E06C75; ">id</span>){ return this.root.children[this.id][id] }
+  getChildById(<span class="variable parameter" style="color: #E06C75;">id</span>){ return this.root.children[this.id][id] }
 
-  getDescendentByEl(<span class="variable parameter" style="color: #E06C75; ">el</span>){
+  getDescendentByEl(<span class="variable parameter" style="color: #E06C75;">el</span>){
     if(el.id === this.id){
       return this
     } else {
@@ -485,7 +485,7 @@ export default class View {
     }
   }
 
-  destroyDescendent(<span class="variable parameter" style="color: #E06C75; ">id</span>){
+  destroyDescendent(<span class="variable parameter" style="color: #E06C75;">id</span>){
     for(let parentId in this.root.children){
       for(let childId in this.root.children[parentId]){
         if(childId === id){ return this.root.children[parentId][childId].destroy() }
@@ -493,7 +493,7 @@ export default class View {
     }
   }
 
-  joinChild(<span class="variable parameter" style="color: #E06C75; ">el</span>){
+  joinChild(<span class="variable parameter" style="color: #E06C75;">el</span>){
     let child = this.getChildById(el.id)
     if(!child){
       let view = new View(el, this.liveSocket, this)
@@ -506,7 +506,7 @@ export default class View {
 
   isJoinPending(){ return this.joinPending }
 
-  ackJoin(<span class="variable parameter" style="color: #E06C75; ">_child</span>){
+  ackJoin(<span class="variable parameter" style="color: #E06C75;">_child</span>){
     this.childJoins--
 
     if(this.childJoins === 0){
@@ -520,14 +520,14 @@ export default class View {
 
   onAllChildJoinsComplete(){
     this.joinCallback(() =&gt; {
-      this.pendingJoinOps.forEach(([<span class="variable parameter" style="color: #E06C75; ">view</span>, <span class="variable parameter" style="color: #E06C75; ">op</span>]) =&gt; {
+      this.pendingJoinOps.forEach(([<span class="variable parameter" style="color: #E06C75;">view</span>, <span class="variable parameter" style="color: #E06C75;">op</span>]) =&gt; {
         if(!view.isDestroyed()){ op() }
       })
       this.pendingJoinOps = []
     })
   }
 
-  update(<span class="variable parameter" style="color: #E06C75; ">diff</span>, <span class="variable parameter" style="color: #E06C75; ">events</span>){
+  update(<span class="variable parameter" style="color: #E06C75;">diff</span>, <span class="variable parameter" style="color: #E06C75;">events</span>){
     if(this.isJoinPending() || (this.liveSocket.hasPendingLink() &amp;&amp; this.root.isMain())){
       return this.pendingDiffs.push({diff, events})
     }
@@ -557,7 +557,7 @@ export default class View {
     if(phxChildrenAdded){ this.joinNewChildren() }
   }
 
-  renderContainer(<span class="variable parameter" style="color: #E06C75; ">diff</span>, <span class="variable parameter" style="color: #E06C75; ">kind</span>){
+  renderContainer(<span class="variable parameter" style="color: #E06C75;">diff</span>, <span class="variable parameter" style="color: #E06C75;">kind</span>){
     return this.liveSocket.time(`toString diff (${kind})`, () =&gt; {
       let tag = this.el.tagName
       &#x2f;&#x2f; Don&#x27;t skip any component in the diff nor any marked as pruned
@@ -568,7 +568,7 @@ export default class View {
     })
   }
 
-  componentPatch(<span class="variable parameter" style="color: #E06C75; ">diff</span>, <span class="variable parameter" style="color: #E06C75; ">cid</span>){
+  componentPatch(<span class="variable parameter" style="color: #E06C75;">diff</span>, <span class="variable parameter" style="color: #E06C75;">cid</span>){
     if(isEmpty(diff)) return false
     let [html, streams] = this.rendered.componentToString(cid)
     let patch = new DOMPatch(this, this.el, this.id, html, streams, cid)
@@ -576,9 +576,9 @@ export default class View {
     return childrenAdded
   }
 
-  getHook(<span class="variable parameter" style="color: #E06C75; ">el</span>){ return this.viewHooks[ViewHook.elementID(el)] }
+  getHook(<span class="variable parameter" style="color: #E06C75;">el</span>){ return this.viewHooks[ViewHook.elementID(el)] }
 
-  addHook(<span class="variable parameter" style="color: #E06C75; ">el</span>){
+  addHook(<span class="variable parameter" style="color: #E06C75;">el</span>){
     if(ViewHook.elementID(el) || !el.getAttribute){ return }
     let hookName = el.getAttribute(`data-phx-${PHX_HOOK}`) || el.getAttribute(this.binding(PHX_HOOK))
     if(hookName &amp;&amp; !this.ownsElement(el)){ return }
@@ -594,24 +594,24 @@ export default class View {
     }
   }
 
-  destroyHook(<span class="variable parameter" style="color: #E06C75; ">hook</span>){
+  destroyHook(<span class="variable parameter" style="color: #E06C75;">hook</span>){
     hook.__destroyed()
     hook.__cleanup__()
     delete this.viewHooks[ViewHook.elementID(hook.el)]
   }
 
   applyPendingUpdates(){
-    this.pendingDiffs.forEach(({<span class="variable parameter" style="color: #E06C75; ">diff</span>, <span class="variable parameter" style="color: #E06C75; ">events</span>}) =&gt; this.update(diff, events))
+    this.pendingDiffs.forEach(({<span class="variable parameter" style="color: #E06C75;">diff</span>, <span class="variable parameter" style="color: #E06C75;">events</span>}) =&gt; this.update(diff, events))
     this.pendingDiffs = []
     this.eachChild(child =&gt; child.applyPendingUpdates())
   }
 
-  eachChild(<span class="variable parameter" style="color: #E06C75; ">callback</span>){
+  eachChild(<span class="variable parameter" style="color: #E06C75;">callback</span>){
     let children = this.root.children[this.id] || {}
     for(let id in children){ callback(this.getChildById(id)) }
   }
 
-  onChannel(<span class="variable parameter" style="color: #E06C75; ">event</span>, <span class="variable parameter" style="color: #E06C75; ">cb</span>){
+  onChannel(<span class="variable parameter" style="color: #E06C75;">event</span>, <span class="variable parameter" style="color: #E06C75;">cb</span>){
     this.liveSocket.onChannel(this.channel, event, resp =&gt; {
       if(this.isJoinPending()){
         this.root.pendingJoinOps.push([this, () =&gt; cb(resp)])
@@ -624,49 +624,49 @@ export default class View {
   bindChannel(){
     &#x2f;&#x2f; The diff event should be handled by the regular update operations.
     &#x2f;&#x2f; All other operations are queued to be applied only after join.
-    this.liveSocket.onChannel(this.channel, &quot;diff&quot;, (<span class="variable parameter" style="color: #E06C75; ">rawDiff</span>) =&gt; {
+    this.liveSocket.onChannel(this.channel, &quot;diff&quot;, (<span class="variable parameter" style="color: #E06C75;">rawDiff</span>) =&gt; {
       this.liveSocket.requestDOMUpdate(() =&gt; {
-        this.applyDiff(&quot;update&quot;, rawDiff, ({<span class="variable parameter" style="color: #E06C75; ">diff</span>, <span class="variable parameter" style="color: #E06C75; ">events</span>}) =&gt; this.update(diff, events))
+        this.applyDiff(&quot;update&quot;, rawDiff, ({<span class="variable parameter" style="color: #E06C75;">diff</span>, <span class="variable parameter" style="color: #E06C75;">events</span>}) =&gt; this.update(diff, events))
       })
     })
-    this.onChannel(&quot;redirect&quot;, ({<span class="variable parameter" style="color: #E06C75; ">to</span>, <span class="variable parameter" style="color: #E06C75; ">flash</span>}) =&gt; this.onRedirect({to, flash}))
-    this.onChannel(&quot;live_patch&quot;, (<span class="variable parameter" style="color: #E06C75; ">redir</span>) =&gt; this.onLivePatch(redir))
-    this.onChannel(&quot;live_redirect&quot;, (<span class="variable parameter" style="color: #E06C75; ">redir</span>) =&gt; this.onLiveRedirect(redir))
+    this.onChannel(&quot;redirect&quot;, ({<span class="variable parameter" style="color: #E06C75;">to</span>, <span class="variable parameter" style="color: #E06C75;">flash</span>}) =&gt; this.onRedirect({to, flash}))
+    this.onChannel(&quot;live_patch&quot;, (<span class="variable parameter" style="color: #E06C75;">redir</span>) =&gt; this.onLivePatch(redir))
+    this.onChannel(&quot;live_redirect&quot;, (<span class="variable parameter" style="color: #E06C75;">redir</span>) =&gt; this.onLiveRedirect(redir))
     this.channel.onError(reason =&gt; this.onError(reason))
     this.channel.onClose(reason =&gt; this.onClose(reason))
   }
 
   destroyAllChildren(){ this.eachChild(child =&gt; child.destroy()) }
 
-  onLiveRedirect(<span class="variable parameter" style="color: #E06C75; ">redir</span>){
+  onLiveRedirect(<span class="variable parameter" style="color: #E06C75;">redir</span>){
     let {to, kind, flash} = redir
     let url = this.expandURL(to)
     this.liveSocket.historyRedirect(url, kind, flash)
   }
 
-  onLivePatch(<span class="variable parameter" style="color: #E06C75; ">redir</span>){
+  onLivePatch(<span class="variable parameter" style="color: #E06C75;">redir</span>){
     let {to, kind} = redir
     this.href = this.expandURL(to)
     this.liveSocket.historyPatch(to, kind)
   }
 
-  expandURL(<span class="variable parameter" style="color: #E06C75; ">to</span>){
+  expandURL(<span class="variable parameter" style="color: #E06C75;">to</span>){
     return to.startsWith(&quot;&#x2f;&quot;) ? `${window.location.protocol}&#x2f;&#x2f;${window.location.host}${to}` : to
   }
 
-  onRedirect({<span class="variable parameter" style="color: #E06C75; ">to</span>, <span class="variable parameter" style="color: #E06C75; ">flash</span>}){ this.liveSocket.redirect(to, flash) }
+  onRedirect({<span class="variable parameter" style="color: #E06C75;">to</span>, <span class="variable parameter" style="color: #E06C75;">flash</span>}){ this.liveSocket.redirect(to, flash) }
 
   isDestroyed(){ return this.destroyed }
 
   joinDead(){ this.isDead = true }
 
-  join(<span class="variable parameter" style="color: #E06C75; ">callback</span>){
+  join(<span class="variable parameter" style="color: #E06C75;">callback</span>){
     this.showLoader(this.liveSocket.loaderTimeout)
     this.bindChannel()
     if(this.isMain()){
       this.stopCallback = this.liveSocket.withPageLoading({to: this.href, kind: &quot;initial&quot;})
     }
-    this.joinCallback = (<span class="variable parameter" style="color: #E06C75; ">onDone</span>) =&gt; {
+    this.joinCallback = (<span class="variable parameter" style="color: #E06C75;">onDone</span>) =&gt; {
       onDone = onDone || function(){}
       callback ? callback(this.joinCount, onDone) : onDone()
     }
@@ -682,7 +682,7 @@ export default class View {
     })
   }
 
-  onJoinError(<span class="variable parameter" style="color: #E06C75; ">resp</span>){
+  onJoinError(<span class="variable parameter" style="color: #E06C75;">resp</span>){
     if(resp.reason === &quot;reload&quot;){
       this.log(&quot;error&quot;, () =&gt; [`failed mount with ${resp.status}. Falling back to page request`, resp])
       if(this.isMain()){ this.onRedirect({to: this.href}) }
@@ -703,7 +703,7 @@ export default class View {
     if(this.liveSocket.isConnected()){ this.liveSocket.reloadWithJitter(this) }
   }
 
-  onClose(<span class="variable parameter" style="color: #E06C75; ">reason</span>){
+  onClose(<span class="variable parameter" style="color: #E06C75;">reason</span>){
     if(this.isDestroyed()){ return }
     if(this.liveSocket.hasPendingLink() &amp;&amp; reason !== &quot;leave&quot;){
       return this.liveSocket.reloadWithJitter(this)
@@ -717,7 +717,7 @@ export default class View {
     }
   }
 
-  onError(<span class="variable parameter" style="color: #E06C75; ">reason</span>){
+  onError(<span class="variable parameter" style="color: #E06C75;">reason</span>){
     this.onClose(reason)
     if(this.liveSocket.isConnected()){ this.log(&quot;error&quot;, () =&gt; [&quot;view crashed&quot;, reason]) }
     if(!this.liveSocket.isUnloaded()){
@@ -729,14 +729,14 @@ export default class View {
     }
   }
 
-  displayError(<span class="variable parameter" style="color: #E06C75; ">classes</span>){
+  displayError(<span class="variable parameter" style="color: #E06C75;">classes</span>){
     if(this.isMain()){ DOM.dispatchEvent(window, &quot;phx:page-loading-start&quot;, {detail: {to: this.href, kind: &quot;error&quot;}}) }
     this.showLoader()
     this.setContainerClasses(...classes)
     this.execAll(this.binding(&quot;disconnected&quot;))
   }
 
-  pushWithReply(<span class="variable parameter" style="color: #E06C75; ">refGenerator</span>, <span class="variable parameter" style="color: #E06C75; ">event</span>, <span class="variable parameter" style="color: #E06C75; ">payload</span>, <span class="variable parameter" style="color: #E06C75; ">onReply</span> = function (){ }){
+  pushWithReply(<span class="variable parameter" style="color: #E06C75;">refGenerator</span>, <span class="variable parameter" style="color: #E06C75;">event</span>, <span class="variable parameter" style="color: #E06C75;">payload</span>, <span class="variable parameter" style="color: #E06C75;">onReply</span> = function (){ }){
     if(!this.isConnected()){ return }
 
     let [ref, [el], opts] = refGenerator ? refGenerator() : [null, [], {}]
@@ -749,7 +749,7 @@ export default class View {
     return (
       this.liveSocket.wrapPush(this, {timeout: true}, () =&gt; {
         return this.channel.push(event, payload, PUSH_TIMEOUT).receive(&quot;ok&quot;, resp =&gt; {
-          let finish = (<span class="variable parameter" style="color: #E06C75; ">hookReply</span>) =&gt; {
+          let finish = (<span class="variable parameter" style="color: #E06C75;">hookReply</span>) =&gt; {
             if(resp.redirect){ this.onRedirect(resp.redirect) }
             if(resp.live_patch){ this.onLivePatch(resp.live_patch) }
             if(resp.live_redirect){ this.onLiveRedirect(resp.live_redirect) }
@@ -758,7 +758,7 @@ export default class View {
           }
           if(resp.diff){
             this.liveSocket.requestDOMUpdate(() =&gt; {
-              this.applyDiff(&quot;update&quot;, resp.diff, ({<span class="variable parameter" style="color: #E06C75; ">diff</span>, <span class="variable parameter" style="color: #E06C75; ">reply</span>, <span class="variable parameter" style="color: #E06C75; ">events</span>}) =&gt; {
+              this.applyDiff(&quot;update&quot;, resp.diff, ({<span class="variable parameter" style="color: #E06C75;">diff</span>, <span class="variable parameter" style="color: #E06C75;">reply</span>, <span class="variable parameter" style="color: #E06C75;">events</span>}) =&gt; {
                 if(ref !== null){ this.undoRefs(ref) }
                 this.update(diff, events)
                 finish(reply)
@@ -773,7 +773,7 @@ export default class View {
     )
   }
 
-  undoRefs(<span class="variable parameter" style="color: #E06C75; ">ref</span>){
+  undoRefs(<span class="variable parameter" style="color: #E06C75;">ref</span>){
     if(!this.isConnected()){ return } &#x2f;&#x2f; exit if external form triggered
 
     DOM.all(document, `[${PHX_REF_SRC}=&quot;${this.id}&quot;][${PHX_REF}=&quot;${ref}&quot;]`, el =&gt; {
@@ -808,7 +808,7 @@ export default class View {
     })
   }
 
-  putRef(<span class="variable parameter" style="color: #E06C75; ">elements</span>, <span class="variable parameter" style="color: #E06C75; ">event</span>, <span class="variable parameter" style="color: #E06C75; ">opts</span> = {}){
+  putRef(<span class="variable parameter" style="color: #E06C75;">elements</span>, <span class="variable parameter" style="color: #E06C75;">event</span>, <span class="variable parameter" style="color: #E06C75;">opts</span> = {}){
     let newRef = this.ref++
     let disableWith = this.binding(PHX_DISABLE_WITH)
     if(opts.loading){ elements = elements.concat(DOM.all(document, opts.loading))}
@@ -829,12 +829,12 @@ export default class View {
     return [newRef, elements, opts]
   }
 
-  componentID(<span class="variable parameter" style="color: #E06C75; ">el</span>){
+  componentID(<span class="variable parameter" style="color: #E06C75;">el</span>){
     let cid = el.getAttribute &amp;&amp; el.getAttribute(PHX_COMPONENT)
     return cid ? parseInt(cid) : null
   }
 
-  targetComponentID(<span class="variable parameter" style="color: #E06C75; ">target</span>, <span class="variable parameter" style="color: #E06C75; ">targetCtx</span>, <span class="variable parameter" style="color: #E06C75; ">opts</span> = {}){
+  targetComponentID(<span class="variable parameter" style="color: #E06C75;">target</span>, <span class="variable parameter" style="color: #E06C75;">targetCtx</span>, <span class="variable parameter" style="color: #E06C75;">opts</span> = {}){
     if(isCid(targetCtx)){ return targetCtx }
 
     let cidOrSelector = target.getAttribute(this.binding(&quot;target&quot;))
@@ -847,7 +847,7 @@ export default class View {
     }
   }
 
-  closestComponentID(<span class="variable parameter" style="color: #E06C75; ">targetCtx</span>){
+  closestComponentID(<span class="variable parameter" style="color: #E06C75;">targetCtx</span>){
     if(isCid(targetCtx)){
       return targetCtx
     } else if(targetCtx){
@@ -857,7 +857,7 @@ export default class View {
     }
   }
 
-  pushHookEvent(<span class="variable parameter" style="color: #E06C75; ">el</span>, <span class="variable parameter" style="color: #E06C75; ">targetCtx</span>, <span class="variable parameter" style="color: #E06C75; ">event</span>, <span class="variable parameter" style="color: #E06C75; ">payload</span>, <span class="variable parameter" style="color: #E06C75; ">onReply</span>){
+  pushHookEvent(<span class="variable parameter" style="color: #E06C75;">el</span>, <span class="variable parameter" style="color: #E06C75;">targetCtx</span>, <span class="variable parameter" style="color: #E06C75;">event</span>, <span class="variable parameter" style="color: #E06C75;">payload</span>, <span class="variable parameter" style="color: #E06C75;">onReply</span>){
     if(!this.isConnected()){
       this.log(&quot;hook&quot;, () =&gt; [&quot;unable to push hook event. LiveView not connected&quot;, event, payload])
       return false
@@ -868,12 +868,12 @@ export default class View {
       event: event,
       value: payload,
       cid: this.closestComponentID(targetCtx)
-    }, (<span class="variable parameter" style="color: #E06C75; ">resp</span>, <span class="variable parameter" style="color: #E06C75; ">reply</span>) =&gt; onReply(reply, ref))
+    }, (<span class="variable parameter" style="color: #E06C75;">resp</span>, <span class="variable parameter" style="color: #E06C75;">reply</span>) =&gt; onReply(reply, ref))
 
     return ref
   }
 
-  extractMeta(<span class="variable parameter" style="color: #E06C75; ">el</span>, <span class="variable parameter" style="color: #E06C75; ">meta</span>, <span class="variable parameter" style="color: #E06C75; ">value</span>){
+  extractMeta(<span class="variable parameter" style="color: #E06C75;">el</span>, <span class="variable parameter" style="color: #E06C75;">meta</span>, <span class="variable parameter" style="color: #E06C75;">value</span>){
     let prefix = this.binding(&quot;value-&quot;)
     for(let i = 0; i &lt; el.attributes.length; i++){
       if(!meta){ meta = {} }
@@ -896,17 +896,17 @@ export default class View {
   }
 
 
-  pushEvent(<span class="variable parameter" style="color: #E06C75; ">type</span>, <span class="variable parameter" style="color: #E06C75; ">el</span>, <span class="variable parameter" style="color: #E06C75; ">targetCtx</span>, <span class="variable parameter" style="color: #E06C75; ">phxEvent</span>, <span class="variable parameter" style="color: #E06C75; ">meta</span>, <span class="variable parameter" style="color: #E06C75; ">opts</span> = {}, <span class="variable parameter" style="color: #E06C75; ">onReply</span>){
+  pushEvent(<span class="variable parameter" style="color: #E06C75;">type</span>, <span class="variable parameter" style="color: #E06C75;">el</span>, <span class="variable parameter" style="color: #E06C75;">targetCtx</span>, <span class="variable parameter" style="color: #E06C75;">phxEvent</span>, <span class="variable parameter" style="color: #E06C75;">meta</span>, <span class="variable parameter" style="color: #E06C75;">opts</span> = {}, <span class="variable parameter" style="color: #E06C75;">onReply</span>){
     this.pushWithReply(() =&gt; this.putRef([el], type, opts), &quot;event&quot;, {
       type: type,
       event: phxEvent,
       value: this.extractMeta(el, meta, opts.value),
       cid: this.targetComponentID(el, targetCtx, opts)
-    }, (<span class="variable parameter" style="color: #E06C75; ">resp</span>, <span class="variable parameter" style="color: #E06C75; ">reply</span>) =&gt; onReply &amp;&amp; onReply(reply))
+    }, (<span class="variable parameter" style="color: #E06C75;">resp</span>, <span class="variable parameter" style="color: #E06C75;">reply</span>) =&gt; onReply &amp;&amp; onReply(reply))
   }
 
-  pushFileProgress(<span class="variable parameter" style="color: #E06C75; ">fileEl</span>, <span class="variable parameter" style="color: #E06C75; ">entryRef</span>, <span class="variable parameter" style="color: #E06C75; ">progress</span>, <span class="variable parameter" style="color: #E06C75; ">onReply</span> = function (){ }){
-    this.liveSocket.withinOwners(fileEl.form, (<span class="variable parameter" style="color: #E06C75; ">view</span>, <span class="variable parameter" style="color: #E06C75; ">targetCtx</span>) =&gt; {
+  pushFileProgress(<span class="variable parameter" style="color: #E06C75;">fileEl</span>, <span class="variable parameter" style="color: #E06C75;">entryRef</span>, <span class="variable parameter" style="color: #E06C75;">progress</span>, <span class="variable parameter" style="color: #E06C75;">onReply</span> = function (){ }){
+    this.liveSocket.withinOwners(fileEl.form, (<span class="variable parameter" style="color: #E06C75;">view</span>, <span class="variable parameter" style="color: #E06C75;">targetCtx</span>) =&gt; {
       view.pushWithReply(null, &quot;progress&quot;, {
         event: fileEl.getAttribute(view.binding(PHX_PROGRESS)),
         ref: fileEl.getAttribute(PHX_UPLOAD_REF),
@@ -917,7 +917,7 @@ export default class View {
     })
   }
 
-  pushInput(<span class="variable parameter" style="color: #E06C75; ">inputEl</span>, <span class="variable parameter" style="color: #E06C75; ">targetCtx</span>, <span class="variable parameter" style="color: #E06C75; ">forceCid</span>, <span class="variable parameter" style="color: #E06C75; ">phxEvent</span>, <span class="variable parameter" style="color: #E06C75; ">opts</span>, <span class="variable parameter" style="color: #E06C75; ">callback</span>){
+  pushInput(<span class="variable parameter" style="color: #E06C75;">inputEl</span>, <span class="variable parameter" style="color: #E06C75;">targetCtx</span>, <span class="variable parameter" style="color: #E06C75;">forceCid</span>, <span class="variable parameter" style="color: #E06C75;">phxEvent</span>, <span class="variable parameter" style="color: #E06C75;">opts</span>, <span class="variable parameter" style="color: #E06C75;">callback</span>){
     let uploads
     let cid = isCid(forceCid) ? forceCid : this.targetComponentID(inputEl.form, targetCtx)
     let refGenerator = () =&gt; this.putRef([inputEl, inputEl.form], &quot;change&quot;, opts)
@@ -945,7 +945,7 @@ export default class View {
       if(DOM.isUploadInput(inputEl) &amp;&amp; DOM.isAutoUpload(inputEl)){
         if(LiveUploader.filesAwaitingPreflight(inputEl).length &gt; 0){
           let [ref, _els] = refGenerator()
-          this.uploadFiles(inputEl.form, targetCtx, ref, cid, (<span class="variable parameter" style="color: #E06C75; ">_uploads</span>) =&gt; {
+          this.uploadFiles(inputEl.form, targetCtx, ref, cid, (<span class="variable parameter" style="color: #E06C75;">_uploads</span>) =&gt; {
             callback &amp;&amp; callback(resp)
             this.triggerAwaitingSubmit(inputEl.form)
           })
@@ -956,7 +956,7 @@ export default class View {
     })
   }
 
-  triggerAwaitingSubmit(<span class="variable parameter" style="color: #E06C75; ">formEl</span>){
+  triggerAwaitingSubmit(<span class="variable parameter" style="color: #E06C75;">formEl</span>){
     let awaitingSubmit = this.getScheduledSubmit(formEl)
     if(awaitingSubmit){
       let [_el, _ref, _opts, callback] = awaitingSubmit
@@ -965,17 +965,17 @@ export default class View {
     }
   }
 
-  getScheduledSubmit(<span class="variable parameter" style="color: #E06C75; ">formEl</span>){
-    return this.formSubmits.find(([<span class="variable parameter" style="color: #E06C75; ">el</span>, <span class="variable parameter" style="color: #E06C75; ">_ref</span>, <span class="variable parameter" style="color: #E06C75; ">_opts</span>, <span class="variable parameter" style="color: #E06C75; ">_callback</span>]) =&gt; el.isSameNode(formEl))
+  getScheduledSubmit(<span class="variable parameter" style="color: #E06C75;">formEl</span>){
+    return this.formSubmits.find(([<span class="variable parameter" style="color: #E06C75;">el</span>, <span class="variable parameter" style="color: #E06C75;">_ref</span>, <span class="variable parameter" style="color: #E06C75;">_opts</span>, <span class="variable parameter" style="color: #E06C75;">_callback</span>]) =&gt; el.isSameNode(formEl))
   }
 
-  scheduleSubmit(<span class="variable parameter" style="color: #E06C75; ">formEl</span>, <span class="variable parameter" style="color: #E06C75; ">ref</span>, <span class="variable parameter" style="color: #E06C75; ">opts</span>, <span class="variable parameter" style="color: #E06C75; ">callback</span>){
+  scheduleSubmit(<span class="variable parameter" style="color: #E06C75;">formEl</span>, <span class="variable parameter" style="color: #E06C75;">ref</span>, <span class="variable parameter" style="color: #E06C75;">opts</span>, <span class="variable parameter" style="color: #E06C75;">callback</span>){
     if(this.getScheduledSubmit(formEl)){ return true }
     this.formSubmits.push([formEl, ref, opts, callback])
   }
 
-  cancelSubmit(<span class="variable parameter" style="color: #E06C75; ">formEl</span>){
-    this.formSubmits = this.formSubmits.filter(([<span class="variable parameter" style="color: #E06C75; ">el</span>, <span class="variable parameter" style="color: #E06C75; ">ref</span>, <span class="variable parameter" style="color: #E06C75; ">_callback</span>]) =&gt; {
+  cancelSubmit(<span class="variable parameter" style="color: #E06C75;">formEl</span>){
+    this.formSubmits = this.formSubmits.filter(([<span class="variable parameter" style="color: #E06C75;">el</span>, <span class="variable parameter" style="color: #E06C75;">ref</span>, <span class="variable parameter" style="color: #E06C75;">_callback</span>]) =&gt; {
       if(el.isSameNode(formEl)){
         this.undoRefs(ref)
         return false
@@ -985,7 +985,7 @@ export default class View {
     })
   }
 
-  disableForm(<span class="variable parameter" style="color: #E06C75; ">formEl</span>, <span class="variable parameter" style="color: #E06C75; ">opts</span> = {}){
+  disableForm(<span class="variable parameter" style="color: #E06C75;">formEl</span>, <span class="variable parameter" style="color: #E06C75;">opts</span> = {}){
     let filterIgnored = el =&gt; {
       let userIgnored = closestPhxBinding(el, `${this.binding(PHX_UPDATE)}=ignore`, el.form)
       return !(userIgnored || closestPhxBinding(el, &quot;data-phx-update=ignore&quot;, el.form))
@@ -1018,7 +1018,7 @@ export default class View {
     return this.putRef([formEl].concat(disables).concat(buttons).concat(inputs), &quot;submit&quot;, opts)
   }
 
-  pushFormSubmit(<span class="variable parameter" style="color: #E06C75; ">formEl</span>, <span class="variable parameter" style="color: #E06C75; ">targetCtx</span>, <span class="variable parameter" style="color: #E06C75; ">phxEvent</span>, <span class="variable parameter" style="color: #E06C75; ">submitter</span>, <span class="variable parameter" style="color: #E06C75; ">opts</span>, <span class="variable parameter" style="color: #E06C75; ">onReply</span>){
+  pushFormSubmit(<span class="variable parameter" style="color: #E06C75;">formEl</span>, <span class="variable parameter" style="color: #E06C75;">targetCtx</span>, <span class="variable parameter" style="color: #E06C75;">phxEvent</span>, <span class="variable parameter" style="color: #E06C75;">submitter</span>, <span class="variable parameter" style="color: #E06C75;">opts</span>, <span class="variable parameter" style="color: #E06C75;">onReply</span>){
     let refGenerator = () =&gt; this.disableForm(formEl, opts)
     let cid = this.targetComponentID(formEl, targetCtx)
     if(LiveUploader.hasUploadsInProgress(formEl)){
@@ -1028,7 +1028,7 @@ export default class View {
     } else if(LiveUploader.inputsAwaitingPreflight(formEl).length &gt; 0){
       let [ref, els] = refGenerator()
       let proxyRefGen = () =&gt; [ref, els, opts]
-      this.uploadFiles(formEl, targetCtx, ref, cid, (<span class="variable parameter" style="color: #E06C75; ">_uploads</span>) =&gt; {
+      this.uploadFiles(formEl, targetCtx, ref, cid, (<span class="variable parameter" style="color: #E06C75;">_uploads</span>) =&gt; {
         let meta = this.extractMeta(formEl)
         let formData = serializeForm(formEl, {submitter, ...meta})
         this.pushWithReply(proxyRefGen, &quot;event&quot;, {
@@ -1050,7 +1050,7 @@ export default class View {
     }
   }
 
-  uploadFiles(<span class="variable parameter" style="color: #E06C75; ">formEl</span>, <span class="variable parameter" style="color: #E06C75; ">targetCtx</span>, <span class="variable parameter" style="color: #E06C75; ">ref</span>, <span class="variable parameter" style="color: #E06C75; ">cid</span>, <span class="variable parameter" style="color: #E06C75; ">onComplete</span>){
+  uploadFiles(<span class="variable parameter" style="color: #E06C75;">formEl</span>, <span class="variable parameter" style="color: #E06C75;">targetCtx</span>, <span class="variable parameter" style="color: #E06C75;">ref</span>, <span class="variable parameter" style="color: #E06C75;">cid</span>, <span class="variable parameter" style="color: #E06C75;">onComplete</span>){
     let joinCountAtUpload = this.joinCount
     let inputEls = LiveUploader.activeFileInputs(formEl)
     let numFileInputsInProgress = inputEls.length
@@ -1080,7 +1080,7 @@ export default class View {
           let [entry_ref, reason] = resp.error
           this.log(&quot;upload&quot;, () =&gt; [`error for entry ${entry_ref}`, reason])
         } else {
-          let onError = (<span class="variable parameter" style="color: #E06C75; ">callback</span>) =&gt; {
+          let onError = (<span class="variable parameter" style="color: #E06C75;">callback</span>) =&gt; {
             this.channel.onError(() =&gt; {
               if(this.joinCount === joinCountAtUpload){ callback() }
             })
@@ -1091,15 +1091,15 @@ export default class View {
     })
   }
 
-  dispatchUploads(<span class="variable parameter" style="color: #E06C75; ">name</span>, <span class="variable parameter" style="color: #E06C75; ">filesOrBlobs</span>){
+  dispatchUploads(<span class="variable parameter" style="color: #E06C75;">name</span>, <span class="variable parameter" style="color: #E06C75;">filesOrBlobs</span>){
     let inputs = DOM.findUploadInputs(this.el).filter(el =&gt; el.name === name)
     if(inputs.length === 0){ logError(`no live file inputs found matching the name &quot;${name}&quot;`) }
     else if(inputs.length &gt; 1){ logError(`duplicate live file inputs found matching the name &quot;${name}&quot;`) }
     else { DOM.dispatchEvent(inputs[0], PHX_TRACK_UPLOADS, {detail: {files: filesOrBlobs}}) }
   }
 
-  pushFormRecovery(<span class="variable parameter" style="color: #E06C75; ">form</span>, <span class="variable parameter" style="color: #E06C75; ">newCid</span>, <span class="variable parameter" style="color: #E06C75; ">callback</span>){
-    this.liveSocket.withinOwners(form, (<span class="variable parameter" style="color: #E06C75; ">view</span>, <span class="variable parameter" style="color: #E06C75; ">targetCtx</span>) =&gt; {
+  pushFormRecovery(<span class="variable parameter" style="color: #E06C75;">form</span>, <span class="variable parameter" style="color: #E06C75;">newCid</span>, <span class="variable parameter" style="color: #E06C75;">callback</span>){
+    this.liveSocket.withinOwners(form, (<span class="variable parameter" style="color: #E06C75;">view</span>, <span class="variable parameter" style="color: #E06C75;">targetCtx</span>) =&gt; {
       let phxChange = this.binding(&quot;change&quot;)
       let inputs = Array.from(form.elements).filter(el =&gt; DOM.isFormInput(el) &amp;&amp; el.name &amp;&amp; !el.hasAttribute(phxChange))
       if(inputs.length === 0){ return }
@@ -1113,7 +1113,7 @@ export default class View {
     })
   }
 
-  pushLinkPatch(<span class="variable parameter" style="color: #E06C75; ">href</span>, <span class="variable parameter" style="color: #E06C75; ">targetEl</span>, <span class="variable parameter" style="color: #E06C75; ">callback</span>){
+  pushLinkPatch(<span class="variable parameter" style="color: #E06C75;">href</span>, <span class="variable parameter" style="color: #E06C75;">targetEl</span>, <span class="variable parameter" style="color: #E06C75;">callback</span>){
     let linkRef = this.liveSocket.setPendingLink(href)
     let refGen = targetEl ? () =&gt; this.putRef([targetEl], &quot;click&quot;) : null
     let fallback = () =&gt; this.liveSocket.redirect(window.location.href)
@@ -1140,7 +1140,7 @@ export default class View {
     }
   }
 
-  formsForRecovery(<span class="variable parameter" style="color: #E06C75; ">html</span>){
+  formsForRecovery(<span class="variable parameter" style="color: #E06C75;">html</span>){
     if(this.joinCount === 0){ return [] }
 
     let phxChange = this.binding(&quot;change&quot;)
@@ -1163,11 +1163,11 @@ export default class View {
             return [form, form, this.targetComponentID(form)]
           }
         })
-        .filter(([<span class="variable parameter" style="color: #E06C75; ">form</span>, <span class="variable parameter" style="color: #E06C75; ">newForm</span>, <span class="variable parameter" style="color: #E06C75; ">newCid</span>]) =&gt; newForm)
+        .filter(([<span class="variable parameter" style="color: #E06C75;">form</span>, <span class="variable parameter" style="color: #E06C75;">newForm</span>, <span class="variable parameter" style="color: #E06C75;">newCid</span>]) =&gt; newForm)
     )
   }
 
-  maybePushComponentsDestroyed(<span class="variable parameter" style="color: #E06C75; ">destroyedCIDs</span>){
+  maybePushComponentsDestroyed(<span class="variable parameter" style="color: #E06C75;">destroyedCIDs</span>){
     let willDestroyCIDs = destroyedCIDs.filter(cid =&gt; {
       return DOM.findComponentNodeList(this.el, cid).length === 0
     })
@@ -1186,7 +1186,7 @@ export default class View {
         })
 
         if(completelyDestroyCIDs.length &gt; 0){
-          this.pushWithReply(null, &quot;cids_destroyed&quot;, {cids: completelyDestroyCIDs}, (<span class="variable parameter" style="color: #E06C75; ">resp</span>) =&gt; {
+          this.pushWithReply(null, &quot;cids_destroyed&quot;, {cids: completelyDestroyCIDs}, (<span class="variable parameter" style="color: #E06C75;">resp</span>) =&gt; {
             this.rendered.pruneCIDs(resp.cids)
           })
         }
@@ -1194,14 +1194,14 @@ export default class View {
     }
   }
 
-  ownsElement(<span class="variable parameter" style="color: #E06C75; ">el</span>){
+  ownsElement(<span class="variable parameter" style="color: #E06C75;">el</span>){
     let parentViewEl = el.closest(PHX_VIEW_SELECTOR)
     return el.getAttribute(PHX_PARENT_ID) === this.id ||
       (parentViewEl &amp;&amp; parentViewEl.id === this.id) ||
       (!parentViewEl &amp;&amp; this.isDead)
   }
 
-  submitForm(<span class="variable parameter" style="color: #E06C75; ">form</span>, <span class="variable parameter" style="color: #E06C75; ">targetCtx</span>, <span class="variable parameter" style="color: #E06C75; ">phxEvent</span>, <span class="variable parameter" style="color: #E06C75; ">submitter</span>, <span class="variable parameter" style="color: #E06C75; ">opts</span> = {}){
+  submitForm(<span class="variable parameter" style="color: #E06C75;">form</span>, <span class="variable parameter" style="color: #E06C75;">targetCtx</span>, <span class="variable parameter" style="color: #E06C75;">phxEvent</span>, <span class="variable parameter" style="color: #E06C75;">submitter</span>, <span class="variable parameter" style="color: #E06C75;">opts</span> = {}){
     DOM.putPrivate(form, PHX_HAS_SUBMITTED, true)
     let phxFeedback = this.liveSocket.binding(PHX_FEEDBACK_FOR)
     let inputs = Array.from(form.elements)
@@ -1213,7 +1213,7 @@ export default class View {
     })
   }
 
-  binding(<span class="variable parameter" style="color: #E06C75; ">kind</span>){ return this.liveSocket.binding(kind) }
+  binding(<span class="variable parameter" style="color: #E06C75;">kind</span>){ return this.liveSocket.binding(kind) }
 }
 
 </code></pre>

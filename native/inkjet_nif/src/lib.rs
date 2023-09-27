@@ -9,7 +9,12 @@ rustler::atoms! {
 }
 
 #[rustler::nif]
-fn highlight(lang: &str, source: &str, theme: &str) -> Result<(Atom, String), Error> {
+fn highlight(
+    lang: &str,
+    source: &str,
+    theme: &str,
+    pre_class: &str,
+) -> Result<(Atom, String), Error> {
     let language = match Language::from_token(lang) {
         Some(language) => language,
         None => return Err(Error::Term(Box::new("invalid lang"))),
@@ -21,7 +26,7 @@ fn highlight(lang: &str, source: &str, theme: &str) -> Result<(Atom, String), Er
     };
 
     let mut highlighter = Highlighter::new();
-    let inline_html = inline_html::InlineHTML::new(lang, theme);
+    let inline_html = inline_html::InlineHTML::new(lang, theme, pre_class);
 
     match highlighter.highlight_to_string(language, &inline_html, source) {
         Ok(rendered) => Ok((ok(), rendered)),

@@ -9,9 +9,9 @@ defmodule AutumnTest do
     test "elixir with default opts" do
       assert Autumn.highlight!("elixir", ":elixir") ==
                ~s"""
-               <pre class="autumn highlight background" style="background-color: #282C34; ">
+               <pre class="autumn highlight" style="background-color: #282C34;">
                <code class="language-elixir">
-               <span class="string" style="color: #98C379; ">:elixir</span>
+               <span class="string" style="color: #98C379;">:elixir</span>
                </code></pre>
                """
     end
@@ -19,9 +19,9 @@ defmodule AutumnTest do
     test "ruby with default opts" do
       assert Autumn.highlight!("script.rb", ~s|puts "autumn season"|) ==
                ~s"""
-               <pre class="autumn highlight background" style="background-color: #282C34; ">
+               <pre class="autumn highlight" style="background-color: #282C34;">
                <code class="language-rb">
-               <span class="function" style="color: #61AFEF; ">puts</span> <span class="string" style="color: #98C379; ">&quot;autumn season&quot;</span>
+               <span class="function" style="color: #61AFEF;">puts</span> <span class="string" style="color: #98C379;">&quot;autumn season&quot;</span>
                </code></pre>
                """
     end
@@ -30,9 +30,9 @@ defmodule AutumnTest do
   test "change theme" do
     assert Autumn.highlight!("elixir", ":elixir", theme: "dracula") ==
              ~s"""
-             <pre class="autumn highlight background" style="background-color: #282A36; ">
+             <pre class="autumn highlight" style="background-color: #282A36;">
              <code class="language-elixir">
-             <span class="string special" style="color: #ffb86c; ">:elixir</span>
+             <span class="string special" style="color: #ffb86c;">:elixir</span>
              </code></pre>
              """
   end
