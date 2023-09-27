@@ -7,7 +7,9 @@
 
 Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes.
 
-Support [multiple languages](https://github.com/leandrocp/autumn/blob/06767957a26bf1217aab7c082645eda0635d711c/native/inkjet_nif/Cargo.toml#L21) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/generated/themes).
+Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L20) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes).
+
+Use Rust's [inkjet crate](https://crates.io/crates/inkjet) under the hood.
 
 ## Installation
 
@@ -53,7 +55,3 @@ A set of samples is available at [priv/generated/samples](https://github.com/lea
 
 ![elixir_onedark](https://raw.github.com/leandrocp/autumn/main/assets/elixir_onedark.png)
 ![elixir_github_light](https://raw.github.com/leandrocp/autumn/main/assets/elixir_github_light.png)
-
-## Acknowledgements
-
-[Inkjet](https://crates.io/crates/inkjet) for providing the underlying lib to load language grammars.
