@@ -1,10 +1,6 @@
 defmodule AutumnTest do
   use ExUnit.Case
 
-  test "invalid lang" do
-    assert Autumn.highlight("invalid", ":elixir") == {:error, "invalid lang"}
-  end
-
   describe "highlight" do
     test "elixir with default opts" do
       assert Autumn.highlight!("elixir", ":elixir") ==
@@ -24,6 +20,18 @@ defmodule AutumnTest do
                <span class="function" style="color: #61AFEF;">puts</span> <span class="string" style="color: #98C379;">&quot;autumn season&quot;</span>
                </code></pre>
                """
+    end
+
+    test "fallback to plain text on invalid lang" do
+      expected = ~s"""
+      <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;">
+      <code class="language-plain">
+      :elixir
+      </code></pre>
+      """
+
+      assert Autumn.highlight!("invalid", ":elixir") == expected
+      assert Autumn.highlight!(nil, ":elixir") == expected
     end
   end
 

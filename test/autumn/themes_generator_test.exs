@@ -31,31 +31,30 @@ defmodule Autumn.ThemesGeneratorTest do
 
     dest_path = Path.join(tmp_dir, "themes.rs")
 
-    assert ThemesGenerator.generate(tmp_dir, dest_path) == {
-             :ok,
-             %{
-               "child" => %{
-                 "default" => %{"class" => "", "style" => "color: #000000;"},
-                 "background" => %{"class" => "", "style" => "background-color: #ffffff;"},
-                 "function" => %{"class" => "function", "style" => "color: blue_child;"},
-                 "function.macro" => %{
-                   "class" => "function macro",
-                   "style" => "font-style: italic; color: green_parent;"
-                 },
-                 "namespace" => %{"class" => "namespace", "style" => "color: black_parent;"}
+    {:ok, themes} = ThemesGenerator.generate(tmp_dir, dest_path)
+
+    assert %{
+             "child" => %{
+               "text" => %{"class" => "", "style" => "color: #000000;"},
+               "background" => %{"class" => "", "style" => "background-color: #ffffff;"},
+               "function" => %{"class" => "function", "style" => "color: blue_child;"},
+               "function.macro" => %{
+                 "class" => "function macro",
+                 "style" => "font-style: italic; color: green_parent;"
                },
-               "parent" => %{
-                 "default" => %{"class" => "", "style" => "color: #000000;"},
-                 "background" => %{"class" => "", "style" => "background-color: #ffffff;"},
-                 "function" => %{"class" => "function", "style" => "color: blue_parent;"},
-                 "function.macro" => %{
-                   "class" => "function macro",
-                   "style" => "font-style: italic; color: green_parent;"
-                 },
-                 "namespace" => %{"class" => "namespace", "style" => "color: black_parent;"}
-               }
+               "namespace" => %{"class" => "namespace", "style" => "color: black_parent;"}
+             },
+             "parent" => %{
+               "text" => %{"class" => "", "style" => "color: #000000;"},
+               "background" => %{"class" => "", "style" => "background-color: #ffffff;"},
+               "function" => %{"class" => "function", "style" => "color: blue_parent;"},
+               "function.macro" => %{
+                 "class" => "function macro",
+                 "style" => "font-style: italic; color: green_parent;"
+               },
+               "namespace" => %{"class" => "namespace", "style" => "color: black_parent;"}
              }
-           }
+           } = themes
   end
 
   @tag :tmp_dir
