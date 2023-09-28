@@ -61,6 +61,8 @@ defmodule Autumn do
   end
 
   @doc false
+  def language(nil = _lang_filename_ext), do: "plain"
+
   def language(lang_filename_ext) do
     lang_filename_ext
     |> String.downcase()
@@ -70,7 +72,7 @@ defmodule Autumn do
 
   defp do_language(<<"."::binary, ext::binary>>), do: ext
 
-  defp do_language(lang) do
+  defp do_language(lang) when is_binary(lang) do
     case lang |> Path.basename() |> Path.extname() do
       "" -> lang
       ext -> do_language(ext)

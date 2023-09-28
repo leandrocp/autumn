@@ -34,7 +34,7 @@ defmodule Autumn.ThemesGenerator do
                       let joined = split[0..split.len() - 1].join(".");
                       self.get_scope(joined.as_str())
                   } else {
-                      let (class, style) = self.scopes.get("default").unwrap();
+                      let (class, style) = self.scopes.get("text").unwrap();
                       (class, style)
                   }
               }
@@ -84,7 +84,7 @@ defmodule Autumn.ThemesGenerator do
 
         scopes =
           scopes
-          |> scope_default(palette)
+          |> scope_text(palette)
           |> scope_background(palette)
           |> reduce_scopes(palette)
 
@@ -98,7 +98,7 @@ defmodule Autumn.ThemesGenerator do
 
   defp reduce_scopes(scopes, palette) do
     Enum.reduce(scopes, scopes, fn
-      {"default", _style}, acc ->
+      {"text", _style}, acc ->
         acc
 
       {"background", _style}, acc ->
@@ -132,18 +132,18 @@ defmodule Autumn.ThemesGenerator do
     end)
   end
 
-  def scope_default(scopes, palette) do
-    Map.put(scopes, "default", %{
+  def scope_text(scopes, palette) do
+    Map.put(scopes, "text", %{
       "class" => "",
-      "style" => IO.iodata_to_binary([default_style(scopes, palette)])
+      "style" => IO.iodata_to_binary([text_style(scopes, palette)])
     })
   end
 
-  defp default_style(%{"text" => %{"fg" => fg}}, palette), do: fg(palette, fg)
-  defp default_style(%{"text" => fg}, palette) when is_binary(fg), do: fg(palette, fg)
-  defp default_style(%{"ui.text" => %{"fg" => fg}}, palette), do: fg(palette, fg)
-  defp default_style(%{"ui.text" => fg}, palette) when is_binary(fg), do: fg(palette, fg)
-  defp default_style(_scopes, palette), do: fg(palette, @default_fg_color)
+  defp text_style(%{"text" => %{"fg" => fg}}, palette), do: fg(palette, fg)
+  defp text_style(%{"text" => fg}, palette) when is_binary(fg), do: fg(palette, fg)
+  defp text_style(%{"ui.text" => %{"fg" => fg}}, palette), do: fg(palette, fg)
+  defp text_style(%{"ui.text" => fg}, palette) when is_binary(fg), do: fg(palette, fg)
+  defp text_style(_scopes, palette), do: fg(palette, @default_fg_color)
 
   def scope_background(scopes, palette) do
     Map.put(scopes, "background", %{

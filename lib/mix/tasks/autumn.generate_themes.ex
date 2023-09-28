@@ -8,5 +8,6 @@ defmodule Mix.Tasks.Autumn.GenerateThemes do
   def run(_args) do
     Mix.shell().info("Parsing themes...")
     ThemesGenerator.generate()
+    Mix.shell().info("Done.")
   end
 end
