@@ -66,10 +66,10 @@ impl<'a> InlineHTML<'a> {
                 output.write_str(&span)?;
             }
             HighlightEvent::HighlightStart(_idx) => {
-                write!(output, "<span>")?;
+                writeln!(output, "<span>")?;
             }
             HighlightEvent::HighlightEnd => {
-                output.write_str("</span>")?;
+                write!(output, "<span>")?;
             }
         }
 
@@ -102,14 +102,14 @@ impl<'a> Formatter for InlineHTML<'a> {
 
                 write!(
                     w,
-                    "<pre class=\"{}\" style=\"{} {}\">\n<code class=\"language-{}\">\n",
+                    "<pre class=\"{}\" style=\"{} {}\">\n<code class=\"language-{}\">",
                     self.pre_class, background_style, text_style, self.lang
                 )?;
             }
             _ => {
                 write!(
                     w,
-                    "<pre class=\"{}\" style=\"{}\">\n<code class=\"language-{}\">\n",
+                    "<pre class=\"{}\" style=\"{}\">\n<code class=\"language-{}\">",
                     self.pre_class, background_style, self.lang
                 )?;
             }
