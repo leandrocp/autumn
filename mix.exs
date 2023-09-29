@@ -54,6 +54,8 @@ defmodule Autumn.MixProject do
   defp docs do
     [
       main: "Autumn",
+      assets: "assets",
+      logo: "assets/images/autumn.png",
       source_ref: "v#{@version}",
       source_url: @source_url,
       extras: ["CHANGELOG.md"]

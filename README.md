@@ -55,8 +55,8 @@ Autumn.highlight!("rb", "Math.sqrt(9)", theme: "dracula") |> IO.puts()
 
 Visit https://autumn-30n.pages.dev to see all [available samples](https://github.com/leandrocp/autumn/tree/main/priv/generated/samples) like the ones below:
 
-![elixir_onedark](https://raw.github.com/leandrocp/autumn/main/assets/images/elixir_onedark.png)
-![elixir_github_light](https://raw.github.com/leandrocp/autumn/main/assets/images/elixir_github_light.png)
+<img src="assets/images/elixir_onedark.png" alt="Elixir source code in onedark theme">
+<img src="assets/images/elixir_github_light.png" alt="Elixir source code in github_light theme">
 
 ## Acknowledgements
 
