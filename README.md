@@ -7,7 +7,7 @@
 
 Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes.
 
-Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L20) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes).
+Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L20) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes). See some samples at https://autumn-30n.pages.dev
 
 Use Rust's [inkjet crate](https://crates.io/crates/inkjet) under the hood.
 
@@ -51,7 +51,7 @@ Autumn.highlight!("rb", "Math.sqrt(9)", theme: "dracula") |> IO.puts()
 
 ## Samples
 
-A set of samples is available at [priv/generated/samples](https://github.com/leandrocp/autumn/tree/main/priv/generated/samples) as the ones belows:
+Visit https://autumn-30n.pages.dev to see all [available samples](https://github.com/leandrocp/autumn/tree/main/priv/generated/samples) like the ones below:
 
 ![elixir_onedark](https://raw.github.com/leandrocp/autumn/main/assets/elixir_onedark.png)
 ![elixir_github_light](https://raw.github.com/leandrocp/autumn/main/assets/elixir_github_light.png)
