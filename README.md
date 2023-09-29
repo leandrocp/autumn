@@ -5,7 +5,9 @@
 
 <!-- MDOC -->
 
-Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes.
+<img src="assets/images/logo.svg" width="512" alt="Autumn logo">
+
+**Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes**.
 
 Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L20) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes). See some samples at https://autumn-30n.pages.dev
 
@@ -53,5 +55,10 @@ Autumn.highlight!("rb", "Math.sqrt(9)", theme: "dracula") |> IO.puts()
 
 Visit https://autumn-30n.pages.dev to see all [available samples](https://github.com/leandrocp/autumn/tree/main/priv/generated/samples) like the ones below:
 
-![elixir_onedark](https://raw.github.com/leandrocp/autumn/main/assets/elixir_onedark.png)
-![elixir_github_light](https://raw.github.com/leandrocp/autumn/main/assets/elixir_github_light.png)
+![elixir_onedark](https://raw.github.com/leandrocp/autumn/main/assets/images/elixir_onedark.png)
+![elixir_github_light](https://raw.github.com/leandrocp/autumn/main/assets/images/elixir_github_light.png)
+
+## Acknowledgements
+
+* [Logo](https://www.flaticon.com/free-icons/fall) created by by pongsakornRed - Flaticon
+* [Logo font](https://fonts.google.com/specimen/Sacramento) designed by [Astigmatic](http://www.astigmatic.com)
