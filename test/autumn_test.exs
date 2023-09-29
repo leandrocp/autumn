@@ -42,6 +42,50 @@ defmodule AutumnTest do
   end
 
   describe "languages" do
+    test "load all languages" do
+      assert {:ok, _} = Autumn.highlight("bash", "foo")
+      assert {:ok, _} = Autumn.highlight("c", "foo")
+      assert {:ok, _} = Autumn.highlight("clojure", "foo")
+      assert {:ok, _} = Autumn.highlight("c-sharp", "foo")
+      assert {:ok, _} = Autumn.highlight("commonlisp", "foo")
+      assert {:ok, _} = Autumn.highlight("cpp", "foo")
+      assert {:ok, _} = Autumn.highlight("css", "foo")
+      assert {:ok, _} = Autumn.highlight("diff", "foo")
+      assert {:ok, _} = Autumn.highlight("dockerfile", "foo")
+      assert {:ok, _} = Autumn.highlight("elisp", "foo")
+      assert {:ok, _} = Autumn.highlight("elixir", "foo")
+      assert {:ok, _} = Autumn.highlight("erlang", "foo")
+      assert {:ok, _} = Autumn.highlight("gleam", "foo")
+      assert {:ok, _} = Autumn.highlight("go", "foo")
+      assert {:ok, _} = Autumn.highlight("haskell", "foo")
+      assert {:ok, _} = Autumn.highlight("hcl", "foo")
+      assert {:ok, _} = Autumn.highlight("heex", "foo")
+      assert {:ok, _} = Autumn.highlight("html", "foo")
+      assert {:ok, _} = Autumn.highlight("java", "foo")
+      assert {:ok, _} = Autumn.highlight("javascript", "foo")
+      assert {:ok, _} = Autumn.highlight("json", "foo")
+      assert {:ok, _} = Autumn.highlight("kotlin", "foo")
+      assert {:ok, _} = Autumn.highlight("latex", "foo")
+      assert {:ok, _} = Autumn.highlight("llvm", "foo")
+      assert {:ok, _} = Autumn.highlight("lua", "foo")
+      assert {:ok, _} = Autumn.highlight("make", "foo")
+      assert {:ok, _} = Autumn.highlight("php", "foo")
+      assert {:ok, _} = Autumn.highlight("proto", "foo")
+      assert {:ok, _} = Autumn.highlight("python", "foo")
+      assert {:ok, _} = Autumn.highlight("r", "foo")
+      assert {:ok, _} = Autumn.highlight("regex", "foo")
+      assert {:ok, _} = Autumn.highlight("ruby", "foo")
+      assert {:ok, _} = Autumn.highlight("rust", "foo")
+      assert {:ok, _} = Autumn.highlight("scala", "foo")
+      assert {:ok, _} = Autumn.highlight("scss", "foo")
+      assert {:ok, _} = Autumn.highlight("sql", "foo")
+      assert {:ok, _} = Autumn.highlight("swift", "foo")
+      assert {:ok, _} = Autumn.highlight("toml", "foo")
+      assert {:ok, _} = Autumn.highlight("typescript", "foo")
+      assert {:ok, _} = Autumn.highlight("yaml", "foo")
+      assert {:ok, _} = Autumn.highlight("zig", "foo")
+    end
+
     test "by name" do
       assert Autumn.language("elixir") == "elixir"
       assert Autumn.language("Elixir") == "elixir"
