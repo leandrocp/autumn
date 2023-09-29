@@ -7,6 +7,7 @@
 
 ### Enhancements
   * Fallback to plain text on invalid language
+  * Add samples
 
 ### Fixes
   * Do not render the first line empty
