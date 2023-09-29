@@ -1,6 +1,11 @@
 
 # Changelog
 
+## 0.1.3-dev
+
+### Enhancements
+  * Add icon
+
 ## 0.1.2 (2023-09-29)
 
 ### Enhancements

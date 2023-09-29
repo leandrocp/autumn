@@ -2,7 +2,7 @@ defmodule Autumn.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/leandrocp/autumn"
-  @version "0.1.2"
+  @version "0.1.3-dev"
 
   def project do
     [
@@ -55,7 +55,7 @@ defmodule Autumn.MixProject do
     [
       main: "Autumn",
       assets: "assets",
-      logo: "assets/images/autumn.png",
+      logo: "assets/images/autumn_icon.png",
       source_ref: "v#{@version}",
       source_url: @source_url,
       extras: ["CHANGELOG.md"]

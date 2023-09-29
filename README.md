@@ -5,7 +5,7 @@
 
 <!-- MDOC -->
 
-<img src="assets/images/autumn.png" width="512" alt="Autumn logo">
+<img src="assets/images/autumn_logo.png" width="512" alt="Autumn logo">
 
 **Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes**.
 

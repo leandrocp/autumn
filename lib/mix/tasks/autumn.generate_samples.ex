@@ -28,7 +28,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   </head>
   <body>
     <%= if @index do %>
-      <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/autumn.png" width="512" alt="Autumn logo">
+      <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/autumn_logo.png" width="512" alt="Autumn logo">
     <% end %>
     <%= @inner_content %>
   </body>
