@@ -27,6 +27,9 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     <%= @style %>
   </head>
   <body>
+    <%= if @index do %>
+      <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/autumn.png" width="512" alt="Autumn logo">
+    <% end %>
     <%= @inner_content %>
   </body>
   </html>
@@ -146,17 +149,15 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
       end)
 
     inner_content = [
-      "<h1>Autumn Samples</h1>",
+      "<h1>Samples</h1>",
       "\n",
       links
     ]
 
     html =
       EEx.eval_string(@layout,
-        assigns: %{inner_content: inner_content}
+        assigns: %{inner_content: inner_content, index: true}
       )
-
-    IO.puts(html)
 
     dest_path =
       Path.join([:code.priv_dir(:autumn), "generated", "samples", "index.html"])
