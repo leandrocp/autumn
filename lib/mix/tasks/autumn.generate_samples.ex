@@ -14,6 +14,16 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 14px;
+        line-height: 24px;
+      }
+      pre {
+        margin: 20px;
+      }
+    </style>
     <%= @style %>
   </head>
   <body>
@@ -22,35 +32,23 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   </html>
   """
 
-  @dark_style ~S"""
+  @onedark_style ~S"""
   <style>
     * {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      line-height: 24px;
       color: #ABB2BF;
     }
     body {
       background-color: #282C34;
     }
-    pre {
-      margin: 20px;
-    }
   </style>
   """
 
-  @light_style ~S"""
+  @github_light_style ~S"""
   <style>
     * {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      line-height: 24px;
     }
     body {
       background-color: #ffffff;
-    }
-    pre {
-      margin: 20px;
     }
   </style>
   """
@@ -90,6 +88,11 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     }
   ]
 
+  @themes [
+    {"onedark", @onedark_style},
+    {"github_light", @github_light_style}
+  ]
+
   @impl true
   def run(_args) do
     :inets.start()
@@ -100,12 +103,16 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     for {lang, url} <- @langs do
       generate(lang, url)
     end
+
+    generate_index()
   end
 
   defp generate(lang, url) do
     source = download_source(url)
-    do_generage(lang, source, "onedark", @dark_style)
-    do_generage(lang, source, "github_light", @light_style)
+
+    for {theme, style} <- @themes do
+      do_generage(lang, source, theme, style)
+    end
   end
 
   defp do_generage(lang, source, theme, style) do
@@ -120,6 +127,39 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
 
     dest_path =
       Path.join([:code.priv_dir(:autumn), "generated", "samples", "#{lang}_#{theme}.html"])
+
+    File.write!(dest_path, html)
+  end
+
+  defp generate_index do
+    Mix.shell().info("index.html")
+
+    samples =
+      for {lang, _url} <- @langs, {theme, _style} <- @themes do
+        sample = "#{String.capitalize(lang)} - #{theme}"
+        {sample, "#{lang}_#{theme}.html"}
+      end
+
+    links =
+      Enum.map(samples, fn {sample, link} ->
+        ["<p><a href=", ?", link, ?", ">", sample, "</a></p>", "\n"]
+      end)
+
+    inner_content = [
+      "<h1>Autumn Samples</h1>",
+      "\n",
+      links
+    ]
+
+    html =
+      EEx.eval_string(@layout,
+        assigns: %{inner_content: inner_content}
+      )
+
+    IO.puts(html)
+
+    dest_path =
+      Path.join([:code.priv_dir(:autumn), "generated", "samples", "index.html"])
 
     File.write!(dest_path, html)
   end
