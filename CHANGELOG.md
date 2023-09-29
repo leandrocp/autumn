@@ -1,10 +1,16 @@
 
 # Changelog
 
-## 0.1.1-dev
+## 0.1.2-dev
+
+## 0.1.1 (2023-09-29)
 
 ### Enhancements
   * Fallback to plain text on invalid language
+
+### Fixes
+  * Do not render the first line empty
+  * Make sure languages are loaded correctly
 
 ## 0.1.0 (2023-09-28)
 

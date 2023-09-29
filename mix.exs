@@ -2,7 +2,7 @@ defmodule Autumn.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/leandrocp/autumn"
-  @version "0.1.1-dev"
+  @version "0.1.1"
 
   def project do
     [
