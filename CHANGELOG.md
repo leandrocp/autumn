@@ -1,7 +1,13 @@
 
 # Changelog
 
-## 0.1.2-dev
+## 0.1.2 (2023-09-29)
+
+### Enhancements
+  * Add logo
+
+### Fixes
+  * Fix broken image links in docs
 
 ## 0.1.1 (2023-09-29)
 
