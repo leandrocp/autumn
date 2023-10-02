@@ -102,7 +102,7 @@ impl<'a> Formatter for InlineHTML<'a> {
 
                 write!(
                     w,
-                    "<pre class=\"{}\" style=\"{} {}\">\n<code class=\"language-{}\">",
+                    "<pre class=\"{}\" style=\"{} {}\">\n<code class=\"language-{}\" translate=\"no\">",
                     self.pre_class, background_style, text_style, self.lang
                 )?;
             }

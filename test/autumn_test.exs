@@ -23,7 +23,7 @@ defmodule AutumnTest do
     test "fallback to plain text on invalid lang" do
       expected = ~s"""
       <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;">
-      <code class="language-plain">:elixir
+      <code class="language-plain" translate="no">:elixir
       </code></pre>
       """
 
