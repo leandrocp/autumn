@@ -169,7 +169,6 @@ dependencies = [
  "phf",
  "rustler",
  "serde",
- "serde_rustler",
  "tree-sitter",
  "tree-sitter-highlight",
  "v_htmlescape",
@@ -389,18 +388,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
-]
-
-[[package]]
-name = "serde_rustler"
-version = "0.1.0"
-source = "git+https://github.com/avencera/serde_rustler.git?branch=rustler-0-29#a8824aa261d3535bca2b248a411ac0fab9c49071"
-dependencies = [
- "lazy_static",
- "rustler",
- "rustler_codegen",
- "serde",
- "thiserror",
 ]
 
 [[package]]
