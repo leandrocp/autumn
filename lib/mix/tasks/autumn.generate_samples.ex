@@ -17,10 +17,10 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     <style>
       * {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 14px;
-        line-height: 24px;
+        line-height: 1.5;
       }
       pre {
+        font-size: 15px;
         margin: 20px;
       }
     </style>
@@ -28,7 +28,12 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   </head>
   <body>
     <%= if @index do %>
-      <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/autumn_logo.png" width="512" alt="Autumn logo">
+    <p>
+      <a href="https://github.com/leandrocp/autumn">
+        <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/autumn_logo.png" width="512" alt="Autumn logo">
+      </a>
+    </p>
+    <p><a href="https://github.com/leandrocp/autumn">https://github.com/leandrocp/autumn</a></p>
     <% end %>
     <%= @inner_content %>
   </body>
