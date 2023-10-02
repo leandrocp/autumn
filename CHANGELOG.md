@@ -4,6 +4,9 @@
 ## 0.1.3-dev
 
 ### Enhancements
+  * Add translate="no" attr in <code> tag
+
+### Enhancements
   * Add icon
 
 ## 0.1.2 (2023-09-29)
