@@ -1,8 +1,5 @@
 name: Precomp NIFs
 
-env:
-  NIF_DIRECTORY: "native/inkjet_nif"
-
 on:
   push:
     branches:

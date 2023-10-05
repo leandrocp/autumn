@@ -1,8 +1,8 @@
 [package]
 name = "inkjet_nif"
 version = "0.1.0"
-authors = ["Leandro Pereira"]
 edition = "2021"
+authors = ["Leandro Pereira"]
 
 [lib]
 name = "inkjet_nif"
@@ -13,7 +13,7 @@ crate-type = ["cdylib"]
 rustler = "0.29"
 serde = "1.0"
 tree-sitter-highlight = "0.20"
-inkjet = { version = "0.9.1" , default-features = false, features = [
+inkjet = { version = "0.9" , default-features = false, features = [
   "html",
   "language-bash",
   "language-c",
