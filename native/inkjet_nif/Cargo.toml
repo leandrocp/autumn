@@ -12,9 +12,7 @@ crate-type = ["cdylib"]
 [dependencies]
 rustler = "0.29"
 serde = "1.0"
-tree-sitter = "0.20"
 tree-sitter-highlight = "0.20"
-v_htmlescape = "0.15"
 inkjet = { version = "0.9.1" , default-features = false, features = [
   "html",
   "language-bash",

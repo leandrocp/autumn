@@ -180,9 +180,7 @@ dependencies = [
  "inkjet",
  "rustler",
  "serde",
- "tree-sitter",
  "tree-sitter-highlight",
- "v_htmlescape",
 ]
 
 [[package]]
