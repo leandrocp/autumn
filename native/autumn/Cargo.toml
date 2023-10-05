@@ -7,7 +7,7 @@ authors = ["Leandro Pereira"]
 [lib]
 name = "autumn"
 path = "src/lib.rs"
-crate-type = ["lib", "cdylib"]
+crate-type = ["lib"]
 
 [dependencies]
 phf = { version = "0.11", features = ["macros"] }
