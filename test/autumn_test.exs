@@ -1,44 +1,56 @@
 defmodule AutumnTest do
   use ExUnit.Case
 
+  defp assert_output(lang, source_code, expected, opts \\ []) do
+    result = Autumn.highlight!(lang, source_code, opts)
+    # IO.puts(result)
+    assert String.trim(result) == String.trim(expected)
+  end
+
   describe "highlight" do
     test "elixir with default opts" do
-      assert Autumn.highlight!("elixir", ":elixir") ==
-               ~s"""
-               <pre class="autumn highlight" style="background-color: #282C34;">
-               <code class="language-elixir"><span class="string" style="color: #98C379;">:elixir</span>
-               </code></pre>
-               """
+      assert_output("elixir", ":elixir", ~s"""
+      <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;">
+      <code class="language-elixir" translate="no">
+      <span class="string" style="color: #98C379;">:elixir</span>
+      </code></pre>
+      """)
     end
 
     test "ruby with default opts" do
-      assert Autumn.highlight!("script.rb", ~s|puts "autumn season"|) ==
-               ~s"""
-               <pre class="autumn highlight" style="background-color: #282C34;">
-               <code class="language-rb"><span class="function" style="color: #61AFEF;">puts</span> <span class="string" style="color: #98C379;">&quot;autumn season&quot;</span>
-               </code></pre>
-               """
+      assert_output("script.rb", ~s|puts "autumn season"|, ~s"""
+      <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;">
+      <code class="language-ruby" translate="no">
+      <span class="function" style="color: #61AFEF;">puts</span> <span class="string" style="color: #98C379;">&quot;autumn season&quot;</span>
+      </code></pre>
+      """)
     end
 
     test "fallback to plain text on invalid lang" do
       expected = ~s"""
       <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;">
-      <code class="language-plain" translate="no">:elixir
+      <code class="language-plain-text" translate="no">
+      :elixir
       </code></pre>
       """
 
-      assert Autumn.highlight!("invalid", ":elixir") == expected
-      assert Autumn.highlight!(nil, ":elixir") == expected
+      assert_output("invalid", ":elixir", expected)
+      assert_output(nil, ":elixir", expected)
     end
   end
 
   test "change theme" do
-    assert Autumn.highlight!("elixir", ":elixir", theme: "dracula") ==
-             ~s"""
-             <pre class="autumn highlight" style="background-color: #282A36;">
-             <code class="language-elixir"><span class="string special" style="color: #ffb86c;">:elixir</span>
-             </code></pre>
-             """
+    assert_output(
+      "elixir",
+      ":elixir",
+      ~s"""
+      <pre class="autumn highlight" style="background-color: #282A36; color: #f8f8f2;">
+      <code class="language-elixir" translate="no">
+      <span class="string special" style="color: #ffb86c;">:elixir</span>
+      </code></pre>
+      """,
+      theme: "dracula"
+    )
   end
 
   describe "languages" do

@@ -1,8 +1,5 @@
 name: Precomp NIFs
 
-env:
-  NIF_DIRECTORY: "native/inkjet_nif"
-
 on:
   push:
     branches:
@@ -71,7 +68,7 @@ jobs:
 
     - name: Build the project
       id: build-crate
-      uses: philss/rustler-precompiled-action@v1.0.1
+      uses: philss/rustler-precompiled-action@v1.1.0
       with:
         project-name: inkjet_nif
         project-version: ${{ env.PROJECT_VERSION }}
@@ -79,7 +76,6 @@ jobs:
         nif-version: ${{ matrix.nif }}
         use-cross: ${{ matrix.job.use-cross }}
         cross-version: "v0.2.4"
-        project-dir: "native/inkjet_nif"
 
     - name: Artifact upload
       uses: actions/upload-artifact@v3

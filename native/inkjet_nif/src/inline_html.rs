@@ -1,128 +1,56 @@
 use crate::themes::Theme;
-use inkjet::{constants, formatter::Formatter, Result};
+use inkjet::{formatter::Formatter, Language, Result};
 use tree_sitter_highlight::HighlightEvent;
 
 #[derive(Debug)]
 pub struct InlineHTML<'a> {
-    lang: &'a str,
+    lang: Language,
     theme: &'a Theme,
-    pre_class: &'a str,
+    pre_class: Option<&'a str>,
+    code_class: Option<&'a str>,
 }
 
 impl<'a> InlineHTML<'a> {
-    pub fn new(lang: &'a str, theme: &'a Theme, pre_class: &'a str) -> Self {
+    pub fn new(
+        lang: Language,
+        theme: &'a Theme,
+        pre_class: Option<&'a str>,
+        code_class: Option<&'a str>,
+    ) -> Self {
         Self {
             lang,
             theme,
             pre_class,
+            code_class,
         }
-    }
-
-    fn write_highlight_events<W>(
-        &self,
-        source: &str,
-        output: &mut W,
-        event: HighlightEvent,
-    ) -> Result<()>
-    where
-        W: std::fmt::Write,
-    {
-        match event {
-            HighlightEvent::Source { start, end } => {
-                let span = source
-                    .get(start..end)
-                    .expect("Source bounds should be in bounds!");
-                let span = v_htmlescape::escape(span).to_string();
-                output.write_str(&span)?;
-            }
-            HighlightEvent::HighlightStart(idx) => {
-                let scope = constants::HIGHLIGHT_NAMES[idx.0];
-                let (class, style) = self.theme.get_scope(scope);
-                write!(output, "<span class=\"{}\" style=\"{}\">", class, style)?;
-            }
-            HighlightEvent::HighlightEnd => {
-                output.write_str("</span>")?;
-            }
-        }
-
-        Ok(())
-    }
-
-    fn write_plain_highlight_events<W>(
-        &self,
-        source: &str,
-        output: &mut W,
-        event: HighlightEvent,
-    ) -> Result<()>
-    where
-        W: std::fmt::Write,
-    {
-        match event {
-            HighlightEvent::Source { start, end } => {
-                let span = source
-                    .get(start..end)
-                    .expect("Source bounds should be in bounds!");
-                let span = v_htmlescape::escape(span).to_string();
-                output.write_str(&span)?;
-            }
-            HighlightEvent::HighlightStart(_idx) => {
-                writeln!(output, "<span>")?;
-            }
-            HighlightEvent::HighlightEnd => {
-                write!(output, "<span>")?;
-            }
-        }
-
-        Ok(())
     }
 }
 
 impl<'a> Formatter for InlineHTML<'a> {
-    fn write<W>(&self, source: &str, output: &mut W, event: HighlightEvent) -> Result<()>
+    fn write<Write>(&self, source: &str, output: &mut Write, event: HighlightEvent) -> Result<()>
     where
-        W: std::fmt::Write,
+        Write: std::fmt::Write,
     {
-        match self.lang {
-            "plain" => self.write_plain_highlight_events(source, output, event)?,
-            _lang => self.write_highlight_events(source, output, event)?,
-        };
-
+        let highlighted = autumn::inner_highlights(source, event, self.theme);
+        write!(output, "{}", highlighted)?;
         Ok(())
     }
 
-    fn start<W>(&self, _: &str, w: &mut W) -> Result<()>
+    fn start<Write>(&self, _: &str, output: &mut Write) -> Result<()>
     where
-        W: std::fmt::Write,
+        Write: std::fmt::Write,
     {
-        let (_class, background_style) = self.theme.get_scope("background");
-
-        match self.lang {
-            "plain" => {
-                let (_class, text_style) = self.theme.get_scope("text");
-
-                write!(
-                    w,
-                    "<pre class=\"{}\" style=\"{} {}\">\n<code class=\"language-{}\" translate=\"no\">",
-                    self.pre_class, background_style, text_style, self.lang
-                )?;
-            }
-            _ => {
-                write!(
-                    w,
-                    "<pre class=\"{}\" style=\"{}\">\n<code class=\"language-{}\">",
-                    self.pre_class, background_style, self.lang
-                )?;
-            }
-        }
-
+        let open_tags = autumn::open_tags(self.lang, self.theme, self.pre_class, self.code_class);
+        writeln!(output, "{}", open_tags)?;
         Ok(())
     }
 
-    fn finish<W>(&self, _: &str, writer: &mut W) -> Result<()>
+    fn finish<Write>(&self, _: &str, output: &mut Write) -> Result<()>
     where
-        W: std::fmt::Write,
+        Write: std::fmt::Write,
     {
-        writeln!(writer, "\n</code></pre>")?;
+        let close_tags = autumn::close_tags();
+        write!(output, "{}", close_tags)?;
         Ok(())
     }
 }

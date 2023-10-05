@@ -67,7 +67,7 @@ defmodule Autumn.ThemesGenerator do
 
   def generate(
         src_path \\ Path.join(:code.priv_dir(:autumn), "themes"),
-        dest_path \\ Path.join([File.cwd!(), "native", "inkjet_nif", "src", "themes.rs"])
+        dest_path \\ Path.join([File.cwd!(), "native", "autumn", "src", "themes.rs"])
       ) do
     theme_files = Path.wildcard(src_path <> "/*.toml")
 
