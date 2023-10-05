@@ -11,11 +11,12 @@ defmodule Autumn do
   @typedoc """
   A language name, filename, or extesion.
 
-  The following values are valid to highlight an Elixir source code:
+  ## Examples
 
-    - "elixir", "my_module.ex", "my_script.exs", "ex", "exs"
-
-  And any other language can be highlighted in the same way.
+      - "elixir"
+      - "main.rb"
+      - ".rs"
+      - "php"
 
   An invalid language or `nil` will fallback to rendering plain text
   using the background and foreground colors defined by the current theme.
@@ -24,14 +25,16 @@ defmodule Autumn do
   @type lang_filename_ext :: String.t() | nil
 
   @doc """
-  Highlight the `source_code` using the tree-sitter grammar for `lang_filename_ext`.
+  Highlights the `source_code` using the tree-sitter grammar for `lang_filename_ext`.
 
   ## Options
 
   * `:theme` (default `"onedark"`) - accepts any theme listed [here](https://github.com/leandrocp/autumn/tree/main/priv/themes),
-  you should pass the filename without special chars and without extension, for example you should pass `theme: "adwaita_dark"` to use the [Adwaita Dark](https://github.com/leandrocp/autumn/blob/main/priv/themes/adwaita-dark.toml) theme.
+  you should pass the filename without special chars and without extension.
+  For example you should pass `theme: "adwaita_dark"` to use the [Adwaita Dark](https://github.com/leandrocp/autumn/blob/main/priv/themes/adwaita-dark.toml) theme
+  or pass `theme: "penumbra"` to use the [Penumbra+](https://github.com/leandrocp/autumn/blob/main/priv/themes/penumbra%2B.toml) theme, and so on.
   * `:pre_class` (default: `"autumn highlight"`) - the CSS class to inject into the `<pre>` tag.
-  * `:code_class` (deafult: `nil`) - the CSS class to inject into the `<code>` tag, it's dynamically generated as `"language-{name}`.
+  * `:code_class` (deafult: `nil`) - the CSS class to inject into the `<code>` tag, it's dynamically generated as `"language-{name}` when the value is `nil`.
 
   """
   @spec highlight(lang_filename_ext(), String.t(), keyword()) ::
