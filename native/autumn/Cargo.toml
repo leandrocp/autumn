@@ -5,6 +5,8 @@ edition = "2021"
 authors = ["Leandro Pereira"]
 
 [lib]
+name = "autumn"
+path = "src/lib.rs"
 crate-type = ["lib"]
 
 [dependencies]
