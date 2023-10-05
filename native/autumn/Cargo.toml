@@ -1,21 +1,14 @@
 [package]
-name = "inkjet_nif"
+name = "autumn"
 version = "0.1.0"
-authors = ["Leandro Pereira"]
 edition = "2021"
 
-[lib]
-name = "inkjet_nif"
-path = "src/lib.rs"
-crate-type = ["cdylib"]
-
 [dependencies]
-rustler = "0.29"
-serde = "1.0"
+phf = { version = "0.11", features = ["macros"] }
 tree-sitter = "0.20"
 tree-sitter-highlight = "0.20"
 v_htmlescape = "0.15"
-inkjet = { version = "0.9.1" , default-features = false, features = [
+inkjet = { version = "0.9.1", default-features = false, features = [
   "html",
   "language-bash",
   "language-c",
@@ -59,9 +52,3 @@ inkjet = { version = "0.9.1" , default-features = false, features = [
   "language-yaml",
   "language-zig",
 ] }
-autumn = { path = "../autumn" }
-
-[features]
-default = ["nif_version_2_15"]
-# Feature necessary for Rustler Precompiled.
-nif_version_2_15 = ["rustler/nif_version_2_15"]
