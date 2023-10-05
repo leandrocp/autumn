@@ -41,7 +41,7 @@ impl<'a> Formatter for InlineHTML<'a> {
         Write: std::fmt::Write,
     {
         let open_tags = autumn::open_tags(self.lang, self.theme, self.pre_class, self.code_class);
-        write!(output, "{}", open_tags)?;
+        writeln!(output, "{}", open_tags)?;
         Ok(())
     }
 

@@ -54,7 +54,7 @@ pub fn open_tags(
     code_class: Option<&str>,
 ) -> String {
     format!(
-        "{}\n{}\n",
+        "{}\n{}",
         open_pre_tag(theme, pre_class),
         open_code_tag(lang, code_class)
     )
