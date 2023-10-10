@@ -1,13 +1,30 @@
 # Autumn
 
-[![Documentation](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/autumn)
-[![Package](https://img.shields.io/hexpm/v/autumn.svg)](https://hex.pm/packages/autumn)
-
 <!-- MDOC -->
 
-<img src="assets/images/autumn_logo.png" width="512" alt="Autumn logo">
+<p align="center">
+  <img src="assets/images/autumn_logo.png" width="512" alt="Autumn logo">
+</p>
 
-**Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes**.
+<p align="center">
+  Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes.
+</p>
+
+<p align="center">
+  <a href="https://hex.pm/packages/autumn">
+    <img alt="Hex Version" src="https://img.shields.io/hexpm/v/autumn">
+  </a>
+
+  <a href="https://hexdocs.pm/autumn">
+    <img alt="Hex Docs" src="http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat">
+  </a>
+
+  <a href="https://opensource.org/licenses/MIT">
+    <img alt="MIT" src="https://img.shields.io/hexpm/l/autumn">
+  </a>
+</p>
+
+## Features
 
 Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L20) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes). See some samples at https://autumn-30n.pages.dev
 
@@ -55,7 +72,7 @@ Visit https://autumn-30n.pages.dev to see all [available samples](https://github
 At DockYard we are [ready to help you build your next Elixir project](https://dockyard.com/phoenix-consulting).
 We have a unique expertise in Elixir and Phoenix development that is unmatched and we love to [write about Elixir](https://dockyard.com/blog/categories/elixir).
 
-Have a project in mind? [Get in touch!](https://dockyard.com/contact/hire-us)
+Have a project in mind? [Get in touch](https://dockyard.com/contact/hire-us)!
 
 ## Acknowledgements
 
