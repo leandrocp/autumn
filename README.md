@@ -48,6 +48,15 @@ Visit https://autumn-30n.pages.dev to see all [available samples](https://github
 <img src="assets/images/elixir_onedark.png" alt="Elixir source code in onedark theme">
 <img src="assets/images/elixir_github_light.png" alt="Elixir source code in github_light theme">
 
+## Looking for help with your Elixir project?
+
+<img src="assets/images/dockyard_logo.png" width="256" alt="DockYard logo">
+
+At DockYard we are [ready to help you build your next Elixir project](https://dockyard.com/phoenix-consulting).
+We have a unique expertise in Elixir and Phoenix development that is unmatched and we love to [write about Elixir](https://dockyard.com/blog/categories/elixir).
+
+Have a project in mind? [Get in touch!](https://dockyard.com/contact/hire-us)
+
 ## Acknowledgements
 
 * [Logo](https://www.flaticon.com/free-icons/fall) created by by pongsakornRed - Flaticon
