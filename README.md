@@ -26,7 +26,7 @@
 
 ## Features
 
-Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L20) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes). See some samples at https://autumn-30n.pages.dev
+Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L16) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes). See some samples at https://autumn-30n.pages.dev
 
 Use Rust's [inkjet crate](https://crates.io/crates/inkjet) under the hood.
 
