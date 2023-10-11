@@ -56,11 +56,12 @@ defmodule Autumn.MixProject do
   defp docs do
     [
       main: "Autumn",
-      assets: "assets",
+      assets: "assets/images",
       logo: "assets/images/autumn_icon.png",
       source_ref: "v#{@version}",
       source_url: @source_url,
-      extras: ["CHANGELOG.md"]
+      extras: ["CHANGELOG.md"],
+      skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
     ]
   end
 

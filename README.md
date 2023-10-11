@@ -3,7 +3,7 @@
 <!-- MDOC -->
 
 <p align="center">
-  <img src="assets/images/autumn_logo.png" width="512" alt="Autumn logo">
+  <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/autumn_logo.png" width="512" alt="Autumn logo">
 </p>
 
 <p align="center">
@@ -26,9 +26,9 @@
 
 ## Features
 
-Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L16) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes). See some samples at https://autumn-30n.pages.dev
-
-Use Rust's [inkjet crate](https://crates.io/crates/inkjet) under the hood.
+- Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L16) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes). Check out some samples at https://autumn-30n.pages.dev
+- Used by [MDEx](https://github.com/leandrocp/mdex) - a fast 100% CommonMark-compatible GitHub Flavored Markdown parser and formatter for Elixir
+- Use Rust's [inkjet crate](https://crates.io/crates/inkjet) under the hood
 
 ## Installation
 
@@ -62,12 +62,12 @@ Autumn.highlight!("rb", "Math.sqrt(9)", theme: "dracula") |> IO.puts()
 
 Visit https://autumn-30n.pages.dev to see all [available samples](https://github.com/leandrocp/autumn/tree/main/priv/generated/samples) like the ones below:
 
-<img src="assets/images/elixir_onedark.png" alt="Elixir source code in onedark theme">
-<img src="assets/images/elixir_github_light.png" alt="Elixir source code in github_light theme">
+<img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/elixir_onedark.png" alt="Elixir source code in onedark theme">
+<img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/elixir_github_light.png" alt="Elixir source code in github_light theme">
 
 ## Looking for help with your Elixir project?
 
-<img src="assets/images/dockyard_logo.png" width="256" alt="DockYard logo">
+<img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/dockyard_logo.png" width="256" alt="DockYard logo">
 
 At DockYard we are [ready to help you build your next Elixir project](https://dockyard.com/phoenix-consulting).
 We have a unique expertise in Elixir and Phoenix development that is unmatched and we love to [write about Elixir](https://dockyard.com/blog/categories/elixir).
