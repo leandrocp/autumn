@@ -6,6 +6,10 @@
 ### Enhancements
   * Add translate="no" attr in <code> tag
 
+### Fixes
+  * Fix Javascript grammar
+  * Fix Typescript grammar
+
 ### Enhancements
   * Add icon
 
