@@ -13,8 +13,7 @@ crate-type = ["cdylib"]
 rustler = "0.29"
 serde = "1.0"
 tree-sitter-highlight = "0.20"
-# inkjet = { version = "0.10", default-features = false, features = [
-inkjet = { git = "https://github.com/leandrocp/inkjet.git", branch = "lp/update-langs" , default-features = false, features = [
+inkjet = { version = "0.10.1", default-features = false, features = [
   "html",
   "language-bash",
   "language-c",
