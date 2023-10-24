@@ -1,7 +1,7 @@
 
 # Changelog
 
-## 0.1.3-dev
+## 0.1.3 (2023-10-24)
 
 ### Enhancements
   * Add translate="no" attr in <code> tag
