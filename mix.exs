@@ -42,8 +42,11 @@ defmodule Autumn.MixProject do
         lib
         native/inkjet_nif/src
         native/inkjet_nif/Cargo.*
-        native/inkjet_nif/Cross.toml
-        native/inkjet_nif/.cargo
+        native/autumn/src
+        native/autumn/Cargo.*
+        Cargo.*
+        Cross.toml
+        .cargo
         checksum-Elixir.Autumn.Native.exs
         mix.exs
         README.md
