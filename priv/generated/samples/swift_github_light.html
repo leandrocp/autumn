@@ -29,9 +29,7 @@
 </head>
 <body>
   
-  <pre class="autumn highlight" style="background-color: #ffffff; color: #57606a;">
-<code class="language-swift" translate="no">
-<span class="comment" style="color: #57606a;">&#x2f;&#x2f; RUN: %target-typecheck-verify-swift  -disable-availability-checking</span>
+  <pre class="autumn highlight" style="background-color: #ffffff; color: #57606a;"><code class="language-swift" translate="no"><span class="comment" style="color: #57606a;">&#x2f;&#x2f; RUN: %target-typecheck-verify-swift  -disable-availability-checking</span>
 
 <span class="comment" style="color: #57606a;">&#x2f;&#x2f; REQUIRES: concurrency</span>
 
@@ -113,7 +111,6 @@
 <span class="punctuation" style="color: #24292f;">}</span>
 
 <span class="keyword" style="color: #cf222e;">async</span> <span class="keyword" style="color: #cf222e;">func</span> <span class="function" style="color: #8250df;">asyncIncorrectly</span><span class="punctuation" style="color: #24292f;">(</span><span class="punctuation" style="color: #24292f;">)</span> <span class="punctuation" style="color: #24292f;">{</span> <span class="punctuation" style="color: #24292f;">}</span> <span class="comment" style="color: #57606a;">&#x2f;&#x2f; expected-error{{&#x27;async&#x27; must be written after the parameter list of a function}}{{1-7=}}{{30-30= async}}</span>
-
 </code></pre>
 </body>
 </html>
