@@ -1,7 +1,9 @@
 
 # Changelog
 
-## 0.1.4
+## 0.1.5-dev
+
+## 0.1.4 (2023-10-25)
 
 ### Fixes
   * Remove newlines to avoid breaking formatting

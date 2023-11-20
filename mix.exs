@@ -2,7 +2,7 @@ defmodule Autumn.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/leandrocp/autumn"
-  @version "0.1.4"
+  @version "0.1.5-dev"
   @dev? String.ends_with?(@version, "-dev")
   @force_build? System.get_env("AUTUMN_BUILD") in ["1", "true"]
 
