@@ -1,7 +1,10 @@
 
 # Changelog
 
-## 0.1.5-dev
+## 0.1.5 (2023-11-20)
+
+### Enhancements
+  * Add themes base16-tomorrow and base16-tomorrow-night - @paradox460
 
 ## 0.1.4 (2023-10-25)
 
