@@ -14,7 +14,7 @@
 ## 0.1.3 (2023-10-24)
 
 ### Enhancements
-  * Add translate="no" attr in <code> tag
+  * Add translate="no" attr in `<code>` tag
 
 ### Fixes
   * Fix Javascript grammar
