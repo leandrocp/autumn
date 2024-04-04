@@ -10,7 +10,11 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Autumn Sample - <%= @lang %> - <%= @theme %></title>
+    <%= if @index do %>
+      <title>Autumn Samples</title>
+    <% else %>
+      <title>Autumn Sample - <%= @lang %> - <%= @theme  %></title>
+    <% end %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
@@ -93,6 +97,10 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     {
       "html",
       ~c"https://raw.githubusercontent.com/h5bp/html5-boilerplate/main/src/index.html"
+    },
+    {
+      "lua",
+      ~c"https://raw.githubusercontent.com/folke/lazy.nvim/main/lua/lazy/init.lua"
     }
   ]
 
@@ -130,7 +138,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
 
     html =
       EEx.eval_string(@layout,
-        assigns: %{style: style, inner_content: code, lang: lang, theme: theme}
+        assigns: %{style: style, inner_content: code, index: nil, lang: lang, theme: theme}
       )
 
     dest_path =
@@ -161,7 +169,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
 
     html =
       EEx.eval_string(@layout,
-        assigns: %{inner_content: inner_content, index: true}
+        assigns: %{style: "", inner_content: inner_content, index: true, lang: nil, theme: nil}
       )
 
     dest_path =
