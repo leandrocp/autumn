@@ -221,7 +221,7 @@ defmodule Autumn.ThemesGenerator do
       "bold", acc ->
         ["font-weight: bold;" | acc]
 
-      # TODO:support all modifiers
+      # TODO: support all modifiers
       _modifier, acc ->
         acc
     end)
