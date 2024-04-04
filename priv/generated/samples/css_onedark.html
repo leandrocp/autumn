@@ -43,9 +43,9 @@
 2. Allow adding a border to an element by just adding a border-width. (https:&#x2f;&#x2f;github.com&#x2f;tailwindcss&#x2f;tailwindcss&#x2f;pull&#x2f;116)
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;"><span class="operator" style="color: #C678DD;">*</span></span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">before</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">after</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;"><span class="operator" style="color: #C678DD;">*</span></span><span class="" style="color: #ABB2BF;">,</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">before</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">after</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">box-sizing</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">border-box</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">border-width</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
@@ -56,8 +56,8 @@
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 2 *&#x2f;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">before</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">after</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">before</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">after</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="" style="color: #ABB2BF;">--tw-content</span><span class="" style="color: #ABB2BF;">:</span> <span class="string" style="color: #98C379;">&#x27;&#x27;</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -69,7 +69,7 @@
 5. Use the user&#x27;s configured `sans` font-feature-settings by default.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">html</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">html</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">line-height</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">1.5</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">-webkit-text-size-adjust</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">100%</span><span class="" style="color: #ABB2BF;">;</span>
@@ -90,7 +90,7 @@
 2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">body</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">body</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">margin</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">line-height</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">inherit</span><span class="" style="color: #ABB2BF;">;</span>
@@ -103,7 +103,7 @@
 3. Ensure horizontal rules are visible by default.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">hr</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">hr</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">height</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">color</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">inherit</span><span class="" style="color: #ABB2BF;">;</span>
@@ -116,7 +116,7 @@
 Add the correct text decoration in Chrome, Edge, and Safari.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">abbr</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">where</span><span class="" style="color: #ABB2BF;">(</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">title</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">)</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">abbr</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">where</span><span class="" style="color: #ABB2BF;">(</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">title</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">)</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">-webkit-text-decoration</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">underline</span> <span class="constant" style="color: #56B6C2;">dotted</span><span class="" style="color: #ABB2BF;">;</span>
           <span class="variable other member" style="color: #E06C75;">text-decoration</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">underline</span> <span class="constant" style="color: #56B6C2;">dotted</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
@@ -125,12 +125,12 @@ Add the correct text decoration in Chrome, Edge, and Safari.
 Remove the default font size and weight for headings.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">h1</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h2</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h3</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h4</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h5</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h6</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">h1</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h2</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h3</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h4</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h5</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h6</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">font-size</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">inherit</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">font-weight</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">inherit</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
@@ -139,7 +139,7 @@ Remove the default font size and weight for headings.
 Reset links to optimize for opt-in styling instead of opt-out.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">a</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">a</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">color</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">inherit</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">text-decoration</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">inherit</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
@@ -148,8 +148,8 @@ Reset links to optimize for opt-in styling instead of opt-out.
 Add the correct font weight in Edge and Safari.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">b</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">strong</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">b</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">strong</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">font-weight</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">bolder</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -158,10 +158,10 @@ Add the correct font weight in Edge and Safari.
 2. Correct the odd `em` font sizing in all browsers.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">code</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">kbd</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">samp</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">pre</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">code</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">kbd</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">samp</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">pre</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">font-family</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">ui-monospace</span><span class="" style="color: #ABB2BF;">,</span> <span class="constant" style="color: #56B6C2;">SFMono-Regular</span><span class="" style="color: #ABB2BF;">,</span> <span class="constant" style="color: #56B6C2;">Menlo</span><span class="" style="color: #ABB2BF;">,</span> <span class="constant" style="color: #56B6C2;">Monaco</span><span class="" style="color: #ABB2BF;">,</span> <span class="constant" style="color: #56B6C2;">Consolas</span><span class="" style="color: #ABB2BF;">,</span> <span class="string" style="color: #98C379;">&quot;Liberation Mono&quot;</span><span class="" style="color: #ABB2BF;">,</span> <span class="string" style="color: #98C379;">&quot;Courier New&quot;</span><span class="" style="color: #ABB2BF;">,</span> <span class="constant" style="color: #56B6C2;">monospace</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">font-size</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">1em</span><span class="" style="color: #ABB2BF;">;</span>
@@ -172,7 +172,7 @@ Add the correct font weight in Edge and Safari.
 Add the correct font size in all browsers.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">small</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">small</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">font-size</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">80%</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -180,19 +180,19 @@ Add the correct font size in all browsers.
 Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">sub</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">sup</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">sub</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">sup</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">font-size</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">75%</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">line-height</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">position</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">relative</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">vertical-align</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">baseline</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">sub</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">sub</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">bottom</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">-0.25em</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">sup</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">sup</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">top</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">-0.5em</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -202,7 +202,7 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 3. Remove gaps between table borders by default.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">table</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">table</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">text-indent</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">border-color</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">inherit</span><span class="" style="color: #ABB2BF;">;</span>
@@ -217,11 +217,11 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 3. Remove default padding in all browsers.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">button</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">input</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">optgroup</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">select</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">textarea</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">button</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">input</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">optgroup</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">select</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">textarea</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">font-family</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">inherit</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">font-size</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">100%</span><span class="" style="color: #ABB2BF;">;</span>
@@ -242,8 +242,8 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 Remove the inheritance of text transform in Edge and Firefox.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">button</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">select</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">button</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">select</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">text-transform</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">none</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -252,7 +252,7 @@ Remove the inheritance of text transform in Edge and Firefox.
 2. Remove default button styles.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">button</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">button</span><span class="" style="color: #ABB2BF;">,</span>
 <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;button&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span>
 <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;reset&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span>
 <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;submit&#x27;</span><span class="" style="color: #ABB2BF;">]</span> <span class="" style="color: #ABB2BF;">{</span>
@@ -284,7 +284,7 @@ Remove the additional `:invalid` styles in Firefox. (https:&#x2f;&#x2f;github.co
 Add the correct vertical alignment in Chrome and Firefox.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">progress</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">progress</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">vertical-align</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">baseline</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -292,8 +292,8 @@ Add the correct vertical alignment in Chrome and Firefox.
 Correct the cursor style of increment and decrement buttons in Safari.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-inner-spin-button</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-outer-spin-button</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-inner-spin-button</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-outer-spin-button</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">height</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">auto</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -313,7 +313,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 Remove the inner padding in Chrome and Safari on macOS.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-search-decoration</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-search-decoration</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">-webkit-appearance</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">none</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -322,7 +322,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 2. Change font properties to `inherit` in Safari.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-file-upload-button</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-file-upload-button</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">-webkit-appearance</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">button</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">font</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">inherit</span><span class="" style="color: #ABB2BF;">;</span>
@@ -333,7 +333,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 Add the correct display in Chrome and Safari.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">summary</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">summary</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">display</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">list-item</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -341,34 +341,34 @@ Add the correct display in Chrome and Safari.
 Removes the default spacing and border for appropriate elements.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">blockquote</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">dl</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">dd</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h1</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h2</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h3</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h4</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h5</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">h6</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">hr</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">figure</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">p</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">pre</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">blockquote</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">dl</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">dd</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h1</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h2</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h3</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h4</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h5</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">h6</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">hr</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">figure</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">p</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">pre</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">margin</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">fieldset</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">fieldset</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">margin</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">padding</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">legend</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">legend</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">padding</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">ol</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">ul</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">menu</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">ol</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">ul</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">menu</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">list-style</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">none</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">margin</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">padding</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
@@ -378,7 +378,7 @@ Removes the default spacing and border for appropriate elements.
 Prevent resizing textareas horizontally by default.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">textarea</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">textarea</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">resize</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">vertical</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
@@ -387,15 +387,15 @@ Prevent resizing textareas horizontally by default.
 2. Set the default placeholder color to the user&#x27;s configured gray 400 color.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">input</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-moz-placeholder</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">textarea</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-moz-placeholder</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">input</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-moz-placeholder</span><span class="" style="color: #ABB2BF;">,</span> <span class="tag" style="color: #E06C75;">textarea</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-moz-placeholder</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">opacity</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">1</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">color</span><span class="" style="color: #ABB2BF;">:</span> <span class="" style="color: #ABB2BF;"><span class="string" style="color: #98C379;">#9ca3af</span></span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 2 *&#x2f;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">input</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">placeholder</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">textarea</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">placeholder</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">input</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">placeholder</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">textarea</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">placeholder</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">opacity</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">1</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">color</span><span class="" style="color: #ABB2BF;">:</span> <span class="" style="color: #ABB2BF;"><span class="string" style="color: #98C379;">#9ca3af</span></span><span class="" style="color: #ABB2BF;">;</span>
@@ -406,7 +406,7 @@ Prevent resizing textareas horizontally by default.
 Set the default cursor for buttons.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">button</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">button</span><span class="" style="color: #ABB2BF;">,</span>
 <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">role</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&quot;button&quot;</span><span class="" style="color: #ABB2BF;">]</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">cursor</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">pointer</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
@@ -425,14 +425,14 @@ Make sure disabled buttons don&#x27;t get the pointer cursor.
    This can trigger a poorly considered lint error in some tools but is included by design.
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">img</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">svg</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">video</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">canvas</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">audio</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">iframe</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">embed</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">object</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">img</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">svg</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">video</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">canvas</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">audio</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">iframe</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">embed</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">object</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">display</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">block</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;* 1 *&#x2f;</span>
   <span class="variable other member" style="color: #E06C75;">vertical-align</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">middle</span><span class="" style="color: #ABB2BF;">;</span>
@@ -443,8 +443,8 @@ Make sure disabled buttons don&#x27;t get the pointer cursor.
 Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https:&#x2f;&#x2f;github.com&#x2f;mozdevs&#x2f;cssremedy&#x2f;issues&#x2f;14)
 *&#x2f;</span>
 
-<span class="" style="color: #ABB2BF;">img</span><span class="" style="color: #ABB2BF;">,</span>
-<span class="" style="color: #ABB2BF;">video</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">img</span><span class="" style="color: #ABB2BF;">,</span>
+<span class="tag" style="color: #E06C75;">video</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">max-width</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">100%</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">height</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">auto</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
@@ -455,7 +455,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   <span class="variable other member" style="color: #E06C75;">display</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">none</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;text&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;email&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;url&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;password&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;number&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;date&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;datetime-local&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;month&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;search&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;tel&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;time&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;week&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">multiple</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">textarea</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">select</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;text&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;email&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;url&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;password&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;number&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;date&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;datetime-local&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;month&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;search&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;tel&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;time&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;week&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">multiple</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">,</span><span class="tag" style="color: #E06C75;">textarea</span><span class="" style="color: #ABB2BF;">,</span><span class="tag" style="color: #E06C75;">select</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">-webkit-appearance</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">none</span><span class="" style="color: #ABB2BF;">;</span>
      <span class="variable other member" style="color: #E06C75;">-moz-appearance</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">none</span><span class="" style="color: #ABB2BF;">;</span>
           <span class="variable other member" style="color: #E06C75;">appearance</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">none</span><span class="" style="color: #ABB2BF;">;</span>
@@ -472,7 +472,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   <span class="" style="color: #ABB2BF;">--tw-shadow</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span> <span class="constant numeric" style="color: #D19A66;">0</span> <span class="" style="color: #ABB2BF;"><span class="string" style="color: #98C379;">#0000</span></span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;text&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;email&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;url&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;password&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;number&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;date&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;datetime-local&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;month&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;search&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;tel&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;time&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;week&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">multiple</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">textarea</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">select</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;text&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;email&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;url&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;password&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;number&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;date&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;datetime-local&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;month&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;search&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;tel&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;time&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">type</span><span class="operator" style="color: #C678DD;">=</span><span class="string" style="color: #98C379;">&#x27;week&#x27;</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">[</span><span class="attribute" style="color: #E5C07B;">multiple</span><span class="" style="color: #ABB2BF;">]</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="tag" style="color: #E06C75;">textarea</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span><span class="" style="color: #ABB2BF;">,</span> <span class="tag" style="color: #E06C75;">select</span><span class="" style="color: #ABB2BF;">:</span><span class="label" style="color: #C678DD;">focus</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">outline</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">2px</span> <span class="constant" style="color: #56B6C2;">solid</span> <span class="constant" style="color: #56B6C2;">transparent</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">outline-offset</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">2px</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="" style="color: #ABB2BF;">--tw-ring-inset</span><span class="" style="color: #ABB2BF;">:</span> <span class="function" style="color: #61AFEF;">var</span><span class="" style="color: #ABB2BF;">(</span><span class="" style="color: #ABB2BF;">--tw-empty</span><span class="" style="color: #ABB2BF;">,</span><span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;*!*&#x2f;</span> <span class="comment" style="font-style: italic; color: #5C6370;">&#x2f;*!*&#x2f;</span><span class="" style="color: #ABB2BF;">)</span><span class="" style="color: #ABB2BF;">;</span>
@@ -485,30 +485,30 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   <span class="variable other member" style="color: #E06C75;">border-color</span><span class="" style="color: #ABB2BF;">:</span> <span class="" style="color: #ABB2BF;"><span class="string" style="color: #98C379;">#2563eb</span></span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">input</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-moz-placeholder</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">textarea</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-moz-placeholder</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">input</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-moz-placeholder</span><span class="" style="color: #ABB2BF;">,</span> <span class="tag" style="color: #E06C75;">textarea</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-moz-placeholder</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">color</span><span class="" style="color: #ABB2BF;">:</span> <span class="" style="color: #ABB2BF;"><span class="string" style="color: #98C379;">#6b7280</span></span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">opacity</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">1</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">input</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">placeholder</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">textarea</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">placeholder</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">input</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">placeholder</span><span class="" style="color: #ABB2BF;">,</span><span class="tag" style="color: #E06C75;">textarea</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">placeholder</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">color</span><span class="" style="color: #ABB2BF;">:</span> <span class="" style="color: #ABB2BF;"><span class="string" style="color: #98C379;">#6b7280</span></span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">opacity</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">1</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit-fields-wrapper</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit-fields-wrapper</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">padding</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-date-and-time-value</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-date-and-time-value</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">min-height</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">1.5em</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit-year-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit-month-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit-day-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit-hour-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit-minute-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit-second-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit-millisecond-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">-webkit-datetime-edit-meridiem-field</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit-year-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit-month-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit-day-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit-hour-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit-minute-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit-second-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit-millisecond-field</span><span class="" style="color: #ABB2BF;">,</span><span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">-webkit-datetime-edit-meridiem-field</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">padding-top</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">padding-bottom</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">select</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;">select</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="variable other member" style="color: #E06C75;">background-image</span><span class="" style="color: #ABB2BF;">:</span> <span class="function" style="color: #61AFEF;">url</span><span class="" style="color: #ABB2BF;">(</span><span class="string" style="color: #98C379;">&quot;data:image&#x2f;svg+xml,%3csvg xmlns=&#x27;http:&#x2f;&#x2f;www.w3.org&#x2f;2000&#x2f;svg&#x27; fill=&#x27;none&#x27; viewBox=&#x27;0 0 20 20&#x27;%3e%3cpath stroke=&#x27;%236b7280&#x27; stroke-linecap=&#x27;round&#x27; stroke-linejoin=&#x27;round&#x27; stroke-width=&#x27;1.5&#x27; d=&#x27;M6 8l4 4 4-4&#x27;&#x2f;%3e%3c&#x2f;svg%3e&quot;</span><span class="" style="color: #ABB2BF;">)</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">background-position</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">right</span> <span class="constant numeric" style="color: #D19A66;">0.5rem</span> <span class="constant" style="color: #56B6C2;">center</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="variable other member" style="color: #E06C75;">background-repeat</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant" style="color: #56B6C2;">no-repeat</span><span class="" style="color: #ABB2BF;">;</span>
@@ -621,7 +621,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   <span class="variable other member" style="color: #E06C75;">outline</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">1px</span> <span class="constant" style="color: #56B6C2;">auto</span> <span class="constant" style="color: #56B6C2;">-webkit-focus-ring-color</span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;"><span class="operator" style="color: #C678DD;">*</span></span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">before</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">after</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="tag" style="color: #E06C75;"><span class="operator" style="color: #C678DD;">*</span></span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">before</span><span class="" style="color: #ABB2BF;">,</span> <span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">after</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="" style="color: #ABB2BF;">--tw-border-spacing-x</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="" style="color: #ABB2BF;">--tw-border-spacing-y</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="" style="color: #ABB2BF;">--tw-translate-x</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
@@ -641,7 +641,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   <span class="" style="color: #ABB2BF;">--tw-shadow-colored</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span> <span class="constant numeric" style="color: #D19A66;">0</span> <span class="" style="color: #ABB2BF;"><span class="string" style="color: #98C379;">#0000</span></span><span class="" style="color: #ABB2BF;">;</span>
 <span class="" style="color: #ABB2BF;">}</span>
 
-<span class="" style="color: #ABB2BF;">::</span><span class="" style="color: #ABB2BF;">backdrop</span> <span class="" style="color: #ABB2BF;">{</span>
+<span class="" style="color: #ABB2BF;">::</span><span class="tag" style="color: #E06C75;">backdrop</span> <span class="" style="color: #ABB2BF;">{</span>
   <span class="" style="color: #ABB2BF;">--tw-border-spacing-x</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="" style="color: #ABB2BF;">--tw-border-spacing-y</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
   <span class="" style="color: #ABB2BF;">--tw-translate-x</span><span class="" style="color: #ABB2BF;">:</span> <span class="constant numeric" style="color: #D19A66;">0</span><span class="" style="color: #ABB2BF;">;</span>
