@@ -4,7 +4,7 @@
 // Generated automatically by mix task `Mix.Tasks.Autumn.GenerateThemes`.
 // Execute `mix autumn.generate_themes` at the root to update this file.
 //
-// Generated at 2023-11-12 05:31:51.898767Z
+// Generated at 2024-04-04 23:12:48.424509Z
 
 #![allow(dead_code)]
 #![allow(unused_variables)]
@@ -13,7 +13,7 @@ use phf::phf_map;
 
 #[derive(Debug)]
 pub struct Theme {
-    pub scopes: phf::Map<&'static str, (&'static str, &'static str)>,
+    pub scopes: phf::Map<&'static str, (&'static str, &'static str)>
 }
 
 impl Theme {
@@ -4936,7 +4936,7 @@ pub fn theme(name: &str) -> Option<&Theme> {
 #[cfg(test)]
 mod tests {
     use super::*;
-
+    
     #[test]
     fn load_github_dark_high_contrast() {
         let _theme = theme("github_dark_high_contrast");
