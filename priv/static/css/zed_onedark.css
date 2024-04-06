@@ -1,0 +1,44 @@
+/* zed_onedark */
+pre.autumn-hl { background-color: #282c33ff; color: #c8ccd4ff; }
+.ahl-info { font-weight: bold; color: #73ade9ff; }
+.ahl-label { color: #c8ccd4ff; }
+.ahl-markup.ahl-bold { font-weight: bold; color: #dfc184ff; }
+.ahl-namespace { color: #c8ccd4ff; }
+.ahl-markup.ahl-raw.ahl-inline { color: #a1c181ff; }
+.ahl-markup.ahl-heading { color: #d07277ff; }
+.ahl-constant.ahl-builtin { color: #dfc184ff; }
+.ahl-attribute { color: #dfc184ff; }
+.ahl-type { color: #6eb4bfff; }
+.ahl-function.ahl-method { color: #73ade9ff; }
+.ahl-diagnostic.ahl-warning { color: #dfc184ff; }
+.ahl-hint { font-weight: bold; color: #a1c181ff; }
+.ahl-constant { color: #dfc184ff; }
+.ahl-constant.ahl-builtin.ahl-boolean { color: #dfc184ff; }
+.ahl-warning { font-weight: bold; color: #dfc184ff; }
+.ahl-constructor { color: #73ade9ff; }
+.ahl-diagnostic.ahl-error { color: #d07277ff; }
+.ahl-diff.ahl-minus { color: #d07277ff; }
+.ahl-comment { font-style: italic; color: #5d636fff; }
+.ahl-markup.ahl-link.ahl-text { color: #b477cfff; }
+.ahl-markup.ahl-italic { font-style: italic; color: #b477cfff; }
+.ahl-function.ahl-macro { color: #73ade9ff; }
+.ahl-special { color: #c8ccd4ff; }
+.ahl-diff.ahl-plus { color: #a1c181ff; }
+.ahl-operator { color: #c8ccd4ff; }
+.ahl-diagnostic.ahl-info { color: #73ade9ff; }
+.ahl-constant.ahl-character.ahl-escape { color: #dfc184ff; }
+.ahl-markup.ahl-link.ahl-url {  color: #6eb4bfff; }
+.ahl-variable.ahl-builtin { color: #bf956aff; }
+.ahl-puncuation { color: #c8ccd4ff; }
+.ahl-variable.ahl-parameter { color: #c8ccd4ff; }
+.ahl-string { color: #a1c181ff; }
+.ahl-diff.ahl-delta { color: #dfc184ff; }
+.ahl-keyword { color: #b477cfff; }
+.ahl-markup.ahl-quote { color: #dfc184ff; }
+.ahl-function.ahl-builtin { color: #73ade9ff; }
+.ahl-markup.ahl-list { color: #d07277ff; }
+.ahl-diagnostic.ahl-hint { color: #a1c181ff; }
+.ahl-variable.ahl-other.ahl-member { color: #d07277ff; }
+.ahl-function { color: #73ade9ff; }
+.ahl-constant.ahl-numeric { color: #bf956aff; }
+.ahl-error { font-weight: bold; color: #d07277ff; }

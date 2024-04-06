@@ -1,0 +1,49 @@
+/* dark_plus */
+pre.autumn-hl { background-color: #1e1e1e; color: #d4d4d4; }
+.ahl-info { color: #75beff; }
+.ahl-label { color: #569CD6; }
+.ahl-markup.ahl-bold { font-weight: bold; color: #569CD6; }
+.ahl-namespace { color: #4EC9B0; }
+.ahl-diagnostic { color: #d7ba7d; }
+.ahl-markup.ahl-heading { font-weight: bold; color: #569CD6; }
+.ahl-constant.ahl-builtin { color: #569CD6; }
+.ahl-attribute { color: #DCDCAA; }
+.ahl-type { color: #4EC9B0; }
+.ahl-hint { color: #eeeeee; }
+.ahl-constant { color: #4FC1FF; }
+.ahl-warning { color: #cca700; }
+.ahl-module { color: #4EC9B0; }
+.ahl-string.ahl-regexp { color: #d7ba7d; }
+.ahl-type.ahl-enum.ahl-variant { color: #4FC1FF; }
+.ahl-variable { color: #9CDCFE; }
+.ahl-constructor { color: #4EC9B0; }
+.ahl-type.ahl-builtin { color: #4EC9B0; }
+.ahl-diagnostic.ahl-error { color: #ff1212; }
+.ahl-diff.ahl-minus { color: #f14c4c; }
+.ahl-constant.ahl-character { color: #ce9178; }
+.ahl-markup.ahl-raw { color: #ce9178; }
+.ahl-tag { color: #569CD6; }
+.ahl-comment { color: #6A9955; }
+.ahl-markup.ahl-link.ahl-text { color: #ce9178; }
+.ahl-punctuation { color: #d4d4d4; }
+.ahl-markup.ahl-italic { font-style: italic; }
+.ahl-function.ahl-macro { color: #569CD6; }
+.ahl-special { color: #d4d4d4; }
+.ahl-diff.ahl-plus { color: #487e02; }
+.ahl-operator { color: #d4d4d4; }
+.ahl-keyword.ahl-directive { color: #569CD6; }
+.ahl-constant.ahl-character.ahl-escape { color: #d7ba7d; }
+.ahl-keyword.ahl-control { color: #C586C0; }
+.ahl-variable.ahl-builtin { color: #569CD6; }
+.ahl-punctuation.ahl-delimiter { color: #d4d4d4; }
+.ahl-variable.ahl-parameter { color: #9CDCFE; }
+.ahl-string { color: #ce9178; }
+.ahl-diff.ahl-delta { color: #1b81a8; }
+.ahl-keyword { color: #569CD6; }
+.ahl-markup.ahl-quote { color: #6A9955; }
+.ahl-function.ahl-builtin { color: #DCDCAA; }
+.ahl-markup.ahl-list { color: #6796E6; }
+.ahl-variable.ahl-other.ahl-member { color: #9CDCFE; }
+.ahl-function { color: #DCDCAA; }
+.ahl-constant.ahl-numeric { color: #b5cea8; }
+.ahl-error { color: #ff1212; }

@@ -16,8 +16,9 @@ fn highlight(
     source: &str,
     theme: &str,
     pre_class: Option<&str>,
+    inline_style: bool,
 ) -> Result<(Atom, String), Error> {
-    match do_highlight(lang, source, theme, pre_class) {
+    match do_highlight(lang, source, theme, pre_class, inline_style) {
         Ok(rendered) => Ok((ok(), rendered)),
         Err(err) => Err(Error::Term(Box::new(err))),
     }
@@ -28,6 +29,7 @@ fn do_highlight(
     source: &str,
     theme: &str,
     pre_class: Option<&str>,
+    inline_style: bool,
 ) -> Result<String, String> {
     let theme = match themes::theme(theme) {
         Some(theme) => theme,
@@ -37,7 +39,7 @@ fn do_highlight(
     let lang = resolve_lang(lang);
 
     let mut highlighter = Highlighter::new();
-    let inline_html = inline_html::InlineHTML::new(lang, theme, pre_class);
+    let inline_html = inline_html::InlineHTML::new(lang, theme, pre_class, inline_style);
 
     match highlighter.highlight_to_string(lang, &inline_html, source) {
         Ok(rendered) => Ok(rendered),
@@ -65,8 +67,9 @@ mod tests {
         export default class View {}
         "#;
 
-        let highlited = do_highlight("js", source, "dracula", None).expect("test_highlight failed");
+        let highlited =
+            do_highlight("js", source, "dracula", None, true).expect("test_highlight failed");
 
-        assert_eq!(highlited, "<pre><code class=\"autumn-highlight language-javascript\" style=\"background-color: #282A36; color: #f8f8f2;\" translate=\"no\">\n        <span class=\"keyword\" style=\"color: #ff79c6;\">import</span> <span class=\"variable\" style=\"color: #f8f8f2;\">Browser</span> <span class=\"keyword\" style=\"color: #ff79c6;\">from</span> <span class=\"string\" style=\"color: #f1fa8c;\">&quot;.&#x2f;browser&quot;</span>\n        <span class=\"keyword\" style=\"color: #ff79c6;\">export</span> <span class=\"keyword\" style=\"color: #ff79c6;\">default</span> <span class=\"keyword\" style=\"color: #ff79c6;\">class</span> <span class=\"variable\" style=\"color: #f8f8f2;\">View</span> <span class=\"punctuation-bracket\" style=\"color: #f8f8f2;\">{</span><span class=\"punctuation-bracket\" style=\"color: #f8f8f2;\">}</span>\n        </code></pre>".to_string())
+        assert_eq!(highlited, "<pre class=\"autumn-hl\" style=\"background-color: #282A36; color: #f8f8f2;\"><code class=\"language-javascript\" translate=\"no\">\n        <span class=\"ahl-keyword\" style=\"color: #ff79c6;\">import</span> <span class=\"ahl-variable\" style=\"color: #f8f8f2;\">Browser</span> <span class=\"ahl-keyword\" style=\"color: #ff79c6;\">from</span> <span class=\"ahl-string\" style=\"color: #f1fa8c;\">&quot;.&#x2f;browser&quot;</span>\n        <span class=\"ahl-keyword\" style=\"color: #ff79c6;\">export</span> <span class=\"ahl-keyword\" style=\"color: #ff79c6;\">default</span> <span class=\"ahl-keyword\" style=\"color: #ff79c6;\">class</span> <span class=\"ahl-variable\" style=\"color: #f8f8f2;\">View</span> <span class=\"ahl-punctuation ahl-bracket\" style=\"color: #f8f8f2;\">{</span><span class=\"ahl-punctuation ahl-bracket\" style=\"color: #f8f8f2;\">}</span>\n        </code></pre>")
     }
 }

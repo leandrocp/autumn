@@ -32,7 +32,8 @@ defmodule Autumn do
   for example pass `theme: "adwaita_dark"` to use the [Adwaita Dark](https://github.com/leandrocp/autumn/blob/main/priv/themes/adwaita-dark.toml) theme
   or `theme: "penumbra"` to use the [Penumbra+](https://github.com/leandrocp/autumn/blob/main/priv/themes/penumbra%2B.toml) theme.
   * `:pre_class` (default `nil`) - the CSS class to inject into the wrapping parent `<pre>` tag.
-  By default it renders a `<pre>` tag without classes, but you can pass arbitraty classes for customizations.
+  By default it renders a `<pre>` tag with the `autumn-hl` class which will be merged with the class passed into this option.
+  * `:inline_style` (default `true`) - see more info on the module doc.
   """
   @spec highlight(lang_filename_ext(), String.t(), keyword()) ::
           {:ok, String.t()} | {:error, term()}
@@ -40,7 +41,8 @@ defmodule Autumn do
     lang = language(lang_filename_ext)
     theme = Keyword.get(opts, :theme, "onedark")
     pre_class = Keyword.get(opts, :pre_class, nil)
-    Autumn.Native.highlight(lang, source_code, theme, pre_class)
+    inline_style = Keyword.get(opts, :inline_style, true)
+    Autumn.Native.highlight(lang, source_code, theme, pre_class, inline_style)
   end
 
   @doc """

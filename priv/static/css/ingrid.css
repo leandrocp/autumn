@@ -1,0 +1,47 @@
+/* ingrid */
+pre.autumn-hl { background-color: #FFFCFD; color: #7B91B3; }
+.ahl-info { color: #839A53; }
+.ahl-label { color: #D68482; }
+.ahl-markup.ahl-bold { font-weight: bold; color: yellow; }
+.ahl-namespace { color: #839A53; }
+.ahl-markup.ahl-heading { color: blue; }
+.ahl-constant.ahl-builtin { color: #D4A520; }
+.ahl-attribute { color: #839A53; }
+.ahl-type { font-weight: bold; color: #A6B6CE; }
+.ahl-diagnostic.ahl-warning { color: #D4A520; }
+.ahl-hint { color: #A6B6CE; }
+.ahl-constant { color: #D4A520; }
+.ahl-warning { color: #D4A520; }
+.ahl-module { color: #839A53; }
+.ahl-variable { color: #A6B6CE; }
+.ahl-constructor { font-weight: bold; color: #839A53; }
+.ahl-type.ahl-builtin { color: #839A53; }
+.ahl-diagnostic.ahl-error { color: #D74E50; }
+.ahl-diff.ahl-minus { color: #D74E50; }
+.ahl-markup.ahl-raw { color: green; }
+.ahl-comment { color: #A6B6CE; }
+.ahl-markup.ahl-link.ahl-text { color: red; }
+.ahl-punctuation { color: #C97270; }
+.ahl-markup.ahl-italic { font-style: italic; color: magenta; }
+.ahl-function.ahl-macro { font-weight: bold; color: #D4A520; }
+.ahl-special { color: #D68482; }
+.ahl-diff.ahl-plus { color: #839A53; }
+.ahl-operator { font-weight: bold; color: #D74E50; }
+.ahl-keyword.ahl-directive { color: #6F873E; }
+.ahl-diagnostic.ahl-info { color: #839A53; }
+.ahl-constant.ahl-character.ahl-escape { font-weight: bold; color: #D74E50; }
+.ahl-markup.ahl-link.ahl-url {  color: yellow; }
+.ahl-variable.ahl-builtin { color: #D4A520; }
+.ahl-punctuation.ahl-delimiter { color: #C97270; }
+.ahl-variable.ahl-parameter { color: #89BEB7; }
+.ahl-string { color: #D74E50; }
+.ahl-diff.ahl-delta { color: #D4A520; }
+.ahl-keyword { font-weight: bold; color: #D74E50; }
+.ahl-markup.ahl-quote { color: cyan; }
+.ahl-function.ahl-builtin { color: #89BEB7; }
+.ahl-markup.ahl-list { color: red; }
+.ahl-diagnostic.ahl-hint { color: #A6B6CE; }
+.ahl-variable.ahl-other.ahl-member { color: #89BEB7; }
+.ahl-function { font-weight: bold; color: #89BEB7; }
+.ahl-constant.ahl-numeric { color: #D74E50; }
+.ahl-error { color: #D74E50; }

@@ -1,0 +1,46 @@
+/* doom_acario_dark */
+pre.autumn-hl { background-color: #0D0E16; color: #C3DBE5; }
+.ahl-info { font-weight: bold; color: #3679D8; }
+.ahl-label { color: #79D836; }
+.ahl-markup.ahl-bold { font-weight: bold; color: #D85F00; }
+.ahl-comment.ahl-block.ahl-documentation { font-style: italic; color: #79D836; }
+.ahl-namespace { color: #ffffff; }
+.ahl-markup.ahl-raw.ahl-inline { color: #79D836; background-color: #585C6C; }
+.ahl-markup.ahl-heading { color: #D83441; }
+.ahl-attribute { color: #3679D8; }
+.ahl-type { color: #3679D8; }
+.ahl-function.ahl-method { color: #ffffff; }
+.ahl-diagnostic.ahl-warning { color: #D8B941; }
+.ahl-hint { font-weight: bold; color: #3679D8; }
+.ahl-constant { color: #8041D8; }
+.ahl-comment.ahl-block { font-style: italic; color: #79D836; }
+.ahl-markup.ahl-link { color: #D85F00; }
+.ahl-warning { color: #D85F00; }
+.ahl-variable { color: #36D8BD; }
+.ahl-constructor { color: #D83441; }
+.ahl-diagnostic.ahl-error { color: #D83441; }
+.ahl-diff.ahl-minus { color: #D83441; }
+.ahl-tag { color: #36D8BD; }
+.ahl-comment { font-style: italic; color: #767676; }
+.ahl-markup.ahl-link.ahl-text { color: #D85F00; }
+.ahl-markup.ahl-italic { font-style: italic; color: #8041D8; }
+.ahl-special { color: #D85F00; }
+.ahl-diff.ahl-plus { color: #79D836; }
+.ahl-operator { color: #3679D8; }
+.ahl-diagnostic.ahl-info { color: #3679D8; }
+.ahl-markup.ahl-link.ahl-url { color: #8041D8; }
+.ahl-punctuation.ahl-delimiter { font-weight: bold; color: #ffffff; }
+.ahl-variable.ahl-parameter { color: #ffffff; }
+.ahl-markup.ahl-raw.ahl-block { color: #79D836; background-color: #585C6C; }
+.ahl-string { color: #79D836; }
+.ahl-diff.ahl-delta { color: #3679D8; }
+.ahl-keyword { color: #D83441; }
+.ahl-punctuation.ahl-bracket { color: #3679D8; }
+.ahl-markup.ahl-quote { font-style: italic; color: #79D836; }
+.ahl-function.ahl-builtin { color: #3679D8; }
+.ahl-markup.ahl-link.ahl-label { color: #79D836; }
+.ahl-markup.ahl-list { color: #D83441; }
+.ahl-diagnostic.ahl-hint { color: #D83441; }
+.ahl-function { color: #D8B941; }
+.ahl-constant.ahl-numeric { color: #D85F00; }
+.ahl-error { font-weight: bold; color: #D83441; }

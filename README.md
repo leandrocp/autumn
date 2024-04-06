@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes.
+  Syntax highlighter for source code parsed with [Tree-Sitter](https://tree-sitter.github.io/tree-sitter/syntax-highlighting) and styled with [Helix Editor](https://helix-editor.com) themes.
 </p>
 
 <p align="center">
@@ -47,18 +47,50 @@ end
 ```elixir
 Autumn.highlight!("elixir", "Atom.to_string(:elixir)") |> IO.puts()
 #=> <pre style="background-color: #282C34; color: #ABB2BF;">
-#=> <code class="autumn-highlight language-elixir" translate="no">
-#=> <span class="namespace" style="color: #61AFEF;">Atom</span><span class="operator" style="color: #C678DD;">.</span><span class="function" style="color: #61AFEF;">to_string</span><span class="text" style="color: #ABB2BF;">(</span><span class="string" style="color: #98C379;">:elixir</span><span class="text" style="color: #ABB2BF;">)</span>
+#=> <code class="autumn-hl language-elixir" translate="no">
+#=> <span class="ahl-namespace" style="color: #61AFEF;">Atom</span><span class="ahl-operator" style="color: #C678DD;">.</span><span class="ahl-function" style="color: #61AFEF;">to_string</span><span class="ahl-foreground" style="color: #ABB2BF;">(</span><span class="ahl-string" style="color: #98C379;">:elixir</span><span class="ahl-foreground" style="color: #ABB2BF;">)</span>
 #=> </code>
 #=> </pre>
 
 Autumn.highlight!("rb", "Math.sqrt(9)", theme: "dracula") |> IO.puts()
 #=> <pre style="background-color: #282A36; color: #f8f8f2;">
-#=> <code class="autumn-highlight language-ruby" translate="no">
-#=> <span class="constructor" style="color: #BD93F9;">Math</span><span class="punctuation-delimiter" style="color: #f8f8f2;">.</span><span class="function-method" style="color: #50fa7b;">sqrt</span><span class="punctuation-bracket" style="color: #f8f8f2;">(</span><span class="constant-numeric" style="color: #BD93F9;">9</span><span class="punctuation-bracket" style="color: #f8f8f2;">)</span>
+#=> <code class="autumn-hl language-ruby" translate="no">
+#=> <span class="ahl-constructor" style="color: #BD93F9;">Math</span><span class="ahl-punctuation-delimiter" style="color: #f8f8f2;">.</span><span class="ahl-function-method" style="color: #50fa7b;">sqrt</span><span class="ahl-punctuation-bracket" style="color: #f8f8f2;">(</span><span class="ahl-constant-numeric" style="color: #BD93F9;">9</span><span class="ahl-punctuation-bracket" style="color: #f8f8f2;">)</span>
 #=> </code>
 #=> </pre>
 ```
+
+## Styles mode
+
+To apply styles to code blocks, you can choose either to embed inline styles or serve static CSS.
+
+By default it will generate tokens with an inline style like:
+
+```html
+<span class="ahl-namespace" style="color: #61AFEF;">Atom</span>
+```
+
+That's easy to get started but not efficient especially when you have multiple code blocks in the same page.
+
+But you can opt out generating embed styles and leave only classes with the `:inline_style` option:
+
+```elixir
+Autumn.highlight!("elixir", "Atom.to_string(:elixir)", inline_style: false) |> IO.puts()
+# rest ommited for brevity
+#=> <span class="ahl-namespace">
+```
+
+And serve any of of the [available CSS themes](https://github.com/leandrocp/autumn/tree/main/priv/static/css) in your app,
+if using Phoenix you can serve them from your app's Endpoint:
+
+```elixir
+plug Plug.Static,
+  at: "/themes",
+  from: {:autumn, "priv/static/css/"},
+  only: ["dracula.css"]
+```
+
+Or copy the file and serve as needed.
 
 ## Samples
 
