@@ -30,15 +30,22 @@ defmodule AutumnTest do
     end
   end
 
-  test "change theme" do
-    assert_output(
-      "elixir",
-      ":elixir",
-      ~s"""
-      <pre><code class="autumn-highlight language-elixir" style="background-color: #282A36; color: #f8f8f2;" translate="no"><span class="string-special" style="color: #ffb86c;">:elixir</span></code></pre>
-      """,
-      theme: "dracula"
-    )
+  describe "theming" do
+    test "invalid theme" do
+      assert Autumn.highlight("elixir", ":elixir", theme: "invalid") ==
+               {:error, "unknown theme: invalid"}
+    end
+
+    test "change theme" do
+      assert_output(
+        "elixir",
+        ":elixir",
+        ~s"""
+        <pre><code class="autumn-highlight language-elixir" style="background-color: #282A36; color: #f8f8f2;" translate="no"><span class="string-special" style="color: #ffb86c;">:elixir</span></code></pre>
+        """,
+        theme: "dracula"
+      )
+    end
   end
 
   test "inject pre class" do

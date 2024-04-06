@@ -17,9 +17,21 @@ fn highlight(
     theme: &str,
     pre_class: Option<&str>,
 ) -> Result<(Atom, String), Error> {
+    match do_highlight(lang, source, theme, pre_class) {
+        Ok(rendered) => Ok((ok(), rendered)),
+        Err(err) => Err(Error::Term(Box::new(err))),
+    }
+}
+
+fn do_highlight(
+    lang: &str,
+    source: &str,
+    theme: &str,
+    pre_class: Option<&str>,
+) -> Result<String, String> {
     let theme = match themes::theme(theme) {
         Some(theme) => theme,
-        None => return Err(Error::Term(Box::new("invalid theme"))),
+        None => return Err(format!("unknown theme: {}", theme)),
     };
 
     let lang = resolve_lang(lang);
@@ -28,8 +40,8 @@ fn highlight(
     let inline_html = inline_html::InlineHTML::new(lang, theme, pre_class);
 
     match highlighter.highlight_to_string(lang, &inline_html, source) {
-        Ok(rendered) => Ok((ok(), rendered)),
-        Err(_err) => Err(Error::Term(Box::new("failed to highlight source code"))),
+        Ok(rendered) => Ok(rendered),
+        Err(_err) => Err("failed to highlight source code".to_string()),
     }
 }
 
@@ -44,5 +56,12 @@ mod tests {
     #[test]
     fn test_fallback_to_plaintext() {
         assert_eq!(resolve_lang("foo"), Language::Plaintext)
+    }
+
+    #[test]
+    fn test_highlight() {
+        let highlited = do_highlight("js", "import { export } from mod", "dracula", None)
+            .expect("failed to highlight");
+        assert_eq!(highlited, "<pre><code class=\"autumn-highlight language-javascript\" style=\"background-color: #282A36; color: #f8f8f2;\" translate=\"no\"><span class=\"keyword\" style=\"color: #ff79c6;\">import</span> <span class=\"punctuation-bracket\" style=\"color: #f8f8f2;\">{</span> <span class=\"variable\" style=\"color: #f8f8f2;\">export</span> <span class=\"punctuation-bracket\" style=\"color: #f8f8f2;\">}</span> <span class=\"keyword\" style=\"color: #ff79c6;\">from</span> <span class=\"variable\" style=\"color: #f8f8f2;\">mod</span></code></pre>".to_string())
     }
 }
