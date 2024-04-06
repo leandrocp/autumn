@@ -112,7 +112,7 @@ mod tests {
 
         assert_eq!(
             output,
-            "<pre><code class=\"autumn-highlight language-rust\" style=\"background-color: #282C34; color: #ABB2BF;\" translate=\"no\"><span class=\"keyword control import\" style=\"color: #E06C75;\">mod</span> <span class=\"namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"\" style=\"color: #ABB2BF;\">;</span></code></pre>"
+            "<pre><code class=\"autumn-highlight language-rust\" style=\"background-color: #282C34; color: #ABB2BF;\" translate=\"no\"><span class=\"keyword-control-import\" style=\"color: #E06C75;\">mod</span> <span class=\"namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"text\" style=\"color: #ABB2BF;\">;</span></code></pre>"
         );
     }
 
@@ -123,7 +123,7 @@ mod tests {
 
         assert_eq!(
             output,
-            "<pre class=\"pre_class\"><code class=\"autumn-highlight language-rust\" style=\"background-color: #282C34; color: #ABB2BF;\" translate=\"no\"><span class=\"keyword control import\" style=\"color: #E06C75;\">mod</span> <span class=\"namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"\" style=\"color: #ABB2BF;\">;</span></code></pre>"
+            "<pre class=\"pre_class\"><code class=\"autumn-highlight language-rust\" style=\"background-color: #282C34; color: #ABB2BF;\" translate=\"no\"><span class=\"keyword-control-import\" style=\"color: #E06C75;\">mod</span> <span class=\"namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"text\" style=\"color: #ABB2BF;\">;</span></code></pre>"
         );
     }
 }

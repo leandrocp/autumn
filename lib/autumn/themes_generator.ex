@@ -124,7 +124,7 @@ defmodule Autumn.ThemesGenerator do
 
       {scope, attrs}, acc ->
         attrs = %{
-          "class" => String.replace(scope, ".", " "),
+          "class" => String.replace(scope, ".", "-"),
           "style" => style(palette, attrs)
         }
 
@@ -134,7 +134,7 @@ defmodule Autumn.ThemesGenerator do
 
   def scope_text(scopes, palette) do
     Map.put(scopes, "text", %{
-      "class" => "",
+      "class" => "text",
       "style" => IO.iodata_to_binary([text_style(scopes, palette)])
     })
   end
@@ -147,7 +147,7 @@ defmodule Autumn.ThemesGenerator do
 
   def scope_background(scopes, palette) do
     Map.put(scopes, "background", %{
-      "class" => "",
+      "class" => "text",
       "style" => IO.iodata_to_binary([background_style(scopes, palette)])
     })
   end

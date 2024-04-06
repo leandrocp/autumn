@@ -35,7 +35,7 @@ defmodule AutumnTest do
       "elixir",
       ":elixir",
       ~s"""
-      <pre><code class="autumn-highlight language-elixir" style="background-color: #282A36; color: #f8f8f2;" translate="no"><span class="string special" style="color: #ffb86c;">:elixir</span></code></pre>
+      <pre><code class="autumn-highlight language-elixir" style="background-color: #282A36; color: #f8f8f2;" translate="no"><span class="string-special" style="color: #ffb86c;">:elixir</span></code></pre>
       """,
       theme: "dracula"
     )
