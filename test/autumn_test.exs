@@ -20,13 +20,13 @@ defmodule AutumnTest do
       """)
     end
 
-    test "fallback to plain text on invalid lang" do
+    test "fallback to plaintext on invalid lang" do
       expected = ~s"""
-      <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;"><code class="language-plain-text" translate="no">:elixir</code></pre>
+      <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;"><code class="language-plaintext" translate="no">code</code></pre>
       """
 
-      assert_output("invalid", ":elixir", expected)
-      assert_output(nil, ":elixir", expected)
+      assert_output("invalid", "code", expected)
+      assert_output(nil, "code", expected)
     end
   end
 

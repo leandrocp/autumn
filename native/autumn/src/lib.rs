@@ -25,7 +25,6 @@ pub fn highlight_source_code(
                 None => None,
             },
         )
-        // TODO: fallback to plain text
         .expect("expected to generate the syntax highlight events");
 
     output.push_str(
@@ -38,7 +37,6 @@ pub fn highlight_source_code(
     );
 
     for event in highlights {
-        // TODO: fallback to plain text
         let event = event.expect("expected a highlight event");
         let highlight = inner_highlights(source, event, theme);
         output.push_str(highlight.as_str())
@@ -99,7 +97,6 @@ pub fn inner_highlights(source: &str, event: HighlightEvent, theme: &Theme) -> S
         HighlightEvent::Source { start, end } => {
             let span = source
                 .get(start..end)
-                // TODO: fallback to plain text
                 .expect("source bounds should be in bounds!");
             let span = v_htmlescape::escape(span).to_string();
             output.push_str(span.as_str())

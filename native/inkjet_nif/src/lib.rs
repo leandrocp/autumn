@@ -8,6 +8,8 @@ rustler::atoms! {
     error,
 }
 
+rustler::init!("Elixir.Autumn.Native", [highlight]);
+
 #[rustler::nif]
 fn highlight(
     lang: &str,
@@ -21,10 +23,7 @@ fn highlight(
         None => return Err(Error::Term(Box::new("invalid theme"))),
     };
 
-    let (lang, code_class) = match Language::from_token(lang) {
-        Some(lang) => (lang, code_class),
-        None => (Language::Diff, Some("language-plain-text")),
-    };
+    let (lang, code_class) = lang_code(lang, code_class);
 
     let mut highlighter = Highlighter::new();
     let inline_html = inline_html::InlineHTML::new(lang, theme, pre_class, code_class);
@@ -35,4 +34,22 @@ fn highlight(
     }
 }
 
-rustler::init!("Elixir.Autumn.Native", [highlight]);
+fn lang_code<'a>(lang: &'a str, code_class: Option<&'a str>) -> (Language, Option<&'a str>) {
+    match Language::from_token(lang) {
+        Some(lang) => (lang, code_class),
+        None => (Language::Plaintext, Some("language-plaintext")),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_fallback_to_plaintext() {
+        assert_eq!(
+            lang_code("foo", Some("bar")),
+            (Language::Plaintext, Some("language-plaintext"))
+        )
+    }
+}
