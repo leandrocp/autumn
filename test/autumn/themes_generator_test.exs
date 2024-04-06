@@ -35,21 +35,21 @@ defmodule Autumn.ThemesGeneratorTest do
 
     assert %{
              "child" => %{
-               "text" => %{"class" => "", "style" => "color: #000000;"},
+               "text" => %{"class" => "text", "style" => "color: #000000;"},
                "background" => %{"class" => "", "style" => "background-color: #ffffff;"},
                "function" => %{"class" => "function", "style" => "color: blue_child;"},
                "function.macro" => %{
-                 "class" => "function macro",
+                 "class" => "function-macro",
                  "style" => "font-style: italic; color: green_parent;"
                },
                "namespace" => %{"class" => "namespace", "style" => "color: black_parent;"}
              },
              "parent" => %{
-               "text" => %{"class" => "", "style" => "color: #000000;"},
+               "text" => %{"class" => "text", "style" => "color: #000000;"},
                "background" => %{"class" => "", "style" => "background-color: #ffffff;"},
                "function" => %{"class" => "function", "style" => "color: blue_parent;"},
                "function.macro" => %{
-                 "class" => "function macro",
+                 "class" => "function-macro",
                  "style" => "font-style: italic; color: green_parent;"
                },
                "namespace" => %{"class" => "namespace", "style" => "color: black_parent;"}

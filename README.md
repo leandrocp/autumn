@@ -46,16 +46,18 @@ end
 
 ```elixir
 Autumn.highlight!("elixir", "Atom.to_string(:elixir)") |> IO.puts()
-#=> <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;">
-#=> <code class="language-elixir" translate="no">
-#=> <span class="namespace" style="color: #61AFEF;">Atom</span><span class="operator" style="color: #C678DD;">.</span><span class="function" style="color: #61AFEF;">to_string</span><span class="" style="color: #ABB2BF;">(</span><span class="string" style="color: #98C379;">:elixir</span><span class="" style="color: #ABB2BF;">)</span>
-#=> </code></pre>
+#=> <pre style="background-color: #282C34; color: #ABB2BF;">
+#=> <code class="autumn-highlight language-elixir" translate="no">
+#=> <span class="namespace" style="color: #61AFEF;">Atom</span><span class="operator" style="color: #C678DD;">.</span><span class="function" style="color: #61AFEF;">to_string</span><span class="text" style="color: #ABB2BF;">(</span><span class="string" style="color: #98C379;">:elixir</span><span class="text" style="color: #ABB2BF;">)</span>
+#=> </code>
+#=> </pre>
 
 Autumn.highlight!("rb", "Math.sqrt(9)", theme: "dracula") |> IO.puts()
-#=> <pre class="autumn highlight" style="background-color: #282A36; color: #f8f8f2;">
-#=> <code class="language-ruby" translate="no">
-#=> <span class="constructor" style="color: #BD93F9;">Math</span><span class="punctuation delimiter" style="color: #f8f8f2;">.</span><span class="function method" style="color: #50fa7b;">sqrt</span><span class="punctuation bracket" style="color: #f8f8f2;">(</span><span class="constant numeric" style="color: #BD93F9;">9</span><span class="punctuation bracket" style="color: #f8f8f2;">)</span>
-#=> </code></pre>
+#=> <pre style="background-color: #282A36; color: #f8f8f2;">
+#=> <code class="autumn-highlight language-ruby" translate="no">
+#=> <span class="constructor" style="color: #BD93F9;">Math</span><span class="punctuation-delimiter" style="color: #f8f8f2;">.</span><span class="function-method" style="color: #50fa7b;">sqrt</span><span class="punctuation-bracket" style="color: #f8f8f2;">(</span><span class="constant-numeric" style="color: #BD93F9;">9</span><span class="punctuation-bracket" style="color: #f8f8f2;">)</span>
+#=> </code>
+#=> </pre>
 ```
 
 ## Samples

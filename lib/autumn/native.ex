@@ -15,6 +15,5 @@ defmodule Autumn.Native do
     mode: mode,
     force_build: System.get_env("AUTUMN_BUILD") in ["1", "true"]
 
-  def highlight(_lang, _source, _theme, _pre_class, _code_class),
-    do: :erlang.nif_error(:nif_not_loaded)
+  def highlight(_lang, _source, _theme, _pre_class), do: :erlang.nif_error(:nif_not_loaded)
 end

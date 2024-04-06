@@ -10,34 +10,52 @@ defmodule AutumnTest do
   describe "highlight" do
     test "elixir with default opts" do
       assert_output("elixir", ":elixir", ~s"""
-      <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;"><code class="language-elixir" translate="no"><span class="string" style="color: #98C379;">:elixir</span></code></pre>
+      <pre><code class="autumn-highlight language-elixir" style="background-color: #282C34; color: #ABB2BF;" translate="no"><span class="string" style="color: #98C379;">:elixir</span></code></pre>
       """)
     end
 
     test "ruby with default opts" do
       assert_output("script.rb", ~s|puts "autumn season"|, ~s"""
-      <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;"><code class="language-ruby" translate="no"><span class="function" style="color: #61AFEF;">puts</span> <span class="string" style="color: #98C379;">&quot;autumn season&quot;</span></code></pre>
+      <pre><code class="autumn-highlight language-ruby" style="background-color: #282C34; color: #ABB2BF;" translate="no"><span class="function" style="color: #61AFEF;">puts</span> <span class="string" style="color: #98C379;">&quot;autumn season&quot;</span></code></pre>
       """)
     end
 
-    test "fallback to plain text on invalid lang" do
+    test "fallback to plaintext on invalid lang" do
       expected = ~s"""
-      <pre class="autumn highlight" style="background-color: #282C34; color: #ABB2BF;"><code class="language-plain-text" translate="no">:elixir</code></pre>
+      <pre><code class="autumn-highlight language-plaintext" style="background-color: #282C34; color: #ABB2BF;" translate="no">code</code></pre>
       """
 
-      assert_output("invalid", ":elixir", expected)
-      assert_output(nil, ":elixir", expected)
+      assert_output("invalid", "code", expected)
+      assert_output(nil, "code", expected)
     end
   end
 
-  test "change theme" do
+  describe "theming" do
+    test "invalid theme" do
+      assert Autumn.highlight("elixir", ":elixir", theme: "invalid") ==
+               {:error, "unknown theme: invalid"}
+    end
+
+    test "change theme" do
+      assert_output(
+        "elixir",
+        ":elixir",
+        ~s"""
+        <pre><code class="autumn-highlight language-elixir" style="background-color: #282A36; color: #f8f8f2;" translate="no"><span class="string-special" style="color: #ffb86c;">:elixir</span></code></pre>
+        """,
+        theme: "dracula"
+      )
+    end
+  end
+
+  test "inject pre class" do
     assert_output(
       "elixir",
       ":elixir",
       ~s"""
-      <pre class="autumn highlight" style="background-color: #282A36; color: #f8f8f2;"><code class="language-elixir" translate="no"><span class="string special" style="color: #ffb86c;">:elixir</span></code></pre>
+      <pre class="pre-class"><code class="autumn-highlight language-elixir" style="background-color: #282C34; color: #ABB2BF;" translate="no"><span class="string" style="color: #98C379;">:elixir</span></code></pre>
       """,
-      theme: "dracula"
+      pre_class: "pre-class"
     )
   end
 
