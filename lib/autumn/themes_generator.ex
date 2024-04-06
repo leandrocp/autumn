@@ -147,7 +147,7 @@ defmodule Autumn.ThemesGenerator do
 
   def scope_background(scopes, palette) do
     Map.put(scopes, "background", %{
-      "class" => "text",
+      "class" => "",
       "style" => IO.iodata_to_binary([background_style(scopes, palette)])
     })
   end

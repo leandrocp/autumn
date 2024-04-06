@@ -45,7 +45,7 @@ fn do_highlight(
     }
 }
 
-fn resolve_lang<'a>(lang: &'a str) -> Language {
+fn resolve_lang(lang: &str) -> Language {
     Language::from_token(lang).unwrap_or(Language::Plaintext)
 }
 
@@ -60,8 +60,13 @@ mod tests {
 
     #[test]
     fn test_highlight() {
-        let highlited = do_highlight("js", "import { export } from mod", "dracula", None)
-            .expect("failed to highlight");
-        assert_eq!(highlited, "<pre><code class=\"autumn-highlight language-javascript\" style=\"background-color: #282A36; color: #f8f8f2;\" translate=\"no\"><span class=\"keyword\" style=\"color: #ff79c6;\">import</span> <span class=\"punctuation-bracket\" style=\"color: #f8f8f2;\">{</span> <span class=\"variable\" style=\"color: #f8f8f2;\">export</span> <span class=\"punctuation-bracket\" style=\"color: #f8f8f2;\">}</span> <span class=\"keyword\" style=\"color: #ff79c6;\">from</span> <span class=\"variable\" style=\"color: #f8f8f2;\">mod</span></code></pre>".to_string())
+        let source = r#"
+        import Browser from "./browser"
+        export default class View {}
+        "#;
+
+        let highlited = do_highlight("js", source, "dracula", None).expect("test_highlight failed");
+
+        assert_eq!(highlited, "<pre><code class=\"autumn-highlight language-javascript\" style=\"background-color: #282A36; color: #f8f8f2;\" translate=\"no\">\n        <span class=\"keyword\" style=\"color: #ff79c6;\">import</span> <span class=\"variable\" style=\"color: #f8f8f2;\">Browser</span> <span class=\"keyword\" style=\"color: #ff79c6;\">from</span> <span class=\"string\" style=\"color: #f1fa8c;\">&quot;.&#x2f;browser&quot;</span>\n        <span class=\"keyword\" style=\"color: #ff79c6;\">export</span> <span class=\"keyword\" style=\"color: #ff79c6;\">default</span> <span class=\"keyword\" style=\"color: #ff79c6;\">class</span> <span class=\"variable\" style=\"color: #f8f8f2;\">View</span> <span class=\"punctuation-bracket\" style=\"color: #f8f8f2;\">{</span><span class=\"punctuation-bracket\" style=\"color: #f8f8f2;\">}</span>\n        </code></pre>".to_string())
     }
 }

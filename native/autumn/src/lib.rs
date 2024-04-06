@@ -50,7 +50,7 @@ pub fn close_tags() -> String {
 pub fn open_pre_tag(class: Option<&str>) -> String {
     match class {
         Some(class) => format!("<pre class=\"{}\">", class),
-        None => format!("<pre>"),
+        None => "<pre>".to_string(),
     }
 }
 
@@ -92,6 +92,7 @@ pub fn inner_highlights(source: &str, event: HighlightEvent, theme: &Theme) -> S
         HighlightEvent::HighlightStart(idx) => {
             let scope = inkjet::constants::HIGHLIGHT_NAMES[idx.0];
             let (class, style) = theme.get_scope(scope);
+
             let element = format!("<span class=\"{}\" style=\"{}\">", class, style);
             output.push_str(element.as_str())
         }
