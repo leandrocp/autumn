@@ -36,7 +36,7 @@ defmodule Autumn.ThemesGeneratorTest do
     assert %{
              "child" => %{
                "text" => %{"class" => "text", "style" => "color: #000000;"},
-               "background" => %{"class" => "text", "style" => "background-color: #ffffff;"},
+               "background" => %{"class" => "", "style" => "background-color: #ffffff;"},
                "function" => %{"class" => "function", "style" => "color: blue_child;"},
                "function.macro" => %{
                  "class" => "function-macro",
@@ -46,7 +46,7 @@ defmodule Autumn.ThemesGeneratorTest do
              },
              "parent" => %{
                "text" => %{"class" => "text", "style" => "color: #000000;"},
-               "background" => %{"class" => "text", "style" => "background-color: #ffffff;"},
+               "background" => %{"class" => "", "style" => "background-color: #ffffff;"},
                "function" => %{"class" => "function", "style" => "color: blue_parent;"},
                "function.macro" => %{
                  "class" => "function-macro",
