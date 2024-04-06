@@ -27,22 +27,20 @@ defmodule Autumn do
 
   ## Options
 
-  * `:theme` (default `"onedark"`) - accepts any theme listed [here](https://github.com/leandrocp/autumn/tree/main/priv/themes),
-  you should pass the filename without special chars and without extension.
-  For example you should pass `theme: "adwaita_dark"` to use the [Adwaita Dark](https://github.com/leandrocp/autumn/blob/main/priv/themes/adwaita-dark.toml) theme
-  or pass `theme: "penumbra"` to use the [Penumbra+](https://github.com/leandrocp/autumn/blob/main/priv/themes/penumbra%2B.toml) theme, and so on.
-  * `:pre_class` (default: `"autumn highlight"`) - the CSS class to inject into the `<pre>` tag.
-  * `:code_class` (deafult: `nil`) - the CSS class to inject into the `<code>` tag, it's dynamically generated as `"language-{name}` when the value is `nil`.
-
+  * `:theme` (default `"onedark"`) - accepts any theme listed [here](https://github.com/leandrocp/autumn/tree/main/priv/themes).
+  You should pass the filename without special chars and without extension,
+  for example pass `theme: "adwaita_dark"` to use the [Adwaita Dark](https://github.com/leandrocp/autumn/blob/main/priv/themes/adwaita-dark.toml) theme
+  or `theme: "penumbra"` to use the [Penumbra+](https://github.com/leandrocp/autumn/blob/main/priv/themes/penumbra%2B.toml) theme.
+  * `:pre_class` (default `nil`) - the CSS class to inject into the wrapping parent `<pre>` tag.
+  By default it renders a `<pre>` tag without classes, but you can pass arbitraty classes if you need to style code blocks.
   """
   @spec highlight(lang_filename_ext(), String.t(), keyword()) ::
           {:ok, String.t()} | {:error, term()}
   def highlight(lang_filename_ext, source_code, opts \\ []) do
     lang = language(lang_filename_ext)
     theme = Keyword.get(opts, :theme, "onedark")
-    pre_class = Keyword.get(opts, :pre_class, "autumn highlight")
-    code_class = Keyword.get(opts, :code_class, nil)
-    Autumn.Native.highlight(lang, source_code, theme, pre_class, code_class)
+    pre_class = Keyword.get(opts, :pre_class, nil)
+    Autumn.Native.highlight(lang, source_code, theme, pre_class)
   end
 
   @doc """
