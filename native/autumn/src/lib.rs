@@ -26,7 +26,7 @@ pub fn highlight_source_code(
         )
         .expect("expected to generate the syntax highlight events");
 
-    output.push_str(format!("{}{}", open_pre_tag(theme, pre_class), open_code_tag(lang)).as_str());
+    output.push_str(format!("{}{}", open_pre_tag(pre_class), open_code_tag(theme, lang)).as_str());
 
     for event in highlights {
         let event = event.expect("expected a highlight event");
@@ -40,23 +40,17 @@ pub fn highlight_source_code(
 }
 
 pub fn open_tags(lang: Language, theme: &Theme, pre_class: Option<&str>) -> String {
-    format!("{}{}", open_pre_tag(theme, pre_class), open_code_tag(lang))
+    format!("{}{}", open_pre_tag(pre_class), open_code_tag(theme, lang))
 }
 
 pub fn close_tags() -> String {
     String::from("</code></pre>")
 }
 
-pub fn open_pre_tag(theme: &Theme, class: Option<&str>) -> String {
-    let (_class, background_style) = theme.get_scope("background");
-    let (_class, text_style) = theme.get_scope("text");
-
+pub fn open_pre_tag(class: Option<&str>) -> String {
     match class {
-        Some(class) => format!(
-            "<pre class=\"{}\" style=\"{} {}\">",
-            class, background_style, text_style
-        ),
-        None => format!("<pre style=\"{} {}\">", background_style, text_style),
+        Some(class) => format!("<pre class=\"{}\">", class),
+        None => format!("<pre>"),
     }
 }
 
@@ -65,13 +59,19 @@ pub fn close_pre_tag() -> String {
 }
 
 // TODO: add theme name
-pub fn open_code_tag(lang: Language) -> String {
+pub fn open_code_tag(theme: &Theme, lang: Language) -> String {
+    let (_class, background_style) = theme.get_scope("background");
+    let (_class, text_style) = theme.get_scope("text");
+
     let class = format!(
         "autumn-highlight {}-{}",
         "language",
         format!("{:?}", lang).to_lowercase()
     );
-    format!("<code class=\"{}\" translate=\"no\">", class)
+    format!(
+        "<code class=\"{}\" style=\"{} {}\" translate=\"no\">",
+        class, background_style, text_style
+    )
 }
 
 pub fn close_code_tag() -> String {
@@ -112,7 +112,7 @@ mod tests {
 
         assert_eq!(
             output,
-            "<pre style=\"background-color: #282C34; color: #ABB2BF;\"><code class=\"autumn-highlight language-rust\" translate=\"no\"><span class=\"keyword control import\" style=\"color: #E06C75;\">mod</span> <span class=\"namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"\" style=\"color: #ABB2BF;\">;</span></code></pre>"
+            "<pre><code class=\"autumn-highlight language-rust\" style=\"background-color: #282C34; color: #ABB2BF;\" translate=\"no\"><span class=\"keyword control import\" style=\"color: #E06C75;\">mod</span> <span class=\"namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"\" style=\"color: #ABB2BF;\">;</span></code></pre>"
         );
     }
 
@@ -123,7 +123,7 @@ mod tests {
 
         assert_eq!(
             output,
-            "<pre class=\"pre_class\" style=\"background-color: #282C34; color: #ABB2BF;\"><code class=\"autumn-highlight language-rust\" translate=\"no\"><span class=\"keyword control import\" style=\"color: #E06C75;\">mod</span> <span class=\"namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"\" style=\"color: #ABB2BF;\">;</span></code></pre>"
+            "<pre class=\"pre_class\"><code class=\"autumn-highlight language-rust\" style=\"background-color: #282C34; color: #ABB2BF;\" translate=\"no\"><span class=\"keyword control import\" style=\"color: #E06C75;\">mod</span> <span class=\"namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"\" style=\"color: #ABB2BF;\">;</span></code></pre>"
         );
     }
 }

@@ -10,19 +10,19 @@ defmodule AutumnTest do
   describe "highlight" do
     test "elixir with default opts" do
       assert_output("elixir", ":elixir", ~s"""
-      <pre style="background-color: #282C34; color: #ABB2BF;"><code class="autumn-highlight language-elixir" translate="no"><span class="string" style="color: #98C379;">:elixir</span></code></pre>
+      <pre><code class="autumn-highlight language-elixir" style="background-color: #282C34; color: #ABB2BF;" translate="no"><span class="string" style="color: #98C379;">:elixir</span></code></pre>
       """)
     end
 
     test "ruby with default opts" do
       assert_output("script.rb", ~s|puts "autumn season"|, ~s"""
-      <pre style="background-color: #282C34; color: #ABB2BF;"><code class="autumn-highlight language-ruby" translate="no"><span class="function" style="color: #61AFEF;">puts</span> <span class="string" style="color: #98C379;">&quot;autumn season&quot;</span></code></pre>
+      <pre><code class="autumn-highlight language-ruby" style="background-color: #282C34; color: #ABB2BF;" translate="no"><span class="function" style="color: #61AFEF;">puts</span> <span class="string" style="color: #98C379;">&quot;autumn season&quot;</span></code></pre>
       """)
     end
 
     test "fallback to plaintext on invalid lang" do
       expected = ~s"""
-      <pre style="background-color: #282C34; color: #ABB2BF;"><code class="autumn-highlight language-plaintext" translate="no">code</code></pre>
+      <pre><code class="autumn-highlight language-plaintext" style="background-color: #282C34; color: #ABB2BF;" translate="no">code</code></pre>
       """
 
       assert_output("invalid", "code", expected)
@@ -35,7 +35,7 @@ defmodule AutumnTest do
       "elixir",
       ":elixir",
       ~s"""
-      <pre style="background-color: #282A36; color: #f8f8f2;"><code class="autumn-highlight language-elixir" translate="no"><span class="string special" style="color: #ffb86c;">:elixir</span></code></pre>
+      <pre><code class="autumn-highlight language-elixir" style="background-color: #282A36; color: #f8f8f2;" translate="no"><span class="string special" style="color: #ffb86c;">:elixir</span></code></pre>
       """,
       theme: "dracula"
     )
@@ -46,7 +46,7 @@ defmodule AutumnTest do
       "elixir",
       ":elixir",
       ~s"""
-      <pre class="pre-class" style="background-color: #282C34; color: #ABB2BF;"><code class="autumn-highlight language-elixir" translate="no"><span class="string" style="color: #98C379;">:elixir</span></code></pre>
+      <pre class="pre-class"><code class="autumn-highlight language-elixir" style="background-color: #282C34; color: #ABB2BF;" translate="no"><span class="string" style="color: #98C379;">:elixir</span></code></pre>
       """,
       pre_class: "pre-class"
     )
