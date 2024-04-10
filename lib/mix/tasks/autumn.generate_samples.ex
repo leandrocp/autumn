@@ -99,27 +99,6 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   </html>
   """
 
-  @catppuccin_frappe ~S"""
-  <style>
-    * {
-      color: #c6d0f5;
-    }
-    body {
-      background-color: #303446;
-    }
-  </style>
-  """
-
-  @github_light_style ~S"""
-  <style>
-    * {
-    }
-    body {
-      background-color: #ffffff;
-    }
-  </style>
-  """
-
   @langs [
     {
       "elixir",
@@ -159,10 +138,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     }
   ]
 
-  @themes [
-    {"catppuccin_frappe", @catppuccin_frappe},
-    {"github_light", @github_light_style}
-  ]
+  @themes ["catppuccin_frappe", "dracula", "github_light"]
 
   @impl true
   def run(_args) do
@@ -181,20 +157,20 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   defp generate(lang, url) do
     source = download_source(url)
 
-    for {theme, style} <- @themes do
-      do_generage_inline(lang, source, theme, style)
-      do_generage_css(lang, source, theme, style)
+    for theme <- @themes do
+      do_generage_inline(lang, source, theme)
+      do_generage_css(lang, source, theme)
     end
   end
 
-  defp do_generage_inline(lang, source, theme, style) do
+  defp do_generage_inline(lang, source, theme) do
     Mix.shell().info("#{lang} - #{theme} (inline)")
 
     code = Autumn.highlight!(source, language: lang, theme: theme, inline_style: true)
 
     html =
       EEx.eval_string(@layout_inline,
-        assigns: %{style: style, inner_content: code, lang: lang, theme: theme}
+        assigns: %{inner_content: code, lang: lang, theme: theme}
       )
 
     dest_path =
@@ -203,7 +179,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     File.write!(dest_path, html)
   end
 
-  defp do_generage_css(lang, source, theme, style) do
+  defp do_generage_css(lang, source, theme) do
     Mix.shell().info("#{lang} - #{theme}")
 
     code = Autumn.highlight!(source, language: lang, theme: theme, inline_style: false)
@@ -214,7 +190,6 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     html =
       EEx.eval_string(@layout_css,
         assigns: %{
-          style: style,
           inner_content: code,
           lang: lang,
           theme: theme,
@@ -232,13 +207,13 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     Mix.shell().info("index.html")
 
     inline_samples =
-      for {lang, _url} <- @langs, {theme, _style} <- @themes do
+      for {lang, _url} <- @langs, theme <- @themes do
         sample = "#{String.capitalize(lang)} - #{theme} (inline)"
         {sample, "#{lang}_#{theme}_inline.html"}
       end
 
     css_samples =
-      for {lang, _url} <- @langs, {theme, _style} <- @themes do
+      for {lang, _url} <- @langs, theme <- @themes do
         sample = "#{String.capitalize(lang)} - #{theme}"
         {sample, "#{lang}_#{theme}.html"}
       end
