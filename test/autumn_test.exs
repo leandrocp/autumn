@@ -7,6 +7,21 @@ defmodule AutumnTest do
     assert String.trim(result) == String.trim(expected)
   end
 
+  describe "deprecated still works" do
+    test "highlight" do
+      assert {:ok, hl} = Autumn.highlight("elixir", ":elixir")
+      assert hl =~ "symbol"
+
+      assert {:ok, hl} = Autumn.highlight("elixir", ":elixir", theme: "dracula")
+      assert hl =~ "symbol"
+    end
+
+    test "highlight!" do
+      assert Autumn.highlight!("elixir", ":elixir") =~ "symbol"
+      assert Autumn.highlight!("elixir", ":elixir", theme: "dracula") =~ "symbol"
+    end
+  end
+
   describe "highlight" do
     test "elixir with default opts" do
       assert_output("elixir", ":elixir", ~s"""
