@@ -74,12 +74,12 @@ pub fn open_pre_tag(theme: &Theme, class: Option<&str>, inline_style: bool) -> S
         let background_style = theme.get_global_style("background");
         let foreground_style = theme.get_global_style("foreground");
 
-        return format!(
+        format!(
             "<pre class=\"{}\" style=\"{} {}\">",
             class, background_style, foreground_style
-        );
+        )
     } else {
-        return format!("<pre class=\"{}\">", class);
+        format!("<pre class=\"{}\">", class)
     }
 }
 
