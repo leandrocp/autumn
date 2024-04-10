@@ -1,5 +1,17 @@
-
 # Changelog
+
+## 0.2.0 (2024-04-10)
+
+### Enhancements
+  * Update to Inkjet v0.10.4
+  * Update themes
+  * Update languages
+  * Add Pascal language
+  * Add new option `:inline_style` to enable/disable inline styles
+  * Genrate CSS files
+
+### Fixes
+  * Name of CSS classes should be unique and composable
 
 ## 0.1.5 (2023-11-20)
 
