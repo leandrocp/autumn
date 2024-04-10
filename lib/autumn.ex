@@ -51,16 +51,16 @@ defmodule Autumn do
 
   ## Options
 
-  * `:language` (required) - the language to use for highlighting.
-  Besides a language name, you can also pass a filename or extension. An invalid language or `nil` will fallback to rendering plain text
-  using the background and foreground colors defined by the current theme.
-  * `:theme` (default `"onedark"`) - accepts any theme listed [here](https://github.com/leandrocp/autumn/tree/main/priv/themes).
+  * `:language` (default: `nil`) - the language to use for highlighting.
+  Besides a language name, you can also pass a filename or extension. Note that an invalid language or `nil` will fallback
+  to rendering plain text (no colors) using the background and foreground colors defined by the current theme.
+  * `:theme` (default: `"onedark"`) - accepts any theme listed [here](https://github.com/leandrocp/autumn/tree/main/priv/themes).
   You should pass the filename without special chars and without extension,
   for example pass `theme: "adwaita_dark"` to use the [Adwaita Dark](https://github.com/leandrocp/autumn/blob/main/priv/themes/adwaita-dark.toml) theme
   or `theme: "penumbra"` to use the [Penumbra+](https://github.com/leandrocp/autumn/blob/main/priv/themes/penumbra%2B.toml) theme.
-  * `:pre_class` (default `nil`) - the CSS class to inject into the wrapping parent `<pre>` tag.
+  * `:pre_class` (default: `nil`) - the CSS class to inject into the wrapping parent `<pre>` tag.
   By default it renders a `<pre>` tag with the `autumn-hl` class which will be merged with the class passed into this option.
-  * `:inline_style` (default `true`) - see more info on the module doc.
+  * `:inline_style` (default: `true`) - see more info on the module doc.
 
   ## Examples
 
@@ -84,7 +84,9 @@ defmodule Autumn do
 
   """
   @spec highlight(String.t(), keyword()) :: {:ok, String.t()} | {:error, term()}
-  def highlight(source_code, opts \\ []) when is_binary(source_code) and is_list(opts) do
+  def highlight(source_code, opts \\ [])
+
+  def highlight(source_code, opts) when is_binary(source_code) and is_list(opts) do
     language = opts |> Keyword.get(:language, nil) |> language()
     theme = Keyword.get(opts, :theme, "onedark")
     pre_class = Keyword.get(opts, :pre_class, nil)
@@ -101,7 +103,9 @@ defmodule Autumn do
   Same as `highlight/2` but raises in case of failure.
   """
   @spec highlight!(String.t(), keyword()) :: String.t()
-  def highlight!(source_code, opts \\ []) do
+  def highlight!(source_code, opts \\ [])
+
+  def highlight!(source_code, opts) do
     case highlight(source_code, opts) do
       {:ok, highlighted} ->
         highlighted
