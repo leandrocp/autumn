@@ -20,6 +20,25 @@ mix test
 
 Update the version in `native/autumn/Cargo.toml` and `native/inkjet_nif/Cargo.toml` and run tests.
 
+## Update or add languages
+
+Update the list of languages in both `native/autumn/Cargo.toml` and `native/inkjet_nif/Cargo.toml`.
+
+Note that languages are loaded from the Inkjet rust library so the name must match the ones defined at https://github.com/Colonial-Dev/inkjet/blob/master/Cargo.toml
+
+If a language you want is not in Inkjet list, please open an issue in that repo.
+
+## Update or add themes
+
+Themes are loaded from Helix editor, they're located at https://github.com/helix-editor/helix/tree/master/runtime/themes
+
+Just copy the theme file to `priv/themes` and execute:
+
+```shell
+mix autumn.generate_themes_rs
+mix autumn.generate_css
+```
+
 ## Improve documentation
 
 We are always looking to improve our documentation. If at some moment you are

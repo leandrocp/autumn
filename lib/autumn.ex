@@ -16,7 +16,6 @@ defmodule Autumn do
       - ".rs"
       - "php"
 
-
   """
   @type lang_filename_ext :: String.t() | nil
 
@@ -47,7 +46,7 @@ defmodule Autumn do
   end
 
   @doc """
-  Highlights the `source_code` using the tree-sitter grammar for `lang_filename_ext`.
+  Highlights the `source_code`.
 
   ## Options
 
