@@ -43,6 +43,7 @@ inkjet = { version = "0.10.4" , default-features = false, features = [
   "language-llvm",
   "language-lua",
   "language-make",
+  "language-pascal",
   "language-php",
   "language-plaintext",
   "language-proto",
