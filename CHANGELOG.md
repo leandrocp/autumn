@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 (2024-04-10)
+
+### Fixes
+  * Include CSS files in package
+
 ## 0.2.0 (2024-04-10)
 
 ### Enhancements

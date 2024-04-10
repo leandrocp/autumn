@@ -2,7 +2,7 @@ defmodule Autumn.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/leandrocp/autumn"
-  @version "0.2.0"
+  @version "0.2.1"
   @dev? String.ends_with?(@version, "-dev")
   @force_build? System.get_env("AUTUMN_BUILD") in ["1", "true"]
 
@@ -39,11 +39,13 @@ defmodule Autumn.MixProject do
         GitHub: @source_url
       },
       files: ~w[
-        lib
+        lib/autumn.ex
+        lib/autumn
         native/inkjet_nif/src
         native/inkjet_nif/Cargo.*
         native/autumn/src
         native/autumn/Cargo.*
+        priv/static/css
         Cargo.*
         Cross.toml
         .cargo
