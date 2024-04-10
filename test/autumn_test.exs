@@ -1,23 +1,46 @@
 defmodule AutumnTest do
   use ExUnit.Case
 
-  defp assert_output(lang, source_code, expected, opts \\ []) do
-    result = Autumn.highlight!(lang, source_code, opts)
+  defp assert_output(source_code, expected, opts \\ []) do
+    result = Autumn.highlight!(source_code, opts)
     # IO.puts(result)
     assert String.trim(result) == String.trim(expected)
   end
 
+  describe "deprecated still works" do
+    test "highlight" do
+      assert {:ok, hl} = Autumn.highlight("elixir", ":elixir")
+      assert hl =~ "symbol"
+
+      assert {:ok, hl} = Autumn.highlight("elixir", ":elixir", theme: "dracula")
+      assert hl =~ "symbol"
+    end
+
+    test "highlight!" do
+      assert Autumn.highlight!("elixir", ":elixir") =~ "symbol"
+      assert Autumn.highlight!("elixir", ":elixir", theme: "dracula") =~ "symbol"
+    end
+  end
+
   describe "highlight" do
     test "elixir with default opts" do
-      assert_output("elixir", ":elixir", ~s"""
-      <pre class=\"autumn-hl\" style=\"background-color: #282C34; color: #ABB2BF;\"><code class=\"language-elixir\" translate=\"no\"><span class=\"ahl-string ahl-special ahl-symbol\" style=\"color: #98C379;\">:elixir</span></code></pre>
-      """)
+      assert_output(
+        ":elixir",
+        ~s"""
+        <pre class=\"autumn-hl\" style=\"background-color: #282C34; color: #ABB2BF;\"><code class=\"language-elixir\" translate=\"no\"><span class=\"ahl-string ahl-special ahl-symbol\" style=\"color: #98C379;\">:elixir</span></code></pre>
+        """,
+        language: "elixir"
+      )
     end
 
     test "ruby with default opts" do
-      assert_output("script.rb", ~s|puts "autumn season"|, ~s"""
-      <pre class=\"autumn-hl\" style=\"background-color: #282C34; color: #ABB2BF;\"><code class=\"language-ruby\" translate=\"no\"><span class=\"ahl-function ahl-method\" style=\"color: #61AFEF;\">puts</span> <span class=\"ahl-string\" style=\"color: #98C379;\">&quot;autumn season&quot;</span></code></pre>
-      """)
+      assert_output(
+        ~s|puts "autumn season"|,
+        ~s"""
+        <pre class=\"autumn-hl\" style=\"background-color: #282C34; color: #ABB2BF;\"><code class=\"language-ruby\" translate=\"no\"><span class=\"ahl-function ahl-method\" style=\"color: #61AFEF;\">puts</span> <span class=\"ahl-string\" style=\"color: #98C379;\">&quot;autumn season&quot;</span></code></pre>
+        """,
+        language: "script.rb"
+      )
     end
 
     test "fallback to plaintext on invalid lang" do
@@ -25,24 +48,24 @@ defmodule AutumnTest do
       <pre class="autumn-hl" style="background-color: #282C34; color: #ABB2BF;"><code class="language-plaintext" translate="no">code</code></pre>
       """
 
-      assert_output("invalid", "code", expected)
-      assert_output(nil, "code", expected)
+      assert_output("code", expected, language: "invalid")
+      assert_output("code", expected, language: nil)
     end
   end
 
   describe "theming" do
     test "invalid theme" do
-      assert Autumn.highlight("elixir", ":elixir", theme: "invalid") ==
+      assert Autumn.highlight(":elixir", language: "elixir", theme: "invalid") ==
                {:error, "unknown theme: invalid"}
     end
 
     test "change theme" do
       assert_output(
-        "elixir",
         ":elixir",
         ~s"""
         <pre class=\"autumn-hl\" style=\"background-color: #282A36; color: #f8f8f2;\"><code class=\"language-elixir\" translate=\"no\"><span class=\"ahl-string ahl-special ahl-symbol\" style=\"color: #ffb86c;\">:elixir</span></code></pre>
         """,
+        language: "elixir",
         theme: "dracula"
       )
     end
@@ -50,58 +73,58 @@ defmodule AutumnTest do
 
   test "inject pre class" do
     assert_output(
-      "elixir",
       ":elixir",
       ~s"""
       <pre class=\"autumn-hl pre-class\" style=\"background-color: #282C34; color: #ABB2BF;\"><code class=\"language-elixir\" translate=\"no\"><span class=\"ahl-string ahl-special ahl-symbol\" style=\"color: #98C379;\">:elixir</span></code></pre>
       """,
+      language: "elixir",
       pre_class: "pre-class"
     )
   end
 
   describe "languages" do
     test "load all languages" do
-      assert {:ok, _} = Autumn.highlight("bash", "foo")
-      assert {:ok, _} = Autumn.highlight("c", "foo")
-      assert {:ok, _} = Autumn.highlight("clojure", "foo")
-      assert {:ok, _} = Autumn.highlight("c-sharp", "foo")
-      assert {:ok, _} = Autumn.highlight("commonlisp", "foo")
-      assert {:ok, _} = Autumn.highlight("cpp", "foo")
-      assert {:ok, _} = Autumn.highlight("css", "foo")
-      assert {:ok, _} = Autumn.highlight("diff", "foo")
-      assert {:ok, _} = Autumn.highlight("dockerfile", "foo")
-      assert {:ok, _} = Autumn.highlight("elisp", "foo")
-      assert {:ok, _} = Autumn.highlight("elixir", "foo")
-      assert {:ok, _} = Autumn.highlight("erlang", "foo")
-      assert {:ok, _} = Autumn.highlight("gleam", "foo")
-      assert {:ok, _} = Autumn.highlight("go", "foo")
-      assert {:ok, _} = Autumn.highlight("haskell", "foo")
-      assert {:ok, _} = Autumn.highlight("hcl", "foo")
-      assert {:ok, _} = Autumn.highlight("heex", "foo")
-      assert {:ok, _} = Autumn.highlight("html", "foo")
-      assert {:ok, _} = Autumn.highlight("java", "foo")
-      assert {:ok, _} = Autumn.highlight("javascript", "foo")
-      assert {:ok, _} = Autumn.highlight("json", "foo")
-      assert {:ok, _} = Autumn.highlight("kotlin", "foo")
-      assert {:ok, _} = Autumn.highlight("latex", "foo")
-      assert {:ok, _} = Autumn.highlight("llvm", "foo")
-      assert {:ok, _} = Autumn.highlight("lua", "foo")
-      assert {:ok, _} = Autumn.highlight("make", "foo")
-      assert {:ok, _} = Autumn.highlight("php", "foo")
-      assert {:ok, _} = Autumn.highlight("proto", "foo")
-      assert {:ok, _} = Autumn.highlight("python", "foo")
-      assert {:ok, _} = Autumn.highlight("r", "foo")
-      assert {:ok, _} = Autumn.highlight("regex", "foo")
-      assert {:ok, _} = Autumn.highlight("ruby", "foo")
-      assert {:ok, _} = Autumn.highlight("rust", "foo")
-      assert {:ok, _} = Autumn.highlight("scala", "foo")
-      assert {:ok, _} = Autumn.highlight("scss", "foo")
-      assert {:ok, _} = Autumn.highlight("sql", "foo")
-      assert {:ok, _} = Autumn.highlight("swift", "foo")
-      assert {:ok, _} = Autumn.highlight("toml", "foo")
-      assert {:ok, _} = Autumn.highlight("typescript", "foo")
-      assert {:ok, _} = Autumn.highlight("yaml", "foo")
-      assert {:ok, _} = Autumn.highlight("zig", "foo")
+      assert {:ok, _} = Autumn.highlight("foo", language: "bash")
+      assert {:ok, _} = Autumn.highlight("foo", language: "c")
+      assert {:ok, _} = Autumn.highlight("foo", language: "clojure")
+      assert {:ok, _} = Autumn.highlight("foo", language: "c-sharp")
+      assert {:ok, _} = Autumn.highlight("foo", language: "commonlisp")
+      assert {:ok, _} = Autumn.highlight("foo", language: "cpp")
+      assert {:ok, _} = Autumn.highlight("foo", language: "css")
+      assert {:ok, _} = Autumn.highlight("foo", language: "diff")
+      assert {:ok, _} = Autumn.highlight("foo", language: "dockerfile")
+      assert {:ok, _} = Autumn.highlight("foo", language: "elisp")
+      assert {:ok, _} = Autumn.highlight("foo", language: "elixir")
+      assert {:ok, _} = Autumn.highlight("foo", language: "erlang")
+      assert {:ok, _} = Autumn.highlight("foo", language: "gleam")
+      assert {:ok, _} = Autumn.highlight("foo", language: "go")
+      assert {:ok, _} = Autumn.highlight("foo", language: "haskell")
+      assert {:ok, _} = Autumn.highlight("foo", language: "hcl")
+      assert {:ok, _} = Autumn.highlight("foo", language: "heex")
+      assert {:ok, _} = Autumn.highlight("foo", language: "html")
+      assert {:ok, _} = Autumn.highlight("foo", language: "java")
+      assert {:ok, _} = Autumn.highlight("foo", language: "javascript")
+      assert {:ok, _} = Autumn.highlight("foo", language: "json")
+      assert {:ok, _} = Autumn.highlight("foo", language: "kotlin")
+      assert {:ok, _} = Autumn.highlight("foo", language: "latex")
+      assert {:ok, _} = Autumn.highlight("foo", language: "llvm")
+      assert {:ok, _} = Autumn.highlight("foo", language: "lua")
+      assert {:ok, _} = Autumn.highlight("foo", language: "make")
+      assert {:ok, _} = Autumn.highlight("foo", language: "php")
+      assert {:ok, _} = Autumn.highlight("foo", language: "proto")
+      assert {:ok, _} = Autumn.highlight("foo", language: "python")
+      assert {:ok, _} = Autumn.highlight("foo", language: "r")
+      assert {:ok, _} = Autumn.highlight("foo", language: "regex")
+      assert {:ok, _} = Autumn.highlight("foo", language: "ruby")
+      assert {:ok, _} = Autumn.highlight("foo", language: "rust")
+      assert {:ok, _} = Autumn.highlight("foo", language: "scala")
+      assert {:ok, _} = Autumn.highlight("foo", language: "scss")
+      assert {:ok, _} = Autumn.highlight("foo", language: "sql")
+      assert {:ok, _} = Autumn.highlight("foo", language: "swift")
+      assert {:ok, _} = Autumn.highlight("foo", language: "toml")
+      assert {:ok, _} = Autumn.highlight("foo", language: "typescript")
+      assert {:ok, _} = Autumn.highlight("foo", language: "yaml")
+      assert {:ok, _} = Autumn.highlight("foo", language: "zig")
     end
 
     test "by name" do
