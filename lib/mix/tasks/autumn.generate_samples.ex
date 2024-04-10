@@ -190,7 +190,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   defp do_generage_inline(lang, source, theme, style) do
     Mix.shell().info("#{lang} - #{theme} (inline)")
 
-    code = Autumn.highlight!(lang, source, theme: theme, inline_style: true)
+    code = Autumn.highlight!(source, language: lang, theme: theme, inline_style: true)
 
     html =
       EEx.eval_string(@layout_inline,
@@ -206,7 +206,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   defp do_generage_css(lang, source, theme, style) do
     Mix.shell().info("#{lang} - #{theme}")
 
-    code = Autumn.highlight!(lang, source, theme: theme, inline_style: false)
+    code = Autumn.highlight!(source, language: lang, theme: theme, inline_style: false)
 
     theme_style =
       File.read!(Path.join([:code.priv_dir(:autumn), "static", "css", "#{theme}.css"]))

@@ -105,7 +105,7 @@ defmodule Autumn do
   @spec highlight!(String.t(), keyword()) :: String.t()
   def highlight!(source_code, opts \\ [])
 
-  def highlight!(source_code, opts) do
+  def highlight!(source_code, opts) when is_binary(source_code) and is_list(opts) do
     case highlight(source_code, opts) do
       {:ok, highlighted} ->
         highlighted
