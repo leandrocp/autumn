@@ -1,0 +1,34 @@
+/* jetbrains_dark */
+pre.autumn-hl { background-color: #1e1f22; color: #000000; }
+.ahl-comment { color: #7a7e85; }
+.ahl-comment.ahl-block.ahl-documentation { color: #5f826b; }
+.ahl-constant.ahl-builtin { color: #cf8e6d; }
+.ahl-constant.ahl-numeric { color: #2aacb8; }
+.ahl-diagnostic.ahl-error { color: #d64d5b; }
+.ahl-diagnostic.ahl-hint { color: #499c54; }
+.ahl-diagnostic.ahl-info { color: #57aaf7; }
+.ahl-diagnostic.ahl-warning { color: #c29e4a; }
+.ahl-diff.ahl-delta { color: #375fad; }
+.ahl-diff.ahl-minus { color: #868a91; }
+.ahl-diff.ahl-plus { color: #549159; }
+.ahl-error { color: #d64d5b; }
+.ahl-function { color: #56a8f5; }
+.ahl-function.ahl-macro { color: #b3ae60; }
+.ahl-hint { color: #499c54; }
+.ahl-info { color: #57aaf7; }
+.ahl-keyword { color: #cf8e6d; }
+.ahl-label { color: #c77dbb; }
+.ahl-markup.ahl-bold { font-weight: bold; }
+.ahl-markup.ahl-heading { font-style: italic; color: #c77dbb; }
+.ahl-markup.ahl-heading.ahl-marker { color: #cf8e6d; }
+.ahl-markup.ahl-italic { font-style: italic; }
+.ahl-markup.ahl-link { text-decoration: underline; color: #57aaf7; }
+.ahl-markup.ahl-list { color: #cf8e6d; }
+.ahl-markup.ahl-raw { background-color: #293c40; }
+.ahl-string { color: #6aab73; }
+.ahl-tag { color: #d5b778; }
+.ahl-type.ahl-builtin { color: #cf8e6d; }
+.ahl-type.ahl-enum { color: #c77dbb; }
+.ahl-variable.ahl-builtin { color: #cf8e6d; }
+.ahl-variable.ahl-other.ahl-member { color: #c77dbb; }
+.ahl-warning { color: #c29e4a; }

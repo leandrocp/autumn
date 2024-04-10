@@ -1,0 +1,14 @@
+/* ttox */
+pre.autumn-hl { background-color: #ffffff; color: #000000; }
+.ahl-comment { color: black; background-color: light-magenta; }
+.ahl-constant { color: black; background-color: light-cyan; }
+.ahl-diagnostic.ahl-error { color: black; background-color: light-red; }
+.ahl-diagnostic.ahl-hint { color: black; background-color: light-blue; }
+.ahl-diagnostic.ahl-warning { color: black; background-color: light-yellow; }
+.ahl-diff.ahl-delta { color: gray; }
+.ahl-diff.ahl-minus { color: red; }
+.ahl-diff.ahl-plus { color: green; }
+.ahl-error { color: black; background-color: light-red; }
+.ahl-hint { color: black; background-color: light-blue; }
+.ahl-string { color: black; background-color: light-green; }
+.ahl-warning { color: black; background-color: light-yellow; }

@@ -3,18 +3,47 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
 
   @shortdoc "Generate samples."
 
-  @layout ~S"""
+  @layout_index ~S"""
   <!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <%= if @index do %>
-      <title>Autumn Samples</title>
-    <% else %>
-      <title>Autumn Sample - <%= @lang %> - <%= @theme  %></title>
-    <% end %>
+    <title>Autumn Samples</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        font-family: 'JetBrains Mono', monospace;
+        line-height: 1.5;
+      }
+      body {
+        padding: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <a href="https://github.com/leandrocp/autumn">
+        <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/autumn_logo.png" width="512" alt="Autumn logo">
+      </a>
+    </p>
+    <p><a href="https://github.com/leandrocp/autumn">https://github.com/leandrocp/autumn</a></p>
+    <%= @inner_content %>
+  </body>
+  </html>
+  """
+
+  @layout_inline ~S"""
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Autumn Sample - <%= @lang %> - <%= @theme  %> (inline)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
@@ -26,31 +55,57 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
       pre {
         font-size: 15px;
         margin: 20px;
+        padding: 50px;
+        border-radius: 10px;
       }
     </style>
-    <%= @style %>
   </head>
   <body>
-    <%= if @index do %>
-    <p>
-      <a href="https://github.com/leandrocp/autumn">
-        <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/autumn_logo.png" width="512" alt="Autumn logo">
-      </a>
-    </p>
-    <p><a href="https://github.com/leandrocp/autumn">https://github.com/leandrocp/autumn</a></p>
-    <% end %>
     <%= @inner_content %>
   </body>
   </html>
   """
 
-  @onedark_style ~S"""
+  @layout_css ~S"""
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Autumn Sample - <%= @lang %> - <%= @theme  %> (inline)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        font-family: 'JetBrains Mono', monospace;
+        line-height: 1.5;
+      }
+      pre {
+        font-size: 15px;
+        margin: 20px;
+        padding: 50px;
+        border-radius: 10px;
+      }
+    </style>
+    <style>
+    <%= @theme_style %>
+    </style>
+  </head>
+  <body>
+    <%= @inner_content %>
+  </body>
+  </html>
+  """
+
+  @catppuccin_frappe ~S"""
   <style>
     * {
-      color: #ABB2BF;
+      color: #c6d0f5;
     }
     body {
-      background-color: #282C34;
+      background-color: #303446;
     }
   </style>
   """
@@ -68,7 +123,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   @langs [
     {
       "elixir",
-      ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/list.ex"
+      ~c"https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/lib/enum.ex"
     },
     {
       "rust",
@@ -105,7 +160,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   ]
 
   @themes [
-    {"onedark", @onedark_style},
+    {"catppuccin_frappe", @catppuccin_frappe},
     {"github_light", @github_light_style}
   ]
 
@@ -127,18 +182,44 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     source = download_source(url)
 
     for {theme, style} <- @themes do
-      do_generage(lang, source, theme, style)
+      do_generage_inline(lang, source, theme, style)
+      do_generage_css(lang, source, theme, style)
     end
   end
 
-  defp do_generage(lang, source, theme, style) do
-    Mix.shell().info("#{lang} - #{theme}")
+  defp do_generage_inline(lang, source, theme, style) do
+    Mix.shell().info("#{lang} - #{theme} (inline)")
 
-    code = Autumn.highlight!(lang, source, theme: theme)
+    code = Autumn.highlight!(lang, source, theme: theme, inline_style: true)
 
     html =
-      EEx.eval_string(@layout,
-        assigns: %{style: style, inner_content: code, index: nil, lang: lang, theme: theme}
+      EEx.eval_string(@layout_inline,
+        assigns: %{style: style, inner_content: code, lang: lang, theme: theme}
+      )
+
+    dest_path =
+      Path.join([:code.priv_dir(:autumn), "generated", "samples", "#{lang}_#{theme}_inline.html"])
+
+    File.write!(dest_path, html)
+  end
+
+  defp do_generage_css(lang, source, theme, style) do
+    Mix.shell().info("#{lang} - #{theme}")
+
+    code = Autumn.highlight!(lang, source, theme: theme, inline_style: false)
+
+    theme_style =
+      File.read!(Path.join([:code.priv_dir(:autumn), "static", "css", "#{theme}.css"]))
+
+    html =
+      EEx.eval_string(@layout_css,
+        assigns: %{
+          style: style,
+          inner_content: code,
+          lang: lang,
+          theme: theme,
+          theme_style: theme_style
+        }
       )
 
     dest_path =
@@ -150,11 +231,19 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   defp generate_index do
     Mix.shell().info("index.html")
 
-    samples =
+    inline_samples =
+      for {lang, _url} <- @langs, {theme, _style} <- @themes do
+        sample = "#{String.capitalize(lang)} - #{theme} (inline)"
+        {sample, "#{lang}_#{theme}_inline.html"}
+      end
+
+    css_samples =
       for {lang, _url} <- @langs, {theme, _style} <- @themes do
         sample = "#{String.capitalize(lang)} - #{theme}"
         {sample, "#{lang}_#{theme}.html"}
       end
+
+    samples = Enum.sort(inline_samples ++ css_samples)
 
     links =
       Enum.map(samples, fn {sample, link} ->
@@ -167,10 +256,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
       links
     ]
 
-    html =
-      EEx.eval_string(@layout,
-        assigns: %{style: "", inner_content: inner_content, index: true, lang: nil, theme: nil}
-      )
+    html = EEx.eval_string(@layout_index, assigns: %{inner_content: inner_content})
 
     dest_path =
       Path.join([:code.priv_dir(:autumn), "generated", "samples", "index.html"])
@@ -186,7 +272,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   #   code = Autumn.highlight!(lang, source)
   #
   #   html =
-  #     EEx.eval_string(@layout, assigns: %{inner_content: code, lang: "debug", theme: "onedark"})
+  #     EEx.eval_string(@layout, assigns: %{inner_content: code, lang: "debug", theme: "catppuccin_frappe"})
   #
   #   dest_path = Path.join([:code.priv_dir(:autumn), "generated", "samples", "debug.html"])
   #   File.write!(dest_path, html)

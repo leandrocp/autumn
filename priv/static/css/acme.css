@@ -1,0 +1,10 @@
+/* acme */
+pre.autumn-hl { background-color: #ffffea; color: #000000; }
+.ahl-comment { color: #065905; }
+.ahl-diagnostic.ahl-error { font-weight: bold; color: #ffffff; background-color: #a0342f; }
+.ahl-diagnostic.ahl-hint { font-weight: bold; color: #777777; }
+.ahl-diagnostic.ahl-warning { font-weight: bold; color: #000000; background-color: #f0ad4e; }
+.ahl-diff.ahl-delta { color: #aeeeee; }
+.ahl-diff.ahl-minus { color: #a0342f; }
+.ahl-diff.ahl-plus { color: #065905; }
+.ahl-string { color: #a0342f; }

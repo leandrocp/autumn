@@ -1,0 +1,44 @@
+/* zed_onelight */
+pre.autumn-hl { background-color: #fafafaff; color: #383a41ff; }
+.ahl-info { font-weight: bold; color: #5b79e3ff; }
+.ahl-label { color: #383a41ff; }
+.ahl-markup.ahl-bold { font-weight: bold; color: #dabb7e; }
+.ahl-namespace { color: #383a41ff; }
+.ahl-markup.ahl-raw.ahl-inline { color: #649f57ff; }
+.ahl-markup.ahl-heading { color: #d3604fff; }
+.ahl-constant.ahl-builtin { color: #ad6e25ff; }
+.ahl-attribute { color: #649f57ff; }
+.ahl-type { color: #3882b7ff; }
+.ahl-function.ahl-method { color: #5b79e3ff; }
+.ahl-diagnostic.ahl-warning { color: #dabb7e; }
+.ahl-hint { font-weight: bold; color: #649f57ff; }
+.ahl-constant { color: #649f57ff; }
+.ahl-constant.ahl-builtin.ahl-boolean { color: #649f57ff; }
+.ahl-warning { font-weight: bold; color: #dabb7e; }
+.ahl-constructor { color: #5b79e3ff; }
+.ahl-diagnostic.ahl-error { color: #d36151ff; }
+.ahl-diff.ahl-minus { color: #d36151ff; }
+.ahl-comment { font-style: italic; color: #a2a3a7ff; }
+.ahl-markup.ahl-link.ahl-text { color: #a449abff; }
+.ahl-markup.ahl-italic { font-style: italic; color: #a449abff; }
+.ahl-function.ahl-macro { color: #5b79e3ff; }
+.ahl-special { color: #383a41ff; }
+.ahl-diff.ahl-plus { color: #649f57ff; }
+.ahl-operator { color: #383a41ff; }
+.ahl-diagnostic.ahl-info { color: #5b79e3ff; }
+.ahl-constant.ahl-character.ahl-escape { color: #dabb7e; }
+.ahl-markup.ahl-link.ahl-url {  color: #3882b7ff; }
+.ahl-variable.ahl-builtin { color: #ad6e25ff; }
+.ahl-puncuation { color: #383a41ff; }
+.ahl-variable.ahl-parameter { color: #383a41ff; }
+.ahl-string { color: #649f57ff; }
+.ahl-diff.ahl-delta { color: #dabb7e; }
+.ahl-keyword { color: #a449abff; }
+.ahl-markup.ahl-quote { color: #649f57ff; }
+.ahl-function.ahl-builtin { color: #5b79e3ff; }
+.ahl-markup.ahl-list { color: #d3604fff; }
+.ahl-diagnostic.ahl-hint { color: #649f57ff; }
+.ahl-variable.ahl-other.ahl-member { color: #d3604fff; }
+.ahl-function { color: #5b79e3ff; }
+.ahl-constant.ahl-numeric { color: #ad6e25ff; }
+.ahl-error { font-weight: bold; color: #d36151ff; }

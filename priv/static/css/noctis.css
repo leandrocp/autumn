@@ -1,0 +1,11 @@
+/* noctis */
+pre.autumn-hl { background-color: #00262a; color: #000000; }
+.ahl-diagnostic.ahl-error { color: #e34e1b; }
+.ahl-diagnostic.ahl-hint { color: #48e9a7; }
+.ahl-diagnostic.ahl-info { color: #47ace8; }
+.ahl-diagnostic.ahl-warning { color: #ffd800; }
+.ahl-error { font-weight: bold; color: #e34e1b; }
+.ahl-hint { font-weight: bold; color: #48e9a7; }
+.ahl-info { color: #47ace8; }
+.ahl-property { color: #e34e1b; }
+.ahl-warning { font-weight: bold; color: #ffd800; }

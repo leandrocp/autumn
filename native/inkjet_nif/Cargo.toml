@@ -13,6 +13,8 @@ crate-type = ["cdylib"]
 rustler = "0.29"
 serde = "1.0"
 tree-sitter-highlight = "0.20"
+# inkjet = { git = "https://github.com/fork/inkjet.git", branch = "master", version = "0.10.4" , default-features = false, features = [
+# inkjet = { path = "/path/to/inkjet" , version = "0.10.4" , default-features = false, features = [
 inkjet = { version = "0.10.4" , default-features = false, features = [
   "html",
   "language-bash",

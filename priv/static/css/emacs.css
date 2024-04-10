@@ -1,0 +1,54 @@
+/* emacs */
+pre.autumn-hl { background-color: #ffffff; color: #000000; }
+.ahl-info { color: #228b22; }
+.ahl-label { color: #483d8b; }
+.ahl-markup.ahl-heading.ahl-marker { color: #999999; }
+.ahl-markup.ahl-bold { font-weight: bold; }
+.ahl-namespace { color: #008b8b; }
+.ahl-markup.ahl-raw.ahl-inline { color: #008b8b; }
+.ahl-markup.ahl-heading { font-weight: bold; color: #ffd700; }
+.ahl-markup.ahl-heading.ahl-1 { color: #0000ff; }
+.ahl-constant.ahl-builtin { color: #483d8b; }
+.ahl-markup.ahl-heading.ahl-6 { color: #008b8b; }
+.ahl-attribute { color: #483d8b; }
+.ahl-type { color: #228b22; }
+.ahl-diagnostic.ahl-warning { color: #ff8c00; }
+.ahl-hint { color: #008b8b; }
+.ahl-string.ahl-special { font-weight: bold; color: #8b2252; }
+.ahl-constant { color: #008b8b; }
+.ahl-warning { color: #ff8c00; }
+.ahl-function.ahl-call { color: #0000ff; }
+.ahl-module { color: #008b8b; }
+.ahl-variable { color: #a0522d; }
+.ahl-constructor { color: #228b22; }
+.ahl-type.ahl-builtin { color: #483d8b; }
+.ahl-markup.ahl-heading.ahl-2 { color: #a0522d; }
+.ahl-diagnostic.ahl-error { color: #ff0000; }
+.ahl-diff.ahl-minus { color: #ee0000; }
+.ahl-tag { color: #0000ff; }
+.ahl-comment { color: #b22222; }
+.ahl-markup.ahl-link.ahl-text { color: #3a5fcd; }
+.ahl-punctuation { color: #000000; }
+.ahl-markup.ahl-italic { font-style: italic; }
+.ahl-function.ahl-macro { color: #483d8b; }
+.ahl-special { color: #0000ff; }
+.ahl-diff.ahl-plus { color: #00cd00; }
+.ahl-operator { color: #a020f0; }
+.ahl-diagnostic.ahl-info { color: #228b22; }
+.ahl-markup.ahl-link.ahl-url {  color: #3a5fcd; }
+.ahl-variable.ahl-builtin { color: #483d8b; }
+.ahl-variable.ahl-parameter { color: #a0522d; }
+.ahl-markup.ahl-raw.ahl-block { color: #008b8b; }
+.ahl-string { color: #8b2252; }
+.ahl-diff.ahl-delta { color: #ee9a00; }
+.ahl-function.ahl-special { color: #483d8b; }
+.ahl-keyword { color: #a020f0; }
+.ahl-markup.ahl-heading.ahl-3 { color: #a020f0; }
+.ahl-markup.ahl-heading.ahl-5 { color: #228b22; }
+.ahl-markup.ahl-heading.ahl-4 { color: #b22222; }
+.ahl-markup.ahl-quote { color: #999999; }
+.ahl-function.ahl-builtin { color: #483d8b; }
+.ahl-markup.ahl-list { color: #000000; }
+.ahl-diagnostic.ahl-hint { color: #008b8b; }
+.ahl-function { color: #0000ff; }
+.ahl-error { color: #ff0000; }
