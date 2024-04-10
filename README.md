@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  Syntax highlighter for source code parsed with [Tree-Sitter](https://tree-sitter.github.io/tree-sitter/syntax-highlighting) and styled with [Helix Editor](https://helix-editor.com) themes.
+  Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes.
 </p>
 
 <p align="center">
@@ -55,35 +55,41 @@ Autumn.highlight!("elixir", "Atom.to_string(:elixir)") |> IO.puts()
 
 ## Styles mode
 
-To apply styles to code blocks, you can choose either to embed inline styles or serve static CSS.
+There are 2 modes to syntax highlight source code, the default is embedding inline styles in each one of the generated tokens, and the other more effective is relying on CSS classes to style the tokens.
 
-By default it will generate tokens with an inline style like:
+### Inline
+
+Inlining styles will look like:
 
 ```html
 <span class="ahl-operator" style="color: #C678DD;">Atom</span>
 ```
 
-That's easy to get started but not efficient especially when you have multiple code blocks in the same page.
+That mode is easy and works fine for simple cases but in pages with multiple code blocks you might want to use CSS instead.
 
-But you can opt out generating embed styles and leave only classes with the `:inline_style` option:
+### CSS
+
+First you need to disable inline styles by passing `false` to the `:inline_style` option:
 
 ```elixir
 Autumn.highlight!("elixir", "Atom.to_string(:elixir)", inline_style: false) |> IO.puts()
 # rest ommited for brevity
+# `style` is no longer generated
 #=> <span class="ahl-operator">
 ```
 
-And serve any of of the [available CSS themes](https://github.com/leandrocp/autumn/tree/main/priv/static/css) in your app,
-if using Phoenix you can serve them from your app's Endpoint:
+And then you need to serve any of of the [available CSS themes](https://github.com/leandrocp/autumn/tree/main/priv/static/css) in your app.
+
+If you're using Phoenix you can serve them from your app, just add the following `Plug` into your app's `endpoint.ex` file:
 
 ```elixir
 plug Plug.Static,
   at: "/themes",
   from: {:autumn, "priv/static/css/"},
-  only: ["dracula.css"]
+  only: ["dracula.css"] # choose any theme you want
 ```
 
-Or copy the file and serve as needed.
+You can also copy the content of that theme file into your template `<style>` or serve that file as needed.
 
 ## Samples
 
