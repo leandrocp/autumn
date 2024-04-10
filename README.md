@@ -89,6 +89,8 @@ plug Plug.Static,
   only: ["dracula.css"] # choose any theme you want
 ```
 
+The style will be served at `/themes/dracula.css`. In your local environemnt that resolves to http://localhost:4000/themes/dracula.css
+
 You can also copy the content of that theme file into your template `<style>` or serve that file as needed.
 
 ## Samples
