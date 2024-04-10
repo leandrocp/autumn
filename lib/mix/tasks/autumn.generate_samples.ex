@@ -19,6 +19,9 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
         font-family: 'JetBrains Mono', monospace;
         line-height: 1.5;
       }
+      body {
+        padding: 50px;
+      }
     </style>
   </head>
   <body>
