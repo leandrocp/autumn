@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Autumn Sample - php - onedark (inline)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.5;
+    }
+    pre {
+      font-size: 15px;
+      margin: 20px;
+      padding: 50px;
+      border-radius: 10px;
+    }
+  </style>
+  <style>
+  /* onedark */
+pre.autumn-hl { background-color: #282C34; color: #ABB2BF; }
+.ahl-info { font-weight: bold; color: #61AFEF; }
+.ahl-label { color: #C678DD; }
+.ahl-markup.ahl-bold { font-weight: bold; color: #D19A66; }
+.ahl-namespace { color: #61AFEF; }
+.ahl-markup.ahl-raw.ahl-inline { color: #98C379; }
+.ahl-markup.ahl-heading { color: #E06C75; }
+.ahl-constant.ahl-builtin { color: #D19A66; }
+.ahl-attribute { color: #E5C07B; }
+.ahl-type { color: #E5C07B; }
+.ahl-diagnostic.ahl-warning { color: #E5C07B; }
+.ahl-hint { font-weight: bold; color: #98C379; }
+.ahl-constant { color: #56B6C2; }
+.ahl-warning { font-weight: bold; color: #E5C07B; }
+.ahl-constructor { color: #61AFEF; }
+.ahl-diagnostic.ahl-error { color: #E06C75; }
+.ahl-diff.ahl-minus { color: #E06C75; }
+.ahl-tag { color: #E06C75; }
+.ahl-comment { font-style: italic; color: #5C6370; }
+.ahl-markup.ahl-link.ahl-text { color: #C678DD; }
+.ahl-markup.ahl-italic { font-style: italic; color: #C678DD; }
+.ahl-function.ahl-macro { color: #C678DD; }
+.ahl-special { color: #61AFEF; }
+.ahl-diff.ahl-plus { color: #98C379; }
+.ahl-operator { color: #C678DD; }
+.ahl-keyword.ahl-directive { color: #C678DD; }
+.ahl-diagnostic.ahl-info { color: #61AFEF; }
+.ahl-constant.ahl-character.ahl-escape { color: #D19A66; }
+.ahl-keyword.ahl-control { color: #C678DD; }
+.ahl-markup.ahl-link.ahl-url {  color: #56B6C2; }
+.ahl-variable.ahl-builtin { color: #61AFEF; }
+.ahl-variable.ahl-parameter { color: #E06C75; }
+.ahl-string { color: #98C379; }
+.ahl-diff.ahl-delta { color: #D19A66; }
+.ahl-keyword.ahl-control.ahl-import { color: #E06C75; }
+.ahl-keyword { color: #E06C75; }
+.ahl-markup.ahl-quote { color: #E5C07B; }
+.ahl-function.ahl-builtin { color: #61AFEF; }
+.ahl-markup.ahl-list { color: #E06C75; }
+.ahl-keyword.ahl-operator { color: #C678DD; }
+.ahl-diagnostic.ahl-hint { color: #98C379; }
+.ahl-variable.ahl-other.ahl-member { color: #E06C75; }
+.ahl-function { color: #61AFEF; }
+.ahl-constant.ahl-numeric { color: #D19A66; }
+.ahl-error { font-weight: bold; color: #E06C75; }
+
+  </style>
+</head>
+<body>
+  <pre class="autumn-hl"><code class="language-php" translate="no"><span class="ahl-tag">&lt;?php</span>
+
+<span class="ahl-keyword ahl-function">function</span> <span class="ahl-function">usage</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable ahl-parameter"><span class="ahl-variable">$argv</span></span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-punctuation ahl-bracket">{</span>
+    <span class="ahl-keyword">echo</span> <span class="ahl-string">&quot;Usage:<span class="ahl-constant ahl-character escape">\n</span>&quot;</span><span class="ahl-punctuation ahl-delimiter">;</span>
+    <span class="ahl-function">printf</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-string">&quot;<span class="ahl-constant ahl-character escape">\t</span>php %s &lt;http:&#x2f;&#x2f;example.com&#x2f;file&gt; &lt;localfile&gt;<span class="ahl-constant ahl-character escape">\n</span>&quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$argv</span><span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-constant ahl-numeric integer">0</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+    <span class="ahl-function">exit</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-constant ahl-numeric integer">1</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+<span class="ahl-punctuation ahl-bracket">}</span>
+
+<span class="ahl-keyword ahl-function">function</span> <span class="ahl-function">stream_notification_callback</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable ahl-parameter"><span class="ahl-variable">$notification_code</span></span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable ahl-parameter"><span class="ahl-variable">$severity</span></span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable ahl-parameter"><span class="ahl-variable">$message</span></span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable ahl-parameter"><span class="ahl-variable">$message_code</span></span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable ahl-parameter"><span class="ahl-variable">$bytes_transferred</span></span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable ahl-parameter"><span class="ahl-variable">$bytes_max</span></span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-punctuation ahl-bracket">{</span>
+    <span class="ahl-keyword ahl-storage ahl-modifier">static</span> <span class="ahl-variable">$filesize</span> <span class="ahl-operator">=</span> <span class="ahl-constant ahl-builtin">null</span><span class="ahl-punctuation ahl-delimiter">;</span>
+
+    <span class="ahl-keyword ahl-control ahl-conditional">switch</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$notification_code</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-punctuation ahl-bracket">{</span>
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_RESOLVE</span><span class="ahl-punctuation ahl-delimiter">:</span>
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_AUTH_REQUIRED</span><span class="ahl-punctuation ahl-delimiter">:</span>
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_COMPLETED</span><span class="ahl-punctuation ahl-delimiter">:</span>
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_FAILURE</span><span class="ahl-punctuation ahl-delimiter">:</span>
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_AUTH_RESULT</span><span class="ahl-punctuation ahl-delimiter">:</span>
+        <span class="ahl-comment">&#x2f;* Ignore *&#x2f;</span>
+        <span class="ahl-keyword ahl-control ahl-return">break</span><span class="ahl-punctuation ahl-delimiter">;</span>
+
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_REDIRECTED</span><span class="ahl-punctuation ahl-delimiter">:</span>
+        <span class="ahl-keyword">echo</span> <span class="ahl-string">&quot;Being redirected to: &quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$message</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-string">&quot;<span class="ahl-constant ahl-character escape">\n</span>&quot;</span><span class="ahl-punctuation ahl-delimiter">;</span>
+        <span class="ahl-keyword ahl-control ahl-return">break</span><span class="ahl-punctuation ahl-delimiter">;</span>
+
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_CONNECT</span><span class="ahl-punctuation ahl-delimiter">:</span>
+        <span class="ahl-keyword">echo</span> <span class="ahl-string">&quot;Connected...<span class="ahl-constant ahl-character escape">\n</span>&quot;</span><span class="ahl-punctuation ahl-delimiter">;</span>
+        <span class="ahl-keyword ahl-control ahl-return">break</span><span class="ahl-punctuation ahl-delimiter">;</span>
+
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_FILE_SIZE_IS</span><span class="ahl-punctuation ahl-delimiter">:</span>
+        <span class="ahl-variable">$filesize</span> <span class="ahl-operator">=</span> <span class="ahl-variable">$bytes_max</span><span class="ahl-punctuation ahl-delimiter">;</span>
+        <span class="ahl-keyword">echo</span> <span class="ahl-string">&quot;Filesize: &quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$filesize</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-string">&quot;<span class="ahl-constant ahl-character escape">\n</span>&quot;</span><span class="ahl-punctuation ahl-delimiter">;</span>
+        <span class="ahl-keyword ahl-control ahl-return">break</span><span class="ahl-punctuation ahl-delimiter">;</span>
+
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_MIME_TYPE_IS</span><span class="ahl-punctuation ahl-delimiter">:</span>
+        <span class="ahl-keyword">echo</span> <span class="ahl-string">&quot;Mime-type: &quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$message</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-string">&quot;<span class="ahl-constant ahl-character escape">\n</span>&quot;</span><span class="ahl-punctuation ahl-delimiter">;</span>
+        <span class="ahl-keyword ahl-control ahl-return">break</span><span class="ahl-punctuation ahl-delimiter">;</span>
+
+    <span class="ahl-keyword ahl-control ahl-conditional">case</span> <span class="ahl-constant">STREAM_NOTIFY_PROGRESS</span><span class="ahl-punctuation ahl-delimiter">:</span>
+        <span class="ahl-keyword ahl-control ahl-conditional">if</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$bytes_transferred</span> <span class="ahl-operator">&gt;</span> <span class="ahl-constant ahl-numeric integer">0</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-punctuation ahl-bracket">{</span>
+            <span class="ahl-keyword ahl-control ahl-conditional">if</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-operator">!</span><span class="ahl-function">isset</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$filesize</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-punctuation ahl-bracket">{</span>
+                <span class="ahl-function">printf</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-string">&quot;<span class="ahl-constant ahl-character escape">\r</span>Unknown filesize.. %2d kb done..&quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$bytes_transferred</span><span class="ahl-operator">&#x2f;</span><span class="ahl-constant ahl-numeric integer">1024</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+            <span class="ahl-punctuation ahl-bracket">}</span> <span class="ahl-keyword ahl-control ahl-conditional">else</span> <span class="ahl-punctuation ahl-bracket">{</span>
+                <span class="ahl-variable">$length</span> <span class="ahl-operator">=</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-type ahl-builtin">int</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$bytes_transferred</span><span class="ahl-operator">&#x2f;</span><span class="ahl-variable">$filesize</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-operator">*</span><span class="ahl-constant ahl-numeric integer">100</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+                <span class="ahl-function">printf</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-string">&quot;<span class="ahl-constant ahl-character escape">\r</span>[%-100s] %d%% (%2d&#x2f;%2d kb)&quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-function">str_repeat</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-string">&quot;=&quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$length</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-operator">.</span> <span class="ahl-string">&quot;&gt;&quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$length</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$bytes_transferred</span><span class="ahl-operator">&#x2f;</span><span class="ahl-constant ahl-numeric integer">1024</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$filesize</span><span class="ahl-operator">&#x2f;</span><span class="ahl-constant ahl-numeric integer">1024</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+            <span class="ahl-punctuation ahl-bracket">}</span>
+        <span class="ahl-punctuation ahl-bracket">}</span>
+        <span class="ahl-keyword ahl-control ahl-return">break</span><span class="ahl-punctuation ahl-delimiter">;</span>
+    <span class="ahl-punctuation ahl-bracket">}</span>
+<span class="ahl-punctuation ahl-bracket">}</span>
+
+<span class="ahl-function">isset</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$argv</span><span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-constant ahl-numeric integer">1</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$argv</span><span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-constant ahl-numeric integer">2</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword ahl-operator">or</span> <span class="ahl-function">usage</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$argv</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+
+<span class="ahl-keyword ahl-control ahl-conditional">if</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-operator">!</span><span class="ahl-function">isset</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$<span class="ahl-constant ahl-builtin">_ENV</span></span><span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-string">&#x27;http_proxy&#x27;</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-punctuation ahl-bracket">{</span>
+    <span class="ahl-variable">$copt</span> <span class="ahl-operator">=</span> <span class="ahl-constant ahl-builtin">null</span><span class="ahl-punctuation ahl-delimiter">;</span>
+<span class="ahl-punctuation ahl-bracket">}</span> <span class="ahl-keyword ahl-control ahl-conditional">else</span> <span class="ahl-punctuation ahl-bracket">{</span>
+    <span class="ahl-variable">$copt</span> <span class="ahl-operator">=</span> <span class="ahl-function ahl-builtin">array</span><span class="ahl-punctuation ahl-bracket">(</span>
+        <span class="ahl-string">&#x27;http&#x27;</span> <span class="ahl-operator">=&gt;</span> <span class="ahl-function ahl-builtin">array</span><span class="ahl-punctuation ahl-bracket">(</span>
+            <span class="ahl-string">&#x27;proxy&#x27;</span> <span class="ahl-operator">=&gt;</span> <span class="ahl-function">preg_replace</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-string">&#x27;&#x2f;^http&#x2f;i&#x27;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-string">&#x27;tcp&#x27;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$<span class="ahl-constant ahl-builtin">_ENV</span></span><span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-string">&#x27;http_proxy&#x27;</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">,</span>
+            <span class="ahl-string">&#x27;request_fulluri&#x27;</span> <span class="ahl-operator">=&gt;</span> <span class="ahl-constant ahl-builtin boolean">true</span><span class="ahl-punctuation ahl-delimiter">,</span>
+        <span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">,</span>
+    <span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+<span class="ahl-punctuation ahl-bracket">}</span>
+
+<span class="ahl-variable">$ctx</span> <span class="ahl-operator">=</span> <span class="ahl-function">stream_context_create</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$copt</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-function ahl-builtin">array</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-string">&quot;notification&quot;</span> <span class="ahl-operator">=&gt;</span> <span class="ahl-string">&quot;stream_notification_callback&quot;</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+
+<span class="ahl-variable">$fp</span> <span class="ahl-operator">=</span> <span class="ahl-function">fopen</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$argv</span><span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-constant ahl-numeric integer">1</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-string">&quot;r&quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-constant ahl-builtin boolean">false</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$ctx</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+<span class="ahl-keyword ahl-control ahl-conditional">if</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-function">is_resource</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$fp</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-operator">&amp;&amp;</span> <span class="ahl-function">file_put_contents</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable">$argv</span><span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-constant ahl-numeric integer">2</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$fp</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-punctuation ahl-bracket">{</span>
+    <span class="ahl-keyword">echo</span> <span class="ahl-string">&quot;<span class="ahl-constant ahl-character escape">\n</span>Done!<span class="ahl-constant ahl-character escape">\n</span>&quot;</span><span class="ahl-punctuation ahl-delimiter">;</span>
+    <span class="ahl-function">exit</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-constant ahl-numeric integer">0</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+<span class="ahl-punctuation ahl-bracket">}</span>
+
+<span class="ahl-variable">$err</span> <span class="ahl-operator">=</span> <span class="ahl-function">error_get_last</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+<span class="ahl-keyword">echo</span> <span class="ahl-string">&quot;<span class="ahl-constant ahl-character escape">\n</span>Error..<span class="ahl-constant ahl-character escape">\n</span>&quot;</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-variable">$err</span><span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-string">&quot;message&quot;</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-delimiter">,</span> <span class="ahl-string">&quot;<span class="ahl-constant ahl-character escape">\n</span>&quot;</span><span class="ahl-punctuation ahl-delimiter">;</span>
+<span class="ahl-function">exit</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-constant ahl-numeric integer">1</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-delimiter">;</span>
+</code></pre>
+</body>
+</html>

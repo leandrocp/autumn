@@ -138,7 +138,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     }
   ]
 
-  @themes ["catppuccin_frappe", "dracula", "github_light"]
+  @themes ["onedark", "dracula", "github_light", "catppuccin_latte"]
 
   @impl true
   def run(_args) do
