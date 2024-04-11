@@ -67,7 +67,7 @@ Inlining styles will look like:
 
 That mode is easy and works fine for simple cases but in pages with multiple code blocks you might want to use CSS instead.
 
-### CSS
+### Linked
 
 First you need to disable inline styles by passing `false` to the `:inline_style` option:
 
