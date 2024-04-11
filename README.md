@@ -89,9 +89,13 @@ plug Plug.Static,
   only: ["dracula.css"] # choose any theme you want
 ```
 
-The style will be served at `/themes/dracula.css`. In your local environemnt that resolves to http://localhost:4000/themes/dracula.css
+The style will be served at `/themes/dracula.css`. In your local environemnt that resolves to http://localhost:4000/themes/dracula.css so finally add to your template:
 
-You can also copy the content of that theme file into your template `<style>` or serve that file as needed.
+```html
+<link phx-track-static rel="stylesheet" href={~p"/themes/dracula.css"} />
+```
+
+You can also copy the content of that theme file into a `<style>` tag in your template or serve that file from a CDN.
 
 ## Samples
 
