@@ -1,6 +1,11 @@
 # Changelog
 
-## 0.2.1 (2024-04-10)
+## 0.2.2 (2024-04-11)
+
+### Enhancements
+ * Add more languages: eex, elm, iex, jsx, ocaml, ocam-interface, svelte, tsx, vim
+
+## 0.2.1 (2024-04-11)
 
 ### Fixes
   * Include CSS files in package
