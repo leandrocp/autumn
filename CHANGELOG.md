@@ -7,6 +7,10 @@
 
 ## 0.2.1 (2024-04-11)
 
+### Backwards incompatible changes
+  * Renamed parent `<pre>` class from `autumn-highlight` to `autumn-hl`
+  * Added prefix `ahl-` to each scope class
+
 ### Fixes
   * Include CSS files in package
 
