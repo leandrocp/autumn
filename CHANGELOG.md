@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.3 (2024-04-29)
+
+### Enhancements
+ * Update to Inkjet v0.10.5
+ * Add objc language
+
 ## 0.2.2 (2024-04-11)
 
 ### Enhancements
