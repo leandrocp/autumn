@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.2.4-dev
+
 ## 0.2.3 (2024-04-29)
 
 ### Enhancements
