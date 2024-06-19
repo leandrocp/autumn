@@ -2,10 +2,13 @@
 
 ## 0.2.4-dev
 
+### Enhancements
+ * Update ex_doc to v0.34
+
 ## 0.2.3 (2024-04-29)
 
 ### Enhancements
- * Update to Inkjet v0.10.5
+ * Update inkjet to v0.10.5
  * Add objc language
 
 ## 0.2.2 (2024-04-11)

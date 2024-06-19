@@ -37,7 +37,7 @@ Add `:autumn` dependency:
 ```elixir
 def deps do
   [
-    {:autumn, "~> 0.1"}
+    {:autumn, "~> 0.2"}
   ]
 end
 ```

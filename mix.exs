@@ -74,7 +74,7 @@ defmodule Autumn.MixProject do
     [
       {:rustler, "~> 0.29", optional: not (@dev? or @force_build?)},
       {:rustler_precompiled, "~> 0.6"},
-      {:ex_doc, "~> 0.29", only: :dev},
+      {:ex_doc, "~> 0.34", only: :dev},
       {:toml, "~> 0.7", runtime: false}
     ]
   end
