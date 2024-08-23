@@ -1,38 +1,97 @@
-inherits = "catppuccin_mocha"
-
-[palette]
-# catppuccin palette colors
-rosewater = "#f2d5cf"
-flamingo = "#eebebe"
-pink = "#f4b8e4"
-mauve = "#ca9ee6"
-red = "#e78284"
-maroon = "#ea999c"
-peach = "#ef9f76"
-yellow = "#e5c890"
-green = "#a6d189"
-teal = "#81c8be"
-sky = "#99d1db"
-sapphire = "#85c1dc"
-blue = "#8caaee"
-lavender = "#babbf1"
-
-text = "#c6d0f5"
-subtext1 = "#b5bfe2"
-subtext0 = "#a5adce"
-overlay2 = "#949cbb"
-overlay1 = "#838ba7"
-overlay0 = "#737994"
-surface2 = "#626880"
-surface1 = "#51576d"
-surface0 = "#414559"
-
-base = "#303446"
-mantle = "#292c3c"
-crust = "#232634"
-
-# derived colors by blending existing palette colors
-cursorline = "#3b3f52"
-secondary_cursor = "#b8a5a6"
-secondary_cursor_normal = "#9193be"
-secondary_cursor_insert = "#83a275"
+"name" = "catppuccin_frappe"
+[base]
+"normal" = { bg = "#303446", fg = "#c6d0f5" }
+"cursorline" = { bg = "#3b3f52" }
+"cursorlinenr" = { fg = "#babbf1" }
+"linenr" = { fg = "#51576d" }
+[treesitter]
+"variable" = { fg = "#c6d0f5" }
+"variable.builtin" = { fg = "#e78284" }
+"variable.parameter" = { fg = "#ea999c" }
+"variable.parameter.builtin" = { fg = "#f4b8e4" }
+"variable.member" = { fg = "#babbf1" }
+"constant" = { fg = "#ef9f76" }
+"constant.builtin" = { fg = "#ef9f76" }
+"constant.macro" = { fg = "#ca9ee6" }
+"module" = { fg = "#babbf1", italic = true }
+"module.builtin" = { fg = "#f4b8e4" }
+"label" = { fg = "#85c1dc" }
+"string" = { fg = "#a6d189" }
+"string.documentation" = { fg = "#81c8be" }
+"string.regexp" = { fg = "#ef9f76" }
+"string.escape" = { fg = "#f4b8e4" }
+"string.special" = { fg = "#f4b8e4" }
+"string.special.symbol" = { fg = "#eebebe" }
+"string.special.url" = { fg = "#f2d5cf", underline = true, italic = true }
+"string.special.path" = { fg = "#f4b8e4" }
+"character" = { fg = "#81c8be" }
+"character.special" = { fg = "#f4b8e4" }
+"boolean" = { fg = "#ef9f76" }
+"number" = { fg = "#ef9f76" }
+"number.float" = { fg = "#ef9f76" }
+"type" = { fg = "#e5c890" }
+"type.builtin" = { fg = "#e5c890" }
+"type.definition" = { fg = "#e5c890" }
+"attribute" = { fg = "#ef9f76" }
+"attribute.builtin" = { fg = "#f4b8e4" }
+"property" = { fg = "#babbf1" }
+"function" = { fg = "#8caaee" }
+"function.builtin" = { fg = "#ef9f76" }
+"function.call" = { fg = "#8caaee" }
+"function.macro" = { fg = "#81c8be" }
+"function.method" = { fg = "#8caaee" }
+"function.method.call" = { fg = "#8caaee" }
+"constructor" = { fg = "#85c1dc" }
+"operator" = { fg = "#99d1db" }
+"keyword" = { fg = "#ca9ee6" }
+"keyword.coroutine" = { fg = "#ca9ee6" }
+"keyword.function" = { fg = "#ca9ee6" }
+"keyword.operator" = { fg = "#99d1db" }
+"keyword.import" = { fg = "#ca9ee6" }
+"keyword.type" = { fg = "#ca9ee6" }
+"keyword.modifier" = { fg = "#ca9ee6" }
+"keyword.repeat" = { fg = "#ca9ee6" }
+"keyword.return" = { fg = "#ca9ee6" }
+"keyword.debug" = { fg = "#ca9ee6" }
+"keyword.exception" = { fg = "#ca9ee6" }
+"keyword.conditional" = { fg = "#ca9ee6", italic = true }
+"keyword.conditional.ternary" = { fg = "#99d1db" }
+"keyword.directive" = { fg = "#f4b8e4" }
+"keyword.directive.define" = { fg = "#f4b8e4" }
+"punctuation.delimiter" = { fg = "#949cbb" }
+"punctuation.bracket" = { fg = "#949cbb" }
+"punctuation.special" = { fg = "#f4b8e4" }
+"comment" = { fg = "#737994", italic = true }
+"comment.documentation" = { fg = "#737994", italic = true }
+"comment.error" = { bg = "#e78284", fg = "#303446" }
+"comment.warning" = { bg = "#e5c890", fg = "#303446" }
+"comment.todo" = { bg = "#eebebe", fg = "#303446" }
+"comment.note" = { bg = "#8caaee", fg = "#303446" }
+"markup.strong" = { fg = "#ea999c", bold = true }
+"markup.italic" = { fg = "#ea999c", italic = true }
+"markup.strikethrough" = { fg = "#c6d0f5" }
+"markup.underline" = { underline = true }
+"markup.heading" = { fg = "#8caaee", bold = true }
+"markup.heading.1" = { fg = "#8caaee", bold = true }
+"markup.heading.2" = { fg = "#8caaee", bold = true }
+"markup.heading.3" = { fg = "#8caaee", bold = true }
+"markup.heading.4" = { fg = "#8caaee", bold = true }
+"markup.heading.5" = { fg = "#8caaee", bold = true }
+"markup.heading.6" = { fg = "#8caaee", bold = true }
+"markup.quote" = { fg = "#ea999c", bold = true }
+"markup.math" = { fg = "#8caaee" }
+"markup.link" = { fg = "#babbf1", bold = true }
+"markup.link.label" = { fg = "#85c1dc" }
+"markup.link.url" = { fg = "#f2d5cf", underline = true, italic = true }
+"markup.raw" = { fg = "#81c8be" }
+"markup.raw.block" = { fg = "#81c8be" }
+"markup.list" = { fg = "#f4b8e4" }
+"markup.list.checked" = { fg = "#a6d189" }
+"markup.list.unchecked" = { fg = "#838ba7" }
+"diff.plus" = { fg = "#a6d189" }
+"diff.minus" = { fg = "#e78284" }
+"diff.delta" = { fg = "#8caaee" }
+"tag" = { fg = "#ca9ee6" }
+"tag.builtin" = { fg = "#f4b8e4" }
+"tag.attribute" = { fg = "#81c8be", italic = true }
+"tag.delimiter" = { fg = "#99d1db" }

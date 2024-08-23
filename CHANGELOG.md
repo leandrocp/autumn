@@ -1,8 +1,18 @@
 # Changelog
 
-## 0.2.4-dev
+## 0.3.0-dev
+
+FIXME: describe formatters and review changelog entries
+
+### Breaking changes
+  * Refactored CSS to use vars
+  * Renamed parent `<pre>` class from `autumn-hl` to `athl`
+  * Renamed each span class prefix from `ahl-` to `athl-` to keep the same pattern as the `pre` tag
+  * Replaced `class` attr with `data-hl-name` on inline mode to avoid conflicts when using CSS and inline on same document
+  * Remove the option `:inline_style` in favor of `:formatter`
 
 ### Enhancements
+ * Added formatters: `:html_inline`, `:html_linked`, `:terminal`
  * Update ex_doc to v0.34
 
 ## 0.2.3 (2024-04-29)
@@ -18,7 +28,7 @@
 
 ## 0.2.1 (2024-04-11)
 
-### Backwards incompatible changes
+### Breaking changes
   * Renamed parent `<pre>` class from `autumn-highlight` to `autumn-hl`
   * Added prefix `ahl-` to each scope class
 

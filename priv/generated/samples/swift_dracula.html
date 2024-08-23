@@ -22,166 +22,300 @@
   </style>
   <style>
   /* dracula */
-pre.autumn-hl { background-color: #282A36; color: #f8f8f2; }
-.ahl-info { color: #8be9fd; }
-.ahl-label { color: #8be9fd; }
-.ahl-markup.ahl-bold { font-weight: bold; color: #ffb86c; }
-.ahl-comment.ahl-line { color: #6272A4; }
-.ahl-comment.ahl-block.ahl-documentation { color: #6272A4; }
-.ahl-diagnostic { color: #ffb86c; }
-.ahl-keyword.ahl-control.ahl-conditional { color: #ff79c6; }
-.ahl-markup.ahl-heading { font-weight: bold; color: #BD93F9; }
-.ahl-string.ahl-symbol { color: #f1fa8c; }
-.ahl-constant.ahl-builtin { color: #BD93F9; }
-.ahl-attribute { font-style: italic; color: #50fa7b; }
-.ahl-variable.ahl-other { color: #f8f8f2; }
-.ahl-type { font-style: italic; color: #8be9fd; }
-.ahl-definition { color: #8be9fd; }
-.ahl-function.ahl-method { color: #50fa7b; }
-.ahl-diagnostic.ahl-warning { color: #f1fa8c; }
-.ahl-hint { color: #BD93F9; }
-.ahl-string.ahl-special { color: #ffb86c; }
-.ahl-constant { color: #BD93F9; }
-.ahl-constant.ahl-builtin.ahl-boolean { color: #BD93F9; }
-.ahl-punctuation.ahl-special { color: #ff79c6; }
-.ahl-comment.ahl-block { color: #6272A4; }
-.ahl-warning { color: #f1fa8c; }
-.ahl-function.ahl-call { color: #50fa7b; }
-.ahl-string.ahl-regexp { color: #ff5555; }
-.ahl-keyword.ahl-storage { color: #ff79c6; }
-.ahl-type.ahl-enum.ahl-variant { font-style: italic; color: #f8f8f2; }
-.ahl-variable { color: #f8f8f2; }
-.ahl-constructor { color: #BD93F9; }
-.ahl-type.ahl-builtin { color: #8be9fd; }
-.ahl-keyword.ahl-storage.ahl-modifier { color: #ff79c6; }
-.ahl-tag.ahl-delimiter { color: #f8f8f2; }
-.ahl-diagnostic.ahl-error { color: #ff5555; }
-.ahl-diff.ahl-minus { color: #ff5555; }
-.ahl-constant.ahl-character { color: #8be9fd; }
-.ahl-markup.ahl-raw { color: #f8f8f2; }
-.ahl-tag { color: #ff79c6; }
-.ahl-comment { color: #6272A4; }
-.ahl-markup.ahl-link.ahl-text { color: #ff79c6; }
-.ahl-punctuation { color: #f8f8f2; }
-.ahl-markup.ahl-italic { font-style: italic; color: #f1fa8c; }
-.ahl-function.ahl-macro { color: #BD93F9; }
-.ahl-special { color: #ff79c6; }
-.ahl-diff.ahl-plus { color: #50fa7b; }
-.ahl-annotation { color: #f8f8f2; }
-.ahl-keyword.ahl-directive { color: #50fa7b; }
-.ahl-diagnostic.ahl-info { color: #8be9fd; }
-.ahl-constant.ahl-character.ahl-escape { color: #ff79c6; }
-.ahl-markup.ahl-link.ahl-url { color: #8be9fd; }
-.ahl-variable.ahl-builtin { font-style: italic; color: #BD93F9; }
-.ahl-keyword.ahl-return { color: #ff79c6; }
-.ahl-punctuation.ahl-delimiter { color: #f8f8f2; }
-.ahl-variable.ahl-parameter { font-style: italic; color: #ffb86c; }
-.ahl-string { color: #f1fa8c; }
-.ahl-diff.ahl-delta { color: #ffb86c; }
-.ahl-keyword.ahl-control.ahl-import { color: #ff79c6; }
-.ahl-keyword { color: #ff79c6; }
-.ahl-constant.ahl-macro { color: #BD93F9; }
-.ahl-keyword.ahl-storage.ahl-type { font-style: italic; color: #8be9fd; }
-.ahl-punctuation.ahl-bracket { color: #f8f8f2; }
-.ahl-markup.ahl-quote { font-style: italic; color: #f1fa8c; }
-.ahl-function.ahl-builtin { color: #50fa7b; }
-.ahl-markup.ahl-list { color: #8be9fd; }
-.ahl-keyword.ahl-operator { color: #ff79c6; }
-.ahl-diagnostic.ahl-hint { color: #BD93F9; }
-.ahl-variable.ahl-other.ahl-member { color: #f8f8f2; }
-.ahl-keyword.ahl-function { color: #ff79c6; }
-.ahl-function { color: #50fa7b; }
-.ahl-constant.ahl-numeric { color: #BD93F9; }
-.ahl-keyword.ahl-control.ahl-exception { color: #BD93F9; }
-.ahl-keyword.ahl-control.ahl-repeat { color: #ff79c6; }
-.ahl-tag.ahl-attribute { color: #BD93F9; }
-.ahl-error { color: #ff5555; }
+pre.athl {
+  color: #f8f8f2; background-color: #282a36;
+}
+.athl-operator {
+  color: #ff79c6;
+}
+.athl-attribute {
+  color: #8be9fd;
+}
+.athl-constant-macro {
+  color: #8be9fd;
+}
+.athl-constant {
+  color: #bd93f9;
+}
+.athl-keyword-coroutine {
+  color: #ff79c6;
+}
+.athl-comment-documentation {
+  color: #6272a4;
+}
+.athl-comment-warning {
+  color: #f1fa8c;
+}
+.athl-markup-italic {
+  font-style: italic;
+}
+.athl-module-builtin {
+  font-style: italic; color: #50fa7b;
+}
+.athl-keyword-type {
+  color: #ff79c6;
+}
+.athl-keyword-debug {
+  color: #ff79c6;
+}
+.athl-string-regexp {
+  color: #ff5555;
+}
+.athl-function-builtin {
+  color: #8be9fd;
+}
+.athl-function-method-call {
+  color: #50fa7b;
+}
+.athl-constant-builtin {
+  color: #bd93f9;
+}
+.athl-cursorline {
+  background-color: #44475a;
+}
+.athl-punctuation-special {
+  font-style: italic; color: #50fa7b;
+}
+.athl-keyword-modifier {
+  color: #ff79c6;
+}
+.athl-constructor {
+  color: #8be9fd;
+}
+.athl-cursorlinenr {
+  color: #f8f8f2; font-weight: bold;
+}
+.athl-keyword-return {
+  color: #ff79c6;
+}
+.athl-variable-member {
+  color: #ffb86c;
+}
+.athl-label {
+  color: #8be9fd;
+}
+.athl-attribute-builtin {
+  font-style: italic; color: #50fa7b;
+}
+.athl-punctuation-bracket {
+  color: #f8f8f2;
+}
+.athl-keyword-function {
+  color: #8be9fd;
+}
+.athl-keyword-repeat {
+  color: #ff79c6;
+}
+.athl-number {
+  color: #bd93f9;
+}
+.athl-type-definition {
+  color: #a4ffff;
+}
+.athl-keyword-import {
+  color: #ff79c6;
+}
+.athl-punctuation-delimiter {
+  color: #f8f8f2;
+}
+.athl-keyword-directive {
+  color: #ff79c6;
+}
+.athl-keyword-operator {
+  color: #ff79c6;
+}
+.athl-type-builtin {
+  font-style: italic; color: #8be9fd;
+}
+.athl-normal {
+  color: #f8f8f2; background-color: #282a36;
+}
+.athl-comment-note {
+  color: #8be9fd;
+}
+.athl-string-special-path {
+  font-style: italic; color: #50fa7b;
+}
+.athl-function-method {
+  color: #50fa7b;
+}
+.athl-keyword-directive-define {
+  color: #ff79c6;
+}
+.athl-function-call {
+  color: #50fa7b;
+}
+.athl-variable {
+  color: #f8f8f2;
+}
+.athl-number-float {
+  color: #50fa7b;
+}
+.athl-string-special {
+  font-style: italic; color: #50fa7b;
+}
+.athl-function {
+  color: #50fa7b;
+}
+.athl-comment-todo {
+  font-style: italic; color: #bd93f9; font-weight: bold;
+}
+.athl-string-special-url {
+  text-decoration: underline; color: #8be9fd;
+}
+.athl-variable-parameter {
+  color: #ffb86c;
+}
+.athl-property {
+  color: #bd93f9;
+}
+.athl-comment {
+  color: #6272a4;
+}
+.athl-linenr {
+  color: #6272a4;
+}
+.athl-keyword-conditional {
+  color: #ff79c6;
+}
+.athl-string {
+  color: #f1fa8c;
+}
+.athl-keyword-conditional-ternary {
+  color: #ff79c6;
+}
+.athl-type {
+  color: #a4ffff;
+}
+.athl-string-documentation {
+  color: #f1fa8c;
+}
+.athl-comment-error {
+  color: #ff5555;
+}
+.athl-module {
+  color: #ffb86c;
+}
+.athl-keyword {
+  color: #ff79c6;
+}
+.athl-keyword-exception {
+  color: #bd93f9;
+}
+.athl-string-escape {
+  color: #8be9fd;
+}
+.athl-boolean {
+  color: #bd93f9;
+}
+.athl-character-special {
+  font-style: italic; color: #50fa7b;
+}
+.athl-variable-parameter-builtin {
+  font-style: italic; color: #50fa7b;
+}
+.athl-markup-strong {
+  color: #ffb86c; font-weight: bold;
+}
+.athl-string-special-symbol {
+  color: #bd93f9;
+}
+.athl-character {
+  color: #50fa7b;
+}
+.athl-variable-builtin {
+  color: #bd93f9;
+}
+.athl-function-macro {
+  color: #50fa7b;
+}
 
   </style>
 </head>
 <body>
-  <pre class="autumn-hl"><code class="language-swift" translate="no"><span class="ahl-comment">&#x2f;&#x2f; RUN: %target-typecheck-verify-swift  -disable-availability-checking</span>
-
-<span class="ahl-comment">&#x2f;&#x2f; REQUIRES: concurrency</span>
-
-<span class="ahl-comment">&#x2f;&#x2f; Parsing function declarations with &#x27;async&#x27;</span>
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncGlobal1</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span>
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncGlobal2</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-keyword">throws</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncGlobal3</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">throws</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{&#x27;async&#x27; must precede &#x27;throws&#x27;}}{{28-34=}}{{21-21=async }}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncGlobal3</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable ahl-parameter">fn</span><span class="ahl-punctuation ahl-delimiter">:</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">throws</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">Int</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">rethrows</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{&#x27;async&#x27; must precede &#x27;rethrows&#x27;}}{{50-56=}}{{41-41=async }}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncGlobal4</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">Int</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{&#x27;async&#x27; may only occur before &#x27;-&gt;&#x27;}}{{28-34=}}{{21-21=async }}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncGlobal5</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">Int</span> <span class="ahl-keyword">async</span> <span class="ahl-keyword">throws</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span>
-<span class="ahl-comment">&#x2f;&#x2f; expected-error@-1{{&#x27;async&#x27; may only occur before &#x27;-&gt;&#x27;}}{{28-34=}}{{21-21=async }}</span>
-<span class="ahl-comment">&#x2f;&#x2f; expected-error@-2{{&#x27;throws&#x27; may only occur before &#x27;-&gt;&#x27;}}{{34-41=}}{{21-21=throws }}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncGlobal6</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">Int</span> <span class="ahl-keyword">throws</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span>
-<span class="ahl-comment">&#x2f;&#x2f; expected-error@-1{{&#x27;throws&#x27; may only occur before &#x27;-&gt;&#x27;}}{{28-35=}}{{21-21=throws }}</span>
-<span class="ahl-comment">&#x2f;&#x2f; expected-error@-2{{&#x27;async&#x27; may only occur before &#x27;-&gt;&#x27;}}{{35-41=}}{{21-21=async }}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncGlobal7</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">throws</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">Int</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{&#x27;async&#x27; may only occur before &#x27;-&gt;&#x27;}}{{35-41=}}{{21-21=async }}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncGlobal8</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-keyword">throws</span> <span class="ahl-keyword">async</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">async</span> Int <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span><span class="ahl-punctuation ahl-bracket">}</span>
-<span class="ahl-comment">&#x2f;&#x2f; expected-error@-1{{&#x27;async&#x27; has already been specified}} {{34-40=}}</span>
-<span class="ahl-comment">&#x2f;&#x2f; expected-error@-2{{&#x27;async&#x27; has already been specified}} {{43-49=}}</span>
-<span class="ahl-comment">&#x2f;&#x2f; expected-error@-3{{&#x27;async&#x27; has already been specified}} {{53-59=}}</span>
-
-<span class="ahl-keyword">class</span> <span class="ahl-type">X</span> <span class="ahl-punctuation ahl-bracket">{</span>
-  <span class="ahl-constructor">init</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span>
-
-  deinit <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{deinitializers cannot have a name}}</span>
-
-  <span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">f</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span>
-
-  subscript<span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-variable ahl-parameter">x</span><span class="ahl-punctuation ahl-delimiter">:</span> <span class="ahl-type">Int</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">Int</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{expected &#x27;-&gt;&#x27; for subscript element type}}</span>
-    <span class="ahl-comment">&#x2f;&#x2f; expected-error@-1{{single argument function types require parentheses}}</span>
-    <span class="ahl-comment">&#x2f;&#x2f; expected-error@-2{{cannot find type &#x27;async&#x27; in scope}}</span>
-    <span class="ahl-comment">&#x2f;&#x2f; expected-note@-3{{cannot use module &#x27;async&#x27; as a type}}</span>
-    <span class="ahl-keyword">get</span> <span class="ahl-punctuation ahl-bracket">{</span>
-      <span class="ahl-keyword">return</span> <span class="ahl-constant ahl-numeric integer">0</span>
-    <span class="ahl-punctuation ahl-bracket">}</span>
-
-    <span class="ahl-keyword">set</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{&#x27;set&#x27; accessor cannot have specifier &#x27;async&#x27;}}</span>
-    <span class="ahl-punctuation ahl-bracket">}</span>
-  <span class="ahl-punctuation ahl-bracket">}</span>
-<span class="ahl-punctuation ahl-bracket">}</span>
-
-<span class="ahl-comment">&#x2f;&#x2f; Parsing function types with &#x27;async&#x27;.</span>
-<span class="ahl-keyword">typealias</span> <span class="ahl-type">AsyncFunc1</span> <span class="ahl-operator">=</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span>
-<span class="ahl-keyword">typealias</span> <span class="ahl-type">AsyncFunc2</span> <span class="ahl-operator">=</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-keyword">throws</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span>
-<span class="ahl-keyword">typealias</span> <span class="ahl-type">AsyncFunc3</span> <span class="ahl-operator">=</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">throws</span> <span class="ahl-keyword">async</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{&#x27;async&#x27; must precede &#x27;throws&#x27;}}{{34-40=}}{{27-27=async }}</span>
-
-<span class="ahl-comment">&#x2f;&#x2f; Parsing type expressions with &#x27;async&#x27;.</span>
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">testTypeExprs</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-punctuation ahl-bracket">{</span>
-  <span class="ahl-keyword">let</span> _ <span class="ahl-operator">=</span> <span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span>
-  <span class="ahl-keyword">let</span> _ <span class="ahl-operator">=</span> <span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-keyword">throws</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span>
-  <span class="ahl-keyword">let</span> _ <span class="ahl-operator">=</span> <span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">throws</span> <span class="ahl-keyword">async</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span>  <span class="ahl-comment">&#x2f;&#x2f; expected-error{{&#x27;async&#x27; must precede &#x27;throws&#x27;}}{{22-28=}}{{15-15=async }}</span>
-
-  <span class="ahl-keyword">let</span> _ <span class="ahl-operator">=</span> <span class="ahl-punctuation ahl-bracket">[</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">async</span> <span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span><span class="ahl-punctuation ahl-bracket">]</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{&#x27;async&#x27; may only occur before &#x27;-&gt;&#x27;}}{{18-24=}}{{15-15=async }}</span>
-<span class="ahl-punctuation ahl-bracket">}</span>
-
-<span class="ahl-comment">&#x2f;&#x2f; Parsing await syntax.</span>
-<span class="ahl-keyword">struct</span> <span class="ahl-type">MyFuture</span> <span class="ahl-punctuation ahl-bracket">{</span>
-  <span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">await</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">Int</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-constant ahl-numeric integer">0</span> <span class="ahl-punctuation ahl-bracket">}</span>
-<span class="ahl-punctuation ahl-bracket">}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">testAwaitExpr</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span>
-  <span class="ahl-keyword">let</span> _ <span class="ahl-operator">=</span> <span class="ahl-keyword">await</span> <span class="ahl-function">asyncGlobal1</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span>
-  <span class="ahl-keyword">let</span> <span class="ahl-variable"><span class="ahl-variable">myFuture</span></span> <span class="ahl-operator">=</span> <span class="ahl-function">MyFuture</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span>
-  <span class="ahl-keyword">let</span> _ <span class="ahl-operator">=</span> <span class="ahl-variable">myFuture</span><span class="ahl-punctuation ahl-delimiter">.</span><span class="ahl-function">await</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span>
-<span class="ahl-punctuation ahl-bracket">}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">getIntSomeday</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-operator">-&gt;</span> <span class="ahl-type">Int</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-constant ahl-numeric integer">5</span> <span class="ahl-punctuation ahl-bracket">}</span>
-
-<span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">testAsyncLet</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-keyword">async</span> <span class="ahl-punctuation ahl-bracket">{</span>
-  <span class="ahl-keyword">async</span> <span class="ahl-keyword">let</span> <span class="ahl-variable"><span class="ahl-variable">x</span></span> <span class="ahl-operator">=</span> <span class="ahl-keyword">await</span> <span class="ahl-function">getIntSomeday</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span>
-  <span class="ahl-variable">_</span> <span class="ahl-operator">=</span> <span class="ahl-keyword">await</span> <span class="ahl-variable ahl-parameter">x</span>
-<span class="ahl-punctuation ahl-bracket">}</span>
-
-<span class="ahl-keyword">async</span> <span class="ahl-keyword ahl-function">func</span> <span class="ahl-function ahl-method">asyncIncorrectly</span><span class="ahl-punctuation ahl-bracket">(</span><span class="ahl-punctuation ahl-bracket">)</span> <span class="ahl-punctuation ahl-bracket">{</span> <span class="ahl-punctuation ahl-bracket">}</span> <span class="ahl-comment">&#x2f;&#x2f; expected-error{{&#x27;async&#x27; must be written after the parameter list of a function}}{{1-7=}}{{30-30= async}}</span>
+  <pre class="athl" style="color: #f8f8f2; background-color: #282a36;"><code class="language-swift" translate="no">
+  <span data-athl-line="1">// RUN: %target-typecheck-verify-swift  -disable-availability-checking</span>
+  <span data-athl-line="2"></span>
+  <span data-athl-line="3">// REQUIRES: concurrency</span>
+  <span data-athl-line="4"></span>
+  <span data-athl-line="5">// Parsing function declarations with 'async'</span>
+  <span data-athl-line="6">func asyncGlobal1() async { }</span>
+  <span data-athl-line="7">func asyncGlobal2() async throws { }</span>
+  <span data-athl-line="8"></span>
+  <span data-athl-line="9">func asyncGlobal3() throws async { } // expected-error{{'async' must precede 'throws'}}{{28-34=}}{{21-21=async }}</span>
+  <span data-athl-line="10"></span>
+  <span data-athl-line="11">func asyncGlobal3(fn: () throws -> Int) rethrows async { } // expected-error{{'async' must precede 'rethrows'}}{{50-56=}}{{41-41=async }}</span>
+  <span data-athl-line="12"></span>
+  <span data-athl-line="13">func asyncGlobal4() -> Int async { } // expected-error{{'async' may only occur before '->'}}{{28-34=}}{{21-21=async }}</span>
+  <span data-athl-line="14"></span>
+  <span data-athl-line="15">func asyncGlobal5() -> Int async throws { }</span>
+  <span data-athl-line="16">// expected-error@-1{{'async' may only occur before '->'}}{{28-34=}}{{21-21=async }}</span>
+  <span data-athl-line="17">// expected-error@-2{{'throws' may only occur before '->'}}{{34-41=}}{{21-21=throws }}</span>
+  <span data-athl-line="18"></span>
+  <span data-athl-line="19">func asyncGlobal6() -> Int throws async { }</span>
+  <span data-athl-line="20">// expected-error@-1{{'throws' may only occur before '->'}}{{28-35=}}{{21-21=throws }}</span>
+  <span data-athl-line="21">// expected-error@-2{{'async' may only occur before '->'}}{{35-41=}}{{21-21=async }}</span>
+  <span data-athl-line="22"></span>
+  <span data-athl-line="23">func asyncGlobal7() throws -> Int async { } // expected-error{{'async' may only occur before '->'}}{{35-41=}}{{21-21=async }}</span>
+  <span data-athl-line="24"></span>
+  <span data-athl-line="25">func asyncGlobal8() async throws async -> async Int async {}</span>
+  <span data-athl-line="26">// expected-error@-1{{'async' has already been specified}} {{34-40=}}</span>
+  <span data-athl-line="27">// expected-error@-2{{'async' has already been specified}} {{43-49=}}</span>
+  <span data-athl-line="28">// expected-error@-3{{'async' has already been specified}} {{53-59=}}</span>
+  <span data-athl-line="29"></span>
+  <span data-athl-line="30">class X {</span>
+  <span data-athl-line="31">  init() async { }</span>
+  <span data-athl-line="32"></span>
+  <span data-athl-line="33">  deinit async { } // expected-error{{deinitializers cannot have a name}}</span>
+  <span data-athl-line="34"></span>
+  <span data-athl-line="35">  func f() async { }</span>
+  <span data-athl-line="36"></span>
+  <span data-athl-line="37">  subscript(x: Int) async -> Int { // expected-error{{expected '->' for subscript element type}}</span>
+  <span data-athl-line="38">    // expected-error@-1{{single argument function types require parentheses}}</span>
+  <span data-athl-line="39">    // expected-error@-2{{cannot find type 'async' in scope}}</span>
+  <span data-athl-line="40">    // expected-note@-3{{cannot use module 'async' as a type}}</span>
+  <span data-athl-line="41">    get {</span>
+  <span data-athl-line="42">      return 0</span>
+  <span data-athl-line="43">    }</span>
+  <span data-athl-line="44"></span>
+  <span data-athl-line="45">    set async { // expected-error{{'set' accessor cannot have specifier 'async'}}</span>
+  <span data-athl-line="46">    }</span>
+  <span data-athl-line="47">  }</span>
+  <span data-athl-line="48">}</span>
+  <span data-athl-line="49"></span>
+  <span data-athl-line="50">// Parsing function types with 'async'.</span>
+  <span data-athl-line="51">typealias AsyncFunc1 = () async -> ()</span>
+  <span data-athl-line="52">typealias AsyncFunc2 = () async throws -> ()</span>
+  <span data-athl-line="53">typealias AsyncFunc3 = () throws async -> () // expected-error{{'async' must precede 'throws'}}{{34-40=}}{{27-27=async }}</span>
+  <span data-athl-line="54"></span>
+  <span data-athl-line="55">// Parsing type expressions with 'async'.</span>
+  <span data-athl-line="56">func testTypeExprs() {</span>
+  <span data-athl-line="57">  let _ = [() async -> ()]()</span>
+  <span data-athl-line="58">  let _ = [() async throws -> ()]()</span>
+  <span data-athl-line="59">  let _ = [() throws async -> ()]()  // expected-error{{'async' must precede 'throws'}}{{22-28=}}{{15-15=async }}</span>
+  <span data-athl-line="60"></span>
+  <span data-athl-line="61">  let _ = [() -> async ()]() // expected-error{{'async' may only occur before '->'}}{{18-24=}}{{15-15=async }}</span>
+  <span data-athl-line="62">}</span>
+  <span data-athl-line="63"></span>
+  <span data-athl-line="64">// Parsing await syntax.</span>
+  <span data-athl-line="65">struct MyFuture {</span>
+  <span data-athl-line="66">  func await() -> Int { 0 }</span>
+  <span data-athl-line="67">}</span>
+  <span data-athl-line="68"></span>
+  <span data-athl-line="69">func testAwaitExpr() async {</span>
+  <span data-athl-line="70">  let _ = await asyncGlobal1()</span>
+  <span data-athl-line="71">  let myFuture = MyFuture()</span>
+  <span data-athl-line="72">  let _ = myFuture.await()</span>
+  <span data-athl-line="73">}</span>
+  <span data-athl-line="74"></span>
+  <span data-athl-line="75">func getIntSomeday() async -> Int { 5 }</span>
+  <span data-athl-line="76"></span>
+  <span data-athl-line="77">func testAsyncLet() async {</span>
+  <span data-athl-line="78">  async let x = await getIntSomeday()</span>
+  <span data-athl-line="79">  _ = await x</span>
+  <span data-athl-line="80">}</span>
+  <span data-athl-line="81"></span>
+  <span data-athl-line="82">async func asyncIncorrectly() { } // expected-error{{'async' must be written after the parameter list of a function}}{{1-7=}}{{30-30= async}}</span>
 </code></pre>
 </body>
 </html>

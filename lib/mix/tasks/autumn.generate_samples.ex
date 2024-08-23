@@ -1,4 +1,6 @@
 defmodule Mix.Tasks.Autumn.GenerateSamples do
+  @moduledoc false
+
   use Mix.Task
 
   @shortdoc "Generate samples."
@@ -138,7 +140,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
     }
   ]
 
-  @themes ["onedark", "dracula", "github_light", "catppuccin_latte"]
+  @themes ["Catppuccin Frappé - No Italics", "Dracula", "Github Dark", "Github Light", "One Dark", "One Light"]
 
   @impl true
   def run(_args) do
@@ -159,14 +161,14 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
 
     for theme <- @themes do
       do_generage_inline(lang, source, theme)
-      do_generage_css(lang, source, theme)
+      # do_generage_css(lang, source, theme)
     end
   end
 
   defp do_generage_inline(lang, source, theme) do
     Mix.shell().info("#{lang} - #{theme} (inline)")
 
-    code = Autumn.highlight!(source, language: lang, theme: theme, inline_style: true)
+    code = Autumn.highlight!(source, language: lang, theme: theme, formatter: :html_inline, debug: true)
 
     html =
       EEx.eval_string(@layout_inline,
@@ -182,7 +184,7 @@ defmodule Mix.Tasks.Autumn.GenerateSamples do
   defp do_generage_css(lang, source, theme) do
     Mix.shell().info("#{lang} - #{theme}")
 
-    code = Autumn.highlight!(source, language: lang, theme: theme, inline_style: false)
+    code = Autumn.highlight!(source, language: lang, theme: theme, mode: :inline)
 
     theme_style =
       File.read!(Path.join([:code.priv_dir(:autumn), "static", "css", "#{theme}.css"]))
