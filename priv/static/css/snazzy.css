@@ -1,54 +1,54 @@
 /* snazzy */
 pre.autumn-hl { background-color: #282a36; color: #eff0eb; }
-.ahl-label { color: #ff6ac1; }
 .ahl-markup.ahl-bold { font-weight: bold; color: #57c7ff; }
-.ahl-namespace { color: #b6d37c; }
-.ahl-markup.ahl-heading { font-weight: bold; color: #bd93f9; }
-.ahl-constant.ahl-builtin { color: #b6d37c; }
-.ahl-attribute { color: #b1d7c7; }
-.ahl-type { color: #b1d7c7; }
-.ahl-function.ahl-method { color: #b1d7c7; }
-.ahl-string.ahl-special { color: #57c7ff; }
-.ahl-constant { color: #bd93f9; }
-.ahl-warning { color: #9aedfe; }
-.ahl-string.ahl-regexp { color: #ff5c57; }
-.ahl-keyword.ahl-storage { font-weight: bold; color: #f97c7c; }
-.ahl-type.ahl-variant { color: #ffab6f; }
-.ahl-type.ahl-enum.ahl-variant { color: #ffab6f; }
-.ahl-variable { color: #9aedfe; }
-.ahl-constructor { color: #ffab6f; }
-.ahl-type.ahl-builtin { color: #f3f99d; }
-.ahl-diff.ahl-minus { color: #ff5c57; }
-.ahl-constant.ahl-character { color: #f99fc6; }
-.ahl-markup.ahl-raw { color: #eff0eb; }
-.ahl-tag { color: #f99fc6; }
-.ahl-comment { color: #a39e9b; }
-.ahl-markup.ahl-link.ahl-text { color: #ff6ac1; }
-.ahl-punctuation { color: #ff6ac1; }
-.ahl-markup.ahl-italic { font-style: italic; color: #f3f99d; }
 .ahl-function.ahl-macro { color: #57c7ff; }
-.ahl-special { color: #ff6ac1; }
-.ahl-diff.ahl-plus { color: #5af78e; }
-.ahl-operator { color: #f97c7c; }
-.ahl-constant.ahl-character.ahl-escape { color: #ff6ac1; }
-.ahl-keyword.ahl-control { font-weight: bold; color: #f99fc6; }
-.ahl-markup.ahl-link.ahl-url { color: #9aedfe; }
 .ahl-variable.ahl-builtin { color: #b6d37c; }
-.ahl-punctuation.ahl-delimiter { color: #f97c7c; }
-.ahl-variable.ahl-parameter { font-style: italic; color: #57c7ff; }
-.ahl-string { color: #f3f99d; }
-.ahl-diff.ahl-delta { color: #57c7ff; }
-.ahl-keyword { font-weight: bold; color: #ff6ac1; }
-.ahl-punctuation.ahl-bracket { color: #eff0eb; }
-.ahl-markup.ahl-quote { font-style: italic; color: #f3f99d; }
-.ahl-function.ahl-builtin { color: #ffab6f; }
-.ahl-markup.ahl-link.ahl-label { font-style: italic; color: #57c7ff; }
-.ahl-markup.ahl-list { color: #9aedfe; }
-.ahl-keyword.ahl-operator { font-weight: bold; color: #f97c7c; }
 .ahl-variable.ahl-other.ahl-member { color: #c9c5fb; }
-.ahl-keyword.ahl-function { font-weight: bold; color: #c9c5fb; }
-.ahl-function { color: #5af78e; }
-.ahl-constant.ahl-numeric { color: #9aedfe; }
 .ahl-keyword.ahl-control.ahl-exception { font-weight: bold; color: #ff5c57; }
-.ahl-constant.ahl-numeric.ahl-float { color: #ff5c57; }
+.ahl-keyword { font-weight: bold; color: #ff6ac1; }
+.ahl-markup.ahl-link.ahl-label { font-style: italic; color: #57c7ff; }
+.ahl-constant.ahl-character { color: #f99fc6; }
+.ahl-type { color: #b1d7c7; }
+.ahl-string { color: #f3f99d; }
+.ahl-markup.ahl-link.ahl-url { color: #9aedfe; }
+.ahl-comment { color: #a39e9b; }
+.ahl-namespace { color: #b6d37c; }
+.ahl-variable.ahl-parameter { font-style: italic; color: #57c7ff; }
+.ahl-function { color: #5af78e; }
+.ahl-string.ahl-special { color: #57c7ff; }
+.ahl-keyword.ahl-storage { font-weight: bold; color: #f97c7c; }
+.ahl-markup.ahl-heading { font-weight: bold; color: #bd93f9; }
+.ahl-variable { color: #9aedfe; }
+.ahl-diff.ahl-plus { color: #5af78e; }
+.ahl-function.ahl-method { color: #b1d7c7; }
+.ahl-warning { color: #9aedfe; }
+.ahl-type.ahl-builtin { color: #f3f99d; }
+.ahl-keyword.ahl-operator { font-weight: bold; color: #f97c7c; }
+.ahl-keyword.ahl-control { font-weight: bold; color: #f99fc6; }
+.ahl-type.ahl-enum.ahl-variant { color: #ffab6f; }
+.ahl-punctuation.ahl-delimiter { color: #f97c7c; }
+.ahl-keyword.ahl-function { font-weight: bold; color: #c9c5fb; }
+.ahl-punctuation.ahl-bracket { color: #eff0eb; }
+.ahl-label { color: #ff6ac1; }
+.ahl-constant.ahl-character.ahl-escape { color: #ff6ac1; }
 .ahl-error { color: #ff5c57; }
+.ahl-constant.ahl-numeric { color: #9aedfe; }
+.ahl-special { color: #ff6ac1; }
+.ahl-constructor { color: #ffab6f; }
+.ahl-markup.ahl-quote { font-style: italic; color: #f3f99d; }
+.ahl-constant.ahl-builtin { color: #b6d37c; }
+.ahl-constant.ahl-numeric.ahl-float { color: #ff5c57; }
+.ahl-function.ahl-builtin { color: #ffab6f; }
+.ahl-string.ahl-regexp { color: #ff5c57; }
+.ahl-diff.ahl-delta { color: #57c7ff; }
+.ahl-diff.ahl-minus { color: #ff5c57; }
+.ahl-punctuation { color: #ff6ac1; }
+.ahl-markup.ahl-link.ahl-text { color: #ff6ac1; }
+.ahl-type.ahl-variant { color: #ffab6f; }
+.ahl-tag { color: #f99fc6; }
+.ahl-markup.ahl-list { color: #9aedfe; }
+.ahl-markup.ahl-italic { font-style: italic; color: #f3f99d; }
+.ahl-markup.ahl-raw { color: #eff0eb; }
+.ahl-constant { color: #bd93f9; }
+.ahl-attribute { color: #b1d7c7; }
+.ahl-operator { color: #f97c7c; }

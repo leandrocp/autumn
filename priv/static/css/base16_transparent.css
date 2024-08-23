@@ -1,42 +1,42 @@
 /* base16_transparent */
 pre.autumn-hl { background-color: #ffffff; color: light-gray; }
+.ahl-markup.ahl-bold { font-weight: bold; color: light-yellow; }
+.ahl-variable.ahl-other.ahl-member { color: green; }
+.ahl-diagnostic.ahl-warning { color: light-yellow; }
+.ahl-keyword { color: light-magenta; }
+.ahl-type { color: light-yellow; }
+.ahl-diff.ahl-delta.ahl-moved { color: blue; }
+.ahl-string { color: light-green; }
+.ahl-markup.ahl-link.ahl-url { text-decoration: underline;color: yellow; color: yellow; }
+.ahl-markup.ahl-select { color: magenta; }
+.ahl-comment { color: light-gray; }
+.ahl-namespace { color: light-magenta; }
+.ahl-function { color: light-blue; }
+.ahl-markup.ahl-heading { color: light-blue; }
+.ahl-variable { color: light-red; }
+.ahl-diff.ahl-plus { color: light-green; }
+.ahl-diagnostic.ahl-error { color: light-red; }
+.ahl-warning { color: light-yellow; }
+.ahl-diagnostic.ahl-info { color: light-blue; }
+.ahl-debug { color: light-gray; }
 .ahl-info { color: light-blue; }
 .ahl-label { color: light-magenta; }
-.ahl-markup.ahl-bold { font-weight: bold; color: light-yellow; }
-.ahl-namespace { color: light-magenta; }
-.ahl-diagnostic.ahl-debug { color: light-gray; }
-.ahl-markup.ahl-heading { color: light-blue; }
-.ahl-attribute { color: yellow; }
-.ahl-type { color: light-yellow; }
-.ahl-diagnostic.ahl-warning { color: light-yellow; }
-.ahl-hint { color: light-gray; }
-.ahl-constant { color: yellow; }
-.ahl-warning { color: light-yellow; }
-.ahl-variable { color: light-red; }
-.ahl-constructor { color: light-blue; }
-.ahl-diagnostic.ahl-error { color: light-red; }
-.ahl-diff.ahl-minus { color: light-red; }
-.ahl-markup.ahl-insert { color: green; }
-.ahl-markup.ahl-raw { color: green; }
-.ahl-diff.ahl-delta.ahl-moved { color: blue; }
-.ahl-comment { color: light-gray; }
-.ahl-markup.ahl-link.ahl-text { color: light-red; }
-.ahl-markup.ahl-italic { font-style: italic; color: light-magenta; }
-.ahl-special { color: light-blue; }
-.ahl-diff.ahl-plus { color: light-green; }
-.ahl-diagnostic.ahl-info { color: light-blue; }
 .ahl-constant.ahl-character.ahl-escape { color: light-cyan; }
-.ahl-markup.ahl-link.ahl-url { text-decoration: underline;color: yellow; color: yellow; }
-.ahl-string { color: light-green; }
-.ahl-diff.ahl-delta { color: light-blue; }
-.ahl-keyword { color: light-magenta; }
-.ahl-markup.ahl-select { color: magenta; }
-.ahl-markup.ahl-quote { color: light-cyan; }
-.ahl-markup.ahl-list { color: light-red; }
-.ahl-diagnostic.ahl-hint { color: light-gray; }
-.ahl-variable.ahl-other.ahl-member { color: green; }
-.ahl-function { color: light-blue; }
-.ahl-constant.ahl-numeric { color: yellow; }
-.ahl-markup.ahl-normal { color: blue; }
-.ahl-debug { color: light-gray; }
 .ahl-error { color: light-red; }
+.ahl-constant.ahl-numeric { color: yellow; }
+.ahl-special { color: light-blue; }
+.ahl-constructor { color: light-blue; }
+.ahl-markup.ahl-insert { color: green; }
+.ahl-markup.ahl-quote { color: light-cyan; }
+.ahl-hint { color: light-gray; }
+.ahl-diff.ahl-delta { color: light-blue; }
+.ahl-diff.ahl-minus { color: light-red; }
+.ahl-markup.ahl-link.ahl-text { color: light-red; }
+.ahl-markup.ahl-list { color: light-red; }
+.ahl-markup.ahl-normal { color: blue; }
+.ahl-markup.ahl-italic { font-style: italic; color: light-magenta; }
+.ahl-markup.ahl-raw { color: green; }
+.ahl-constant { color: yellow; }
+.ahl-attribute { color: yellow; }
+.ahl-diagnostic.ahl-debug { color: light-gray; }
+.ahl-diagnostic.ahl-hint { color: light-gray; }
