@@ -1,0 +1,132 @@
+/* Atelier Sulphurpool Light - Zed Industries */
+pre.athl {
+  background-color: #f5f7ffff; color: #202646ff;
+}
+.athl-attribute {
+  color: #3e8fd0ff;
+}
+.athl-boolean {
+  color: #ac9739ff;
+}
+.athl-comment {
+  color: #898ea4ff;
+}
+.athl-comment-doc {
+  color: #5d6587ff;
+}
+.athl-constant {
+  color: #ac9739ff;
+}
+.athl-constructor {
+  color: #3e8fd0ff;
+}
+.athl-embedded {
+  color: #202646ff;
+}
+.athl-emphasis {
+  color: #3e8fd0ff;
+}
+.athl-emphasis-strong {
+  color: #3e8fd0ff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #c76a29ff;
+}
+.athl-function {
+  color: #3d8fd1ff;
+}
+.athl-function-method {
+  color: #3d8fd1ff;
+}
+.athl-function-special-definition {
+  color: #c08b2fff;
+}
+.athl-hint {
+  color: #7087b2ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #6679ccff;
+}
+.athl-label {
+  color: #3e8fd0ff;
+}
+.athl-link_text {
+  color: #c76a29ff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #ac9739ff;
+}
+.athl-number {
+  color: #c76a28ff;
+}
+.athl-operator {
+  color: #5d6587ff;
+}
+.athl-predictive {
+  color: #8599beff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #202646ff;
+}
+.athl-primary {
+  color: #293256ff;
+}
+.athl-property {
+  color: #c94821ff;
+}
+.athl-punctuation {
+  color: #293256ff;
+}
+.athl-punctuation-bracket {
+  color: #5d6587ff;
+}
+.athl-punctuation-delimiter {
+  color: #5d6587ff;
+}
+.athl-punctuation-list_marker {
+  color: #293256ff;
+}
+.athl-punctuation-special {
+  color: #9b6279ff;
+}
+.athl-string {
+  color: #ac9738ff;
+}
+.athl-string-escape {
+  color: #5d6587ff;
+}
+.athl-string-regex {
+  color: #21a2c9ff;
+}
+.athl-string-special {
+  color: #9b6279ff;
+}
+.athl-string-special-symbol {
+  color: #ac9738ff;
+}
+.athl-tag {
+  color: #3e8fd0ff;
+}
+.athl-text-literal {
+  color: #c76a29ff;
+}
+.athl-title {
+  color: #202646ff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #c08b2fff;
+}
+.athl-variable {
+  color: #293256ff;
+}
+.athl-variable-special {
+  color: #6679ccff;
+}
+.athl-variant {
+  color: #c08b2fff;
+}

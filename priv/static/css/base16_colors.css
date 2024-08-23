@@ -1,0 +1,99 @@
+/* Base16 Colors - mrmrs (http://clrs.cc) */
+pre.athl {
+  background-color: #111111; color: #bbbbbb;
+}
+.athl-attribute {
+  color: #0074d9;
+}
+.athl-boolean {
+  color: #ff851b;
+}
+.athl-comment {
+  color: #777777;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #777777;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ff851b;
+}
+.athl-constructor {
+  color: #ff4136;
+}
+.athl-emphasis {
+  color: #ff4136;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff4136;
+  font-weight: 700;
+}
+.athl-function {
+  color: #0074d9;
+}
+.athl-keyword {
+  color: #b10dc9;
+}
+.athl-label {
+  color: #ffdc00;
+}
+.athl-link_text {
+  color: #ff4136;
+}
+.athl-link_uri {
+  color: #ff4136;
+}
+.athl-number {
+  color: #ff851b;
+}
+.athl-punctuation {
+  color: #bbbbbb;
+}
+.athl-punctuation-bracket {
+  color: #bbbbbb;
+}
+.athl-punctuation-delimiter {
+  color: #bbbbbb;
+}
+.athl-punctuation-list_marker {
+  color: #bbbbbb;
+}
+.athl-punctuation-special {
+  color: #bbbbbb;
+}
+.athl-string {
+  color: #2ecc40;
+}
+.athl-string-escape {
+  color: #ff851b;
+}
+.athl-string-regex {
+  color: #2ecc40;
+}
+.athl-string-special {
+  color: #2ecc40;
+}
+.athl-string-special-symbol {
+  color: #2ecc40;
+}
+.athl-tag {
+  color: #ff4136;
+}
+.athl-text-literal {
+  color: #2ecc40;
+}
+.athl-title {
+  color: #ffdc00;
+}
+.athl-type {
+  color: #ffdc00;
+}
+.athl-variable {
+  color: #ff4136;
+}
+.athl-variable-special {
+  color: #ff4136;
+  font-style: italic;
+}

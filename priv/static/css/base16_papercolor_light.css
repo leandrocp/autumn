@@ -1,0 +1,99 @@
+/* Base16 PaperColor Light - Jon Leopard (http://github.com/jonleopard) based on PaperColor Theme (https://github.com/NLKNguyen/papercolor-theme) */
+pre.athl {
+  background-color: #eeeeee; color: #444444;
+}
+.athl-attribute {
+  color: #d75f00;
+}
+.athl-boolean {
+  color: #d70000;
+}
+.athl-comment {
+  color: #5f8700;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #5f8700;
+  font-style: italic;
+}
+.athl-constant {
+  color: #d70000;
+}
+.athl-constructor {
+  color: #bcbcbc;
+}
+.athl-emphasis {
+  color: #bcbcbc;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #bcbcbc;
+  font-weight: 700;
+}
+.athl-function {
+  color: #d75f00;
+}
+.athl-keyword {
+  color: #005faf;
+}
+.athl-label {
+  color: #d70087;
+}
+.athl-link_text {
+  color: #bcbcbc;
+}
+.athl-link_uri {
+  color: #bcbcbc;
+}
+.athl-number {
+  color: #d70000;
+}
+.athl-punctuation {
+  color: #444444;
+}
+.athl-punctuation-bracket {
+  color: #444444;
+}
+.athl-punctuation-delimiter {
+  color: #444444;
+}
+.athl-punctuation-list_marker {
+  color: #444444;
+}
+.athl-punctuation-special {
+  color: #444444;
+}
+.athl-string {
+  color: #8700af;
+}
+.athl-string-escape {
+  color: #d70000;
+}
+.athl-string-regex {
+  color: #8700af;
+}
+.athl-string-special {
+  color: #8700af;
+}
+.athl-string-special-symbol {
+  color: #8700af;
+}
+.athl-tag {
+  color: #bcbcbc;
+}
+.athl-text-literal {
+  color: #8700af;
+}
+.athl-title {
+  color: #d70087;
+}
+.athl-type {
+  color: #d70087;
+}
+.athl-variable {
+  color: #bcbcbc;
+}
+.athl-variable-special {
+  color: #bcbcbc;
+  font-style: italic;
+}

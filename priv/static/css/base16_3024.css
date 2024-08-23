@@ -1,0 +1,99 @@
+/* Base16 3024 - Jan T. Sott (http://github.com/idleberg) */
+pre.athl {
+  background-color: #090300; color: #a5a2a2;
+}
+.athl-attribute {
+  color: #01a0e4;
+}
+.athl-boolean {
+  color: #e8bbd0;
+}
+.athl-comment {
+  color: #5c5855;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #5c5855;
+  font-style: italic;
+}
+.athl-constant {
+  color: #e8bbd0;
+}
+.athl-constructor {
+  color: #db2d20;
+}
+.athl-emphasis {
+  color: #db2d20;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #db2d20;
+  font-weight: 700;
+}
+.athl-function {
+  color: #01a0e4;
+}
+.athl-keyword {
+  color: #a16a94;
+}
+.athl-label {
+  color: #fded02;
+}
+.athl-link_text {
+  color: #db2d20;
+}
+.athl-link_uri {
+  color: #db2d20;
+}
+.athl-number {
+  color: #e8bbd0;
+}
+.athl-punctuation {
+  color: #a5a2a2;
+}
+.athl-punctuation-bracket {
+  color: #a5a2a2;
+}
+.athl-punctuation-delimiter {
+  color: #a5a2a2;
+}
+.athl-punctuation-list_marker {
+  color: #a5a2a2;
+}
+.athl-punctuation-special {
+  color: #a5a2a2;
+}
+.athl-string {
+  color: #01a252;
+}
+.athl-string-escape {
+  color: #e8bbd0;
+}
+.athl-string-regex {
+  color: #01a252;
+}
+.athl-string-special {
+  color: #01a252;
+}
+.athl-string-special-symbol {
+  color: #01a252;
+}
+.athl-tag {
+  color: #db2d20;
+}
+.athl-text-literal {
+  color: #01a252;
+}
+.athl-title {
+  color: #fded02;
+}
+.athl-type {
+  color: #fded02;
+}
+.athl-variable {
+  color: #db2d20;
+}
+.athl-variable-special {
+  color: #db2d20;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Tokyo Night Terminal Storm - Michaël Ball */
+pre.athl {
+  background-color: #24283b; color: #787c99;
+}
+.athl-attribute {
+  color: #7aa2f7;
+}
+.athl-boolean {
+  color: #ff9e64;
+}
+.athl-comment {
+  color: #444b6a;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #444b6a;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ff9e64;
+}
+.athl-constructor {
+  color: #f7768e;
+}
+.athl-emphasis {
+  color: #f7768e;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f7768e;
+  font-weight: 700;
+}
+.athl-function {
+  color: #7aa2f7;
+}
+.athl-keyword {
+  color: #bb9af7;
+}
+.athl-label {
+  color: #e0af68;
+}
+.athl-link_text {
+  color: #f7768e;
+}
+.athl-link_uri {
+  color: #f7768e;
+}
+.athl-number {
+  color: #ff9e64;
+}
+.athl-punctuation {
+  color: #787c99;
+}
+.athl-punctuation-bracket {
+  color: #787c99;
+}
+.athl-punctuation-delimiter {
+  color: #787c99;
+}
+.athl-punctuation-list_marker {
+  color: #787c99;
+}
+.athl-punctuation-special {
+  color: #787c99;
+}
+.athl-string {
+  color: #41a6b5;
+}
+.athl-string-escape {
+  color: #ff9e64;
+}
+.athl-string-regex {
+  color: #41a6b5;
+}
+.athl-string-special {
+  color: #41a6b5;
+}
+.athl-string-special-symbol {
+  color: #41a6b5;
+}
+.athl-tag {
+  color: #f7768e;
+}
+.athl-text-literal {
+  color: #41a6b5;
+}
+.athl-title {
+  color: #e0af68;
+}
+.athl-type {
+  color: #e0af68;
+}
+.athl-variable {
+  color: #f7768e;
+}
+.athl-variable-special {
+  color: #f7768e;
+  font-style: italic;
+}

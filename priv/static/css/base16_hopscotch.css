@@ -1,0 +1,99 @@
+/* Base16 Hopscotch - Jan T. Sott */
+pre.athl {
+  background-color: #322931; color: #b9b5b8;
+}
+.athl-attribute {
+  color: #1290bf;
+}
+.athl-boolean {
+  color: #fd8b19;
+}
+.athl-comment {
+  color: #797379;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #797379;
+  font-style: italic;
+}
+.athl-constant {
+  color: #fd8b19;
+}
+.athl-constructor {
+  color: #dd464c;
+}
+.athl-emphasis {
+  color: #dd464c;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #dd464c;
+  font-weight: 700;
+}
+.athl-function {
+  color: #1290bf;
+}
+.athl-keyword {
+  color: #c85e7c;
+}
+.athl-label {
+  color: #fdcc59;
+}
+.athl-link_text {
+  color: #dd464c;
+}
+.athl-link_uri {
+  color: #dd464c;
+}
+.athl-number {
+  color: #fd8b19;
+}
+.athl-punctuation {
+  color: #b9b5b8;
+}
+.athl-punctuation-bracket {
+  color: #b9b5b8;
+}
+.athl-punctuation-delimiter {
+  color: #b9b5b8;
+}
+.athl-punctuation-list_marker {
+  color: #b9b5b8;
+}
+.athl-punctuation-special {
+  color: #b9b5b8;
+}
+.athl-string {
+  color: #8fc13e;
+}
+.athl-string-escape {
+  color: #fd8b19;
+}
+.athl-string-regex {
+  color: #8fc13e;
+}
+.athl-string-special {
+  color: #8fc13e;
+}
+.athl-string-special-symbol {
+  color: #8fc13e;
+}
+.athl-tag {
+  color: #dd464c;
+}
+.athl-text-literal {
+  color: #8fc13e;
+}
+.athl-title {
+  color: #fdcc59;
+}
+.athl-type {
+  color: #fdcc59;
+}
+.athl-variable {
+  color: #dd464c;
+}
+.athl-variable-special {
+  color: #dd464c;
+  font-style: italic;
+}

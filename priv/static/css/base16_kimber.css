@@ -1,0 +1,99 @@
+/* Base16 Kimber - Mishka Nguyen (https://github.com/akhsiM) */
+pre.athl {
+  background-color: #222222; color: #dedee7;
+}
+.athl-attribute {
+  color: #537c9c;
+}
+.athl-boolean {
+  color: #476c88;
+}
+.athl-comment {
+  color: #644646;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #644646;
+  font-style: italic;
+}
+.athl-constant {
+  color: #476c88;
+}
+.athl-constructor {
+  color: #c88c8c;
+}
+.athl-emphasis {
+  color: #c88c8c;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #c88c8c;
+  font-weight: 700;
+}
+.athl-function {
+  color: #537c9c;
+}
+.athl-keyword {
+  color: #86cacd;
+}
+.athl-label {
+  color: #d8b56d;
+}
+.athl-link_text {
+  color: #c88c8c;
+}
+.athl-link_uri {
+  color: #c88c8c;
+}
+.athl-number {
+  color: #476c88;
+}
+.athl-punctuation {
+  color: #dedee7;
+}
+.athl-punctuation-bracket {
+  color: #dedee7;
+}
+.athl-punctuation-delimiter {
+  color: #dedee7;
+}
+.athl-punctuation-list_marker {
+  color: #dedee7;
+}
+.athl-punctuation-special {
+  color: #dedee7;
+}
+.athl-string {
+  color: #99c899;
+}
+.athl-string-escape {
+  color: #476c88;
+}
+.athl-string-regex {
+  color: #99c899;
+}
+.athl-string-special {
+  color: #99c899;
+}
+.athl-string-special-symbol {
+  color: #99c899;
+}
+.athl-tag {
+  color: #c88c8c;
+}
+.athl-text-literal {
+  color: #99c899;
+}
+.athl-title {
+  color: #d8b56d;
+}
+.athl-type {
+  color: #d8b56d;
+}
+.athl-variable {
+  color: #c88c8c;
+}
+.athl-variable-special {
+  color: #c88c8c;
+  font-style: italic;
+}

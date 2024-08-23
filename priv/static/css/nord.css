@@ -1,65 +1,84 @@
-/* nord */
-pre.autumn-hl { background-color: #2e3440; color: #D8DEE9; }
-.ahl-info { color: #88C0D0; }
-.ahl-label { color: #8FBCBB; }
-.ahl-markup.ahl-bold { font-weight: bold; }
-.ahl-namespace { color: #D8DEE9; }
-.ahl-diagnostic { color: #EBCB8B; }
-.ahl-keyword.ahl-control.ahl-conditional { color: #81A1C1; }
-.ahl-markup.ahl-heading { color: #88C0D0; }
-.ahl-constant.ahl-builtin { color: #81A1C1; }
-.ahl-attribute { color: #81A1C1; }
-.ahl-constant.ahl-builtin.ahl-character { color: #B48EAD; }
-.ahl-type { color: #8FBCBB; }
-.ahl-function.ahl-method { color: #88C0D0; }
-.ahl-diagnostic.ahl-warning { color: #EBCB8B; }
-.ahl-hint { color: #5E81AC; }
-.ahl-string.ahl-special { color: #EBCB8B; }
-.ahl-constant { color: #D8DEE9; }
-.ahl-constant.ahl-builtin.ahl-boolean { color: #81A1C1; }
-.ahl-string.ahl-regex { color: #EBCB8B; }
-.ahl-punctuation.ahl-special { color: #81A1C1; }
-.ahl-warning { color: #EBCB8B; }
-.ahl-variable { color: #D8DEE9; }
-.ahl-constructor { color: #88C0D0; }
-.ahl-type.ahl-builtin { color: #8FBCBB; }
-.ahl-keyword.ahl-storage.ahl-modifier { color: #81A1C1; }
-.ahl-git.ahl-delta.ahl-moved { color: #D08770; }
-.ahl-diagnostic.ahl-error { color: #BF616A; }
-.ahl-diff.ahl-minus { color: #BF616A; }
-.ahl-markup.ahl-raw { color: #8FBCBB; }
-.ahl-tag { color: #8FBCBB; }
-.ahl-comment { font-style: italic; color: #616e88; }
-.ahl-markup.ahl-link.ahl-text { color: #88C0D0; }
-.ahl-punctuation { color: #ECEFF4; }
-.ahl-markup.ahl-italic { font-style: italic; }
-.ahl-function.ahl-macro { color: #81A1C1; }
-.ahl-special { color: #81A1C1; }
-.ahl-diff.ahl-plus { color: #A3BE8C; }
-.ahl-operator { color: #81A1C1; }
-.ahl-keyword.ahl-directive { color: #81A1C1; }
-.ahl-diagnostic.ahl-info { color: #88C0D0; }
-.ahl-constant.ahl-character.ahl-escape { color: #EBCB8B; }
-.ahl-variable.ahl-builtin { color: #81A1C1; }
-.ahl-keyword.ahl-return { color: #81A1C1; }
-.ahl-punctuation.ahl-delimiter { color: #ECEFF4; }
-.ahl-variable.ahl-parameter { color: #88C0D0; }
-.ahl-string { color: #A3BE8C; }
-.ahl-diff.ahl-delta { color: #EBCB8B; }
-.ahl-function.ahl-special { color: #81A1C1; }
-.ahl-keyword { color: #81A1C1; }
-.ahl-constant.ahl-macro { color: #81A1C1; }
-.ahl-keyword.ahl-storage.ahl-type { color: #81A1C1; }
-.ahl-punctuation.ahl-bracket { color: #ECEFF4; }
-.ahl-function.ahl-builtin { color: #8FBCBB; }
-.ahl-markup.ahl-list { color: #81A1C1; }
-.ahl-keyword.ahl-operator { color: #81A1C1; }
-.ahl-diagnostic.ahl-hint { color: #5E81AC; }
-.ahl-variable.ahl-other.ahl-member { color: #D8DEE9; }
-.ahl-keyword.ahl-function { color: #81A1C1; }
-.ahl-function { color: #88C0D0; }
-.ahl-constant.ahl-numeric { color: #B48EAD; }
-.ahl-keyword.ahl-control.ahl-exception { color: #81A1C1; }
-.ahl-keyword.ahl-control.ahl-repeat { color: #81A1C1; }
-.ahl-string.ahl-escape { color: #EBCB8B; }
-.ahl-error { color: #BF616A; }
+/* Nord - Sergei <Mikasius> Metlenkin */
+pre.athl {
+  background-color: #2e3440; color: #fffffffdf;
+}
+.athl-attribute {
+  color: #8FBCBB;
+}
+.athl-boolean {
+  color: #81A1C1;
+}
+.athl-comment {
+  color: #616E88;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #616E88;
+  font-style: italic;
+}
+.athl-constant {
+  color: #81A1C1;
+}
+.athl-constructor {
+  color: #81A1C1;
+}
+.athl-function {
+  color: #88c0d0;
+}
+.athl-keyword {
+  color: #81A1C1;
+}
+.athl-number {
+  color: #B48EAD;
+}
+.athl-operator {
+  color: #81A1C1;
+}
+.athl-preproc {
+  color: #5E81AC;
+}
+.athl-punctuation {
+  color: #ECEFF4;
+}
+.athl-punctuation-bracket {
+  color: #ECEFF4;
+}
+.athl-punctuation-delimiter {
+  color: #81A1C1;
+}
+.athl-punctuation-list_marker {
+  color: #ECEFF4;
+}
+.athl-punctuation-special {
+  color: #ECEFF4;
+}
+.athl-string {
+  color: #A3BE8C;
+}
+.athl-string-escape {
+  color: #EBCB8B;
+}
+.athl-string-regex {
+  color: #A3BE8C;
+}
+.athl-string-special {
+  color: #A3BE8C;
+}
+.athl-string-special-symbol {
+  color: #A3BE8C;
+}
+.athl-tag {
+  color: #81A1C1;
+}
+.athl-text-literal {
+  color: #A3BE8C;
+}
+.athl-type {
+  color: #8FBCBB;
+}
+.athl-variable {
+  color: #81A1C1;
+}
+.athl-variable-special {
+  color: #81A1C1;
+}

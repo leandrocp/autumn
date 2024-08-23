@@ -1,0 +1,107 @@
+/* Zedokai Light - slymax */
+pre.athl {
+  background-color: #faf4f2; color: #29242a;
+}
+.athl-attribute {
+  color: #1c8ca8;
+  font-style: italic;
+}
+.athl-boolean {
+  color: #7058be;
+}
+.athl-comment {
+  color: #a59fa0;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #a59fa0;
+  font-style: italic;
+}
+.athl-constant {
+  color: #7058be;
+}
+.athl-constructor {
+  color: #e14775;
+}
+.athl-emphasis {
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  font-weight: 700;
+}
+.athl-function {
+  color: #269d69;
+}
+.athl-keyword {
+  color: #e14775;
+}
+.athl-label {
+  color: #269d69;
+}
+.athl-link_text {
+  color: #e14775;
+}
+.athl-link_uri {
+  color: #269d69;
+}
+.athl-number {
+  color: #7058be;
+}
+.athl-operator {
+  color: #e14775;
+}
+.athl-preproc {
+  color: #7058be;
+}
+.athl-property {
+  color: #29242a;
+}
+.athl-punctuation {
+  color: #918c8e;
+}
+.athl-punctuation-bracket {
+  color: #918c8e;
+}
+.athl-punctuation-delimiter {
+  color: #918c8e;
+}
+.athl-punctuation-list_marker {
+  color: #918c8e;
+}
+.athl-punctuation-special {
+  color: #918c8e;
+}
+.athl-string {
+  color: #cc7a0a;
+}
+.athl-string-escape {
+  color: #29242a;
+}
+.athl-string-regex {
+  color: #cc7a0a;
+}
+.athl-string-special {
+  color: #e16032;
+}
+.athl-string-special-symbol {
+  color: #e16032;
+}
+.athl-tag {
+  color: #e14775;
+}
+.athl-text-literal {
+  color: #cc7a0a;
+}
+.athl-title {
+  color: #cc7a0a;
+}
+.athl-type {
+  color: #1c8ca8;
+}
+.athl-variable {
+  color: #29242a;
+}
+.athl-variable-special {
+  color: #706b6e;
+  font-style: italic;
+}

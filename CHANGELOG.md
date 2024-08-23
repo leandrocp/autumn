@@ -1,24 +1,40 @@
 # Changelog
 
-## 0.2.4-dev
+## 0.3.0-dev
+
+Starting on this version, Zed grammars and themes are used instead of Helix.
+Most languages and themes have been migrated but differences in colors and parsers
+might be present. Please open an issue if something is missing or incorrect.
+
+### Breaking changes
+  * Renamed parent `<pre>` class from `autumn-hl` to `athl`
+  * Renamed each span class prefix from `ahl-` to `athl-` to keep the same pattern as the `pre` tag
+  * Removed the option `:inline_style` in favor of `:formatter`
+  * Removed the option `:pre_class` in favor of `:formatter`
 
 ### Enhancements
- * Update ex_doc to v0.34
+  * Added formatters: `:html_inline`, `:html_linked`, `:terminal`
+  * Added `%Autumn.Theme{}` to hold styles and allow customization at runtime
+  * Added `Autumn.available_themes/0`
+  * Added `Autumn.available_languages/0`
+
+### Chores
+  * Removed [inkjet](https://crates.io/crates/inkjet) in favor of a custom highlighter
 
 ## 0.2.3 (2024-04-29)
 
 ### Enhancements
- * Update inkjet to v0.10.5
- * Add objc language
+  * Update inkjet to v0.10.5
+  * Add objc language
 
 ## 0.2.2 (2024-04-11)
 
 ### Enhancements
- * Add more languages: eex, elm, iex, jsx, ocaml, ocam-interface, svelte, tsx, vim
+  * Add more languages: eex, elm, iex, jsx, ocaml, ocam-interface, svelte, tsx, vim
 
 ## 0.2.1 (2024-04-11)
 
-### Backwards incompatible changes
+### Breaking changes
   * Renamed parent `<pre>` class from `autumn-highlight` to `autumn-hl`
   * Added prefix `ahl-` to each scope class
 

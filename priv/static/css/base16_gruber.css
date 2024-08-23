@@ -1,0 +1,99 @@
+/* Base16 Gruber - Patel, Nimai &lt;nimai.m.patel@gmail.com&gt;, colors from www.github.com/rexim/gruber-darker-theme */
+pre.athl {
+  background-color: #181818; color: #f4f4ff;
+}
+.athl-attribute {
+  color: #96a6c8;
+}
+.athl-boolean {
+  color: #c73c3f;
+}
+.athl-comment {
+  color: #52494e;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #52494e;
+  font-style: italic;
+}
+.athl-constant {
+  color: #c73c3f;
+}
+.athl-constructor {
+  color: #f43841;
+}
+.athl-emphasis {
+  color: #f43841;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f43841;
+  font-weight: 700;
+}
+.athl-function {
+  color: #96a6c8;
+}
+.athl-keyword {
+  color: #9e95c7;
+}
+.athl-label {
+  color: #ffdd33;
+}
+.athl-link_text {
+  color: #f43841;
+}
+.athl-link_uri {
+  color: #f43841;
+}
+.athl-number {
+  color: #c73c3f;
+}
+.athl-punctuation {
+  color: #f4f4ff;
+}
+.athl-punctuation-bracket {
+  color: #f4f4ff;
+}
+.athl-punctuation-delimiter {
+  color: #f4f4ff;
+}
+.athl-punctuation-list_marker {
+  color: #f4f4ff;
+}
+.athl-punctuation-special {
+  color: #f4f4ff;
+}
+.athl-string {
+  color: #73c936;
+}
+.athl-string-escape {
+  color: #c73c3f;
+}
+.athl-string-regex {
+  color: #73c936;
+}
+.athl-string-special {
+  color: #73c936;
+}
+.athl-string-special-symbol {
+  color: #73c936;
+}
+.athl-tag {
+  color: #f43841;
+}
+.athl-text-literal {
+  color: #73c936;
+}
+.athl-title {
+  color: #ffdd33;
+}
+.athl-type {
+  color: #ffdd33;
+}
+.athl-variable {
+  color: #f43841;
+}
+.athl-variable-special {
+  color: #f43841;
+  font-style: italic;
+}

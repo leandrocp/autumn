@@ -1,46 +1,126 @@
-/* gruvbox_dark_hard */
-pre.autumn-hl { background-color: #1d2021; color: #ebdbb2; }
-.ahl-info { color: #8ec07c; }
-.ahl-label { color: #8ec07c; }
-.ahl-markup.ahl-bold { font-weight: bold; }
-.ahl-namespace { color: #8ec07c; }
-.ahl-markup.ahl-heading { color: #8ec07c; }
-.ahl-constant.ahl-builtin { font-weight: bold; color: #d3869b; }
-.ahl-attribute { color: #8ec07c; }
-.ahl-type { color: #fabd2f; }
-.ahl-diagnostic.ahl-warning { color: #fe8019; }
-.ahl-hint { color: #83a598; }
-.ahl-constant { color: #d3869b; }
-.ahl-warning { color: #fe8019; }
-.ahl-module { color: #8ec07c; }
-.ahl-variable { color: #ebdbb2; }
-.ahl-constructor { font-weight: bold; color: #d3869b; }
-.ahl-type.ahl-builtin { color: #fabd2f; }
-.ahl-diagnostic.ahl-error { color: #cc241d; }
-.ahl-diff.ahl-minus { color: #fb4934; }
-.ahl-markup.ahl-raw { color: #fb4934; }
-.ahl-tag { color: #fb4934; }
-.ahl-comment { font-style: italic; color: #928374; }
-.ahl-markup.ahl-link.ahl-text { color: #fb4934; }
-.ahl-punctuation { color: #fe8019; }
-.ahl-markup.ahl-italic { font-style: italic; }
-.ahl-function.ahl-macro { color: #8ec07c; }
-.ahl-special { color: #b16286; }
-.ahl-diff.ahl-plus { color: #b8bb26; }
-.ahl-operator { color: #d3869b; }
-.ahl-keyword.ahl-directive { color: #cc241d; }
-.ahl-diagnostic.ahl-info { color: #8ec07c; }
-.ahl-constant.ahl-character.ahl-escape { font-weight: bold; color: #d5c4a1; }
-.ahl-markup.ahl-link.ahl-url {  color: #b8bb26; }
-.ahl-variable.ahl-builtin { color: #fe8019; }
-.ahl-punctuation.ahl-delimiter { color: #fe8019; }
-.ahl-variable.ahl-parameter { color: #d5c4a1; }
-.ahl-string { color: #b8bb26; }
-.ahl-diff.ahl-delta { color: #fe8019; }
-.ahl-keyword { color: #fb4934; }
-.ahl-function.ahl-builtin { color: #fabd2f; }
-.ahl-diagnostic.ahl-hint { color: #83a598; }
-.ahl-variable.ahl-other.ahl-member { color: #83a598; }
-.ahl-function { font-weight: bold; color: #b8bb26; }
-.ahl-constant.ahl-numeric { color: #d3869b; }
-.ahl-error { color: #fb4934; }
+/* Gruvbox Dark Hard - Zed Industries */
+pre.athl {
+  background-color: #1d2021ff; color: #fbf1c7ff;
+}
+.athl-attribute {
+  color: #83a598ff;
+}
+.athl-boolean {
+  color: #d3869bff;
+}
+.athl-comment {
+  color: #a89984ff;
+}
+.athl-comment-doc {
+  color: #c6b697ff;
+}
+.athl-constant {
+  color: #fabd2eff;
+}
+.athl-constructor {
+  color: #83a598ff;
+}
+.athl-embedded {
+  color: #8ec07cff;
+}
+.athl-emphasis {
+  color: #83a598ff;
+}
+.athl-emphasis-strong {
+  color: #83a598ff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #fe7f18ff;
+}
+.athl-function {
+  color: #b8bb25ff;
+}
+.athl-function-builtin {
+  color: #fb4833ff;
+}
+.athl-hint {
+  color: #8c957dff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #fb4833ff;
+}
+.athl-label {
+  color: #83a598ff;
+}
+.athl-link_text {
+  color: #8ec07cff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #d3869bff;
+}
+.athl-number {
+  color: #d3869bff;
+}
+.athl-operator {
+  color: #8ec07cff;
+}
+.athl-predictive {
+  color: #717363ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #fbf1c7ff;
+}
+.athl-primary {
+  color: #ebdbb2ff;
+}
+.athl-property {
+  color: #ebdbb2ff;
+}
+.athl-punctuation {
+  color: #d5c4a1ff;
+}
+.athl-punctuation-bracket {
+  color: #a89984ff;
+}
+.athl-punctuation-delimiter {
+  color: #e5d5adff;
+}
+.athl-punctuation-list_marker {
+  color: #ebdbb2ff;
+}
+.athl-punctuation-special {
+  color: #e5d5adff;
+}
+.athl-string {
+  color: #b8bb25ff;
+}
+.athl-string-escape {
+  color: #c6b697ff;
+}
+.athl-string-regex {
+  color: #fe7f18ff;
+}
+.athl-string-special {
+  color: #d3869bff;
+}
+.athl-string-special-symbol {
+  color: #8ec07cff;
+}
+.athl-tag {
+  color: #8ec07cff;
+}
+.athl-text-literal {
+  color: #83a598ff;
+}
+.athl-title {
+  color: #b8bb25ff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #fabd2eff;
+}
+.athl-variable {
+  color: #83a598ff;
+}
+.athl-variant {
+  color: #83a598ff;
+}

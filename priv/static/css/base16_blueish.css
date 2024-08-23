@@ -1,0 +1,99 @@
+/* Base16 Blueish - Ben Mayoras */
+pre.athl {
+  background-color: #182430; color: #c8e1f8;
+}
+.athl-attribute {
+  color: #82aaff;
+}
+.athl-boolean {
+  color: #f6a85c;
+}
+.athl-comment {
+  color: #616d78;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #616d78;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f6a85c;
+}
+.athl-constructor {
+  color: #4ce587;
+}
+.athl-emphasis {
+  color: #4ce587;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #4ce587;
+  font-weight: 700;
+}
+.athl-function {
+  color: #82aaff;
+}
+.athl-keyword {
+  color: #ff84dd;
+}
+.athl-label {
+  color: #82aaff;
+}
+.athl-link_text {
+  color: #4ce587;
+}
+.athl-link_uri {
+  color: #4ce587;
+}
+.athl-number {
+  color: #f6a85c;
+}
+.athl-punctuation {
+  color: #c8e1f8;
+}
+.athl-punctuation-bracket {
+  color: #c8e1f8;
+}
+.athl-punctuation-delimiter {
+  color: #c8e1f8;
+}
+.athl-punctuation-list_marker {
+  color: #c8e1f8;
+}
+.athl-punctuation-special {
+  color: #c8e1f8;
+}
+.athl-string {
+  color: #c3e88d;
+}
+.athl-string-escape {
+  color: #f6a85c;
+}
+.athl-string-regex {
+  color: #c3e88d;
+}
+.athl-string-special {
+  color: #c3e88d;
+}
+.athl-string-special-symbol {
+  color: #c3e88d;
+}
+.athl-tag {
+  color: #4ce587;
+}
+.athl-text-literal {
+  color: #c3e88d;
+}
+.athl-title {
+  color: #82aaff;
+}
+.athl-type {
+  color: #82aaff;
+}
+.athl-variable {
+  color: #4ce587;
+}
+.athl-variable-special {
+  color: #4ce587;
+  font-style: italic;
+}

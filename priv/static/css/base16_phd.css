@@ -1,0 +1,99 @@
+/* Base16 PhD - Hennig Hasemann (http://leetless.de/vim.html) */
+pre.athl {
+  background-color: #061229; color: #b8bbc2;
+}
+.athl-attribute {
+  color: #5299bf;
+}
+.athl-boolean {
+  color: #f0a000;
+}
+.athl-comment {
+  color: #717885;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #717885;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f0a000;
+}
+.athl-constructor {
+  color: #d07346;
+}
+.athl-emphasis {
+  color: #d07346;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #d07346;
+  font-weight: 700;
+}
+.athl-function {
+  color: #5299bf;
+}
+.athl-keyword {
+  color: #9989cc;
+}
+.athl-label {
+  color: #fbd461;
+}
+.athl-link_text {
+  color: #d07346;
+}
+.athl-link_uri {
+  color: #d07346;
+}
+.athl-number {
+  color: #f0a000;
+}
+.athl-punctuation {
+  color: #b8bbc2;
+}
+.athl-punctuation-bracket {
+  color: #b8bbc2;
+}
+.athl-punctuation-delimiter {
+  color: #b8bbc2;
+}
+.athl-punctuation-list_marker {
+  color: #b8bbc2;
+}
+.athl-punctuation-special {
+  color: #b8bbc2;
+}
+.athl-string {
+  color: #99bf52;
+}
+.athl-string-escape {
+  color: #f0a000;
+}
+.athl-string-regex {
+  color: #99bf52;
+}
+.athl-string-special {
+  color: #99bf52;
+}
+.athl-string-special-symbol {
+  color: #99bf52;
+}
+.athl-tag {
+  color: #d07346;
+}
+.athl-text-literal {
+  color: #99bf52;
+}
+.athl-title {
+  color: #fbd461;
+}
+.athl-type {
+  color: #fbd461;
+}
+.athl-variable {
+  color: #d07346;
+}
+.athl-variable-special {
+  color: #d07346;
+  font-style: italic;
+}

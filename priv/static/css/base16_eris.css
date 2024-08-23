@@ -1,0 +1,99 @@
+/* Base16 eris - ed (https://codeberg.org/ed) */
+pre.athl {
+  background-color: #0a0920; color: #606bac;
+}
+.athl-attribute {
+  color: #258fc4;
+}
+.athl-boolean {
+  color: #f768a3;
+}
+.athl-comment {
+  color: #333773;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #333773;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f768a3;
+}
+.athl-constructor {
+  color: #f768a3;
+}
+.athl-emphasis {
+  color: #f768a3;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f768a3;
+  font-weight: 700;
+}
+.athl-function {
+  color: #258fc4;
+}
+.athl-keyword {
+  color: #f768a3;
+}
+.athl-label {
+  color: #faaea2;
+}
+.athl-link_text {
+  color: #f768a3;
+}
+.athl-link_uri {
+  color: #f768a3;
+}
+.athl-number {
+  color: #f768a3;
+}
+.athl-punctuation {
+  color: #606bac;
+}
+.athl-punctuation-bracket {
+  color: #606bac;
+}
+.athl-punctuation-delimiter {
+  color: #606bac;
+}
+.athl-punctuation-list_marker {
+  color: #606bac;
+}
+.athl-punctuation-special {
+  color: #606bac;
+}
+.athl-string {
+  color: #faaea2;
+}
+.athl-string-escape {
+  color: #f768a3;
+}
+.athl-string-regex {
+  color: #faaea2;
+}
+.athl-string-special {
+  color: #faaea2;
+}
+.athl-string-special-symbol {
+  color: #faaea2;
+}
+.athl-tag {
+  color: #f768a3;
+}
+.athl-text-literal {
+  color: #faaea2;
+}
+.athl-title {
+  color: #faaea2;
+}
+.athl-type {
+  color: #faaea2;
+}
+.athl-variable {
+  color: #f768a3;
+}
+.athl-variable-special {
+  color: #f768a3;
+  font-style: italic;
+}

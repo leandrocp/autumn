@@ -1,0 +1,99 @@
+/* Base16 Sandcastle - George Essig (https://github.com/gessig) */
+pre.athl {
+  background-color: #282c34; color: #a89984;
+}
+.athl-attribute {
+  color: #83a598;
+}
+.athl-boolean {
+  color: #a07e3b;
+}
+.athl-comment {
+  color: #665c54;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #665c54;
+  font-style: italic;
+}
+.athl-constant {
+  color: #a07e3b;
+}
+.athl-constructor {
+  color: #83a598;
+}
+.athl-emphasis {
+  color: #83a598;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #83a598;
+  font-weight: 700;
+}
+.athl-function {
+  color: #83a598;
+}
+.athl-keyword {
+  color: #d75f5f;
+}
+.athl-label {
+  color: #a07e3b;
+}
+.athl-link_text {
+  color: #83a598;
+}
+.athl-link_uri {
+  color: #83a598;
+}
+.athl-number {
+  color: #a07e3b;
+}
+.athl-punctuation {
+  color: #a89984;
+}
+.athl-punctuation-bracket {
+  color: #a89984;
+}
+.athl-punctuation-delimiter {
+  color: #a89984;
+}
+.athl-punctuation-list_marker {
+  color: #a89984;
+}
+.athl-punctuation-special {
+  color: #a89984;
+}
+.athl-string {
+  color: #528b8b;
+}
+.athl-string-escape {
+  color: #a07e3b;
+}
+.athl-string-regex {
+  color: #528b8b;
+}
+.athl-string-special {
+  color: #528b8b;
+}
+.athl-string-special-symbol {
+  color: #528b8b;
+}
+.athl-tag {
+  color: #83a598;
+}
+.athl-text-literal {
+  color: #528b8b;
+}
+.athl-title {
+  color: #a07e3b;
+}
+.athl-type {
+  color: #a07e3b;
+}
+.athl-variable {
+  color: #83a598;
+}
+.athl-variable-special {
+  color: #83a598;
+  font-style: italic;
+}

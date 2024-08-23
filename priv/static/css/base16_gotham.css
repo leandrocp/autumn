@@ -1,0 +1,99 @@
+/* Base16 Gotham - Andrea Leopardi (arranged by Brett Jones) */
+pre.athl {
+  background-color: #0c1014; color: #599cab;
+}
+.athl-attribute {
+  color: #195466;
+}
+.athl-boolean {
+  color: #d26937;
+}
+.athl-comment {
+  color: #0a3749;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #0a3749;
+  font-style: italic;
+}
+.athl-constant {
+  color: #d26937;
+}
+.athl-constructor {
+  color: #c23127;
+}
+.athl-emphasis {
+  color: #c23127;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #c23127;
+  font-weight: 700;
+}
+.athl-function {
+  color: #195466;
+}
+.athl-keyword {
+  color: #888ca6;
+}
+.athl-label {
+  color: #edb443;
+}
+.athl-link_text {
+  color: #c23127;
+}
+.athl-link_uri {
+  color: #c23127;
+}
+.athl-number {
+  color: #d26937;
+}
+.athl-punctuation {
+  color: #599cab;
+}
+.athl-punctuation-bracket {
+  color: #599cab;
+}
+.athl-punctuation-delimiter {
+  color: #599cab;
+}
+.athl-punctuation-list_marker {
+  color: #599cab;
+}
+.athl-punctuation-special {
+  color: #599cab;
+}
+.athl-string {
+  color: #33859e;
+}
+.athl-string-escape {
+  color: #d26937;
+}
+.athl-string-regex {
+  color: #33859e;
+}
+.athl-string-special {
+  color: #33859e;
+}
+.athl-string-special-symbol {
+  color: #33859e;
+}
+.athl-tag {
+  color: #c23127;
+}
+.athl-text-literal {
+  color: #33859e;
+}
+.athl-title {
+  color: #edb443;
+}
+.athl-type {
+  color: #edb443;
+}
+.athl-variable {
+  color: #c23127;
+}
+.athl-variable-special {
+  color: #c23127;
+  font-style: italic;
+}

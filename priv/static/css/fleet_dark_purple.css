@@ -1,0 +1,146 @@
+/* Fleet Dark Purple - Lihuen Molina <lihue.molina@gmail.com> */
+pre.athl {
+  background-color: #1d1d26ff; color: #d0d0d9ff;
+}
+.athl-attribute {
+  color: #ffffffff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-boolean {
+  color: #e0957bff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-comment {
+  color: #676773ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-comment-doc {
+  color: #676773ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-constant {
+  color: #93a6f5ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-enum {
+  color: #93a6f5ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-function {
+  color: #ffc66d;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-function-definition {
+  color: #c7a65d;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-function-special {
+  color: #85a658;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-function-special-definition {
+  color: #d0d0d9ff;
+}
+.athl-keyword {
+  color: #e0957bff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-link-text {
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-link-uri {
+  color: #62a362ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-number {
+  color: #4dacf0ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-operator {
+  color: #c9c9d1ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-property {
+  color: #93a6f5ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-property-json_key {
+  color: #e0957bff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-punctuation-bracket {
+  color: #c9c9d1ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string {
+  color: #62a362ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string-escape {
+  color: #e0957bff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string-regex {
+  color: #6897bb;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string-special {
+  color: #e0957bff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string-special-symbol {
+  color: #ff8d1c;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-tag {
+  color: #e0957bff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-text-literal {
+  color: #62a362ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-type {
+  color: #c9c9d1ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-type-builtin {
+  color: #e0957bff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-variable {
+  color: #c9c9d1ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-variable-special {
+  color: #8888c6;
+  font-style: normal;
+  font-weight: 400;
+}

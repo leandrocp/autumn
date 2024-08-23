@@ -1,0 +1,99 @@
+/* Base16 iA Light - iA Inc. (modified by aramisgithub) */
+pre.athl {
+  background-color: #f6f6f6; color: #181818;
+}
+.athl-attribute {
+  color: #48bac2;
+}
+.athl-boolean {
+  color: #c43e18;
+}
+.athl-comment {
+  color: #898989;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #898989;
+  font-style: italic;
+}
+.athl-constant {
+  color: #c43e18;
+}
+.athl-constructor {
+  color: #9c5a02;
+}
+.athl-emphasis {
+  color: #9c5a02;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #9c5a02;
+  font-weight: 700;
+}
+.athl-function {
+  color: #48bac2;
+}
+.athl-keyword {
+  color: #a94598;
+}
+.athl-label {
+  color: #c48218;
+}
+.athl-link_text {
+  color: #9c5a02;
+}
+.athl-link_uri {
+  color: #9c5a02;
+}
+.athl-number {
+  color: #c43e18;
+}
+.athl-punctuation {
+  color: #181818;
+}
+.athl-punctuation-bracket {
+  color: #181818;
+}
+.athl-punctuation-delimiter {
+  color: #181818;
+}
+.athl-punctuation-list_marker {
+  color: #181818;
+}
+.athl-punctuation-special {
+  color: #181818;
+}
+.athl-string {
+  color: #38781c;
+}
+.athl-string-escape {
+  color: #c43e18;
+}
+.athl-string-regex {
+  color: #38781c;
+}
+.athl-string-special {
+  color: #38781c;
+}
+.athl-string-special-symbol {
+  color: #38781c;
+}
+.athl-tag {
+  color: #9c5a02;
+}
+.athl-text-literal {
+  color: #38781c;
+}
+.athl-title {
+  color: #c48218;
+}
+.athl-type {
+  color: #c48218;
+}
+.athl-variable {
+  color: #9c5a02;
+}
+.athl-variable-special {
+  color: #9c5a02;
+  font-style: italic;
+}

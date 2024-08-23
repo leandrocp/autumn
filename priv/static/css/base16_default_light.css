@@ -1,34 +1,99 @@
-/* base16_default_light */
-pre.autumn-hl { background-color: #f8f8f8; color: #383838; }
-.ahl-attribute { color: #dc9656; }
-.ahl-comment { font-style: italic; color: #b8b8b8; }
-.ahl-constant { color: #dc9656; }
-.ahl-constant.ahl-character.ahl-escape { color: #86c1b9; }
-.ahl-constant.ahl-numeric { color: #dc9656; }
-.ahl-constructor { color: #7cafc2; }
-.ahl-debug { color: #b8b8b8; }
-.ahl-diff.ahl-delta { color: #dc9656; }
-.ahl-diff.ahl-minus { color: #ab4642; }
-.ahl-diff.ahl-plus { color: #a1b56c; }
-.ahl-error { color: #ab4642; }
-.ahl-function { color: #7cafc2; }
-.ahl-hint { color: #b8b8b8; }
-.ahl-info { color: #7cafc2; }
-.ahl-keyword { color: #ba8baf; }
-.ahl-label { color: #ba8baf; }
-.ahl-markup.ahl-bold { font-weight: bold; color: #f7ca88; }
-.ahl-markup.ahl-heading { color: #7cafc2; }
-.ahl-markup.ahl-italic { font-style: italic; color: #ba8baf; }
-.ahl-markup.ahl-link.ahl-text { color: #ab4642; }
-.ahl-markup.ahl-link.ahl-url {  color: #dc9656; }
-.ahl-markup.ahl-list { color: #ab4642; }
-.ahl-markup.ahl-quote { color: #86c1b9; }
-.ahl-markup.ahl-raw { color: #a1b56c; }
-.ahl-namespace { color: #ba8baf; }
-.ahl-operator { color: #383838; }
-.ahl-special { color: #7cafc2; }
-.ahl-string { color: #a1b56c; }
-.ahl-type { color: #f7ca88; }
-.ahl-variable { color: #ab4642; }
-.ahl-variable.ahl-other.ahl-member { color: #a1b56c; }
-.ahl-warning { color: #dc9656; }
+/* Base16 Default Light - Chris Kempson (http://chriskempson.com) */
+pre.athl {
+  background-color: #f8f8f8; color: #383838;
+}
+.athl-attribute {
+  color: #7cafc2;
+}
+.athl-boolean {
+  color: #dc9656;
+}
+.athl-comment {
+  color: #b8b8b8;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #b8b8b8;
+  font-style: italic;
+}
+.athl-constant {
+  color: #dc9656;
+}
+.athl-constructor {
+  color: #ab4642;
+}
+.athl-emphasis {
+  color: #ab4642;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ab4642;
+  font-weight: 700;
+}
+.athl-function {
+  color: #7cafc2;
+}
+.athl-keyword {
+  color: #ba8baf;
+}
+.athl-label {
+  color: #f7ca88;
+}
+.athl-link_text {
+  color: #ab4642;
+}
+.athl-link_uri {
+  color: #ab4642;
+}
+.athl-number {
+  color: #dc9656;
+}
+.athl-punctuation {
+  color: #383838;
+}
+.athl-punctuation-bracket {
+  color: #383838;
+}
+.athl-punctuation-delimiter {
+  color: #383838;
+}
+.athl-punctuation-list_marker {
+  color: #383838;
+}
+.athl-punctuation-special {
+  color: #383838;
+}
+.athl-string {
+  color: #a1b56c;
+}
+.athl-string-escape {
+  color: #dc9656;
+}
+.athl-string-regex {
+  color: #a1b56c;
+}
+.athl-string-special {
+  color: #a1b56c;
+}
+.athl-string-special-symbol {
+  color: #a1b56c;
+}
+.athl-tag {
+  color: #ab4642;
+}
+.athl-text-literal {
+  color: #a1b56c;
+}
+.athl-title {
+  color: #f7ca88;
+}
+.athl-type {
+  color: #f7ca88;
+}
+.athl-variable {
+  color: #ab4642;
+}
+.athl-variable-special {
+  color: #ab4642;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Catppuccin Latte - https://github.com/catppuccin/catppuccin */
+pre.athl {
+  background-color: #eff1f5; color: #4c4f69;
+}
+.athl-attribute {
+  color: #1e66f5;
+}
+.athl-boolean {
+  color: #fe640b;
+}
+.athl-comment {
+  color: #bcc0cc;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #bcc0cc;
+  font-style: italic;
+}
+.athl-constant {
+  color: #fe640b;
+}
+.athl-constructor {
+  color: #d20f39;
+}
+.athl-emphasis {
+  color: #d20f39;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #d20f39;
+  font-weight: 700;
+}
+.athl-function {
+  color: #1e66f5;
+}
+.athl-keyword {
+  color: #8839ef;
+}
+.athl-label {
+  color: #df8e1d;
+}
+.athl-link_text {
+  color: #d20f39;
+}
+.athl-link_uri {
+  color: #d20f39;
+}
+.athl-number {
+  color: #fe640b;
+}
+.athl-punctuation {
+  color: #4c4f69;
+}
+.athl-punctuation-bracket {
+  color: #4c4f69;
+}
+.athl-punctuation-delimiter {
+  color: #4c4f69;
+}
+.athl-punctuation-list_marker {
+  color: #4c4f69;
+}
+.athl-punctuation-special {
+  color: #4c4f69;
+}
+.athl-string {
+  color: #40a02b;
+}
+.athl-string-escape {
+  color: #fe640b;
+}
+.athl-string-regex {
+  color: #40a02b;
+}
+.athl-string-special {
+  color: #40a02b;
+}
+.athl-string-special-symbol {
+  color: #40a02b;
+}
+.athl-tag {
+  color: #d20f39;
+}
+.athl-text-literal {
+  color: #40a02b;
+}
+.athl-title {
+  color: #df8e1d;
+}
+.athl-type {
+  color: #df8e1d;
+}
+.athl-variable {
+  color: #d20f39;
+}
+.athl-variable-special {
+  color: #d20f39;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Kanagawa - Tommaso Laurenzi (https://github.com/rebelot) */
+pre.athl {
+  background-color: #1f1f28; color: #dcd7ba;
+}
+.athl-attribute {
+  color: #7e9cd8;
+}
+.athl-boolean {
+  color: #ffa066;
+}
+.athl-comment {
+  color: #54546d;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #54546d;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ffa066;
+}
+.athl-constructor {
+  color: #c34043;
+}
+.athl-emphasis {
+  color: #c34043;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #c34043;
+  font-weight: 700;
+}
+.athl-function {
+  color: #7e9cd8;
+}
+.athl-keyword {
+  color: #957fb8;
+}
+.athl-label {
+  color: #c0a36e;
+}
+.athl-link_text {
+  color: #c34043;
+}
+.athl-link_uri {
+  color: #c34043;
+}
+.athl-number {
+  color: #ffa066;
+}
+.athl-punctuation {
+  color: #dcd7ba;
+}
+.athl-punctuation-bracket {
+  color: #dcd7ba;
+}
+.athl-punctuation-delimiter {
+  color: #dcd7ba;
+}
+.athl-punctuation-list_marker {
+  color: #dcd7ba;
+}
+.athl-punctuation-special {
+  color: #dcd7ba;
+}
+.athl-string {
+  color: #76946a;
+}
+.athl-string-escape {
+  color: #ffa066;
+}
+.athl-string-regex {
+  color: #76946a;
+}
+.athl-string-special {
+  color: #76946a;
+}
+.athl-string-special-symbol {
+  color: #76946a;
+}
+.athl-tag {
+  color: #c34043;
+}
+.athl-text-literal {
+  color: #76946a;
+}
+.athl-title {
+  color: #c0a36e;
+}
+.athl-type {
+  color: #c0a36e;
+}
+.athl-variable {
+  color: #c34043;
+}
+.athl-variable-special {
+  color: #c34043;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Gruvbox Material Dark, Medium - Mayush Kumar (https://github.com/MayushKumar), sainnhe (https://github.com/sainnhe/gruvbox-material-vscode) */
+pre.athl {
+  background-color: #292828; color: #ddc7a1;
+}
+.athl-attribute {
+  color: #7daea3;
+}
+.athl-boolean {
+  color: #e78a4e;
+}
+.athl-comment {
+  color: #665c54;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #665c54;
+  font-style: italic;
+}
+.athl-constant {
+  color: #e78a4e;
+}
+.athl-constructor {
+  color: #ea6962;
+}
+.athl-emphasis {
+  color: #ea6962;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ea6962;
+  font-weight: 700;
+}
+.athl-function {
+  color: #7daea3;
+}
+.athl-keyword {
+  color: #d3869b;
+}
+.athl-label {
+  color: #d8a657;
+}
+.athl-link_text {
+  color: #ea6962;
+}
+.athl-link_uri {
+  color: #ea6962;
+}
+.athl-number {
+  color: #e78a4e;
+}
+.athl-punctuation {
+  color: #ddc7a1;
+}
+.athl-punctuation-bracket {
+  color: #ddc7a1;
+}
+.athl-punctuation-delimiter {
+  color: #ddc7a1;
+}
+.athl-punctuation-list_marker {
+  color: #ddc7a1;
+}
+.athl-punctuation-special {
+  color: #ddc7a1;
+}
+.athl-string {
+  color: #a9b665;
+}
+.athl-string-escape {
+  color: #e78a4e;
+}
+.athl-string-regex {
+  color: #a9b665;
+}
+.athl-string-special {
+  color: #a9b665;
+}
+.athl-string-special-symbol {
+  color: #a9b665;
+}
+.athl-tag {
+  color: #ea6962;
+}
+.athl-text-literal {
+  color: #a9b665;
+}
+.athl-title {
+  color: #d8a657;
+}
+.athl-type {
+  color: #d8a657;
+}
+.athl-variable {
+  color: #ea6962;
+}
+.athl-variable-special {
+  color: #ea6962;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 summercamp - zoe firi (zoefiri.github.io) */
+pre.athl {
+  background-color: #1c1810; color: #736e55;
+}
+.athl-attribute {
+  color: #489bf0;
+}
+.athl-boolean {
+  color: #fba11b;
+}
+.athl-comment {
+  color: #504b38;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #504b38;
+  font-style: italic;
+}
+.athl-constant {
+  color: #fba11b;
+}
+.athl-constructor {
+  color: #e35142;
+}
+.athl-emphasis {
+  color: #e35142;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #e35142;
+  font-weight: 700;
+}
+.athl-function {
+  color: #489bf0;
+}
+.athl-keyword {
+  color: #ff8080;
+}
+.athl-label {
+  color: #f2ff27;
+}
+.athl-link_text {
+  color: #e35142;
+}
+.athl-link_uri {
+  color: #e35142;
+}
+.athl-number {
+  color: #fba11b;
+}
+.athl-punctuation {
+  color: #736e55;
+}
+.athl-punctuation-bracket {
+  color: #736e55;
+}
+.athl-punctuation-delimiter {
+  color: #736e55;
+}
+.athl-punctuation-list_marker {
+  color: #736e55;
+}
+.athl-punctuation-special {
+  color: #736e55;
+}
+.athl-string {
+  color: #5ceb5a;
+}
+.athl-string-escape {
+  color: #fba11b;
+}
+.athl-string-regex {
+  color: #5ceb5a;
+}
+.athl-string-special {
+  color: #5ceb5a;
+}
+.athl-string-special-symbol {
+  color: #5ceb5a;
+}
+.athl-tag {
+  color: #e35142;
+}
+.athl-text-literal {
+  color: #5ceb5a;
+}
+.athl-title {
+  color: #f2ff27;
+}
+.athl-type {
+  color: #f2ff27;
+}
+.athl-variable {
+  color: #e35142;
+}
+.athl-variable-special {
+  color: #e35142;
+  font-style: italic;
+}

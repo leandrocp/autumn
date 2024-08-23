@@ -1,0 +1,99 @@
+/* Base16 Outrun Dark - Hugo Delahousse (http://github.com/hugodelahousse/) */
+pre.athl {
+  background-color: #00002a; color: #d0d0fa;
+}
+.athl-attribute {
+  color: #66b0ff;
+}
+.athl-boolean {
+  color: #fc8d28;
+}
+.athl-comment {
+  color: #50507a;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #50507a;
+  font-style: italic;
+}
+.athl-constant {
+  color: #fc8d28;
+}
+.athl-constructor {
+  color: #ff4242;
+}
+.athl-emphasis {
+  color: #ff4242;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff4242;
+  font-weight: 700;
+}
+.athl-function {
+  color: #66b0ff;
+}
+.athl-keyword {
+  color: #f10596;
+}
+.athl-label {
+  color: #f3e877;
+}
+.athl-link_text {
+  color: #ff4242;
+}
+.athl-link_uri {
+  color: #ff4242;
+}
+.athl-number {
+  color: #fc8d28;
+}
+.athl-punctuation {
+  color: #d0d0fa;
+}
+.athl-punctuation-bracket {
+  color: #d0d0fa;
+}
+.athl-punctuation-delimiter {
+  color: #d0d0fa;
+}
+.athl-punctuation-list_marker {
+  color: #d0d0fa;
+}
+.athl-punctuation-special {
+  color: #d0d0fa;
+}
+.athl-string {
+  color: #59f176;
+}
+.athl-string-escape {
+  color: #fc8d28;
+}
+.athl-string-regex {
+  color: #59f176;
+}
+.athl-string-special {
+  color: #59f176;
+}
+.athl-string-special-symbol {
+  color: #59f176;
+}
+.athl-tag {
+  color: #ff4242;
+}
+.athl-text-literal {
+  color: #59f176;
+}
+.athl-title {
+  color: #f3e877;
+}
+.athl-type {
+  color: #f3e877;
+}
+.athl-variable {
+  color: #ff4242;
+}
+.athl-variable-special {
+  color: #ff4242;
+  font-style: italic;
+}

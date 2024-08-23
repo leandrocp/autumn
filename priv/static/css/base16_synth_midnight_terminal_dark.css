@@ -1,0 +1,99 @@
+/* Base16 Synth Midnight Terminal Dark - Michaël Ball (http://github.com/michael-ball/) */
+pre.athl {
+  background-color: #050608; color: #c1c3c4;
+}
+.athl-attribute {
+  color: #03aeff;
+}
+.athl-boolean {
+  color: #ea770d;
+}
+.athl-comment {
+  color: #474849;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #474849;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ea770d;
+}
+.athl-constructor {
+  color: #b53b50;
+}
+.athl-emphasis {
+  color: #b53b50;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #b53b50;
+  font-weight: 700;
+}
+.athl-function {
+  color: #03aeff;
+}
+.athl-keyword {
+  color: #ea5ce2;
+}
+.athl-label {
+  color: #c9d364;
+}
+.athl-link_text {
+  color: #b53b50;
+}
+.athl-link_uri {
+  color: #b53b50;
+}
+.athl-number {
+  color: #ea770d;
+}
+.athl-punctuation {
+  color: #c1c3c4;
+}
+.athl-punctuation-bracket {
+  color: #c1c3c4;
+}
+.athl-punctuation-delimiter {
+  color: #c1c3c4;
+}
+.athl-punctuation-list_marker {
+  color: #c1c3c4;
+}
+.athl-punctuation-special {
+  color: #c1c3c4;
+}
+.athl-string {
+  color: #06ea61;
+}
+.athl-string-escape {
+  color: #ea770d;
+}
+.athl-string-regex {
+  color: #06ea61;
+}
+.athl-string-special {
+  color: #06ea61;
+}
+.athl-string-special-symbol {
+  color: #06ea61;
+}
+.athl-tag {
+  color: #b53b50;
+}
+.athl-text-literal {
+  color: #06ea61;
+}
+.athl-title {
+  color: #c9d364;
+}
+.athl-type {
+  color: #c9d364;
+}
+.athl-variable {
+  color: #b53b50;
+}
+.athl-variable-special {
+  color: #b53b50;
+  font-style: italic;
+}

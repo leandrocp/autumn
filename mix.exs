@@ -2,7 +2,7 @@ defmodule Autumn.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/leandrocp/autumn"
-  @version "0.2.4-dev"
+  @version "0.3.0-dev"
   @dev? String.ends_with?(@version, "-dev")
   @force_build? System.get_env("AUTUMN_BUILD") in ["1", "true"]
 
@@ -19,8 +19,7 @@ defmodule Autumn.MixProject do
       aliases: aliases(),
       name: "Autumn",
       homepage_url: "https://github.com/leandrocp/autumn",
-      description:
-        "Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes."
+      description: "Syntax highlighter based on Tree-sitter and Zed themes."
     ]
   end
 
@@ -39,17 +38,10 @@ defmodule Autumn.MixProject do
         GitHub: @source_url
       },
       files: ~w[
-        lib/autumn.ex
-        lib/autumn
-        native/inkjet_nif/src
-        native/inkjet_nif/Cargo.*
-        native/autumn/src
-        native/autumn/Cargo.*
+        lib
+        native
         priv/static/css
-        Cargo.*
-        Cross.toml
-        .cargo
-        checksum-Elixir.Autumn.Native.exs
+        checksum-*.exs
         mix.exs
         README.md
         LICENSE.md
@@ -74,17 +66,30 @@ defmodule Autumn.MixProject do
     [
       {:rustler, "~> 0.29", optional: not (@dev? or @force_build?)},
       {:rustler_precompiled, "~> 0.6"},
-      {:ex_doc, "~> 0.34", only: :dev},
-      {:toml, "~> 0.7", runtime: false}
+      {:jason, "~> 1.0"},
+      {:ex_doc, "~> 0.34", only: :dev}
     ]
   end
 
   defp aliases do
     [
-      generate_checksum: "rustler_precompiled.download Autumn.Native --all --print",
+      setup: [
+        "deps.get",
+        "download.themes",
+        "download.zed",
+        "download.langs"
+      ],
+      "download.themes": ["cmd elixir downloader.exs themes"],
+      "download.zed": ["cmd elixir downloader.exs zed"],
+      "download.langs": ["cmd elixir downloader.exs langs"],
+      "gen.langs.rs": ["cmd elixir gen.langs.rs.exs", "format.all", "compile"],
+      "gen.stylesheets": ["autumn.gen.stylesheets"],
+      "gen.samples": ["cmd elixir gen.samples.exs"],
+      "gen.checksum": "rustler_precompiled.download Autumn.Native --all --print",
       "format.all": ["rust.fmt", "format"],
-      "rust.lint": ["cmd cargo clippy --manifest-path=native/inkjet_nif/Cargo.toml -- -Dwarnings"],
-      "rust.fmt": ["cmd cargo fmt --manifest-path=native/inkjet_nif/Cargo.toml --all"]
+      "rust.fmt": ["cmd cargo fmt --manifest-path=native/autumn/Cargo.toml --all"],
+      "rust.lint": ["cmd cargo clippy --manifest-path=native/autumn/Cargo.toml -- -Dwarnings"],
+      "rust.lint.fix": ["cmd cargo clippy --manifest-path=native/autumn/Cargo.toml --fix"]
     ]
   end
 end

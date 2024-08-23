@@ -1,0 +1,99 @@
+/* Base16 Equilibrium Light - Carlo Abelli */
+pre.athl {
+  background-color: #f5f0e7; color: #43474e;
+}
+.athl-attribute {
+  color: #0073b5;
+}
+.athl-boolean {
+  color: #bf3e05;
+}
+.athl-comment {
+  color: #73777f;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #73777f;
+  font-style: italic;
+}
+.athl-constant {
+  color: #bf3e05;
+}
+.athl-constructor {
+  color: #d02023;
+}
+.athl-emphasis {
+  color: #d02023;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #d02023;
+  font-weight: 700;
+}
+.athl-function {
+  color: #0073b5;
+}
+.athl-keyword {
+  color: #4e66b6;
+}
+.athl-label {
+  color: #9d6f00;
+}
+.athl-link_text {
+  color: #d02023;
+}
+.athl-link_uri {
+  color: #d02023;
+}
+.athl-number {
+  color: #bf3e05;
+}
+.athl-punctuation {
+  color: #43474e;
+}
+.athl-punctuation-bracket {
+  color: #43474e;
+}
+.athl-punctuation-delimiter {
+  color: #43474e;
+}
+.athl-punctuation-list_marker {
+  color: #43474e;
+}
+.athl-punctuation-special {
+  color: #43474e;
+}
+.athl-string {
+  color: #637200;
+}
+.athl-string-escape {
+  color: #bf3e05;
+}
+.athl-string-regex {
+  color: #637200;
+}
+.athl-string-special {
+  color: #637200;
+}
+.athl-string-special-symbol {
+  color: #637200;
+}
+.athl-tag {
+  color: #d02023;
+}
+.athl-text-literal {
+  color: #637200;
+}
+.athl-title {
+  color: #9d6f00;
+}
+.athl-type {
+  color: #9d6f00;
+}
+.athl-variable {
+  color: #d02023;
+}
+.athl-variable-special {
+  color: #d02023;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Blue Forest - alonsodomin (https://github.com/alonsodomin) */
+pre.athl {
+  background-color: #141f2e; color: #ffcc33;
+}
+.athl-attribute {
+  color: #a2cff5;
+}
+.athl-boolean {
+  color: #ff8080;
+}
+.athl-comment {
+  color: #a0ffa0;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #a0ffa0;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ff8080;
+}
+.athl-constructor {
+  color: #fffab1;
+}
+.athl-emphasis {
+  color: #fffab1;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #fffab1;
+  font-weight: 700;
+}
+.athl-function {
+  color: #a2cff5;
+}
+.athl-keyword {
+  color: #0099ff;
+}
+.athl-label {
+  color: #91ccff;
+}
+.athl-link_text {
+  color: #fffab1;
+}
+.athl-link_uri {
+  color: #fffab1;
+}
+.athl-number {
+  color: #ff8080;
+}
+.athl-punctuation {
+  color: #ffcc33;
+}
+.athl-punctuation-bracket {
+  color: #ffcc33;
+}
+.athl-punctuation-delimiter {
+  color: #ffcc33;
+}
+.athl-punctuation-list_marker {
+  color: #ffcc33;
+}
+.athl-punctuation-special {
+  color: #ffcc33;
+}
+.athl-string {
+  color: #80ff80;
+}
+.athl-string-escape {
+  color: #ff8080;
+}
+.athl-string-regex {
+  color: #80ff80;
+}
+.athl-string-special {
+  color: #80ff80;
+}
+.athl-string-special-symbol {
+  color: #80ff80;
+}
+.athl-tag {
+  color: #fffab1;
+}
+.athl-text-literal {
+  color: #80ff80;
+}
+.athl-title {
+  color: #91ccff;
+}
+.athl-type {
+  color: #91ccff;
+}
+.athl-variable {
+  color: #fffab1;
+}
+.athl-variable-special {
+  color: #fffab1;
+  font-style: italic;
+}

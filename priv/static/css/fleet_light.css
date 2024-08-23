@@ -1,0 +1,146 @@
+/* Fleet Light - Lihuen Molina <lihue.molina@gmail.com> */
+pre.athl {
+  background-color: #ffffffff; color: #181818ff;
+}
+.athl-attribute {
+  color: #5511bfff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-boolean {
+  color: #14646eff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-comment {
+  color: #767676ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-comment-doc {
+  color: #767676ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-constant {
+  color: #a31d8dff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-enum {
+  color: #1749bdff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-function {
+  color: #5511bfff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-function-definition {
+  color: #181818ff;
+  font-style: normal;
+  font-weight: 600;
+}
+.athl-function-special {
+  color: #616605ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-function-special-definition {
+  color: #181818ff;
+}
+.athl-keyword {
+  color: #14646eff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-link-text {
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-link-uri {
+  color: #1749bdff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-number {
+  color: #a31d8dff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-operator {
+  color: #181818ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-property {
+  color: #a31d8dff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-property-json_key {
+  color: #14646eff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-punctuation-bracket {
+  color: #181818ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string {
+  color: #086e14ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string-escape {
+  color: #a31d8dff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string-regex {
+  color: #5511bfff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string-special {
+  color: #a31d8dff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-string-special-symbol {
+  color: #5511bfff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-tag {
+  color: #1749bdff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-text-literal {
+  color: #086e14ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-type {
+  color: #1749bdff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-type-builtin {
+  color: #14646eff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-variable {
+  color: #181818ff;
+  font-style: normal;
+  font-weight: 400;
+}
+.athl-variable-special {
+  color: #8c4f7f;
+  font-style: normal;
+  font-weight: 400;
+}

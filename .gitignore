@@ -35,9 +35,5 @@ checksum-*.exs
 
 /.elixir_ls/
 
+/priv/generated
 /priv/native/
-
-# Test files
-/priv/generated/themes/module.toml
-/priv/generated/themes/parent.toml
-/priv/generated/themes/child.toml

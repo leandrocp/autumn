@@ -1,0 +1,99 @@
+/* Base16 Windows NT - Fergus Collins (https://github.com/C-Fergus) */
+pre.athl {
+  background-color: #000000; color: #c0c0c0;
+}
+.athl-attribute {
+  color: #0000ff;
+}
+.athl-boolean {
+  color: #808000;
+}
+.athl-comment {
+  color: #808080;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #808080;
+  font-style: italic;
+}
+.athl-constant {
+  color: #808000;
+}
+.athl-constructor {
+  color: #ff0000;
+}
+.athl-emphasis {
+  color: #ff0000;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff0000;
+  font-weight: 700;
+}
+.athl-function {
+  color: #0000ff;
+}
+.athl-keyword {
+  color: #ff00ff;
+}
+.athl-label {
+  color: #ffff00;
+}
+.athl-link_text {
+  color: #ff0000;
+}
+.athl-link_uri {
+  color: #ff0000;
+}
+.athl-number {
+  color: #808000;
+}
+.athl-punctuation {
+  color: #c0c0c0;
+}
+.athl-punctuation-bracket {
+  color: #c0c0c0;
+}
+.athl-punctuation-delimiter {
+  color: #c0c0c0;
+}
+.athl-punctuation-list_marker {
+  color: #c0c0c0;
+}
+.athl-punctuation-special {
+  color: #c0c0c0;
+}
+.athl-string {
+  color: #00ff00;
+}
+.athl-string-escape {
+  color: #808000;
+}
+.athl-string-regex {
+  color: #00ff00;
+}
+.athl-string-special {
+  color: #00ff00;
+}
+.athl-string-special-symbol {
+  color: #00ff00;
+}
+.athl-tag {
+  color: #ff0000;
+}
+.athl-text-literal {
+  color: #00ff00;
+}
+.athl-title {
+  color: #ffff00;
+}
+.athl-type {
+  color: #ffff00;
+}
+.athl-variable {
+  color: #ff0000;
+}
+.athl-variable-special {
+  color: #ff0000;
+  font-style: italic;
+}

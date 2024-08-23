@@ -1,0 +1,99 @@
+/* Base16 IR Black - Timothée Poisot (http://timotheepoisot.fr) */
+pre.athl {
+  background-color: #000000; color: #b5b3aa;
+}
+.athl-attribute {
+  color: #96cbfe;
+}
+.athl-boolean {
+  color: #e9c062;
+}
+.athl-comment {
+  color: #6c6c66;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #6c6c66;
+  font-style: italic;
+}
+.athl-constant {
+  color: #e9c062;
+}
+.athl-constructor {
+  color: #ff6c60;
+}
+.athl-emphasis {
+  color: #ff6c60;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff6c60;
+  font-weight: 700;
+}
+.athl-function {
+  color: #96cbfe;
+}
+.athl-keyword {
+  color: #ff73fd;
+}
+.athl-label {
+  color: #ffffb6;
+}
+.athl-link_text {
+  color: #ff6c60;
+}
+.athl-link_uri {
+  color: #ff6c60;
+}
+.athl-number {
+  color: #e9c062;
+}
+.athl-punctuation {
+  color: #b5b3aa;
+}
+.athl-punctuation-bracket {
+  color: #b5b3aa;
+}
+.athl-punctuation-delimiter {
+  color: #b5b3aa;
+}
+.athl-punctuation-list_marker {
+  color: #b5b3aa;
+}
+.athl-punctuation-special {
+  color: #b5b3aa;
+}
+.athl-string {
+  color: #a8ff60;
+}
+.athl-string-escape {
+  color: #e9c062;
+}
+.athl-string-regex {
+  color: #a8ff60;
+}
+.athl-string-special {
+  color: #a8ff60;
+}
+.athl-string-special-symbol {
+  color: #a8ff60;
+}
+.athl-tag {
+  color: #ff6c60;
+}
+.athl-text-literal {
+  color: #a8ff60;
+}
+.athl-title {
+  color: #ffffb6;
+}
+.athl-type {
+  color: #ffffb6;
+}
+.athl-variable {
+  color: #ff6c60;
+}
+.athl-variable-special {
+  color: #ff6c60;
+  font-style: italic;
+}

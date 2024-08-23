@@ -1,0 +1,99 @@
+/* Base16 Ayu Dark - Khue Nguyen &lt;Z5483Y@gmail.com&gt; */
+pre.athl {
+  background-color: #0f1419; color: #e6e1cf;
+}
+.athl-attribute {
+  color: #59c2ff;
+}
+.athl-boolean {
+  color: #ff8f40;
+}
+.athl-comment {
+  color: #3e4b59;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #3e4b59;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ff8f40;
+}
+.athl-constructor {
+  color: #f07178;
+}
+.athl-emphasis {
+  color: #f07178;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f07178;
+  font-weight: 700;
+}
+.athl-function {
+  color: #59c2ff;
+}
+.athl-keyword {
+  color: #d2a6ff;
+}
+.athl-label {
+  color: #ffb454;
+}
+.athl-link_text {
+  color: #f07178;
+}
+.athl-link_uri {
+  color: #f07178;
+}
+.athl-number {
+  color: #ff8f40;
+}
+.athl-punctuation {
+  color: #e6e1cf;
+}
+.athl-punctuation-bracket {
+  color: #e6e1cf;
+}
+.athl-punctuation-delimiter {
+  color: #e6e1cf;
+}
+.athl-punctuation-list_marker {
+  color: #e6e1cf;
+}
+.athl-punctuation-special {
+  color: #e6e1cf;
+}
+.athl-string {
+  color: #b8cc52;
+}
+.athl-string-escape {
+  color: #ff8f40;
+}
+.athl-string-regex {
+  color: #b8cc52;
+}
+.athl-string-special {
+  color: #b8cc52;
+}
+.athl-string-special-symbol {
+  color: #b8cc52;
+}
+.athl-tag {
+  color: #f07178;
+}
+.athl-text-literal {
+  color: #b8cc52;
+}
+.athl-title {
+  color: #ffb454;
+}
+.athl-type {
+  color: #ffb454;
+}
+.athl-variable {
+  color: #f07178;
+}
+.athl-variable-special {
+  color: #f07178;
+  font-style: italic;
+}

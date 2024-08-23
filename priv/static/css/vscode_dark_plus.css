@@ -1,0 +1,85 @@
+/* VScode Dark Plus - d1y */
+pre.athl {
+  background-color: #1e1e1e; 
+}
+.athl-attribute {
+  color: #9cdcfe;
+}
+.athl-boolean {
+  color: #569cd6;
+}
+.athl-comment {
+  color: #505050;
+}
+.athl-comment-doc {
+  color: #505050;
+}
+.athl-constant {
+  color: #569cd6;
+}
+.athl-constructor {
+  color: #569cd6;
+}
+.athl-function {
+  color: #dcdcaa;
+}
+.athl-keyword {
+  color: #569cd6;
+}
+.athl-number {
+  color: #b5cea8;
+}
+.athl-operator {
+  color: #c586c0;
+}
+.athl-preproc {
+  color: #569cd6;
+}
+.athl-property {
+  color: #9cdcfe;
+}
+.athl-punctuation {
+  color: #808080;
+}
+.athl-punctuation-bracket {
+  color: #808080;
+}
+.athl-punctuation-delimiter {
+  color: #404040;
+}
+.athl-punctuation-list_marker {
+  color: #808080;
+}
+.athl-punctuation-special {
+  color: #808080;
+}
+.athl-string {
+  color: #ce9178;
+}
+.athl-string-escape {
+  color: #d7ba7d;
+}
+.athl-string-regex {
+  color: #ce9178;
+}
+.athl-string-special {
+  color: #d7ba7d;
+}
+.athl-string-special-symbol {
+  color: #d7ba7d;
+}
+.athl-tag {
+  color: #569cd6;
+}
+.athl-text-literal {
+  color: #ce9178;
+}
+.athl-type {
+  color: #4ec9b0;
+}
+.athl-variable {
+  color: #9cdcfe;
+}
+.athl-variable-special {
+  color: #9cdcfe;
+}

@@ -1,0 +1,99 @@
+/* Base16 Gigavolt - Aidan Swope (http://github.com/Whillikers) */
+pre.athl {
+  background-color: #202126; color: #e9e7e1;
+}
+.athl-attribute {
+  color: #40bfff;
+}
+.athl-boolean {
+  color: #19f988;
+}
+.athl-comment {
+  color: #a1d2e6;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #a1d2e6;
+  font-style: italic;
+}
+.athl-constant {
+  color: #19f988;
+}
+.athl-constructor {
+  color: #ff661a;
+}
+.athl-emphasis {
+  color: #ff661a;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff661a;
+  font-weight: 700;
+}
+.athl-function {
+  color: #40bfff;
+}
+.athl-keyword {
+  color: #ae94f9;
+}
+.athl-label {
+  color: #ffdc2d;
+}
+.athl-link_text {
+  color: #ff661a;
+}
+.athl-link_uri {
+  color: #ff661a;
+}
+.athl-number {
+  color: #19f988;
+}
+.athl-punctuation {
+  color: #e9e7e1;
+}
+.athl-punctuation-bracket {
+  color: #e9e7e1;
+}
+.athl-punctuation-delimiter {
+  color: #e9e7e1;
+}
+.athl-punctuation-list_marker {
+  color: #e9e7e1;
+}
+.athl-punctuation-special {
+  color: #e9e7e1;
+}
+.athl-string {
+  color: #f2e6a9;
+}
+.athl-string-escape {
+  color: #19f988;
+}
+.athl-string-regex {
+  color: #f2e6a9;
+}
+.athl-string-special {
+  color: #f2e6a9;
+}
+.athl-string-special-symbol {
+  color: #f2e6a9;
+}
+.athl-tag {
+  color: #ff661a;
+}
+.athl-text-literal {
+  color: #f2e6a9;
+}
+.athl-title {
+  color: #ffdc2d;
+}
+.athl-type {
+  color: #ffdc2d;
+}
+.athl-variable {
+  color: #ff661a;
+}
+.athl-variable-special {
+  color: #ff661a;
+  font-style: italic;
+}

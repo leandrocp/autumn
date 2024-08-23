@@ -1,0 +1,99 @@
+/* Base16 Humanoid light - Thomas (tasmo) Friese */
+pre.athl {
+  background-color: #f8f8f2; color: #232629;
+}
+.athl-attribute {
+  color: #0082c9;
+}
+.athl-boolean {
+  color: #ff3d00;
+}
+.athl-comment {
+  color: #c0c0bd;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #c0c0bd;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ff3d00;
+}
+.athl-constructor {
+  color: #b0151a;
+}
+.athl-emphasis {
+  color: #b0151a;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #b0151a;
+  font-weight: 700;
+}
+.athl-function {
+  color: #0082c9;
+}
+.athl-keyword {
+  color: #700f98;
+}
+.athl-label {
+  color: #ffb627;
+}
+.athl-link_text {
+  color: #b0151a;
+}
+.athl-link_uri {
+  color: #b0151a;
+}
+.athl-number {
+  color: #ff3d00;
+}
+.athl-punctuation {
+  color: #232629;
+}
+.athl-punctuation-bracket {
+  color: #232629;
+}
+.athl-punctuation-delimiter {
+  color: #232629;
+}
+.athl-punctuation-list_marker {
+  color: #232629;
+}
+.athl-punctuation-special {
+  color: #232629;
+}
+.athl-string {
+  color: #388e3c;
+}
+.athl-string-escape {
+  color: #ff3d00;
+}
+.athl-string-regex {
+  color: #388e3c;
+}
+.athl-string-special {
+  color: #388e3c;
+}
+.athl-string-special-symbol {
+  color: #388e3c;
+}
+.athl-tag {
+  color: #b0151a;
+}
+.athl-text-literal {
+  color: #388e3c;
+}
+.athl-title {
+  color: #ffb627;
+}
+.athl-type {
+  color: #ffb627;
+}
+.athl-variable {
+  color: #b0151a;
+}
+.athl-variable-special {
+  color: #b0151a;
+  font-style: italic;
+}

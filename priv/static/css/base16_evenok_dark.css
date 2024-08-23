@@ -1,0 +1,99 @@
+/* Base16 Evenok Dark - Mekeor Melire */
+pre.athl {
+  background-color: #000000; color: #d0d0d0;
+}
+.athl-attribute {
+  color: #00aff2;
+}
+.athl-boolean {
+  color: #ee8122;
+}
+.athl-comment {
+  color: #505050;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #505050;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ee8122;
+}
+.athl-constructor {
+  color: #f5708a;
+}
+.athl-emphasis {
+  color: #f5708a;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f5708a;
+  font-weight: 700;
+}
+.athl-function {
+  color: #00aff2;
+}
+.athl-keyword {
+  color: #9095ff;
+}
+.athl-label {
+  color: #b8a300;
+}
+.athl-link_text {
+  color: #f5708a;
+}
+.athl-link_uri {
+  color: #f5708a;
+}
+.athl-number {
+  color: #ee8122;
+}
+.athl-punctuation {
+  color: #d0d0d0;
+}
+.athl-punctuation-bracket {
+  color: #d0d0d0;
+}
+.athl-punctuation-delimiter {
+  color: #d0d0d0;
+}
+.athl-punctuation-list_marker {
+  color: #d0d0d0;
+}
+.athl-punctuation-special {
+  color: #d0d0d0;
+}
+.athl-string {
+  color: #54bc5c;
+}
+.athl-string-escape {
+  color: #ee8122;
+}
+.athl-string-regex {
+  color: #54bc5c;
+}
+.athl-string-special {
+  color: #54bc5c;
+}
+.athl-string-special-symbol {
+  color: #54bc5c;
+}
+.athl-tag {
+  color: #f5708a;
+}
+.athl-text-literal {
+  color: #54bc5c;
+}
+.athl-title {
+  color: #b8a300;
+}
+.athl-type {
+  color: #b8a300;
+}
+.athl-variable {
+  color: #f5708a;
+}
+.athl-variable-special {
+  color: #f5708a;
+  font-style: italic;
+}

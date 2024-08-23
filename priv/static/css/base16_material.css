@@ -1,0 +1,99 @@
+/* Base16 Material - Nate Peterson */
+pre.athl {
+  background-color: #263238; color: #eeffff;
+}
+.athl-attribute {
+  color: #82aaff;
+}
+.athl-boolean {
+  color: #f78c6c;
+}
+.athl-comment {
+  color: #546e7a;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #546e7a;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f78c6c;
+}
+.athl-constructor {
+  color: #f07178;
+}
+.athl-emphasis {
+  color: #f07178;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f07178;
+  font-weight: 700;
+}
+.athl-function {
+  color: #82aaff;
+}
+.athl-keyword {
+  color: #c792ea;
+}
+.athl-label {
+  color: #ffcb6b;
+}
+.athl-link_text {
+  color: #f07178;
+}
+.athl-link_uri {
+  color: #f07178;
+}
+.athl-number {
+  color: #f78c6c;
+}
+.athl-punctuation {
+  color: #eeffff;
+}
+.athl-punctuation-bracket {
+  color: #eeffff;
+}
+.athl-punctuation-delimiter {
+  color: #eeffff;
+}
+.athl-punctuation-list_marker {
+  color: #eeffff;
+}
+.athl-punctuation-special {
+  color: #eeffff;
+}
+.athl-string {
+  color: #c3e88d;
+}
+.athl-string-escape {
+  color: #f78c6c;
+}
+.athl-string-regex {
+  color: #c3e88d;
+}
+.athl-string-special {
+  color: #c3e88d;
+}
+.athl-string-special-symbol {
+  color: #c3e88d;
+}
+.athl-tag {
+  color: #f07178;
+}
+.athl-text-literal {
+  color: #c3e88d;
+}
+.athl-title {
+  color: #ffcb6b;
+}
+.athl-type {
+  color: #ffcb6b;
+}
+.athl-variable {
+  color: #f07178;
+}
+.athl-variable-special {
+  color: #f07178;
+  font-style: italic;
+}

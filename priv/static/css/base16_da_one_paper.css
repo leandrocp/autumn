@@ -1,0 +1,99 @@
+/* Base16 Da One Paper - NNB (https://github.com/NNBnh) */
+pre.athl {
+  background-color: #faf0dc; color: #181818;
+}
+.athl-attribute {
+  color: #5890f8;
+}
+.athl-boolean {
+  color: #ff9470;
+}
+.athl-comment {
+  color: #585858;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #585858;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ff9470;
+}
+.athl-constructor {
+  color: #de5d6e;
+}
+.athl-emphasis {
+  color: #de5d6e;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #de5d6e;
+  font-weight: 700;
+}
+.athl-function {
+  color: #5890f8;
+}
+.athl-keyword {
+  color: #c173d1;
+}
+.athl-label {
+  color: #b3684f;
+}
+.athl-link_text {
+  color: #de5d6e;
+}
+.athl-link_uri {
+  color: #de5d6e;
+}
+.athl-number {
+  color: #ff9470;
+}
+.athl-punctuation {
+  color: #181818;
+}
+.athl-punctuation-bracket {
+  color: #181818;
+}
+.athl-punctuation-delimiter {
+  color: #181818;
+}
+.athl-punctuation-list_marker {
+  color: #181818;
+}
+.athl-punctuation-special {
+  color: #181818;
+}
+.athl-string {
+  color: #76a85d;
+}
+.athl-string-escape {
+  color: #ff9470;
+}
+.athl-string-regex {
+  color: #76a85d;
+}
+.athl-string-special {
+  color: #76a85d;
+}
+.athl-string-special-symbol {
+  color: #76a85d;
+}
+.athl-tag {
+  color: #de5d6e;
+}
+.athl-text-literal {
+  color: #76a85d;
+}
+.athl-title {
+  color: #b3684f;
+}
+.athl-type {
+  color: #b3684f;
+}
+.athl-variable {
+  color: #de5d6e;
+}
+.athl-variable-special {
+  color: #de5d6e;
+  font-style: italic;
+}

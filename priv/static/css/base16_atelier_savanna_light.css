@@ -1,0 +1,99 @@
+/* Base16 Atelier Savanna Light - Bram de Haan (http://atelierbramdehaan.nl) */
+pre.athl {
+  background-color: #ecf4ee; color: #526057;
+}
+.athl-attribute {
+  color: #478c90;
+}
+.athl-boolean {
+  color: #9f713c;
+}
+.athl-comment {
+  color: #78877d;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #78877d;
+  font-style: italic;
+}
+.athl-constant {
+  color: #9f713c;
+}
+.athl-constructor {
+  color: #b16139;
+}
+.athl-emphasis {
+  color: #b16139;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #b16139;
+  font-weight: 700;
+}
+.athl-function {
+  color: #478c90;
+}
+.athl-keyword {
+  color: #55859b;
+}
+.athl-label {
+  color: #a07e3b;
+}
+.athl-link_text {
+  color: #b16139;
+}
+.athl-link_uri {
+  color: #b16139;
+}
+.athl-number {
+  color: #9f713c;
+}
+.athl-punctuation {
+  color: #526057;
+}
+.athl-punctuation-bracket {
+  color: #526057;
+}
+.athl-punctuation-delimiter {
+  color: #526057;
+}
+.athl-punctuation-list_marker {
+  color: #526057;
+}
+.athl-punctuation-special {
+  color: #526057;
+}
+.athl-string {
+  color: #489963;
+}
+.athl-string-escape {
+  color: #9f713c;
+}
+.athl-string-regex {
+  color: #489963;
+}
+.athl-string-special {
+  color: #489963;
+}
+.athl-string-special-symbol {
+  color: #489963;
+}
+.athl-tag {
+  color: #b16139;
+}
+.athl-text-literal {
+  color: #489963;
+}
+.athl-title {
+  color: #a07e3b;
+}
+.athl-type {
+  color: #a07e3b;
+}
+.athl-variable {
+  color: #b16139;
+}
+.athl-variable-special {
+  color: #b16139;
+  font-style: italic;
+}

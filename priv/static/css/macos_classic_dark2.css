@@ -1,0 +1,72 @@
+/* macOS Classic Dark2 - huacnlee */
+pre.athl {
+  background-color: #131313; color: #CACCCA;
+}
+.athl-attribute {
+  color: #AE9513;
+}
+.athl-boolean {
+  color: #705f00;
+}
+.athl-comment {
+  color: #9E9E9E;
+}
+.athl-comment-doc {
+  color: #9E9E9E;
+}
+.athl-constant {
+  color: #705f00;
+}
+.athl-constructor {
+  color: #9a9576;
+}
+.athl-embedded {
+  color: #CACCCA;
+}
+.athl-function {
+  color: #c0b298;
+}
+.athl-keyword {
+  color: #AE9513;
+}
+.athl-link_text {
+  color: #CEB63D;
+  font-style: normal;
+}
+.athl-link_uri {
+  color: #6E6C65;
+  font-style: italic;
+}
+.athl-number {
+  color: #AE9513;
+}
+.athl-string {
+  color: #76BA53;
+}
+.athl-string-escape {
+  color: #76BA53;
+}
+.athl-string-regex {
+  color: #76BA53;
+}
+.athl-string-special {
+  color: #7D7A68;
+}
+.athl-string-special-symbol {
+  color: #7D7A68;
+}
+.athl-tag {
+  color: #9a9576;
+}
+.athl-text-literal {
+  color: #8C7701;
+}
+.athl-title {
+  color: #D73737;
+}
+.athl-type {
+  color: #D73737;
+}
+.athl-variable-special {
+  color: #AE9513;
+}

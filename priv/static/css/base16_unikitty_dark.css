@@ -1,0 +1,99 @@
+/* Base16 Unikitty Dark - Josh W Lewis (@joshwlewis) */
+pre.athl {
+  background-color: #2e2a31; color: #bcbabe;
+}
+.athl-attribute {
+  color: #796af5;
+}
+.athl-boolean {
+  color: #d65407;
+}
+.athl-comment {
+  color: #838085;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #838085;
+  font-style: italic;
+}
+.athl-constant {
+  color: #d65407;
+}
+.athl-constructor {
+  color: #d8137f;
+}
+.athl-emphasis {
+  color: #d8137f;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #d8137f;
+  font-weight: 700;
+}
+.athl-function {
+  color: #796af5;
+}
+.athl-keyword {
+  color: #bb60ea;
+}
+.athl-label {
+  color: #dc8a0e;
+}
+.athl-link_text {
+  color: #d8137f;
+}
+.athl-link_uri {
+  color: #d8137f;
+}
+.athl-number {
+  color: #d65407;
+}
+.athl-punctuation {
+  color: #bcbabe;
+}
+.athl-punctuation-bracket {
+  color: #bcbabe;
+}
+.athl-punctuation-delimiter {
+  color: #bcbabe;
+}
+.athl-punctuation-list_marker {
+  color: #bcbabe;
+}
+.athl-punctuation-special {
+  color: #bcbabe;
+}
+.athl-string {
+  color: #17ad98;
+}
+.athl-string-escape {
+  color: #d65407;
+}
+.athl-string-regex {
+  color: #17ad98;
+}
+.athl-string-special {
+  color: #17ad98;
+}
+.athl-string-special-symbol {
+  color: #17ad98;
+}
+.athl-tag {
+  color: #d8137f;
+}
+.athl-text-literal {
+  color: #17ad98;
+}
+.athl-title {
+  color: #dc8a0e;
+}
+.athl-type {
+  color: #dc8a0e;
+}
+.athl-variable {
+  color: #d8137f;
+}
+.athl-variable-special {
+  color: #d8137f;
+  font-style: italic;
+}

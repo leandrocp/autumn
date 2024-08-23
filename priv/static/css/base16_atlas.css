@@ -1,0 +1,99 @@
+/* Base16 Atlas - Alex Lende (https://ajlende.com) */
+pre.athl {
+  background-color: #002635; color: #a1a19a;
+}
+.athl-attribute {
+  color: #5dd7b9;
+}
+.athl-boolean {
+  color: #f08e48;
+}
+.athl-comment {
+  color: #6c8b91;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #6c8b91;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f08e48;
+}
+.athl-constructor {
+  color: #ff5a67;
+}
+.athl-emphasis {
+  color: #ff5a67;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff5a67;
+  font-weight: 700;
+}
+.athl-function {
+  color: #5dd7b9;
+}
+.athl-keyword {
+  color: #9a70a4;
+}
+.athl-label {
+  color: #ffcc1b;
+}
+.athl-link_text {
+  color: #ff5a67;
+}
+.athl-link_uri {
+  color: #ff5a67;
+}
+.athl-number {
+  color: #f08e48;
+}
+.athl-punctuation {
+  color: #a1a19a;
+}
+.athl-punctuation-bracket {
+  color: #a1a19a;
+}
+.athl-punctuation-delimiter {
+  color: #a1a19a;
+}
+.athl-punctuation-list_marker {
+  color: #a1a19a;
+}
+.athl-punctuation-special {
+  color: #a1a19a;
+}
+.athl-string {
+  color: #7fc06e;
+}
+.athl-string-escape {
+  color: #f08e48;
+}
+.athl-string-regex {
+  color: #7fc06e;
+}
+.athl-string-special {
+  color: #7fc06e;
+}
+.athl-string-special-symbol {
+  color: #7fc06e;
+}
+.athl-tag {
+  color: #ff5a67;
+}
+.athl-text-literal {
+  color: #7fc06e;
+}
+.athl-title {
+  color: #ffcc1b;
+}
+.athl-type {
+  color: #ffcc1b;
+}
+.athl-variable {
+  color: #ff5a67;
+}
+.athl-variable-special {
+  color: #ff5a67;
+  font-style: italic;
+}

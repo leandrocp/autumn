@@ -1,0 +1,99 @@
+/* Base16 UwUnicorn - Fernando Marques (https://github.com/RakkiUwU) and Gabriel Fontes (https://github.com/Misterio77) */
+pre.athl {
+  background-color: #241b26; color: #eed5d9;
+}
+.athl-attribute {
+  color: #6a9eb5;
+}
+.athl-boolean {
+  color: #de5b44;
+}
+.athl-comment {
+  color: #6c3cb2;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #6c3cb2;
+  font-style: italic;
+}
+.athl-constant {
+  color: #de5b44;
+}
+.athl-constructor {
+  color: #877bb6;
+}
+.athl-emphasis {
+  color: #877bb6;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #877bb6;
+  font-weight: 700;
+}
+.athl-function {
+  color: #6a9eb5;
+}
+.athl-keyword {
+  color: #78a38f;
+}
+.athl-label {
+  color: #a84a73;
+}
+.athl-link_text {
+  color: #877bb6;
+}
+.athl-link_uri {
+  color: #877bb6;
+}
+.athl-number {
+  color: #de5b44;
+}
+.athl-punctuation {
+  color: #eed5d9;
+}
+.athl-punctuation-bracket {
+  color: #eed5d9;
+}
+.athl-punctuation-delimiter {
+  color: #eed5d9;
+}
+.athl-punctuation-list_marker {
+  color: #eed5d9;
+}
+.athl-punctuation-special {
+  color: #eed5d9;
+}
+.athl-string {
+  color: #c965bf;
+}
+.athl-string-escape {
+  color: #de5b44;
+}
+.athl-string-regex {
+  color: #c965bf;
+}
+.athl-string-special {
+  color: #c965bf;
+}
+.athl-string-special-symbol {
+  color: #c965bf;
+}
+.athl-tag {
+  color: #877bb6;
+}
+.athl-text-literal {
+  color: #c965bf;
+}
+.athl-title {
+  color: #a84a73;
+}
+.athl-type {
+  color: #a84a73;
+}
+.athl-variable {
+  color: #877bb6;
+}
+.athl-variable-special {
+  color: #877bb6;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Stella - Shrimpram */
+pre.athl {
+  background-color: #2b213c; color: #998bad;
+}
+.athl-attribute {
+  color: #a5aad4;
+}
+.athl-boolean {
+  color: #8865c6;
+}
+.athl-comment {
+  color: #655978;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #655978;
+  font-style: italic;
+}
+.athl-constant {
+  color: #8865c6;
+}
+.athl-constructor {
+  color: #c79987;
+}
+.athl-emphasis {
+  color: #c79987;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #c79987;
+  font-weight: 700;
+}
+.athl-function {
+  color: #a5aad4;
+}
+.athl-keyword {
+  color: #c594ff;
+}
+.athl-label {
+  color: #c7c691;
+}
+.athl-link_text {
+  color: #c79987;
+}
+.athl-link_uri {
+  color: #c79987;
+}
+.athl-number {
+  color: #8865c6;
+}
+.athl-punctuation {
+  color: #998bad;
+}
+.athl-punctuation-bracket {
+  color: #998bad;
+}
+.athl-punctuation-delimiter {
+  color: #998bad;
+}
+.athl-punctuation-list_marker {
+  color: #998bad;
+}
+.athl-punctuation-special {
+  color: #998bad;
+}
+.athl-string {
+  color: #acc79b;
+}
+.athl-string-escape {
+  color: #8865c6;
+}
+.athl-string-regex {
+  color: #acc79b;
+}
+.athl-string-special {
+  color: #acc79b;
+}
+.athl-string-special-symbol {
+  color: #acc79b;
+}
+.athl-tag {
+  color: #c79987;
+}
+.athl-text-literal {
+  color: #acc79b;
+}
+.athl-title {
+  color: #c7c691;
+}
+.athl-type {
+  color: #c7c691;
+}
+.athl-variable {
+  color: #c79987;
+}
+.athl-variable-special {
+  color: #c79987;
+  font-style: italic;
+}

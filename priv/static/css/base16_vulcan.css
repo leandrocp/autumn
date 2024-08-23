@@ -1,0 +1,99 @@
+/* Base16 vulcan - Andrey Varfolomeev */
+pre.athl {
+  background-color: #041523; color: #5b778c;
+}
+.athl-attribute {
+  color: #977d7c;
+}
+.athl-boolean {
+  color: #9198a3;
+}
+.athl-comment {
+  color: #7a5759;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #7a5759;
+  font-style: italic;
+}
+.athl-constant {
+  color: #9198a3;
+}
+.athl-constructor {
+  color: #818591;
+}
+.athl-emphasis {
+  color: #818591;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #818591;
+  font-weight: 700;
+}
+.athl-function {
+  color: #977d7c;
+}
+.athl-keyword {
+  color: #9198a3;
+}
+.athl-label {
+  color: #adb4b9;
+}
+.athl-link_text {
+  color: #818591;
+}
+.athl-link_uri {
+  color: #818591;
+}
+.athl-number {
+  color: #9198a3;
+}
+.athl-punctuation {
+  color: #5b778c;
+}
+.athl-punctuation-bracket {
+  color: #5b778c;
+}
+.athl-punctuation-delimiter {
+  color: #5b778c;
+}
+.athl-punctuation-list_marker {
+  color: #5b778c;
+}
+.athl-punctuation-special {
+  color: #5b778c;
+}
+.athl-string {
+  color: #977d7c;
+}
+.athl-string-escape {
+  color: #9198a3;
+}
+.athl-string-regex {
+  color: #977d7c;
+}
+.athl-string-special {
+  color: #977d7c;
+}
+.athl-string-special-symbol {
+  color: #977d7c;
+}
+.athl-tag {
+  color: #818591;
+}
+.athl-text-literal {
+  color: #977d7c;
+}
+.athl-title {
+  color: #adb4b9;
+}
+.athl-type {
+  color: #adb4b9;
+}
+.athl-variable {
+  color: #818591;
+}
+.athl-variable-special {
+  color: #818591;
+  font-style: italic;
+}

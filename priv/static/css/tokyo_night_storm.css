@@ -1,0 +1,102 @@
+/* Tokyo Night Storm - Tokyo Night: Zed Theme Importer */
+pre.athl {
+  background-color: #24283b; color: #a9b1d6;
+}
+.athl-attribute {
+  color: #bb9af7;
+}
+.athl-boolean {
+  color: #ff9e64;
+}
+.athl-comment {
+  color: #5f6996;
+}
+.athl-comment-doc {
+  color: #5f6996;
+}
+.athl-constant {
+  color: #ff9e64;
+}
+.athl-constructor {
+  color: #f7768e;
+}
+.athl-emphasis {
+  color: #f7768e;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f7768e;
+  font-weight: 700;
+}
+.athl-function {
+  color: #7aa2f7;
+}
+.athl-keyword {
+  color: #bb9af7;
+}
+.athl-label {
+  color: #c0caf5;
+}
+.athl-link_text {
+  color: #73daca;
+}
+.athl-link_uri {
+  color: #73daca;
+}
+.athl-number {
+  color: #ff9e64;
+}
+.athl-operator {
+  color: #89ddff;
+}
+.athl-preproc {
+  color: #73daca;
+}
+.athl-punctuation {
+  color: #89ddff;
+}
+.athl-punctuation-bracket {
+  color: #89ddff;
+}
+.athl-punctuation-delimiter {
+  color: #89ddff;
+}
+.athl-punctuation-list_marker {
+  color: #89ddff;
+}
+.athl-punctuation-special {
+  color: #89ddff;
+}
+.athl-string {
+  color: #9ece6a;
+}
+.athl-string-escape {
+  color: #bb9af7;
+}
+.athl-string-regex {
+  color: #9ece6a;
+}
+.athl-string-special {
+  color: #9ece6a;
+}
+.athl-string-special-symbol {
+  color: #9ece6a;
+}
+.athl-tag {
+  color: #f7768e;
+}
+.athl-text-literal {
+  color: #9ece6a;
+}
+.athl-title {
+  color: #ff9e64;
+}
+.athl-type {
+  color: #2ac3de;
+}
+.athl-variable {
+  color: #c0caf5;
+}
+.athl-variable-special {
+  color: #f7768e;
+}

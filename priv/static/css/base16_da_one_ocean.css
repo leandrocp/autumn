@@ -1,0 +1,99 @@
+/* Base16 Da One Ocean - NNB (https://github.com/NNBnh) */
+pre.athl {
+  background-color: #171726; color: #ffffff;
+}
+.athl-attribute {
+  color: #6bb8ff;
+}
+.athl-boolean {
+  color: #ffc387;
+}
+.athl-comment {
+  color: #878d96;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #878d96;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ffc387;
+}
+.athl-constructor {
+  color: #fa7883;
+}
+.athl-emphasis {
+  color: #fa7883;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #fa7883;
+  font-weight: 700;
+}
+.athl-function {
+  color: #6bb8ff;
+}
+.athl-keyword {
+  color: #e799ff;
+}
+.athl-label {
+  color: #ff9470;
+}
+.athl-link_text {
+  color: #fa7883;
+}
+.athl-link_uri {
+  color: #fa7883;
+}
+.athl-number {
+  color: #ffc387;
+}
+.athl-punctuation {
+  color: #ffffff;
+}
+.athl-punctuation-bracket {
+  color: #ffffff;
+}
+.athl-punctuation-delimiter {
+  color: #ffffff;
+}
+.athl-punctuation-list_marker {
+  color: #ffffff;
+}
+.athl-punctuation-special {
+  color: #ffffff;
+}
+.athl-string {
+  color: #98c379;
+}
+.athl-string-escape {
+  color: #ffc387;
+}
+.athl-string-regex {
+  color: #98c379;
+}
+.athl-string-special {
+  color: #98c379;
+}
+.athl-string-special-symbol {
+  color: #98c379;
+}
+.athl-tag {
+  color: #fa7883;
+}
+.athl-text-literal {
+  color: #98c379;
+}
+.athl-title {
+  color: #ff9470;
+}
+.athl-type {
+  color: #ff9470;
+}
+.athl-variable {
+  color: #fa7883;
+}
+.athl-variable-special {
+  color: #fa7883;
+  font-style: italic;
+}

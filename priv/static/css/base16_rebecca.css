@@ -1,0 +1,99 @@
+/* Base16 Rebecca - Victor Borja (http://github.com/vic) based on Rebecca Theme (http://github.com/vic/rebecca-theme) */
+pre.athl {
+  background-color: #292a44; color: #f1eff8;
+}
+.athl-attribute {
+  color: #2de0a7;
+}
+.athl-boolean {
+  color: #efe4a1;
+}
+.athl-comment {
+  color: #666699;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #666699;
+  font-style: italic;
+}
+.athl-constant {
+  color: #efe4a1;
+}
+.athl-constructor {
+  color: #a0a0c5;
+}
+.athl-emphasis {
+  color: #a0a0c5;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #a0a0c5;
+  font-weight: 700;
+}
+.athl-function {
+  color: #2de0a7;
+}
+.athl-keyword {
+  color: #7aa5ff;
+}
+.athl-label {
+  color: #ae81ff;
+}
+.athl-link_text {
+  color: #a0a0c5;
+}
+.athl-link_uri {
+  color: #a0a0c5;
+}
+.athl-number {
+  color: #efe4a1;
+}
+.athl-punctuation {
+  color: #f1eff8;
+}
+.athl-punctuation-bracket {
+  color: #f1eff8;
+}
+.athl-punctuation-delimiter {
+  color: #f1eff8;
+}
+.athl-punctuation-list_marker {
+  color: #f1eff8;
+}
+.athl-punctuation-special {
+  color: #f1eff8;
+}
+.athl-string {
+  color: #6dfedf;
+}
+.athl-string-escape {
+  color: #efe4a1;
+}
+.athl-string-regex {
+  color: #6dfedf;
+}
+.athl-string-special {
+  color: #6dfedf;
+}
+.athl-string-special-symbol {
+  color: #6dfedf;
+}
+.athl-tag {
+  color: #a0a0c5;
+}
+.athl-text-literal {
+  color: #6dfedf;
+}
+.athl-title {
+  color: #ae81ff;
+}
+.athl-type {
+  color: #ae81ff;
+}
+.athl-variable {
+  color: #a0a0c5;
+}
+.athl-variable-special {
+  color: #a0a0c5;
+  font-style: italic;
+}

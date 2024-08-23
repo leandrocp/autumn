@@ -1,0 +1,132 @@
+/* Atelier Forest Dark - Zed Industries */
+pre.athl {
+  background-color: #1b1918ff; color: #f0eeedff;
+}
+.athl-attribute {
+  color: #407ee6ff;
+}
+.athl-boolean {
+  color: #7a9726ff;
+}
+.athl-comment {
+  color: #766e6bff;
+}
+.athl-comment-doc {
+  color: #a8a19fff;
+}
+.athl-constant {
+  color: #7a9726ff;
+}
+.athl-constructor {
+  color: #407ee6ff;
+}
+.athl-embedded {
+  color: #f0eeedff;
+}
+.athl-emphasis {
+  color: #407ee6ff;
+}
+.athl-emphasis-strong {
+  color: #407ee6ff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #df5321ff;
+}
+.athl-function {
+  color: #3f7ee7ff;
+}
+.athl-function-method {
+  color: #3f7ee7ff;
+}
+.athl-function-special-definition {
+  color: #c38417ff;
+}
+.athl-hint {
+  color: #a77087ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #6666eaff;
+}
+.athl-label {
+  color: #407ee6ff;
+}
+.athl-link_text {
+  color: #df5321ff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #7a9726ff;
+}
+.athl-number {
+  color: #df521fff;
+}
+.athl-operator {
+  color: #a8a19fff;
+}
+.athl-predictive {
+  color: #8f5b70ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #f0eeedff;
+}
+.athl-primary {
+  color: #e6e2e0ff;
+}
+.athl-property {
+  color: #f22c40ff;
+}
+.athl-punctuation {
+  color: #e6e2e0ff;
+}
+.athl-punctuation-bracket {
+  color: #a8a19fff;
+}
+.athl-punctuation-delimiter {
+  color: #a8a19fff;
+}
+.athl-punctuation-list_marker {
+  color: #e6e2e0ff;
+}
+.athl-punctuation-special {
+  color: #c33ff3ff;
+}
+.athl-string {
+  color: #7a9725ff;
+}
+.athl-string-escape {
+  color: #a8a19fff;
+}
+.athl-string-regex {
+  color: #3c96b8ff;
+}
+.athl-string-special {
+  color: #c33ff3ff;
+}
+.athl-string-special-symbol {
+  color: #7a9725ff;
+}
+.athl-tag {
+  color: #407ee6ff;
+}
+.athl-text-literal {
+  color: #df5321ff;
+}
+.athl-title {
+  color: #f0eeedff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #c38417ff;
+}
+.athl-variable {
+  color: #e6e2e0ff;
+}
+.athl-variable-special {
+  color: #6666eaff;
+}
+.athl-variant {
+  color: #c38417ff;
+}

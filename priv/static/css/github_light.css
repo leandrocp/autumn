@@ -1,43 +1,129 @@
-/* github_light */
-pre.autumn-hl { background-color: #ffffff; color: #57606a; }
-.ahl-info { color: #0969da; }
-.ahl-label { color: #cf222e; }
-.ahl-markup.ahl-bold { font-weight: bold; }
-.ahl-namespace { color: #953800; }
-.ahl-markup.ahl-heading { color: #0550ae; }
-.ahl-constant.ahl-builtin { color: #0550ae; }
-.ahl-attribute { color: #24292f; }
-.ahl-type { color: #953800; }
-.ahl-diagnostic.ahl-warning { color: #9a6700; }
-.ahl-hint { color: #1a7f37; }
-.ahl-constant { color: #0550ae; }
-.ahl-warning { color: #9a6700; }
-.ahl-variable { color: #24292f; }
-.ahl-constructor { color: #8250df; }
-.ahl-type.ahl-builtin { color: #0550ae; }
-.ahl-diagnostic.ahl-error { color: #cf222e; }
-.ahl-diff.ahl-minus { color: #cf222e; }
-.ahl-markup.ahl-raw { color: #0550ae; }
-.ahl-tag { color: #116329; }
-.ahl-comment { color: #57606a; }
-.ahl-markup.ahl-link.ahl-text {  color: #0a3069; }
-.ahl-punctuation { color: #24292f; }
-.ahl-markup.ahl-italic { font-style: italic; }
-.ahl-function.ahl-macro { color: #8250df; }
-.ahl-special { color: #0a3069; }
-.ahl-diff.ahl-plus { color: #1a7f37; }
-.ahl-operator { color: #0a3069; }
-.ahl-keyword.ahl-directive { color: #cf222e; }
-.ahl-diagnostic.ahl-info { color: #0969da; }
-.ahl-constant.ahl-character.ahl-escape { color: #0550ae; }
-.ahl-variable.ahl-builtin { color: #cf222e; }
-.ahl-punctuation.ahl-delimiter { color: #24292f; }
-.ahl-variable.ahl-parameter { color: #953800; }
-.ahl-string { color: #0a3069; }
-.ahl-diff.ahl-delta { color: #9a6700; }
-.ahl-keyword { color: #cf222e; }
-.ahl-diagnostic.ahl-hint { color: #1a7f37; }
-.ahl-variable.ahl-other.ahl-member { color: #0a3069; }
-.ahl-function { color: #8250df; }
-.ahl-constant.ahl-numeric { color: #0550ae; }
-.ahl-error { color: #cf222e; }
+/* Github Light - Pyae Sone Aung */
+pre.athl {
+  background-color: #ffffffff; color: #1f2328ff;
+}
+.athl-boolean {
+  color: #0550aeff;
+}
+.athl-comment {
+  color: #59636eff;
+}
+.athl-comment-doc {
+  color: #59636eff;
+}
+.athl-constant {
+  color: #0550aeff;
+}
+.athl-constructor {
+  color: #0550aeff;
+}
+.athl-embedded {
+  color: #cf222eff;
+}
+.athl-emphasis {
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  font-weight: 700;
+}
+.athl-enum {
+  color: #953800ff;
+}
+.athl-function {
+  color: #8250dfff;
+}
+.athl-function-method {
+  color: #8250dfff;
+}
+.athl-function-special-definition {
+  color: #8250dfff;
+}
+.athl-hint {
+  color: #59636eff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #cf222eff;
+}
+.athl-label {
+  color: #0550aeff;
+}
+.athl-link_text {
+  color: #0a3069ff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #0550aeff;
+}
+.athl-number {
+  color: #0550aeff;
+}
+.athl-operator {
+  color: #1f2328ff;
+}
+.athl-predictive {
+  color: #59636eff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #cf222eff;
+}
+.athl-primary {
+  color: #1f2328ff;
+}
+.athl-property {
+  color: #0550aeff;
+}
+.athl-punctuation {
+  color: #1f2328ff;
+}
+.athl-punctuation-bracket {
+  color: #1f2328ff;
+}
+.athl-punctuation-delimiter {
+  color: #1f2328ff;
+}
+.athl-punctuation-list_marker {
+  color: #953800ff;
+}
+.athl-punctuation-special {
+  color: #cf222eff;
+}
+.athl-string {
+  color: #0a3069ff;
+}
+.athl-string-escape {
+  color: #116329ff;
+  font-weight: 700;
+}
+.athl-string-regex {
+  color: #0a3069ff;
+}
+.athl-string-special {
+  color: #0550aeff;
+}
+.athl-string-special-symbol {
+  color: #0550aeff;
+}
+.athl-tag {
+  color: #116329ff;
+}
+.athl-text-literal {
+  color: #0550aeff;
+}
+.athl-title {
+  color: #0550aeff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #953800ff;
+}
+.athl-variable {
+  color: #1f2328ff;
+}
+.athl-variable-special {
+  color: #cf222eff;
+}
+.athl-variant {
+  color: #953800ff;
+}

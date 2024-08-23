@@ -1,0 +1,99 @@
+/* Base16 Brush Trees - Abraham White &lt;abelincoln.white@gmail.com&gt; */
+pre.athl {
+  background-color: #e3efef; color: #6d828e;
+}
+.athl-attribute {
+  color: #868cb3;
+}
+.athl-boolean {
+  color: #d8bba2;
+}
+.athl-comment {
+  color: #98afb5;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #98afb5;
+  font-style: italic;
+}
+.athl-constant {
+  color: #d8bba2;
+}
+.athl-constructor {
+  color: #b38686;
+}
+.athl-emphasis {
+  color: #b38686;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #b38686;
+  font-weight: 700;
+}
+.athl-function {
+  color: #868cb3;
+}
+.athl-keyword {
+  color: #b386b2;
+}
+.athl-label {
+  color: #aab386;
+}
+.athl-link_text {
+  color: #b38686;
+}
+.athl-link_uri {
+  color: #b38686;
+}
+.athl-number {
+  color: #d8bba2;
+}
+.athl-punctuation {
+  color: #6d828e;
+}
+.athl-punctuation-bracket {
+  color: #6d828e;
+}
+.athl-punctuation-delimiter {
+  color: #6d828e;
+}
+.athl-punctuation-list_marker {
+  color: #6d828e;
+}
+.athl-punctuation-special {
+  color: #6d828e;
+}
+.athl-string {
+  color: #87b386;
+}
+.athl-string-escape {
+  color: #d8bba2;
+}
+.athl-string-regex {
+  color: #87b386;
+}
+.athl-string-special {
+  color: #87b386;
+}
+.athl-string-special-symbol {
+  color: #87b386;
+}
+.athl-tag {
+  color: #b38686;
+}
+.athl-text-literal {
+  color: #87b386;
+}
+.athl-title {
+  color: #aab386;
+}
+.athl-type {
+  color: #aab386;
+}
+.athl-variable {
+  color: #b38686;
+}
+.athl-variable-special {
+  color: #b38686;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Solar Flare Light - Chuck Harmston (https://chuck.harmston.ch) */
+pre.athl {
+  background-color: #f5f7fa; color: #586875;
+}
+.athl-attribute {
+  color: #33b5e1;
+}
+.athl-boolean {
+  color: #e66b2b;
+}
+.athl-comment {
+  color: #85939e;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #85939e;
+  font-style: italic;
+}
+.athl-constant {
+  color: #e66b2b;
+}
+.athl-constructor {
+  color: #ef5253;
+}
+.athl-emphasis {
+  color: #ef5253;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ef5253;
+  font-weight: 700;
+}
+.athl-function {
+  color: #33b5e1;
+}
+.athl-keyword {
+  color: #a363d5;
+}
+.athl-label {
+  color: #e4b51c;
+}
+.athl-link_text {
+  color: #ef5253;
+}
+.athl-link_uri {
+  color: #ef5253;
+}
+.athl-number {
+  color: #e66b2b;
+}
+.athl-punctuation {
+  color: #586875;
+}
+.athl-punctuation-bracket {
+  color: #586875;
+}
+.athl-punctuation-delimiter {
+  color: #586875;
+}
+.athl-punctuation-list_marker {
+  color: #586875;
+}
+.athl-punctuation-special {
+  color: #586875;
+}
+.athl-string {
+  color: #7cc844;
+}
+.athl-string-escape {
+  color: #e66b2b;
+}
+.athl-string-regex {
+  color: #7cc844;
+}
+.athl-string-special {
+  color: #7cc844;
+}
+.athl-string-special-symbol {
+  color: #7cc844;
+}
+.athl-tag {
+  color: #ef5253;
+}
+.athl-text-literal {
+  color: #7cc844;
+}
+.athl-title {
+  color: #e4b51c;
+}
+.athl-type {
+  color: #e4b51c;
+}
+.athl-variable {
+  color: #ef5253;
+}
+.athl-variable-special {
+  color: #ef5253;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Qualia - isaacwhanson */
+pre.athl {
+  background-color: #101010; color: #c0c0c0;
+}
+.athl-attribute {
+  color: #50cacd;
+}
+.athl-boolean {
+  color: #a3b8ef;
+}
+.athl-comment {
+  color: #454545;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #454545;
+  font-style: italic;
+}
+.athl-constant {
+  color: #a3b8ef;
+}
+.athl-constructor {
+  color: #efa6a2;
+}
+.athl-emphasis {
+  color: #efa6a2;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #efa6a2;
+  font-weight: 700;
+}
+.athl-function {
+  color: #50cacd;
+}
+.athl-keyword {
+  color: #e0af85;
+}
+.athl-label {
+  color: #e6a3dc;
+}
+.athl-link_text {
+  color: #efa6a2;
+}
+.athl-link_uri {
+  color: #efa6a2;
+}
+.athl-number {
+  color: #a3b8ef;
+}
+.athl-punctuation {
+  color: #c0c0c0;
+}
+.athl-punctuation-bracket {
+  color: #c0c0c0;
+}
+.athl-punctuation-delimiter {
+  color: #c0c0c0;
+}
+.athl-punctuation-list_marker {
+  color: #c0c0c0;
+}
+.athl-punctuation-special {
+  color: #c0c0c0;
+}
+.athl-string {
+  color: #80c990;
+}
+.athl-string-escape {
+  color: #a3b8ef;
+}
+.athl-string-regex {
+  color: #80c990;
+}
+.athl-string-special {
+  color: #80c990;
+}
+.athl-string-special-symbol {
+  color: #80c990;
+}
+.athl-tag {
+  color: #efa6a2;
+}
+.athl-text-literal {
+  color: #80c990;
+}
+.athl-title {
+  color: #e6a3dc;
+}
+.athl-type {
+  color: #e6a3dc;
+}
+.athl-variable {
+  color: #efa6a2;
+}
+.athl-variable-special {
+  color: #efa6a2;
+  font-style: italic;
+}

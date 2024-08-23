@@ -1,0 +1,99 @@
+/* Base16 Ocean - Brooks Swinnerton */
+pre.athl {
+  background-color: #2b303b; color: #c0c5ce;
+}
+.athl-attribute {
+  color: #8fa1b3;
+}
+.athl-boolean {
+  color: #d08770;
+}
+.athl-comment {
+  color: #65737e;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #65737e;
+  font-style: italic;
+}
+.athl-constant {
+  color: #d08770;
+}
+.athl-constructor {
+  color: #bf616a;
+}
+.athl-emphasis {
+  color: #bf616a;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #bf616a;
+  font-weight: 700;
+}
+.athl-function {
+  color: #8fa1b3;
+}
+.athl-keyword {
+  color: #b48ead;
+}
+.athl-label {
+  color: #ebcb8b;
+}
+.athl-link_text {
+  color: #bf616a;
+}
+.athl-link_uri {
+  color: #bf616a;
+}
+.athl-number {
+  color: #d08770;
+}
+.athl-punctuation {
+  color: #c0c5ce;
+}
+.athl-punctuation-bracket {
+  color: #c0c5ce;
+}
+.athl-punctuation-delimiter {
+  color: #c0c5ce;
+}
+.athl-punctuation-list_marker {
+  color: #c0c5ce;
+}
+.athl-punctuation-special {
+  color: #c0c5ce;
+}
+.athl-string {
+  color: #a3be8c;
+}
+.athl-string-escape {
+  color: #d08770;
+}
+.athl-string-regex {
+  color: #a3be8c;
+}
+.athl-string-special {
+  color: #a3be8c;
+}
+.athl-string-special-symbol {
+  color: #a3be8c;
+}
+.athl-tag {
+  color: #bf616a;
+}
+.athl-text-literal {
+  color: #a3be8c;
+}
+.athl-title {
+  color: #ebcb8b;
+}
+.athl-type {
+  color: #ebcb8b;
+}
+.athl-variable {
+  color: #bf616a;
+}
+.athl-variable-special {
+  color: #bf616a;
+  font-style: italic;
+}

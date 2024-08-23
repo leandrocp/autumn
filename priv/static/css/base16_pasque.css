@@ -1,0 +1,99 @@
+/* Base16 Pasque - Gabriel Fontes (https://github.com/Misterio77) */
+pre.athl {
+  background-color: #271c3a; color: #dedcdf;
+}
+.athl-attribute {
+  color: #8e7dc6;
+}
+.athl-boolean {
+  color: #918889;
+}
+.athl-comment {
+  color: #5d5766;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #5d5766;
+  font-style: italic;
+}
+.athl-constant {
+  color: #918889;
+}
+.athl-constructor {
+  color: #a92258;
+}
+.athl-emphasis {
+  color: #a92258;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #a92258;
+  font-weight: 700;
+}
+.athl-function {
+  color: #8e7dc6;
+}
+.athl-keyword {
+  color: #953b9d;
+}
+.athl-label {
+  color: #804ead;
+}
+.athl-link_text {
+  color: #a92258;
+}
+.athl-link_uri {
+  color: #a92258;
+}
+.athl-number {
+  color: #918889;
+}
+.athl-punctuation {
+  color: #dedcdf;
+}
+.athl-punctuation-bracket {
+  color: #dedcdf;
+}
+.athl-punctuation-delimiter {
+  color: #dedcdf;
+}
+.athl-punctuation-list_marker {
+  color: #dedcdf;
+}
+.athl-punctuation-special {
+  color: #dedcdf;
+}
+.athl-string {
+  color: #c6914b;
+}
+.athl-string-escape {
+  color: #918889;
+}
+.athl-string-regex {
+  color: #c6914b;
+}
+.athl-string-special {
+  color: #c6914b;
+}
+.athl-string-special-symbol {
+  color: #c6914b;
+}
+.athl-tag {
+  color: #a92258;
+}
+.athl-text-literal {
+  color: #c6914b;
+}
+.athl-title {
+  color: #804ead;
+}
+.athl-type {
+  color: #804ead;
+}
+.athl-variable {
+  color: #a92258;
+}
+.athl-variable-special {
+  color: #a92258;
+  font-style: italic;
+}

@@ -1,0 +1,129 @@
+/* Rosé Pine Dawn - Zed Industries */
+pre.athl {
+  background-color: #faf4edff; color: #575279ff;
+}
+.athl-attribute {
+  color: #57949fff;
+}
+.athl-boolean {
+  color: #d7827dff;
+}
+.athl-comment {
+  color: #9893a5ff;
+}
+.athl-comment-doc {
+  color: #6e6a8bff;
+}
+.athl-constant {
+  color: #3daa8eff;
+}
+.athl-constructor {
+  color: #57949fff;
+}
+.athl-embedded {
+  color: #575279ff;
+}
+.athl-emphasis {
+  color: #57949fff;
+}
+.athl-emphasis-strong {
+  color: #57949fff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #9079a9ff;
+}
+.athl-function {
+  color: #d7827dff;
+}
+.athl-function-method {
+  color: #d7827dff;
+}
+.athl-hint {
+  color: #7a92aaff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #276983ff;
+}
+.athl-label {
+  color: #57949fff;
+}
+.athl-link_text {
+  color: #55949fff;
+  font-style: normal;
+}
+.athl-link_uri {
+  color: #d7827dff;
+}
+.athl-number {
+  color: #3daa8eff;
+}
+.athl-operator {
+  color: #276983ff;
+}
+.athl-predictive {
+  color: #a2acbeff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #575279ff;
+}
+.athl-primary {
+  color: #575279ff;
+}
+.athl-property {
+  color: #57949fff;
+}
+.athl-punctuation {
+  color: #797593ff;
+}
+.athl-punctuation-bracket {
+  color: #635e82ff;
+}
+.athl-punctuation-delimiter {
+  color: #635e82ff;
+}
+.athl-punctuation-list_marker {
+  color: #635e82ff;
+}
+.athl-punctuation-special {
+  color: #635e82ff;
+}
+.athl-string {
+  color: #ea9d34ff;
+}
+.athl-string-escape {
+  color: #6e6a8bff;
+}
+.athl-string-regex {
+  color: #9079a9ff;
+}
+.athl-string-special {
+  color: #9079a9ff;
+}
+.athl-string-special-symbol {
+  color: #9079a9ff;
+}
+.athl-tag {
+  color: #55949fff;
+}
+.athl-text-literal {
+  color: #9079a9ff;
+}
+.athl-title {
+  color: #ea9d34ff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #55949fff;
+}
+.athl-type-builtin {
+  color: #55949fff;
+}
+.athl-variable {
+  color: #575279ff;
+}
+.athl-variant {
+  color: #57949fff;
+}

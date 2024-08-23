@@ -1,0 +1,99 @@
+/* Base16 Icy Dark - icyphox (https://icyphox.ga) */
+pre.athl {
+  background-color: #021012; color: #095b67;
+}
+.athl-attribute {
+  color: #00bcd4;
+}
+.athl-boolean {
+  color: #b3ebf2;
+}
+.athl-comment {
+  color: #052e34;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #052e34;
+  font-style: italic;
+}
+.athl-constant {
+  color: #b3ebf2;
+}
+.athl-constructor {
+  color: #16c1d9;
+}
+.athl-emphasis {
+  color: #16c1d9;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #16c1d9;
+  font-weight: 700;
+}
+.athl-function {
+  color: #00bcd4;
+}
+.athl-keyword {
+  color: #00acc1;
+}
+.athl-label {
+  color: #80deea;
+}
+.athl-link_text {
+  color: #16c1d9;
+}
+.athl-link_uri {
+  color: #16c1d9;
+}
+.athl-number {
+  color: #b3ebf2;
+}
+.athl-punctuation {
+  color: #095b67;
+}
+.athl-punctuation-bracket {
+  color: #095b67;
+}
+.athl-punctuation-delimiter {
+  color: #095b67;
+}
+.athl-punctuation-list_marker {
+  color: #095b67;
+}
+.athl-punctuation-special {
+  color: #095b67;
+}
+.athl-string {
+  color: #4dd0e1;
+}
+.athl-string-escape {
+  color: #b3ebf2;
+}
+.athl-string-regex {
+  color: #4dd0e1;
+}
+.athl-string-special {
+  color: #4dd0e1;
+}
+.athl-string-special-symbol {
+  color: #4dd0e1;
+}
+.athl-tag {
+  color: #16c1d9;
+}
+.athl-text-literal {
+  color: #4dd0e1;
+}
+.athl-title {
+  color: #80deea;
+}
+.athl-type {
+  color: #80deea;
+}
+.athl-variable {
+  color: #16c1d9;
+}
+.athl-variable-special {
+  color: #16c1d9;
+  font-style: italic;
+}

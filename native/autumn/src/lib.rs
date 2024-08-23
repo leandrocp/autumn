@@ -1,176 +1,160 @@
-pub mod themes;
-pub use crate::themes::Theme;
+pub mod constants;
+pub mod formatter;
+pub mod langs;
+pub mod theme;
 
-use inkjet::Language;
+use crate::formatter::Formatter;
+use crate::formatter::HtmlInline;
+use crate::formatter::HtmlLinked;
+use crate::formatter::Terminal;
+use crate::theme::Theme;
+
+use atoms::ok;
+use rustler::{Encoder, Env, NifResult, Term};
+use tree_sitter::Node;
 use tree_sitter_highlight::{HighlightEvent, Highlighter};
 
-pub fn highlight_source_code(
-    source: &str,
-    lang: Language,
-    theme: &Theme,
-    pre_class: Option<&str>,
-    inline_style: bool,
-) -> String {
-    let mut output = String::new();
-    let mut highlighter = Highlighter::new();
-    let config = lang.config();
-
-    let highlights = highlighter
-        .highlight(
-            config,
-            source.as_bytes(),
-            None,
-            |token| match Language::from_token(token) {
-                Some(lang) => Some(lang.config()),
-                None => None,
-            },
-        )
-        .expect("expected to generate the syntax highlight events");
-
-    output.push_str(
-        format!(
-            "{}{}",
-            open_pre_tag(theme, pre_class, inline_style),
-            open_code_tag(lang)
-        )
-        .as_str(),
-    );
-
-    for event in highlights {
-        let event = event.expect("expected a highlight event");
-        let highlight = inner_highlights(source, event, theme, inline_style);
-        output.push_str(highlight.as_str())
+mod atoms {
+    rustler::atoms! {
+        ok,
+        error,
     }
-
-    output.push_str(format!("{}{}", close_code_tag(), close_pre_tag()).as_str());
-
-    output
 }
 
-pub fn open_tags(
-    lang: Language,
-    theme: &Theme,
-    pre_class: Option<&str>,
-    inline_style: bool,
-) -> String {
-    format!(
-        "{}{}",
-        open_pre_tag(theme, pre_class, inline_style),
-        open_code_tag(lang)
-    )
+#[rustler::nif()]
+pub fn available_languages(env: Env<'_>) -> Term<'_> {
+    langs::langs().encode(env)
 }
 
-pub fn close_tags() -> String {
-    String::from("</code></pre>")
+pub fn download_query(lang: &str, file: &str) -> Option<String> {
+    let url = format!("https://raw.githubusercontent.com/zed-industries/zed/refs/heads/main/crates/languages/src/{}/{}", lang, file);
+    reqwest::blocking::get(url).ok()?.text().ok()
 }
 
-pub fn open_pre_tag(theme: &Theme, class: Option<&str>, inline_style: bool) -> String {
-    let class = match class {
-        Some(class) => format!("autumn-hl {}", class),
-        None => "autumn-hl".to_string(),
+#[derive(Debug, rustler::NifTaggedEnum)]
+pub enum FormatterArg {
+    HtmlInline { pre_class: Option<String> },
+    HtmlLinked { pre_class: Option<String> },
+    Terminal,
+}
+
+impl Default for FormatterArg {
+    fn default() -> Self {
+        FormatterArg::HtmlInline { pre_class: None }
+    }
+}
+
+#[rustler::nif(schedule = "DirtyCpu")]
+pub fn parse<'a>(env: Env<'a>, lang: &str, source: &str) -> Term<'a> {
+    let lang = langs::grammar(lang).expect("invalid lang");
+    let mut parser = tree_sitter::Parser::new();
+    parser.set_language(&lang).expect("failed to set language");
+    let tree = parser.parse(source, None).expect("failed to parse source");
+    print_tree(&tree.root_node(), source, 0).encode(env)
+}
+
+fn print_tree(node: &Node, source: &str, depth: usize) -> String {
+    let mut output = String::new();
+    let indent = " ".repeat(depth * 2);
+    let start_pos = node.start_position();
+    let end_pos = node.end_position();
+    let kind = node.kind();
+
+    let display = if node.is_named() {
+        let text = node.utf8_text(source.as_bytes()).unwrap_or("");
+
+        let trimmed = if text.len() > 10 {
+            format!("{}...", &text[..10])
+        } else {
+            text.to_string()
+        }
+        .replace("\n", "");
+
+        format!("{} \"{}\"", kind, trimmed)
+    } else {
+        kind.to_string()
     };
 
-    if inline_style {
-        let background_style = theme.get_global_style("background");
-        let foreground_style = theme.get_global_style("foreground");
+    output.push_str(&format!(
+        "{}{} [{}:{} - {}:{}]\n",
+        indent, display, start_pos.row, start_pos.column, end_pos.row, end_pos.column
+    ));
 
-        format!(
-            "<pre class=\"{}\" style=\"{} {}\">",
-            class, background_style, foreground_style
-        )
-    } else {
-        format!("<pre class=\"{}\">", class)
-    }
-}
-
-pub fn close_pre_tag() -> String {
-    String::from("</pre>")
-}
-
-pub fn open_code_tag(lang: Language) -> String {
-    let class = format!("language-{}", format!("{:?}", lang).to_lowercase());
-    format!("<code class=\"{}\" translate=\"no\">", class)
-}
-
-pub fn close_code_tag() -> String {
-    String::from("</code>")
-}
-
-pub fn inner_highlights(
-    source: &str,
-    event: HighlightEvent,
-    theme: &Theme,
-    inline_style: bool,
-) -> String {
-    let mut output = String::new();
-
-    match event {
-        HighlightEvent::Source { start, end } => {
-            let span = source
-                .get(start..end)
-                .expect("source bounds should be in bounds!");
-            let span = v_htmlescape::escape(span).to_string();
-            output.push_str(span.as_str())
-        }
-        HighlightEvent::HighlightStart(idx) => {
-            let scope = inkjet::constants::HIGHLIGHT_NAMES[idx.0];
-            let class = themes::HIGHLIGHT_CLASS_NAMES[idx.0];
-
-            if inline_style {
-                let style = theme.get_style(scope);
-                let element = format!("<span class=\"{}\" style=\"{}\">", class, style);
-                output.push_str(element.as_str())
-            } else {
-                let element = format!("<span class=\"{}\">", class);
-                output.push_str(element.as_str())
-            }
-        }
-        HighlightEvent::HighlightEnd => output.push_str("</span>"),
+    let mut cursor = node.walk();
+    for child in node.children(&mut cursor) {
+        output.push_str(&print_tree(&child, source, depth + 1));
     }
 
     output
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_highlight_source_code_with_defaults() {
-        let theme = themes::theme("onedark").unwrap();
-        let output = highlight_source_code("mod themes;", Language::Rust, theme, None, true);
-
-        assert_eq!(
-            output,
-            "<pre class=\"autumn-hl\" style=\"background-color: #282C34; color: #ABB2BF;\"><code class=\"language-rust\" translate=\"no\"><span class=\"ahl-keyword ahl-control ahl-import\" style=\"color: #E06C75;\">mod</span> <span class=\"ahl-namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"ahl-punctuation ahl-delimiter\" style=\"color: #ABB2BF;\">;</span></code></pre>"
-        );
-    }
-
-    #[test]
-    fn test_highlight_source_code_without_inline_style() {
-        let theme = themes::theme("onedark").unwrap();
-        let output = highlight_source_code("mod themes;", Language::Rust, theme, None, false);
-
-        assert_eq!(
-            output,
-            "<pre class=\"autumn-hl\"><code class=\"language-rust\" translate=\"no\"><span class=\"ahl-keyword ahl-control ahl-import\">mod</span> <span class=\"ahl-namespace\">themes</span><span class=\"ahl-punctuation ahl-delimiter\">;</span></code></pre>"
-        );
-    }
-
-    #[test]
-    fn test_highlight_source_code_with_pre_class() {
-        let theme = themes::theme("onedark").unwrap();
-        let output = highlight_source_code(
-            "mod themes;",
-            Language::Rust,
-            theme,
-            Some("pre_class"),
-            true,
-        );
-
-        assert_eq!(
-            output,
-            "<pre class=\"autumn-hl pre_class\" style=\"background-color: #282C34; color: #ABB2BF;\"><code class=\"language-rust\" translate=\"no\"><span class=\"ahl-keyword ahl-control ahl-import\" style=\"color: #E06C75;\">mod</span> <span class=\"ahl-namespace\" style=\"color: #61AFEF;\">themes</span><span class=\"ahl-punctuation ahl-delimiter\" style=\"color: #ABB2BF;\">;</span></code></pre>"
-        );
-    }
+#[rustler::nif()]
+pub fn lang_name<'a>(env: Env<'a>, lang: &str) -> Term<'a> {
+    langs::lang_name(lang).encode(env)
 }
+
+#[rustler::nif(schedule = "DirtyCpu")]
+pub fn highlight<'a>(
+    env: Env<'a>,
+    lang: &str,
+    source: &str,
+    theme: Theme,
+    formatter_arg: FormatterArg,
+    debug: bool,
+) -> NifResult<Term<'a>> {
+    let config = langs::config(lang);
+
+    let mut highlighter = Highlighter::new();
+
+    let events = highlighter
+        .highlight(config, source.as_bytes(), None, |injected| {
+            Some(langs::config(injected))
+        })
+        .expect("failed to generate highlight events");
+
+    let output = match formatter_arg {
+        FormatterArg::HtmlInline { pre_class } => {
+            let formatter = HtmlInline::new(lang.to_string(), theme, pre_class, debug);
+            format(source, events, &formatter)
+        }
+        FormatterArg::HtmlLinked { pre_class } => {
+            let formatter = HtmlLinked::new(lang.to_string(), pre_class, debug);
+            format(source, events, &formatter)
+        }
+        FormatterArg::Terminal => {
+            let formatter = Terminal::new(theme);
+            format(source, events, &formatter)
+        }
+    };
+
+    Ok((ok(), output).encode(env))
+}
+
+fn format<F>(
+    source: &str,
+    events: impl Iterator<Item = Result<HighlightEvent, tree_sitter_highlight::Error>>,
+    formatter: &F,
+) -> String
+where
+    F: Formatter,
+{
+    let mut buffer = String::new();
+
+    formatter.start(source, &mut buffer);
+
+    for event in events {
+        let e = event.expect("error formatting");
+        formatter.write(source, &mut buffer, e)
+    }
+
+    formatter.finish(source, &mut buffer);
+
+    buffer
+}
+
+#[rustler::nif(schedule = "DirtyCpu")]
+pub fn stylesheet(env: Env<'_>, theme: Theme) -> Term<'_> {
+    theme.stylesheet().encode(env)
+}
+
+rustler::init!("Elixir.Autumn.Native");

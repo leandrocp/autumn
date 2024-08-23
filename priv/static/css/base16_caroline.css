@@ -1,0 +1,99 @@
+/* Base16 caroline - ed (https://codeberg.org/ed) */
+pre.athl {
+  background-color: #1c1213; color: #a87569;
+}
+.athl-attribute {
+  color: #684c59;
+}
+.athl-boolean {
+  color: #a63650;
+}
+.athl-comment {
+  color: #6d4745;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #6d4745;
+  font-style: italic;
+}
+.athl-constant {
+  color: #a63650;
+}
+.athl-constructor {
+  color: #c24f57;
+}
+.athl-emphasis {
+  color: #c24f57;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #c24f57;
+  font-weight: 700;
+}
+.athl-function {
+  color: #684c59;
+}
+.athl-keyword {
+  color: #a63650;
+}
+.athl-label {
+  color: #f28171;
+}
+.athl-link_text {
+  color: #c24f57;
+}
+.athl-link_uri {
+  color: #c24f57;
+}
+.athl-number {
+  color: #a63650;
+}
+.athl-punctuation {
+  color: #a87569;
+}
+.athl-punctuation-bracket {
+  color: #a87569;
+}
+.athl-punctuation-delimiter {
+  color: #a87569;
+}
+.athl-punctuation-list_marker {
+  color: #a87569;
+}
+.athl-punctuation-special {
+  color: #a87569;
+}
+.athl-string {
+  color: #806c61;
+}
+.athl-string-escape {
+  color: #a63650;
+}
+.athl-string-regex {
+  color: #806c61;
+}
+.athl-string-special {
+  color: #806c61;
+}
+.athl-string-special-symbol {
+  color: #806c61;
+}
+.athl-tag {
+  color: #c24f57;
+}
+.athl-text-literal {
+  color: #806c61;
+}
+.athl-title {
+  color: #f28171;
+}
+.athl-type {
+  color: #f28171;
+}
+.athl-variable {
+  color: #c24f57;
+}
+.athl-variable-special {
+  color: #c24f57;
+  font-style: italic;
+}
