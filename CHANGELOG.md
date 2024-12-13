@@ -2,8 +2,14 @@
 
 ## 0.2.4-dev
 
+### Fixes
+ * Escape curly braces to avoid syntax errors on HEEx templates (support LiveView 1.0)
+
 ### Enhancements
  * Update ex_doc to v0.34
+
+### Chores
+ * Bump min required Elixir to v1.13
 
 ## 0.2.3 (2024-04-29)
 
