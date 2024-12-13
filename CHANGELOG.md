@@ -3,24 +3,24 @@
 ## 0.2.4-dev
 
 ### Fixes
- * Escape curly braces to avoid syntax errors on HEEx templates (support LiveView 1.0)
+  * Escape curly braces to avoid syntax errors on HEEx templates (support LiveView 1.0)
 
 ### Enhancements
- * Update ex_doc to v0.34
+  * Update ex_doc to v0.34
 
 ### Chores
- * Bump min required Elixir to v1.13
+  * Bump min required Elixir to v1.13
 
 ## 0.2.3 (2024-04-29)
 
 ### Enhancements
- * Update inkjet to v0.10.5
- * Add objc language
+  * Update inkjet to v0.10.5
+  * Add objc language
 
 ## 0.2.2 (2024-04-11)
 
 ### Enhancements
- * Add more languages: eex, elm, iex, jsx, ocaml, ocam-interface, svelte, tsx, vim
+  * Add more languages: eex, elm, iex, jsx, ocaml, ocam-interface, svelte, tsx, vim
 
 ## 0.2.1 (2024-04-11)
 
