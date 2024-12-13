@@ -1,7 +1,7 @@
 defmodule AutumnTest do
   use ExUnit.Case
 
-  defp assert_output(source_code, expected, opts \\ []) do
+  defp assert_output(source_code, expected, opts) do
     result = Autumn.highlight!(source_code, opts)
     # IO.puts(result)
     assert String.trim(result) == String.trim(expected)
