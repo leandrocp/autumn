@@ -26,7 +26,7 @@ impl<'a> InlineHTML<'a> {
     }
 }
 
-impl<'a> Formatter for InlineHTML<'a> {
+impl Formatter for InlineHTML<'_> {
     fn write<Write>(&self, source: &str, output: &mut Write, event: HighlightEvent) -> Result<()>
     where
         Write: std::fmt::Write,
