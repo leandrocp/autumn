@@ -10,7 +10,7 @@ defmodule Autumn.MixProject do
     [
       app: :autumn,
       version: @version,
-      elixir: "~> 1.12",
+      elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       build_embedded: Mix.env() == :prod,
       package: package(),
