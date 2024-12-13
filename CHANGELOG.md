@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.4-dev
+## 0.2.4 (2024-12-13)
 
 ### Fixes
   * Escape curly braces to avoid syntax errors on HEEx templates (support LiveView 1.0)
