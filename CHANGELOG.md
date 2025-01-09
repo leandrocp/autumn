@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.5 (2025-01-09)
+
+### Fixes
+  * Escape curly braces with `&lbrace;` and `&rbrace;`
+
+### Chores
+  * Update release targets
+  * Update deps
+
 ## 0.2.4 (2024-12-13)
 
 ### Fixes
