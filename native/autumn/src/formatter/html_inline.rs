@@ -69,8 +69,8 @@ impl Formatter for HtmlInline {
                 let span = source.get(start..end).expect("failed to get source bounds");
                 let span = v_htmlescape::escape(span)
                     .to_string()
-                    .replace('{', "&#123")
-                    .replace('}', "&#125");
+                    .replace('{', "&lbrace;")
+                    .replace('}', "&rbrace;");
                 writer.write_str(&span);
             }
             HighlightEvent::HighlightEnd => {

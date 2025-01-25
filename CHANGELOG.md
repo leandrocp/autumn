@@ -21,6 +21,26 @@ might be present. Please open an issue if something is missing or incorrect.
 ### Chores
   * Removed [inkjet](https://crates.io/crates/inkjet) in favor of a custom highlighter
 
+## 0.2.5 (2025-01-09)
+
+### Fixes
+  * Escape curly braces with `&lbrace;` and `&rbrace;`
+
+### Chores
+  * Update release targets
+  * Update deps
+
+## 0.2.4 (2024-12-13)
+
+### Fixes
+  * Escape curly braces to avoid syntax errors on HEEx templates (support LiveView 1.0)
+
+### Enhancements
+  * Update ex_doc to v0.34
+
+### Chores
+  * Bump min required Elixir to v1.13
+
 ## 0.2.3 (2024-04-29)
 
 ### Enhancements
