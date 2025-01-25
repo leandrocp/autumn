@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.3.0-dev
+
+Starting on this version, Zed grammars and themes are used instead of Helix.
+Most languages and themes have been migrated but differences in colors and parsers
+might be present. Please open an issue if something is missing or incorrect.
+
+### Breaking changes
+  * Renamed parent `<pre>` class from `autumn-hl` to `athl`
+  * Renamed each span class prefix from `ahl-` to `athl-` to keep the same pattern as the `pre` tag
+  * Removed the option `:inline_style` in favor of `:formatter`
+  * Removed the option `:pre_class` in favor of `:formatter`
+
+### Enhancements
+  * Added formatters: `:html_inline`, `:html_linked`, `:terminal`
+  * Added `%Autumn.Theme{}` to hold styles and allow customization at runtime
+  * Added `Autumn.available_themes/0`
+  * Added `Autumn.available_languages/0`
+
+### Chores
+  * Removed [inkjet](https://crates.io/crates/inkjet) in favor of a custom highlighter
+
 ## 0.2.5 (2025-01-09)
 
 ### Fixes
@@ -33,7 +54,7 @@
 
 ## 0.2.1 (2024-04-11)
 
-### Backwards incompatible changes
+### Breaking changes
   * Renamed parent `<pre>` class from `autumn-highlight` to `autumn-hl`
   * Added prefix `ahl-` to each scope class
 

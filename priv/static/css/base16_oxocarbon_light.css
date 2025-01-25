@@ -1,0 +1,99 @@
+/* Base16 Oxocarbon Light - shaunsingh/IBM */
+pre.athl {
+  background-color: #f2f4f8; color: #393939;
+}
+.athl-attribute {
+  color: #42be65;
+}
+.athl-boolean {
+  color: #ee5396;
+}
+.athl-comment {
+  color: #161616;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #161616;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ee5396;
+}
+.athl-constructor {
+  color: #ff7eb6;
+}
+.athl-emphasis {
+  color: #ff7eb6;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff7eb6;
+  font-weight: 700;
+}
+.athl-function {
+  color: #42be65;
+}
+.athl-keyword {
+  color: #be95ff;
+}
+.athl-label {
+  color: #ff6f00;
+}
+.athl-link_text {
+  color: #ff7eb6;
+}
+.athl-link_uri {
+  color: #ff7eb6;
+}
+.athl-number {
+  color: #ee5396;
+}
+.athl-punctuation {
+  color: #393939;
+}
+.athl-punctuation-bracket {
+  color: #393939;
+}
+.athl-punctuation-delimiter {
+  color: #393939;
+}
+.athl-punctuation-list_marker {
+  color: #393939;
+}
+.athl-punctuation-special {
+  color: #393939;
+}
+.athl-string {
+  color: #0f62fe;
+}
+.athl-string-escape {
+  color: #ee5396;
+}
+.athl-string-regex {
+  color: #0f62fe;
+}
+.athl-string-special {
+  color: #0f62fe;
+}
+.athl-string-special-symbol {
+  color: #0f62fe;
+}
+.athl-tag {
+  color: #ff7eb6;
+}
+.athl-text-literal {
+  color: #0f62fe;
+}
+.athl-title {
+  color: #ff6f00;
+}
+.athl-type {
+  color: #ff6f00;
+}
+.athl-variable {
+  color: #ff7eb6;
+}
+.athl-variable-special {
+  color: #ff7eb6;
+  font-style: italic;
+}

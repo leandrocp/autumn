@@ -1,0 +1,132 @@
+/* Atelier Heath Light - Zed Industries */
+pre.athl {
+  background-color: #f7f3f7ff; color: #1b181bff;
+}
+.athl-attribute {
+  color: #5169ebff;
+}
+.athl-boolean {
+  color: #918b3bff;
+}
+.athl-comment {
+  color: #9e8f9eff;
+}
+.athl-comment-doc {
+  color: #695d69ff;
+}
+.athl-constant {
+  color: #918b3bff;
+}
+.athl-constructor {
+  color: #5169ebff;
+}
+.athl-embedded {
+  color: #1b181bff;
+}
+.athl-emphasis {
+  color: #5169ebff;
+}
+.athl-emphasis-strong {
+  color: #5169ebff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #a65927ff;
+}
+.athl-function {
+  color: #506aecff;
+}
+.athl-function-method {
+  color: #506aecff;
+}
+.athl-function-special-definition {
+  color: #bb8a34ff;
+}
+.athl-hint {
+  color: #8c70a6ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #7b58bfff;
+}
+.athl-label {
+  color: #5169ebff;
+}
+.athl-link_text {
+  color: #a65927ff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #918b3bff;
+}
+.athl-number {
+  color: #a65825ff;
+}
+.athl-operator {
+  color: #695d69ff;
+}
+.athl-predictive {
+  color: #a487bfff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #1b181bff;
+}
+.athl-primary {
+  color: #292329ff;
+}
+.athl-property {
+  color: #ca3f2aff;
+}
+.athl-punctuation {
+  color: #292329ff;
+}
+.athl-punctuation-bracket {
+  color: #695d69ff;
+}
+.athl-punctuation-delimiter {
+  color: #695d69ff;
+}
+.athl-punctuation-list_marker {
+  color: #292329ff;
+}
+.athl-punctuation-special {
+  color: #cc32ccff;
+}
+.athl-string {
+  color: #918b3aff;
+}
+.athl-string-escape {
+  color: #695d69ff;
+}
+.athl-string-regex {
+  color: #149393ff;
+}
+.athl-string-special {
+  color: #cc32ccff;
+}
+.athl-string-special-symbol {
+  color: #918b3aff;
+}
+.athl-tag {
+  color: #5169ebff;
+}
+.athl-text-literal {
+  color: #a65927ff;
+}
+.athl-title {
+  color: #1b181bff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #bb8a34ff;
+}
+.athl-variable {
+  color: #292329ff;
+}
+.athl-variable-special {
+  color: #7b58bfff;
+}
+.athl-variant {
+  color: #bb8a34ff;
+}

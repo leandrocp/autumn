@@ -1,0 +1,107 @@
+/* Zedokai Darker Classic - slymax */
+pre.athl {
+  background-color: #272822; color: #fdfff1;
+}
+.athl-attribute {
+  color: #66d9ef;
+  font-style: italic;
+}
+.athl-boolean {
+  color: #ae81ff;
+}
+.athl-comment {
+  color: #6e7066;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #6e7066;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ae81ff;
+}
+.athl-constructor {
+  color: #f92672;
+}
+.athl-emphasis {
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  font-weight: 700;
+}
+.athl-function {
+  color: #a6e22e;
+}
+.athl-keyword {
+  color: #f92672;
+}
+.athl-label {
+  color: #a6e22e;
+}
+.athl-link_text {
+  color: #f92672;
+}
+.athl-link_uri {
+  color: #a6e22e;
+}
+.athl-number {
+  color: #ae81ff;
+}
+.athl-operator {
+  color: #f92672;
+}
+.athl-preproc {
+  color: #ae81ff;
+}
+.athl-property {
+  color: #fdfff1;
+}
+.athl-punctuation {
+  color: #919288;
+}
+.athl-punctuation-bracket {
+  color: #919288;
+}
+.athl-punctuation-delimiter {
+  color: #919288;
+}
+.athl-punctuation-list_marker {
+  color: #919288;
+}
+.athl-punctuation-special {
+  color: #919288;
+}
+.athl-string {
+  color: #e6db74;
+}
+.athl-string-escape {
+  color: #fdfff1;
+}
+.athl-string-regex {
+  color: #e6db74;
+}
+.athl-string-special {
+  color: #fd971f;
+}
+.athl-string-special-symbol {
+  color: #fd971f;
+}
+.athl-tag {
+  color: #f92672;
+}
+.athl-text-literal {
+  color: #e6db74;
+}
+.athl-title {
+  color: #e6db74;
+}
+.athl-type {
+  color: #66d9ef;
+}
+.athl-variable {
+  color: #fdfff1;
+}
+.athl-variable-special {
+  color: #c0c1b5;
+  font-style: italic;
+}

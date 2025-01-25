@@ -1,0 +1,99 @@
+/* Base16 Tokyo Night Terminal Light - Michaël Ball */
+pre.athl {
+  background-color: #d5d6db; color: #4c505e;
+}
+.athl-attribute {
+  color: #34548a;
+}
+.athl-boolean {
+  color: #965027;
+}
+.athl-comment {
+  color: #9699a3;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #9699a3;
+  font-style: italic;
+}
+.athl-constant {
+  color: #965027;
+}
+.athl-constructor {
+  color: #8c4351;
+}
+.athl-emphasis {
+  color: #8c4351;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #8c4351;
+  font-weight: 700;
+}
+.athl-function {
+  color: #34548a;
+}
+.athl-keyword {
+  color: #5a4a78;
+}
+.athl-label {
+  color: #8f5e15;
+}
+.athl-link_text {
+  color: #8c4351;
+}
+.athl-link_uri {
+  color: #8c4351;
+}
+.athl-number {
+  color: #965027;
+}
+.athl-punctuation {
+  color: #4c505e;
+}
+.athl-punctuation-bracket {
+  color: #4c505e;
+}
+.athl-punctuation-delimiter {
+  color: #4c505e;
+}
+.athl-punctuation-list_marker {
+  color: #4c505e;
+}
+.athl-punctuation-special {
+  color: #4c505e;
+}
+.athl-string {
+  color: #33635c;
+}
+.athl-string-escape {
+  color: #965027;
+}
+.athl-string-regex {
+  color: #33635c;
+}
+.athl-string-special {
+  color: #33635c;
+}
+.athl-string-special-symbol {
+  color: #33635c;
+}
+.athl-tag {
+  color: #8c4351;
+}
+.athl-text-literal {
+  color: #33635c;
+}
+.athl-title {
+  color: #8f5e15;
+}
+.athl-type {
+  color: #8f5e15;
+}
+.athl-variable {
+  color: #8c4351;
+}
+.athl-variable-special {
+  color: #8c4351;
+  font-style: italic;
+}

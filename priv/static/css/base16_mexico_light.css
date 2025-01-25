@@ -1,0 +1,99 @@
+/* Base16 Mexico Light - Sheldon Johnson */
+pre.athl {
+  background-color: #f8f8f8; color: #383838;
+}
+.athl-attribute {
+  color: #7cafc2;
+}
+.athl-boolean {
+  color: #dc9656;
+}
+.athl-comment {
+  color: #b8b8b8;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #b8b8b8;
+  font-style: italic;
+}
+.athl-constant {
+  color: #dc9656;
+}
+.athl-constructor {
+  color: #ab4642;
+}
+.athl-emphasis {
+  color: #ab4642;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ab4642;
+  font-weight: 700;
+}
+.athl-function {
+  color: #7cafc2;
+}
+.athl-keyword {
+  color: #96609e;
+}
+.athl-label {
+  color: #f79a0e;
+}
+.athl-link_text {
+  color: #ab4642;
+}
+.athl-link_uri {
+  color: #ab4642;
+}
+.athl-number {
+  color: #dc9656;
+}
+.athl-punctuation {
+  color: #383838;
+}
+.athl-punctuation-bracket {
+  color: #383838;
+}
+.athl-punctuation-delimiter {
+  color: #383838;
+}
+.athl-punctuation-list_marker {
+  color: #383838;
+}
+.athl-punctuation-special {
+  color: #383838;
+}
+.athl-string {
+  color: #538947;
+}
+.athl-string-escape {
+  color: #dc9656;
+}
+.athl-string-regex {
+  color: #538947;
+}
+.athl-string-special {
+  color: #538947;
+}
+.athl-string-special-symbol {
+  color: #538947;
+}
+.athl-tag {
+  color: #ab4642;
+}
+.athl-text-literal {
+  color: #538947;
+}
+.athl-title {
+  color: #f79a0e;
+}
+.athl-type {
+  color: #f79a0e;
+}
+.athl-variable {
+  color: #ab4642;
+}
+.athl-variable-special {
+  color: #ab4642;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Sagelight - Carter Veldhuizen */
+pre.athl {
+  background-color: #f8f8f8; color: #383838;
+}
+.athl-attribute {
+  color: #a0a7d2;
+}
+.athl-boolean {
+  color: #ffaa61;
+}
+.athl-comment {
+  color: #b8b8b8;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #b8b8b8;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ffaa61;
+}
+.athl-constructor {
+  color: #fa8480;
+}
+.athl-emphasis {
+  color: #fa8480;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #fa8480;
+  font-weight: 700;
+}
+.athl-function {
+  color: #a0a7d2;
+}
+.athl-keyword {
+  color: #c8a0d2;
+}
+.athl-label {
+  color: #ffdc61;
+}
+.athl-link_text {
+  color: #fa8480;
+}
+.athl-link_uri {
+  color: #fa8480;
+}
+.athl-number {
+  color: #ffaa61;
+}
+.athl-punctuation {
+  color: #383838;
+}
+.athl-punctuation-bracket {
+  color: #383838;
+}
+.athl-punctuation-delimiter {
+  color: #383838;
+}
+.athl-punctuation-list_marker {
+  color: #383838;
+}
+.athl-punctuation-special {
+  color: #383838;
+}
+.athl-string {
+  color: #a0d2c8;
+}
+.athl-string-escape {
+  color: #ffaa61;
+}
+.athl-string-regex {
+  color: #a0d2c8;
+}
+.athl-string-special {
+  color: #a0d2c8;
+}
+.athl-string-special-symbol {
+  color: #a0d2c8;
+}
+.athl-tag {
+  color: #fa8480;
+}
+.athl-text-literal {
+  color: #a0d2c8;
+}
+.athl-title {
+  color: #ffdc61;
+}
+.athl-type {
+  color: #ffdc61;
+}
+.athl-variable {
+  color: #fa8480;
+}
+.athl-variable-special {
+  color: #fa8480;
+  font-style: italic;
+}

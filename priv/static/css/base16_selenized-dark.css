@@ -1,0 +1,99 @@
+/* Base16 selenized-dark - Jan Warchol (https://github.com/jan-warchol/selenized) / adapted to base16 by ali */
+pre.athl {
+  background-color: #103c48; color: #adbcbc;
+}
+.athl-attribute {
+  color: #4695f7;
+}
+.athl-boolean {
+  color: #ed8649;
+}
+.athl-comment {
+  color: #72898f;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #72898f;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ed8649;
+}
+.athl-constructor {
+  color: #fa5750;
+}
+.athl-emphasis {
+  color: #fa5750;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #fa5750;
+  font-weight: 700;
+}
+.athl-function {
+  color: #4695f7;
+}
+.athl-keyword {
+  color: #af88eb;
+}
+.athl-label {
+  color: #dbb32d;
+}
+.athl-link_text {
+  color: #fa5750;
+}
+.athl-link_uri {
+  color: #fa5750;
+}
+.athl-number {
+  color: #ed8649;
+}
+.athl-punctuation {
+  color: #adbcbc;
+}
+.athl-punctuation-bracket {
+  color: #adbcbc;
+}
+.athl-punctuation-delimiter {
+  color: #adbcbc;
+}
+.athl-punctuation-list_marker {
+  color: #adbcbc;
+}
+.athl-punctuation-special {
+  color: #adbcbc;
+}
+.athl-string {
+  color: #75b938;
+}
+.athl-string-escape {
+  color: #ed8649;
+}
+.athl-string-regex {
+  color: #75b938;
+}
+.athl-string-special {
+  color: #75b938;
+}
+.athl-string-special-symbol {
+  color: #75b938;
+}
+.athl-tag {
+  color: #fa5750;
+}
+.athl-text-literal {
+  color: #75b938;
+}
+.athl-title {
+  color: #dbb32d;
+}
+.athl-type {
+  color: #dbb32d;
+}
+.athl-variable {
+  color: #fa5750;
+}
+.athl-variable-special {
+  color: #fa5750;
+  font-style: italic;
+}

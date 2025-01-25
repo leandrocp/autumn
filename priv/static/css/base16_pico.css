@@ -1,0 +1,99 @@
+/* Base16 Pico - PICO-8 (http://www.lexaloffle.com/pico-8.php) */
+pre.athl {
+  background-color: #000000; color: #5f574f;
+}
+.athl-attribute {
+  color: #83769c;
+}
+.athl-boolean {
+  color: #ffa300;
+}
+.athl-comment {
+  color: #008751;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #008751;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ffa300;
+}
+.athl-constructor {
+  color: #ff004d;
+}
+.athl-emphasis {
+  color: #ff004d;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff004d;
+  font-weight: 700;
+}
+.athl-function {
+  color: #83769c;
+}
+.athl-keyword {
+  color: #ff77a8;
+}
+.athl-label {
+  color: #fff024;
+}
+.athl-link_text {
+  color: #ff004d;
+}
+.athl-link_uri {
+  color: #ff004d;
+}
+.athl-number {
+  color: #ffa300;
+}
+.athl-punctuation {
+  color: #5f574f;
+}
+.athl-punctuation-bracket {
+  color: #5f574f;
+}
+.athl-punctuation-delimiter {
+  color: #5f574f;
+}
+.athl-punctuation-list_marker {
+  color: #5f574f;
+}
+.athl-punctuation-special {
+  color: #5f574f;
+}
+.athl-string {
+  color: #00e756;
+}
+.athl-string-escape {
+  color: #ffa300;
+}
+.athl-string-regex {
+  color: #00e756;
+}
+.athl-string-special {
+  color: #00e756;
+}
+.athl-string-special-symbol {
+  color: #00e756;
+}
+.athl-tag {
+  color: #ff004d;
+}
+.athl-text-literal {
+  color: #00e756;
+}
+.athl-title {
+  color: #fff024;
+}
+.athl-type {
+  color: #fff024;
+}
+.athl-variable {
+  color: #ff004d;
+}
+.athl-variable-special {
+  color: #ff004d;
+  font-style: italic;
+}

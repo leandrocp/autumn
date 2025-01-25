@@ -1,0 +1,93 @@
+{
+  "$schema": "https://zed.dev/schema/themes/v0.1.0.json",
+  "author": "Danielle Maywood <danielle@themaywoods.com>",
+  "name": "Gleam",
+  "themes": [
+    {
+      "name": "Gleam Dark",
+      "appearance": "dark",
+      "style": {
+        "players": [
+          {
+            "cursor": "#ffeffd",
+            "selection": "#545765"
+          }
+        ],
+        "background": "#292d3e",
+        "border": "#1e1e1e",
+        "border.variant": "#1e1e1e",
+        "created": "#c8ffa7",
+        "deleted": "#ff6262",
+        "editor.background": "#292d3e",
+        "editor.foreground": "#fefefc",
+        "editor.gutter.background": "#292d3e",
+        "error": "#ff6262",
+        "error.background": "#292d3e",
+        "error.border": "#ff6262",
+        "modified": "#ffd596",
+        "element.selected": "#ff0000",
+        "panel.background": "#292d3e",
+        "status_bar.background": "#292d3e",
+        "hint": "#b2b2b2",
+        "tab.active_background": "#292d3e",
+        "tab.inactive_background": "#292d3e",
+        "tab_bar.background": "#292d3e",
+        "text": "#fefefc",
+        "text.muted": "#b2b2b2",
+        "title_bar.background": "#292d3e",
+        "toolbar.background": "#292d3e",
+        "warning": "#ffd596",
+        "warning.background": "#292d3e",
+        "warning.border": "#ffd596",
+        "surface.background": "#292d3e",
+        "syntax": {
+          "comment": {
+            "color": "#b2b2b2"
+          },
+          "comment.unused": {
+            "color": "#b2b2b2"
+          },
+          "attribute": {
+            "color": "#ffd596"
+          },
+          "parameter": {
+            "color": "#ff0000"
+          },
+          "constructor": {
+            "color": "#9ce7ff"
+          },
+          "function": {
+            "color": "#9ce7ff"
+          },
+          "field": {
+            "color": "#ff0000"
+          },
+          "keyword": {
+            "color": "#ffd596"
+          },
+          "module": {
+            "color": "#ffddfa"
+          },
+          "number": {
+            "color": "#fdffab"
+          },
+          "operator": {
+            "color": "#ffaff3"
+          },
+          "property": {
+            "color": "#9ce7ff"
+          },
+          "string": {
+            "color": "#c8ffa7"
+          },
+          "type": {
+            "color": "#ffddfa"
+          },
+          "variable": {
+            "color": "#fefefc"
+          }
+        }
+      }
+    }
+  ]
+}

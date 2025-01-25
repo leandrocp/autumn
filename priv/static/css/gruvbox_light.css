@@ -1,46 +1,126 @@
-/* gruvbox_light */
-pre.autumn-hl { background-color: #fbf1c7; color: #3c3836; }
-.ahl-info { color: #427b58; }
-.ahl-label { color: #427b58; }
-.ahl-markup.ahl-bold { font-weight: bold; }
-.ahl-namespace { color: #427b58; }
-.ahl-markup.ahl-heading { color: #427b58; }
-.ahl-constant.ahl-builtin { font-weight: bold; color: #8f3f71; }
-.ahl-attribute { color: #427b58; }
-.ahl-type { color: #b57614; }
-.ahl-diagnostic.ahl-warning { color: #af3a03; }
-.ahl-hint { color: #076678; }
-.ahl-constant { color: #8f3f71; }
-.ahl-warning { color: #af3a03; }
-.ahl-module { color: #427b58; }
-.ahl-variable { color: #3c3836; }
-.ahl-constructor { font-weight: bold; color: #8f3f71; }
-.ahl-type.ahl-builtin { color: #b57614; }
-.ahl-diagnostic.ahl-error { color: #9d0006; }
-.ahl-diff.ahl-minus { color: #9d0006; }
-.ahl-markup.ahl-raw { color: #9d0006; }
-.ahl-tag { color: #9d0006; }
-.ahl-comment { font-style: italic; color: #928374; }
-.ahl-markup.ahl-link.ahl-text { color: #9d0006; }
-.ahl-punctuation { color: #af3a03; }
-.ahl-markup.ahl-italic { font-style: italic; }
-.ahl-function.ahl-macro { color: #427b58; }
-.ahl-special { color: #b16286; }
-.ahl-diff.ahl-plus { color: #79740e; }
-.ahl-operator { color: #8f3f71; }
-.ahl-keyword.ahl-directive { color: #cc241d; }
-.ahl-diagnostic.ahl-info { color: #427b58; }
-.ahl-constant.ahl-character.ahl-escape { font-weight: bold; color: #504945; }
-.ahl-markup.ahl-link.ahl-url {  color: #79740e; }
-.ahl-variable.ahl-builtin { color: #af3a03; }
-.ahl-punctuation.ahl-delimiter { color: #af3a03; }
-.ahl-variable.ahl-parameter { color: #504945; }
-.ahl-string { color: #79740e; }
-.ahl-diff.ahl-delta { color: #af3a03; }
-.ahl-keyword { color: #9d0006; }
-.ahl-function.ahl-builtin { color: #b57614; }
-.ahl-diagnostic.ahl-hint { color: #076678; }
-.ahl-variable.ahl-other.ahl-member { color: #076678; }
-.ahl-function { font-weight: bold; color: #79740e; }
-.ahl-constant.ahl-numeric { color: #8f3f71; }
-.ahl-error { color: #9d0006; }
+/* Gruvbox Light - Zed Industries */
+pre.athl {
+  background-color: #fbf1c7ff; color: #282828ff;
+}
+.athl-attribute {
+  color: #0b6678ff;
+}
+.athl-boolean {
+  color: #8f3e71ff;
+}
+.athl-comment {
+  color: #7c6f64ff;
+}
+.athl-comment-doc {
+  color: #5d544eff;
+}
+.athl-constant {
+  color: #b57613ff;
+}
+.athl-constructor {
+  color: #0b6678ff;
+}
+.athl-embedded {
+  color: #427b58ff;
+}
+.athl-emphasis {
+  color: #0b6678ff;
+}
+.athl-emphasis-strong {
+  color: #0b6678ff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #af3a02ff;
+}
+.athl-function {
+  color: #79740eff;
+}
+.athl-function-builtin {
+  color: #9d0006ff;
+}
+.athl-hint {
+  color: #677562ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #9d0006ff;
+}
+.athl-label {
+  color: #0b6678ff;
+}
+.athl-link_text {
+  color: #427b58ff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #8f3e71ff;
+}
+.athl-number {
+  color: #8f3e71ff;
+}
+.athl-operator {
+  color: #427b58ff;
+}
+.athl-predictive {
+  color: #7c9780ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #282828ff;
+}
+.athl-primary {
+  color: #282828ff;
+}
+.athl-property {
+  color: #282828ff;
+}
+.athl-punctuation {
+  color: #3c3836ff;
+}
+.athl-punctuation-bracket {
+  color: #665c54ff;
+}
+.athl-punctuation-delimiter {
+  color: #413d3aff;
+}
+.athl-punctuation-list_marker {
+  color: #282828ff;
+}
+.athl-punctuation-special {
+  color: #413d3aff;
+}
+.athl-string {
+  color: #79740eff;
+}
+.athl-string-escape {
+  color: #5d544eff;
+}
+.athl-string-regex {
+  color: #af3a02ff;
+}
+.athl-string-special {
+  color: #8f3e71ff;
+}
+.athl-string-special-symbol {
+  color: #427b58ff;
+}
+.athl-tag {
+  color: #427b58ff;
+}
+.athl-text-literal {
+  color: #066578ff;
+}
+.athl-title {
+  color: #79740eff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #b57613ff;
+}
+.athl-variable {
+  color: #066578ff;
+}
+.athl-variant {
+  color: #0b6678ff;
+}

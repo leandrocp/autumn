@@ -1,0 +1,123 @@
+/* Summercamp - Zed Industries */
+pre.athl {
+  background-color: #1b1810ff; color: #f8f5deff;
+}
+.athl-attribute {
+  color: #499befff;
+}
+.athl-boolean {
+  color: #5dea5aff;
+}
+.athl-comment {
+  color: #777159ff;
+}
+.athl-comment-doc {
+  color: #777159ff;
+}
+.athl-constant {
+  color: #5dea5aff;
+}
+.athl-constructor {
+  color: #499befff;
+}
+.athl-embedded {
+  color: #f8f5deff;
+}
+.athl-emphasis {
+  color: #499befff;
+}
+.athl-emphasis-strong {
+  color: #499befff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #faa11cff;
+}
+.athl-function {
+  color: #f1fe28ff;
+}
+.athl-hint {
+  color: #246e61ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #499befff;
+}
+.athl-label {
+  color: #499befff;
+}
+.athl-link_text {
+  color: #faa11cff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #5dea5aff;
+}
+.athl-number {
+  color: #5dea5aff;
+}
+.athl-operator {
+  color: #faa11cff;
+}
+.athl-predictive {
+  color: #78434aff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #f8f5deff;
+}
+.athl-primary {
+  color: #f8f5deff;
+}
+.athl-property {
+  color: #499befff;
+}
+.athl-punctuation {
+  color: #bfbb9bff;
+}
+.athl-punctuation-bracket {
+  color: #bfbb9bff;
+}
+.athl-punctuation-delimiter {
+  color: #bfbb9bff;
+}
+.athl-punctuation-list_marker {
+  color: #bfbb9bff;
+}
+.athl-punctuation-special {
+  color: #bfbb9bff;
+}
+.athl-string {
+  color: #faa11cff;
+}
+.athl-string-escape {
+  color: #777159ff;
+}
+.athl-string-regex {
+  color: #faa11cff;
+}
+.athl-string-special {
+  color: #faa11cff;
+}
+.athl-string-special-symbol {
+  color: #faa11cff;
+}
+.athl-tag {
+  color: #499befff;
+}
+.athl-text-literal {
+  color: #faa11cff;
+}
+.athl-title {
+  color: #f8f5deff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #5aeabbff;
+}
+.athl-variable {
+  color: #f8f5deff;
+}
+.athl-variant {
+  color: #499befff;
+}

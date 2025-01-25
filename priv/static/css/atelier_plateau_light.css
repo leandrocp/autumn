@@ -1,0 +1,132 @@
+/* Atelier Plateau Light - Zed Industries */
+pre.athl {
+  background-color: #f4ececff; color: #1b1818ff;
+}
+.athl-attribute {
+  color: #7272caff;
+}
+.athl-boolean {
+  color: #4c8b8bff;
+}
+.athl-comment {
+  color: #7e7777ff;
+}
+.athl-comment-doc {
+  color: #585050ff;
+}
+.athl-constant {
+  color: #4c8b8bff;
+}
+.athl-constructor {
+  color: #7272caff;
+}
+.athl-embedded {
+  color: #1b1818ff;
+}
+.athl-emphasis {
+  color: #7272caff;
+}
+.athl-emphasis-strong {
+  color: #7272caff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #b45a3cff;
+}
+.athl-function {
+  color: #7272caff;
+}
+.athl-function-method {
+  color: #7272caff;
+}
+.athl-function-special-definition {
+  color: #a06d3aff;
+}
+.athl-hint {
+  color: #91697fff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #8464c4ff;
+}
+.athl-label {
+  color: #7272caff;
+}
+.athl-link_text {
+  color: #b45a3cff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #4c8b8bff;
+}
+.athl-number {
+  color: #b4593bff;
+}
+.athl-operator {
+  color: #585050ff;
+}
+.athl-predictive {
+  color: #a27a91ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #1b1818ff;
+}
+.athl-primary {
+  color: #292424ff;
+}
+.athl-property {
+  color: #ca4848ff;
+}
+.athl-punctuation {
+  color: #292424ff;
+}
+.athl-punctuation-bracket {
+  color: #585050ff;
+}
+.athl-punctuation-delimiter {
+  color: #585050ff;
+}
+.athl-punctuation-list_marker {
+  color: #292424ff;
+}
+.athl-punctuation-special {
+  color: #bd5187ff;
+}
+.athl-string {
+  color: #4b8b8bff;
+}
+.athl-string-escape {
+  color: #585050ff;
+}
+.athl-string-regex {
+  color: #5485b6ff;
+}
+.athl-string-special {
+  color: #bd5187ff;
+}
+.athl-string-special-symbol {
+  color: #4b8b8bff;
+}
+.athl-tag {
+  color: #7272caff;
+}
+.athl-text-literal {
+  color: #b45a3cff;
+}
+.athl-title {
+  color: #1b1818ff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #a06d3aff;
+}
+.athl-variable {
+  color: #292424ff;
+}
+.athl-variable-special {
+  color: #8464c4ff;
+}
+.athl-variant {
+  color: #a06d3aff;
+}

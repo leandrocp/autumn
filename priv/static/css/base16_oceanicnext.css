@@ -1,0 +1,99 @@
+/* Base16 OceanicNext - https://github.com/voronianski/oceanic-next-color-scheme */
+pre.athl {
+  background-color: #1b2b34; color: #c0c5ce;
+}
+.athl-attribute {
+  color: #6699cc;
+}
+.athl-boolean {
+  color: #f99157;
+}
+.athl-comment {
+  color: #65737e;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #65737e;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f99157;
+}
+.athl-constructor {
+  color: #ec5f67;
+}
+.athl-emphasis {
+  color: #ec5f67;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ec5f67;
+  font-weight: 700;
+}
+.athl-function {
+  color: #6699cc;
+}
+.athl-keyword {
+  color: #c594c5;
+}
+.athl-label {
+  color: #fac863;
+}
+.athl-link_text {
+  color: #ec5f67;
+}
+.athl-link_uri {
+  color: #ec5f67;
+}
+.athl-number {
+  color: #f99157;
+}
+.athl-punctuation {
+  color: #c0c5ce;
+}
+.athl-punctuation-bracket {
+  color: #c0c5ce;
+}
+.athl-punctuation-delimiter {
+  color: #c0c5ce;
+}
+.athl-punctuation-list_marker {
+  color: #c0c5ce;
+}
+.athl-punctuation-special {
+  color: #c0c5ce;
+}
+.athl-string {
+  color: #99c794;
+}
+.athl-string-escape {
+  color: #f99157;
+}
+.athl-string-regex {
+  color: #99c794;
+}
+.athl-string-special {
+  color: #99c794;
+}
+.athl-string-special-symbol {
+  color: #99c794;
+}
+.athl-tag {
+  color: #ec5f67;
+}
+.athl-text-literal {
+  color: #99c794;
+}
+.athl-title {
+  color: #fac863;
+}
+.athl-type {
+  color: #fac863;
+}
+.athl-variable {
+  color: #ec5f67;
+}
+.athl-variable-special {
+  color: #ec5f67;
+  font-style: italic;
+}

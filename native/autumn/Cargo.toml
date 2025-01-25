@@ -7,68 +7,20 @@ authors = ["Leandro Pereira"]
 [lib]
 name = "autumn"
 path = "src/lib.rs"
-crate-type = ["lib"]
+crate-type = ["cdylib"]
 
 [dependencies]
-phf = { version = "0.11", features = ["macros"] }
+rustler = { version = "0.35", features = ["derive", "nif_version_2_15"] }
 v_htmlescape = "0.15"
-tree-sitter = "0.20"
-tree-sitter-highlight = "0.20"
-# inkjet = { git = "https://github.com/fork/inkjet.git", branch = "master", version = "0.10.4" , default-features = false, features = [
-# inkjet = { path = "/path/to/inkjet" , version = "0.10.4" , default-features = false, features = [
-inkjet = { version = "0.10.5" , default-features = false, features = [
-  "html",
-  "language-bash",
-  "language-c",
-  "language-c-sharp",
-  "language-clojure",
-  "language-commonlisp",
-  "language-cpp",
-  "language-css",
-  "language-diff",
-  "language-dockerfile",
-  "language-eex",
-  "language-elisp",
-  "language-elixir",
-  "language-elm",
-  "language-erlang",
-  "language-gleam",
-  "language-go",
-  "language-haskell",
-  "language-hcl",
-  "language-heex",
-  "language-html",
-  "language-iex",
-  "language-java",
-  "language-javascript",
-  "language-json",
-  "language-jsx",
-  "language-kotlin",
-  "language-latex",
-  "language-llvm",
-  "language-lua",
-  "language-make",
-  "language-objc",
-  "language-ocaml",
-  "language-ocaml-interface",
-  "language-pascal",
-  "language-php",
-  "language-plaintext",
-  "language-proto",
-  "language-python",
-  "language-r",
-  "language-regex",
-  "language-ruby",
-  "language-rust",
-  "language-scala",
-  "language-scss",
-  "language-sql",
-  "language-svelte",
-  "language-swift",
-  "language-toml",
-  "language-typescript",
-  "language-tsx",
-  "language-vim",
-  "language-yaml",
-  "language-zig",
-] }
+tree-sitter = "0.23"
+tree-sitter-highlight = "0.23"
+termcolor = "1.4"
+anyhow = "1.0"
+reqwest = { version = "0.12", features = ["blocking"] }
+
+[build-dependencies]
+cc = "1.0"
+
+[features]
+default = ["nif_version_2_15"]
+nif_version_2_15 = ["rustler/nif_version_2_15"]

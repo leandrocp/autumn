@@ -1,0 +1,99 @@
+/* Base16 Apathy - Jannik Siebert (https://github.com/janniks) */
+pre.athl {
+  background-color: #031a16; color: #81b5ac;
+}
+.athl-attribute {
+  color: #96883e;
+}
+.athl-boolean {
+  color: #3e7996;
+}
+.athl-comment {
+  color: #2b685e;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #2b685e;
+  font-style: italic;
+}
+.athl-constant {
+  color: #3e7996;
+}
+.athl-constructor {
+  color: #3e9688;
+}
+.athl-emphasis {
+  color: #3e9688;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #3e9688;
+  font-weight: 700;
+}
+.athl-function {
+  color: #96883e;
+}
+.athl-keyword {
+  color: #4c963e;
+}
+.athl-label {
+  color: #3e4c96;
+}
+.athl-link_text {
+  color: #3e9688;
+}
+.athl-link_uri {
+  color: #3e9688;
+}
+.athl-number {
+  color: #3e7996;
+}
+.athl-punctuation {
+  color: #81b5ac;
+}
+.athl-punctuation-bracket {
+  color: #81b5ac;
+}
+.athl-punctuation-delimiter {
+  color: #81b5ac;
+}
+.athl-punctuation-list_marker {
+  color: #81b5ac;
+}
+.athl-punctuation-special {
+  color: #81b5ac;
+}
+.athl-string {
+  color: #883e96;
+}
+.athl-string-escape {
+  color: #3e7996;
+}
+.athl-string-regex {
+  color: #883e96;
+}
+.athl-string-special {
+  color: #883e96;
+}
+.athl-string-special-symbol {
+  color: #883e96;
+}
+.athl-tag {
+  color: #3e9688;
+}
+.athl-text-literal {
+  color: #883e96;
+}
+.athl-title {
+  color: #3e4c96;
+}
+.athl-type {
+  color: #3e4c96;
+}
+.athl-variable {
+  color: #3e9688;
+}
+.athl-variable-special {
+  color: #3e9688;
+  font-style: italic;
+}

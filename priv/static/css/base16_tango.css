@@ -1,0 +1,99 @@
+/* Base16 Tango - @Schnouki, based on the Tango Desktop Project */
+pre.athl {
+  background-color: #2e3436; color: #d3d7cf;
+}
+.athl-attribute {
+  color: #3465a4;
+}
+.athl-boolean {
+  color: #ef2929;
+}
+.athl-comment {
+  color: #555753;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #555753;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ef2929;
+}
+.athl-constructor {
+  color: #cc0000;
+}
+.athl-emphasis {
+  color: #cc0000;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #cc0000;
+  font-weight: 700;
+}
+.athl-function {
+  color: #3465a4;
+}
+.athl-keyword {
+  color: #75507b;
+}
+.athl-label {
+  color: #c4a000;
+}
+.athl-link_text {
+  color: #cc0000;
+}
+.athl-link_uri {
+  color: #cc0000;
+}
+.athl-number {
+  color: #ef2929;
+}
+.athl-punctuation {
+  color: #d3d7cf;
+}
+.athl-punctuation-bracket {
+  color: #d3d7cf;
+}
+.athl-punctuation-delimiter {
+  color: #d3d7cf;
+}
+.athl-punctuation-list_marker {
+  color: #d3d7cf;
+}
+.athl-punctuation-special {
+  color: #d3d7cf;
+}
+.athl-string {
+  color: #4e9a06;
+}
+.athl-string-escape {
+  color: #ef2929;
+}
+.athl-string-regex {
+  color: #4e9a06;
+}
+.athl-string-special {
+  color: #4e9a06;
+}
+.athl-string-special-symbol {
+  color: #4e9a06;
+}
+.athl-tag {
+  color: #cc0000;
+}
+.athl-text-literal {
+  color: #4e9a06;
+}
+.athl-title {
+  color: #c4a000;
+}
+.athl-type {
+  color: #c4a000;
+}
+.athl-variable {
+  color: #cc0000;
+}
+.athl-variable-special {
+  color: #cc0000;
+  font-style: italic;
+}

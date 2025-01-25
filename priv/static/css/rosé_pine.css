@@ -1,0 +1,129 @@
+/* Rosé Pine - Zed Industries */
+pre.athl {
+  background-color: #191724ff; color: #e0def4ff;
+}
+.athl-attribute {
+  color: #9bced6ff;
+}
+.athl-boolean {
+  color: #ebbcbaff;
+}
+.athl-comment {
+  color: #6e6a86ff;
+}
+.athl-comment-doc {
+  color: #76728fff;
+}
+.athl-constant {
+  color: #5cc1a3ff;
+}
+.athl-constructor {
+  color: #9bced6ff;
+}
+.athl-embedded {
+  color: #e0def4ff;
+}
+.athl-emphasis {
+  color: #9bced6ff;
+}
+.athl-emphasis-strong {
+  color: #9bced6ff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #c4a7e6ff;
+}
+.athl-function {
+  color: #ebbcbaff;
+}
+.athl-function-method {
+  color: #ebbcbaff;
+}
+.athl-hint {
+  color: #5e768cff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #30738fff;
+}
+.athl-label {
+  color: #9bced6ff;
+}
+.athl-link_text {
+  color: #9ccfd8ff;
+  font-style: normal;
+}
+.athl-link_uri {
+  color: #ebbcbaff;
+}
+.athl-number {
+  color: #5cc1a3ff;
+}
+.athl-operator {
+  color: #30738fff;
+}
+.athl-predictive {
+  color: #556b81ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #e0def4ff;
+}
+.athl-primary {
+  color: #e0def4ff;
+}
+.athl-property {
+  color: #9bced6ff;
+}
+.athl-punctuation {
+  color: #908caaff;
+}
+.athl-punctuation-bracket {
+  color: #9d99b6ff;
+}
+.athl-punctuation-delimiter {
+  color: #9d99b6ff;
+}
+.athl-punctuation-list_marker {
+  color: #9d99b6ff;
+}
+.athl-punctuation-special {
+  color: #9d99b6ff;
+}
+.athl-string {
+  color: #f6c177ff;
+}
+.athl-string-escape {
+  color: #76728fff;
+}
+.athl-string-regex {
+  color: #c4a7e6ff;
+}
+.athl-string-special {
+  color: #c4a7e6ff;
+}
+.athl-string-special-symbol {
+  color: #c4a7e6ff;
+}
+.athl-tag {
+  color: #9ccfd8ff;
+}
+.athl-text-literal {
+  color: #c4a7e6ff;
+}
+.athl-title {
+  color: #f6c177ff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #9ccfd8ff;
+}
+.athl-type-builtin {
+  color: #9ccfd8ff;
+}
+.athl-variable {
+  color: #e0def4ff;
+}
+.athl-variant {
+  color: #9bced6ff;
+}

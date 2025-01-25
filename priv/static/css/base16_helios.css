@@ -1,0 +1,99 @@
+/* Base16 Helios - Alex Meyer (https://github.com/reyemxela) */
+pre.athl {
+  background-color: #1d2021; color: #d5d5d5;
+}
+.athl-attribute {
+  color: #1e8bac;
+}
+.athl-boolean {
+  color: #eb8413;
+}
+.athl-comment {
+  color: #6f7579;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #6f7579;
+  font-style: italic;
+}
+.athl-constant {
+  color: #eb8413;
+}
+.athl-constructor {
+  color: #d72638;
+}
+.athl-emphasis {
+  color: #d72638;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #d72638;
+  font-weight: 700;
+}
+.athl-function {
+  color: #1e8bac;
+}
+.athl-keyword {
+  color: #be4264;
+}
+.athl-label {
+  color: #f19d1a;
+}
+.athl-link_text {
+  color: #d72638;
+}
+.athl-link_uri {
+  color: #d72638;
+}
+.athl-number {
+  color: #eb8413;
+}
+.athl-punctuation {
+  color: #d5d5d5;
+}
+.athl-punctuation-bracket {
+  color: #d5d5d5;
+}
+.athl-punctuation-delimiter {
+  color: #d5d5d5;
+}
+.athl-punctuation-list_marker {
+  color: #d5d5d5;
+}
+.athl-punctuation-special {
+  color: #d5d5d5;
+}
+.athl-string {
+  color: #88b92d;
+}
+.athl-string-escape {
+  color: #eb8413;
+}
+.athl-string-regex {
+  color: #88b92d;
+}
+.athl-string-special {
+  color: #88b92d;
+}
+.athl-string-special-symbol {
+  color: #88b92d;
+}
+.athl-tag {
+  color: #d72638;
+}
+.athl-text-literal {
+  color: #88b92d;
+}
+.athl-title {
+  color: #f19d1a;
+}
+.athl-type {
+  color: #f19d1a;
+}
+.athl-variable {
+  color: #d72638;
+}
+.athl-variable-special {
+  color: #d72638;
+  font-style: italic;
+}

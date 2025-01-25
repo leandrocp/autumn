@@ -1,0 +1,99 @@
+/* Base16 Woodland - Jay Cornwall (https://jcornwall.com) */
+pre.athl {
+  background-color: #231e18; color: #cabcb1;
+}
+.athl-attribute {
+  color: #88a4d3;
+}
+.athl-boolean {
+  color: #ca7f32;
+}
+.athl-comment {
+  color: #9d8b70;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #9d8b70;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ca7f32;
+}
+.athl-constructor {
+  color: #d35c5c;
+}
+.athl-emphasis {
+  color: #d35c5c;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #d35c5c;
+  font-weight: 700;
+}
+.athl-function {
+  color: #88a4d3;
+}
+.athl-keyword {
+  color: #bb90e2;
+}
+.athl-label {
+  color: #e0ac16;
+}
+.athl-link_text {
+  color: #d35c5c;
+}
+.athl-link_uri {
+  color: #d35c5c;
+}
+.athl-number {
+  color: #ca7f32;
+}
+.athl-punctuation {
+  color: #cabcb1;
+}
+.athl-punctuation-bracket {
+  color: #cabcb1;
+}
+.athl-punctuation-delimiter {
+  color: #cabcb1;
+}
+.athl-punctuation-list_marker {
+  color: #cabcb1;
+}
+.athl-punctuation-special {
+  color: #cabcb1;
+}
+.athl-string {
+  color: #b7ba53;
+}
+.athl-string-escape {
+  color: #ca7f32;
+}
+.athl-string-regex {
+  color: #b7ba53;
+}
+.athl-string-special {
+  color: #b7ba53;
+}
+.athl-string-special-symbol {
+  color: #b7ba53;
+}
+.athl-tag {
+  color: #d35c5c;
+}
+.athl-text-literal {
+  color: #b7ba53;
+}
+.athl-title {
+  color: #e0ac16;
+}
+.athl-type {
+  color: #e0ac16;
+}
+.athl-variable {
+  color: #d35c5c;
+}
+.athl-variable-special {
+  color: #d35c5c;
+  font-style: italic;
+}

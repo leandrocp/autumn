@@ -1,0 +1,99 @@
+/* Base16 tender - Jacobo Tabernero (https://github/com/jacoborus/tender.vim) */
+pre.athl {
+  background-color: #282828; color: #eeeeee;
+}
+.athl-attribute {
+  color: #b3deef;
+}
+.athl-boolean {
+  color: #dc9656;
+}
+.athl-comment {
+  color: #4c4c4c;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #4c4c4c;
+  font-style: italic;
+}
+.athl-constant {
+  color: #dc9656;
+}
+.athl-constructor {
+  color: #f43753;
+}
+.athl-emphasis {
+  color: #f43753;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f43753;
+  font-weight: 700;
+}
+.athl-function {
+  color: #b3deef;
+}
+.athl-keyword {
+  color: #d3b987;
+}
+.athl-label {
+  color: #ffc24b;
+}
+.athl-link_text {
+  color: #f43753;
+}
+.athl-link_uri {
+  color: #f43753;
+}
+.athl-number {
+  color: #dc9656;
+}
+.athl-punctuation {
+  color: #eeeeee;
+}
+.athl-punctuation-bracket {
+  color: #eeeeee;
+}
+.athl-punctuation-delimiter {
+  color: #eeeeee;
+}
+.athl-punctuation-list_marker {
+  color: #eeeeee;
+}
+.athl-punctuation-special {
+  color: #eeeeee;
+}
+.athl-string {
+  color: #c9d05c;
+}
+.athl-string-escape {
+  color: #dc9656;
+}
+.athl-string-regex {
+  color: #c9d05c;
+}
+.athl-string-special {
+  color: #c9d05c;
+}
+.athl-string-special-symbol {
+  color: #c9d05c;
+}
+.athl-tag {
+  color: #f43753;
+}
+.athl-text-literal {
+  color: #c9d05c;
+}
+.athl-title {
+  color: #ffc24b;
+}
+.athl-type {
+  color: #ffc24b;
+}
+.athl-variable {
+  color: #f43753;
+}
+.athl-variable-special {
+  color: #f43753;
+  font-style: italic;
+}

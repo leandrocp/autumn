@@ -1,0 +1,99 @@
+/* Base16 Spaceduck - Guillermo Rodriguez (https://github.com/pineapplegiant), packaged by Gabriel Fontes (https://github.com/Misterio77) */
+pre.athl {
+  background-color: #16172d; color: #ecf0c1;
+}
+.athl-attribute {
+  color: #7a5ccc;
+}
+.athl-boolean {
+  color: #e39400;
+}
+.athl-comment {
+  color: #686f9a;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #686f9a;
+  font-style: italic;
+}
+.athl-constant {
+  color: #e39400;
+}
+.athl-constructor {
+  color: #e33400;
+}
+.athl-emphasis {
+  color: #e33400;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #e33400;
+  font-weight: 700;
+}
+.athl-function {
+  color: #7a5ccc;
+}
+.athl-keyword {
+  color: #b3a1e6;
+}
+.athl-label {
+  color: #f2ce00;
+}
+.athl-link_text {
+  color: #e33400;
+}
+.athl-link_uri {
+  color: #e33400;
+}
+.athl-number {
+  color: #e39400;
+}
+.athl-punctuation {
+  color: #ecf0c1;
+}
+.athl-punctuation-bracket {
+  color: #ecf0c1;
+}
+.athl-punctuation-delimiter {
+  color: #ecf0c1;
+}
+.athl-punctuation-list_marker {
+  color: #ecf0c1;
+}
+.athl-punctuation-special {
+  color: #ecf0c1;
+}
+.athl-string {
+  color: #5ccc96;
+}
+.athl-string-escape {
+  color: #e39400;
+}
+.athl-string-regex {
+  color: #5ccc96;
+}
+.athl-string-special {
+  color: #5ccc96;
+}
+.athl-string-special-symbol {
+  color: #5ccc96;
+}
+.athl-tag {
+  color: #e33400;
+}
+.athl-text-literal {
+  color: #5ccc96;
+}
+.athl-title {
+  color: #f2ce00;
+}
+.athl-type {
+  color: #f2ce00;
+}
+.athl-variable {
+  color: #e33400;
+}
+.athl-variable-special {
+  color: #e33400;
+  font-style: italic;
+}

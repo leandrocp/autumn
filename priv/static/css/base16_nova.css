@@ -1,0 +1,99 @@
+/* Base16 Nova - George Essig (https://github.com/gessig), Trevor D. Miller (https://trevordmiller.com) */
+pre.athl {
+  background-color: #3c4c55; color: #c5d4dd;
+}
+.athl-attribute {
+  color: #83afe5;
+}
+.athl-boolean {
+  color: #7fc1ca;
+}
+.athl-comment {
+  color: #899ba6;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #899ba6;
+  font-style: italic;
+}
+.athl-constant {
+  color: #7fc1ca;
+}
+.athl-constructor {
+  color: #83afe5;
+}
+.athl-emphasis {
+  color: #83afe5;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #83afe5;
+  font-weight: 700;
+}
+.athl-function {
+  color: #83afe5;
+}
+.athl-keyword {
+  color: #9a93e1;
+}
+.athl-label {
+  color: #a8ce93;
+}
+.athl-link_text {
+  color: #83afe5;
+}
+.athl-link_uri {
+  color: #83afe5;
+}
+.athl-number {
+  color: #7fc1ca;
+}
+.athl-punctuation {
+  color: #c5d4dd;
+}
+.athl-punctuation-bracket {
+  color: #c5d4dd;
+}
+.athl-punctuation-delimiter {
+  color: #c5d4dd;
+}
+.athl-punctuation-list_marker {
+  color: #c5d4dd;
+}
+.athl-punctuation-special {
+  color: #c5d4dd;
+}
+.athl-string {
+  color: #7fc1ca;
+}
+.athl-string-escape {
+  color: #7fc1ca;
+}
+.athl-string-regex {
+  color: #7fc1ca;
+}
+.athl-string-special {
+  color: #7fc1ca;
+}
+.athl-string-special-symbol {
+  color: #7fc1ca;
+}
+.athl-tag {
+  color: #83afe5;
+}
+.athl-text-literal {
+  color: #7fc1ca;
+}
+.athl-title {
+  color: #a8ce93;
+}
+.athl-type {
+  color: #a8ce93;
+}
+.athl-variable {
+  color: #83afe5;
+}
+.athl-variable-special {
+  color: #83afe5;
+  font-style: italic;
+}

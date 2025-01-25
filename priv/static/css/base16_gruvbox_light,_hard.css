@@ -1,0 +1,99 @@
+/* Base16 Gruvbox light, hard - Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox) */
+pre.athl {
+  background-color: #f9f5d7; color: #504945;
+}
+.athl-attribute {
+  color: #076678;
+}
+.athl-boolean {
+  color: #af3a03;
+}
+.athl-comment {
+  color: #bdae93;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #bdae93;
+  font-style: italic;
+}
+.athl-constant {
+  color: #af3a03;
+}
+.athl-constructor {
+  color: #9d0006;
+}
+.athl-emphasis {
+  color: #9d0006;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #9d0006;
+  font-weight: 700;
+}
+.athl-function {
+  color: #076678;
+}
+.athl-keyword {
+  color: #8f3f71;
+}
+.athl-label {
+  color: #b57614;
+}
+.athl-link_text {
+  color: #9d0006;
+}
+.athl-link_uri {
+  color: #9d0006;
+}
+.athl-number {
+  color: #af3a03;
+}
+.athl-punctuation {
+  color: #504945;
+}
+.athl-punctuation-bracket {
+  color: #504945;
+}
+.athl-punctuation-delimiter {
+  color: #504945;
+}
+.athl-punctuation-list_marker {
+  color: #504945;
+}
+.athl-punctuation-special {
+  color: #504945;
+}
+.athl-string {
+  color: #79740e;
+}
+.athl-string-escape {
+  color: #af3a03;
+}
+.athl-string-regex {
+  color: #79740e;
+}
+.athl-string-special {
+  color: #79740e;
+}
+.athl-string-special-symbol {
+  color: #79740e;
+}
+.athl-tag {
+  color: #9d0006;
+}
+.athl-text-literal {
+  color: #79740e;
+}
+.athl-title {
+  color: #b57614;
+}
+.athl-type {
+  color: #b57614;
+}
+.athl-variable {
+  color: #9d0006;
+}
+.athl-variable-special {
+  color: #9d0006;
+  font-style: italic;
+}

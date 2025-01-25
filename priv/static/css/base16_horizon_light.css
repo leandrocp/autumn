@@ -1,0 +1,99 @@
+/* Base16 Horizon Light - Michaël Ball (http://github.com/michael-ball/) */
+pre.athl {
+  background-color: #fdf0ed; color: #403c3d;
+}
+.athl-attribute {
+  color: #da103f;
+}
+.athl-boolean {
+  color: #f6661e;
+}
+.athl-comment {
+  color: #bdb3b1;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #bdb3b1;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f6661e;
+}
+.athl-constructor {
+  color: #f7939b;
+}
+.athl-emphasis {
+  color: #f7939b;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f7939b;
+  font-weight: 700;
+}
+.athl-function {
+  color: #da103f;
+}
+.athl-keyword {
+  color: #1d8991;
+}
+.athl-label {
+  color: #fbe0d9;
+}
+.athl-link_text {
+  color: #f7939b;
+}
+.athl-link_uri {
+  color: #f7939b;
+}
+.athl-number {
+  color: #f6661e;
+}
+.athl-punctuation {
+  color: #403c3d;
+}
+.athl-punctuation-bracket {
+  color: #403c3d;
+}
+.athl-punctuation-delimiter {
+  color: #403c3d;
+}
+.athl-punctuation-list_marker {
+  color: #403c3d;
+}
+.athl-punctuation-special {
+  color: #403c3d;
+}
+.athl-string {
+  color: #94e1b0;
+}
+.athl-string-escape {
+  color: #f6661e;
+}
+.athl-string-regex {
+  color: #94e1b0;
+}
+.athl-string-special {
+  color: #94e1b0;
+}
+.athl-string-special-symbol {
+  color: #94e1b0;
+}
+.athl-tag {
+  color: #f7939b;
+}
+.athl-text-literal {
+  color: #94e1b0;
+}
+.athl-title {
+  color: #fbe0d9;
+}
+.athl-type {
+  color: #fbe0d9;
+}
+.athl-variable {
+  color: #f7939b;
+}
+.athl-variable-special {
+  color: #f7939b;
+  font-style: italic;
+}

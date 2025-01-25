@@ -1,0 +1,99 @@
+/* Base16 Heetch Dark - Geoffrey Teale (tealeg@gmail.com) */
+pre.athl {
+  background-color: #190134; color: #bdb6c5;
+}
+.athl-attribute {
+  color: #bd0152;
+}
+.athl-boolean {
+  color: #5ba2b6;
+}
+.athl-comment {
+  color: #7b6d8b;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #7b6d8b;
+  font-style: italic;
+}
+.athl-constant {
+  color: #5ba2b6;
+}
+.athl-constructor {
+  color: #27d9d5;
+}
+.athl-emphasis {
+  color: #27d9d5;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #27d9d5;
+  font-weight: 700;
+}
+.athl-function {
+  color: #bd0152;
+}
+.athl-keyword {
+  color: #82034c;
+}
+.athl-label {
+  color: #8f6c97;
+}
+.athl-link_text {
+  color: #27d9d5;
+}
+.athl-link_uri {
+  color: #27d9d5;
+}
+.athl-number {
+  color: #5ba2b6;
+}
+.athl-punctuation {
+  color: #bdb6c5;
+}
+.athl-punctuation-bracket {
+  color: #bdb6c5;
+}
+.athl-punctuation-delimiter {
+  color: #bdb6c5;
+}
+.athl-punctuation-list_marker {
+  color: #bdb6c5;
+}
+.athl-punctuation-special {
+  color: #bdb6c5;
+}
+.athl-string {
+  color: #c33678;
+}
+.athl-string-escape {
+  color: #5ba2b6;
+}
+.athl-string-regex {
+  color: #c33678;
+}
+.athl-string-special {
+  color: #c33678;
+}
+.athl-string-special-symbol {
+  color: #c33678;
+}
+.athl-tag {
+  color: #27d9d5;
+}
+.athl-text-literal {
+  color: #c33678;
+}
+.athl-title {
+  color: #8f6c97;
+}
+.athl-type {
+  color: #8f6c97;
+}
+.athl-variable {
+  color: #27d9d5;
+}
+.athl-variable-special {
+  color: #27d9d5;
+  font-style: italic;
+}

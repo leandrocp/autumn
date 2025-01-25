@@ -1,0 +1,46 @@
+/* New Darcula - Evan Simpson <evan@evan.news> */
+pre.athl {
+  background-color: #2b2b2d; color: #FFFFFF;
+}
+.athl-attribute {
+  color: #e1afe3;
+}
+.athl-comment {
+  color: #787c80;
+}
+.athl-constant {
+  color: #937dff;
+}
+.athl-function {
+  color: #f0be6e;
+}
+.athl-keyword {
+  color: #d97934;
+}
+.athl-number {
+  color: #99c2ff;
+}
+.athl-operator {
+  color: #6aa68c;
+}
+.athl-property {
+  color: #93689c;
+}
+.athl-punctuation-bracket {
+  color: #f39cff;
+}
+.athl-punctuation-delimiter {
+  color: #4e989c;
+}
+.athl-string {
+  color: #63945c;
+}
+.athl-tag {
+  color: #f0be6e;
+}
+.athl-type {
+  color: #c7c6bf;
+}
+.athl-variable {
+  color: #c7c6bf;
+}

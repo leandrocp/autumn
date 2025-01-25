@@ -1,0 +1,99 @@
+/* Base16 Katy - George Essig (https://github.com/gessig) */
+pre.athl {
+  background-color: #292d3e; color: #959dcb;
+}
+.athl-attribute {
+  color: #82aaff;
+}
+.athl-boolean {
+  color: #f78c6c;
+}
+.athl-comment {
+  color: #676e95;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #676e95;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f78c6c;
+}
+.athl-constructor {
+  color: #6e98e1;
+}
+.athl-emphasis {
+  color: #6e98e1;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #6e98e1;
+  font-weight: 700;
+}
+.athl-function {
+  color: #82aaff;
+}
+.athl-keyword {
+  color: #c792ea;
+}
+.athl-label {
+  color: #e0a557;
+}
+.athl-link_text {
+  color: #6e98e1;
+}
+.athl-link_uri {
+  color: #6e98e1;
+}
+.athl-number {
+  color: #f78c6c;
+}
+.athl-punctuation {
+  color: #959dcb;
+}
+.athl-punctuation-bracket {
+  color: #959dcb;
+}
+.athl-punctuation-delimiter {
+  color: #959dcb;
+}
+.athl-punctuation-list_marker {
+  color: #959dcb;
+}
+.athl-punctuation-special {
+  color: #959dcb;
+}
+.athl-string {
+  color: #78c06e;
+}
+.athl-string-escape {
+  color: #f78c6c;
+}
+.athl-string-regex {
+  color: #78c06e;
+}
+.athl-string-special {
+  color: #78c06e;
+}
+.athl-string-special-symbol {
+  color: #78c06e;
+}
+.athl-tag {
+  color: #6e98e1;
+}
+.athl-text-literal {
+  color: #78c06e;
+}
+.athl-title {
+  color: #e0a557;
+}
+.athl-type {
+  color: #e0a557;
+}
+.athl-variable {
+  color: #6e98e1;
+}
+.athl-variable-special {
+  color: #6e98e1;
+  font-style: italic;
+}

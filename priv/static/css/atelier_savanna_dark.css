@@ -1,0 +1,132 @@
+/* Atelier Savanna Dark - Zed Industries */
+pre.athl {
+  background-color: #171c19ff; color: #ecf4eeff;
+}
+.athl-attribute {
+  color: #468b8fff;
+}
+.athl-boolean {
+  color: #479962ff;
+}
+.athl-comment {
+  color: #5f6d64ff;
+}
+.athl-comment-doc {
+  color: #87928aff;
+}
+.athl-constant {
+  color: #479962ff;
+}
+.athl-constructor {
+  color: #468b8fff;
+}
+.athl-embedded {
+  color: #ecf4eeff;
+}
+.athl-emphasis {
+  color: #468b8fff;
+}
+.athl-emphasis-strong {
+  color: #468b8fff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #9f703bff;
+}
+.athl-function {
+  color: #468b8fff;
+}
+.athl-function-method {
+  color: #468b8fff;
+}
+.athl-function-special-definition {
+  color: #a07d3aff;
+}
+.athl-hint {
+  color: #607e76ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #55859bff;
+}
+.athl-label {
+  color: #468b8fff;
+}
+.athl-link_text {
+  color: #9f703bff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #479962ff;
+}
+.athl-number {
+  color: #9f703bff;
+}
+.athl-operator {
+  color: #87928aff;
+}
+.athl-predictive {
+  color: #506d66ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #ecf4eeff;
+}
+.athl-primary {
+  color: #dfe7e2ff;
+}
+.athl-property {
+  color: #b16038ff;
+}
+.athl-punctuation {
+  color: #dfe7e2ff;
+}
+.athl-punctuation-bracket {
+  color: #87928aff;
+}
+.athl-punctuation-delimiter {
+  color: #87928aff;
+}
+.athl-punctuation-list_marker {
+  color: #dfe7e2ff;
+}
+.athl-punctuation-special {
+  color: #857368ff;
+}
+.athl-string {
+  color: #479962ff;
+}
+.athl-string-escape {
+  color: #87928aff;
+}
+.athl-string-regex {
+  color: #1b9aa0ff;
+}
+.athl-string-special {
+  color: #857368ff;
+}
+.athl-string-special-symbol {
+  color: #479962ff;
+}
+.athl-tag {
+  color: #468b8fff;
+}
+.athl-text-literal {
+  color: #9f703bff;
+}
+.athl-title {
+  color: #ecf4eeff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #a07d3aff;
+}
+.athl-variable {
+  color: #dfe7e2ff;
+}
+.athl-variable-special {
+  color: #55859bff;
+}
+.athl-variant {
+  color: #a07d3aff;
+}

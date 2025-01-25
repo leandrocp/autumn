@@ -1,0 +1,132 @@
+/* Atelier Seaside Dark - Zed Industries */
+pre.athl {
+  background-color: #131513ff; color: #f3faf3ff;
+}
+.athl-attribute {
+  color: #3e62f4ff;
+}
+.athl-boolean {
+  color: #2aa329ff;
+}
+.athl-comment {
+  color: #687d68ff;
+}
+.athl-comment-doc {
+  color: #8ca68cff;
+}
+.athl-constant {
+  color: #2aa329ff;
+}
+.athl-constructor {
+  color: #3e62f4ff;
+}
+.athl-embedded {
+  color: #f3faf3ff;
+}
+.athl-emphasis {
+  color: #3e62f4ff;
+}
+.athl-emphasis-strong {
+  color: #3e62f4ff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #87711dff;
+}
+.athl-function {
+  color: #3d62f5ff;
+}
+.athl-function-method {
+  color: #3d62f5ff;
+}
+.athl-function-special-definition {
+  color: #98981bff;
+}
+.athl-hint {
+  color: #008b9fff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #ac2aeeff;
+}
+.athl-label {
+  color: #3e62f4ff;
+}
+.athl-link_text {
+  color: #87711dff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #2aa329ff;
+}
+.athl-number {
+  color: #87711cff;
+}
+.athl-operator {
+  color: #8ca68cff;
+}
+.athl-predictive {
+  color: #00788bff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #f3faf3ff;
+}
+.athl-primary {
+  color: #cfe8cfff;
+}
+.athl-property {
+  color: #e6183bff;
+}
+.athl-punctuation {
+  color: #cfe8cfff;
+}
+.athl-punctuation-bracket {
+  color: #8ca68cff;
+}
+.athl-punctuation-delimiter {
+  color: #8ca68cff;
+}
+.athl-punctuation-list_marker {
+  color: #cfe8cfff;
+}
+.athl-punctuation-special {
+  color: #e618c3ff;
+}
+.athl-string {
+  color: #28a328ff;
+}
+.athl-string-escape {
+  color: #8ca68cff;
+}
+.athl-string-regex {
+  color: #1899b3ff;
+}
+.athl-string-special {
+  color: #e618c3ff;
+}
+.athl-string-special-symbol {
+  color: #28a328ff;
+}
+.athl-tag {
+  color: #3e62f4ff;
+}
+.athl-text-literal {
+  color: #87711dff;
+}
+.athl-title {
+  color: #f3faf3ff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #98981bff;
+}
+.athl-variable {
+  color: #cfe8cfff;
+}
+.athl-variable-special {
+  color: #ac2aeeff;
+}
+.athl-variant {
+  color: #98981bff;
+}

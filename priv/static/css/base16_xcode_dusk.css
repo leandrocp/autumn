@@ -1,0 +1,99 @@
+/* Base16 XCode Dusk - Elsa Gonsiorowski (https://github.com/gonsie) */
+pre.athl {
+  background-color: #282b35; color: #939599;
+}
+.athl-attribute {
+  color: #790ead;
+}
+.athl-boolean {
+  color: #786dc5;
+}
+.athl-comment {
+  color: #686a71;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #686a71;
+  font-style: italic;
+}
+.athl-constant {
+  color: #786dc5;
+}
+.athl-constructor {
+  color: #b21889;
+}
+.athl-emphasis {
+  color: #b21889;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #b21889;
+  font-weight: 700;
+}
+.athl-function {
+  color: #790ead;
+}
+.athl-keyword {
+  color: #b21889;
+}
+.athl-label {
+  color: #438288;
+}
+.athl-link_text {
+  color: #b21889;
+}
+.athl-link_uri {
+  color: #b21889;
+}
+.athl-number {
+  color: #786dc5;
+}
+.athl-punctuation {
+  color: #939599;
+}
+.athl-punctuation-bracket {
+  color: #939599;
+}
+.athl-punctuation-delimiter {
+  color: #939599;
+}
+.athl-punctuation-list_marker {
+  color: #939599;
+}
+.athl-punctuation-special {
+  color: #939599;
+}
+.athl-string {
+  color: #df0002;
+}
+.athl-string-escape {
+  color: #786dc5;
+}
+.athl-string-regex {
+  color: #df0002;
+}
+.athl-string-special {
+  color: #df0002;
+}
+.athl-string-special-symbol {
+  color: #df0002;
+}
+.athl-tag {
+  color: #b21889;
+}
+.athl-text-literal {
+  color: #df0002;
+}
+.athl-title {
+  color: #438288;
+}
+.athl-type {
+  color: #438288;
+}
+.athl-variable {
+  color: #b21889;
+}
+.athl-variable-special {
+  color: #b21889;
+  font-style: italic;
+}

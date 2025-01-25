@@ -1,0 +1,1 @@
+# gleam-theme-zed

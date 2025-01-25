@@ -1,31 +1,77 @@
-/* nord_light */
-pre.autumn-hl { background-color: #ECEFF4; color: #2E3440; }
-.ahl-attribute { color: #5E81AC; }
-.ahl-comment { color: #8FBCBB; }
-.ahl-constant.ahl-builtin { color: #B48EAD; }
-.ahl-constant.ahl-numeric { color: #B48EAD; }
-.ahl-diagnostic.ahl-error { color: #BF616A; }
-.ahl-diagnostic.ahl-hint { color: #EBCB8B; }
-.ahl-diagnostic.ahl-info { color: #EBCB8B; }
-.ahl-diagnostic.ahl-warning { color: #EBCB8B; }
-.ahl-diff.ahl-delta { color: #EBCB8B; }
-.ahl-diff.ahl-minus { color: #BF616A; }
-.ahl-diff.ahl-plus { color: #A3BE8C; }
-.ahl-function { color: #4C566A; }
-.ahl-function.ahl-builtin { color: #5E81AC; }
-.ahl-function.ahl-macro { font-weight: bold; color: #5E81AC; }
-.ahl-function.ahl-method { color: #2E3440; }
-.ahl-keyword { color: #434C5E; }
-.ahl-keyword.ahl-control { color: #434C5E; }
-.ahl-keyword.ahl-function { color: #434C5E; }
-.ahl-markup.ahl-heading { font-weight: bold; color: #2E3440; }
-.ahl-markup.ahl-link.ahl-text { color: #D08770; }
-.ahl-markup.ahl-link.ahl-url { color: #4C566A; }
-.ahl-markup.ahl-quote { font-style: italic; color: #4C566A; }
-.ahl-markup.ahl-raw { color: #5E81AC; }
-.ahl-namespace { color: #5E81AC; }
-.ahl-string { color: #A3BE8C; }
-.ahl-type { color: #5E81AC; }
-.ahl-variable { color: #2E3440; }
-.ahl-variable.ahl-builtin { color: #4C566A; }
-.ahl-variable.ahl-other { color: #4C566A; }
+/* Nord Light - Sergei <Mikasius> Metlenkin */
+pre.athl {
+  background-color: #eceff4; color: #444d56;
+}
+.athl-attribute {
+  color: #0D7579;
+}
+.athl-comment {
+  color: #6A737D;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #6A737D;
+  font-style: italic;
+}
+.athl-constant {
+  color: #3B4252;
+}
+.athl-constructor {
+  color: #0D7579;
+}
+.athl-emphasis {
+  color: #24292E;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #24292E;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #D73A49;
+}
+.athl-label {
+  color: #509546;
+}
+.athl-link_text {
+  color: #CB5C69;
+}
+.athl-link_uri {
+  color: #CB5C69;
+}
+.athl-number {
+  color: #3B4252;
+}
+.athl-operator {
+  color: #CB5C69;
+}
+.athl-string {
+  color: #032F62;
+}
+.athl-string-escape {
+  color: #032F62;
+}
+.athl-string-regex {
+  color: #032F62;
+}
+.athl-string-special {
+  color: #032F62;
+}
+.athl-string-special-symbol {
+  color: #032F62;
+}
+.athl-tag {
+  color: #0D7579;
+}
+.athl-text-literal {
+  color: #032F62;
+}
+.athl-title {
+  color: #509546;
+}
+.athl-variable {
+  color: #3B4252;
+}
+.athl-variable-special {
+  color: #0C60A5;
+}

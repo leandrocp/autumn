@@ -1,0 +1,99 @@
+/* Base16 Black Metal (Bathory) Dark - Kevin Gyori */
+pre.athl {
+  background-color: #000000; color: #c1c1c1;
+}
+.athl-attribute {
+  color: #888888;
+}
+.athl-boolean {
+  color: #aaaaaa;
+}
+.athl-comment {
+  color: #5c5c5c;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #5c5c5c;
+  font-style: italic;
+}
+.athl-constant {
+  color: #aaaaaa;
+}
+.athl-constructor {
+  color: #5f8787;
+}
+.athl-emphasis {
+  color: #5f8787;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #5f8787;
+  font-weight: 700;
+}
+.athl-function {
+  color: #888888;
+}
+.athl-keyword {
+  color: #999999;
+}
+.athl-label {
+  color: #e78a53;
+}
+.athl-link_text {
+  color: #5f8787;
+}
+.athl-link_uri {
+  color: #5f8787;
+}
+.athl-number {
+  color: #aaaaaa;
+}
+.athl-punctuation {
+  color: #c1c1c1;
+}
+.athl-punctuation-bracket {
+  color: #c1c1c1;
+}
+.athl-punctuation-delimiter {
+  color: #c1c1c1;
+}
+.athl-punctuation-list_marker {
+  color: #c1c1c1;
+}
+.athl-punctuation-special {
+  color: #c1c1c1;
+}
+.athl-string {
+  color: #fbcb97;
+}
+.athl-string-escape {
+  color: #aaaaaa;
+}
+.athl-string-regex {
+  color: #fbcb97;
+}
+.athl-string-special {
+  color: #fbcb97;
+}
+.athl-string-special-symbol {
+  color: #fbcb97;
+}
+.athl-tag {
+  color: #5f8787;
+}
+.athl-text-literal {
+  color: #fbcb97;
+}
+.athl-title {
+  color: #e78a53;
+}
+.athl-type {
+  color: #e78a53;
+}
+.athl-variable {
+  color: #5f8787;
+}
+.athl-variable-special {
+  color: #5f8787;
+  font-style: italic;
+}

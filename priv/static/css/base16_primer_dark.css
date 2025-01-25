@@ -1,0 +1,99 @@
+/* Base16 Primer Dark - Jimmy Lin */
+pre.athl {
+  background-color: #010409; color: #b1bac4;
+}
+.athl-attribute {
+  color: #58a6ff;
+}
+.athl-boolean {
+  color: #f0883e;
+}
+.athl-comment {
+  color: #484f58;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #484f58;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f0883e;
+}
+.athl-constructor {
+  color: #ff7b72;
+}
+.athl-emphasis {
+  color: #ff7b72;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff7b72;
+  font-weight: 700;
+}
+.athl-function {
+  color: #58a6ff;
+}
+.athl-keyword {
+  color: #f778ba;
+}
+.athl-label {
+  color: #d29922;
+}
+.athl-link_text {
+  color: #ff7b72;
+}
+.athl-link_uri {
+  color: #ff7b72;
+}
+.athl-number {
+  color: #f0883e;
+}
+.athl-punctuation {
+  color: #b1bac4;
+}
+.athl-punctuation-bracket {
+  color: #b1bac4;
+}
+.athl-punctuation-delimiter {
+  color: #b1bac4;
+}
+.athl-punctuation-list_marker {
+  color: #b1bac4;
+}
+.athl-punctuation-special {
+  color: #b1bac4;
+}
+.athl-string {
+  color: #3fb950;
+}
+.athl-string-escape {
+  color: #f0883e;
+}
+.athl-string-regex {
+  color: #3fb950;
+}
+.athl-string-special {
+  color: #3fb950;
+}
+.athl-string-special-symbol {
+  color: #3fb950;
+}
+.athl-tag {
+  color: #ff7b72;
+}
+.athl-text-literal {
+  color: #3fb950;
+}
+.athl-title {
+  color: #d29922;
+}
+.athl-type {
+  color: #d29922;
+}
+.athl-variable {
+  color: #ff7b72;
+}
+.athl-variable-special {
+  color: #ff7b72;
+  font-style: italic;
+}

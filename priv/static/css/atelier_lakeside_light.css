@@ -1,0 +1,132 @@
+/* Atelier Lakeside Light - Zed Industries */
+pre.athl {
+  background-color: #ebf8ffff; color: #161b1dff;
+}
+.athl-attribute {
+  color: #267eadff;
+}
+.athl-boolean {
+  color: #568c3bff;
+}
+.athl-comment {
+  color: #7094a7ff;
+}
+.athl-comment-doc {
+  color: #516d7bff;
+}
+.athl-constant {
+  color: #568c3bff;
+}
+.athl-constructor {
+  color: #267eadff;
+}
+.athl-embedded {
+  color: #161b1dff;
+}
+.athl-emphasis {
+  color: #267eadff;
+}
+.athl-emphasis-strong {
+  color: #267eadff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #935c25ff;
+}
+.athl-function {
+  color: #247eadff;
+}
+.athl-function-method {
+  color: #247eadff;
+}
+.athl-function-special-definition {
+  color: #8a8a0eff;
+}
+.athl-hint {
+  color: #5a87a0ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #6a6ab7ff;
+}
+.athl-label {
+  color: #267eadff;
+}
+.athl-link_text {
+  color: #935c25ff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #568c3bff;
+}
+.athl-number {
+  color: #935c24ff;
+}
+.athl-operator {
+  color: #516d7bff;
+}
+.athl-predictive {
+  color: #6a97b2ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #161b1dff;
+}
+.athl-primary {
+  color: #1f292eff;
+}
+.athl-property {
+  color: #d22c72ff;
+}
+.athl-punctuation {
+  color: #1f292eff;
+}
+.athl-punctuation-bracket {
+  color: #516d7bff;
+}
+.athl-punctuation-delimiter {
+  color: #516d7bff;
+}
+.athl-punctuation-list_marker {
+  color: #1f292eff;
+}
+.athl-punctuation-special {
+  color: #b72cd2ff;
+}
+.athl-string {
+  color: #558c3aff;
+}
+.athl-string-escape {
+  color: #516d7bff;
+}
+.athl-string-regex {
+  color: #2c8f6eff;
+}
+.athl-string-special {
+  color: #b72cd2ff;
+}
+.athl-string-special-symbol {
+  color: #558c3aff;
+}
+.athl-tag {
+  color: #267eadff;
+}
+.athl-text-literal {
+  color: #935c25ff;
+}
+.athl-title {
+  color: #161b1dff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #8a8a0eff;
+}
+.athl-variable {
+  color: #1f292eff;
+}
+.athl-variable-special {
+  color: #6a6ab7ff;
+}
+.athl-variant {
+  color: #8a8a0eff;
+}

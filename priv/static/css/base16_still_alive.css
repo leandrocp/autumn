@@ -1,0 +1,99 @@
+/* Base16 Still Alive - Derrick McKee (derrick.mckee@gmail.com) */
+pre.athl {
+  background-color: #f0f0f0; color: #d80000;
+}
+.athl-attribute {
+  color: #001878;
+}
+.athl-boolean {
+  color: #183048;
+}
+.athl-comment {
+  color: #f01818;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #f01818;
+  font-style: italic;
+}
+.athl-constant {
+  color: #183048;
+}
+.athl-constructor {
+  color: #487830;
+}
+.athl-emphasis {
+  color: #487830;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #487830;
+  font-weight: 700;
+}
+.athl-function {
+  color: #001878;
+}
+.athl-keyword {
+  color: #900000;
+}
+.athl-label {
+  color: #426395;
+}
+.athl-link_text {
+  color: #487830;
+}
+.athl-link_uri {
+  color: #487830;
+}
+.athl-number {
+  color: #183048;
+}
+.athl-punctuation {
+  color: #d80000;
+}
+.athl-punctuation-bracket {
+  color: #d80000;
+}
+.athl-punctuation-delimiter {
+  color: #d80000;
+}
+.athl-punctuation-list_marker {
+  color: #d80000;
+}
+.athl-punctuation-special {
+  color: #d80000;
+}
+.athl-string {
+  color: #5c5c6a;
+}
+.athl-string-escape {
+  color: #183048;
+}
+.athl-string-regex {
+  color: #5c5c6a;
+}
+.athl-string-special {
+  color: #5c5c6a;
+}
+.athl-string-special-symbol {
+  color: #5c5c6a;
+}
+.athl-tag {
+  color: #487830;
+}
+.athl-text-literal {
+  color: #5c5c6a;
+}
+.athl-title {
+  color: #426395;
+}
+.athl-type {
+  color: #426395;
+}
+.athl-variable {
+  color: #487830;
+}
+.athl-variable-special {
+  color: #487830;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 Embers - Jannik Siebert (https://github.com/janniks) */
+pre.athl {
+  background-color: #16130f; color: #a39a90;
+}
+.athl-attribute {
+  color: #6d5782;
+}
+.athl-boolean {
+  color: #828257;
+}
+.athl-comment {
+  color: #5a5047;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #5a5047;
+  font-style: italic;
+}
+.athl-constant {
+  color: #828257;
+}
+.athl-constructor {
+  color: #826d57;
+}
+.athl-emphasis {
+  color: #826d57;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #826d57;
+  font-weight: 700;
+}
+.athl-function {
+  color: #6d5782;
+}
+.athl-keyword {
+  color: #82576d;
+}
+.athl-label {
+  color: #6d8257;
+}
+.athl-link_text {
+  color: #826d57;
+}
+.athl-link_uri {
+  color: #826d57;
+}
+.athl-number {
+  color: #828257;
+}
+.athl-punctuation {
+  color: #a39a90;
+}
+.athl-punctuation-bracket {
+  color: #a39a90;
+}
+.athl-punctuation-delimiter {
+  color: #a39a90;
+}
+.athl-punctuation-list_marker {
+  color: #a39a90;
+}
+.athl-punctuation-special {
+  color: #a39a90;
+}
+.athl-string {
+  color: #57826d;
+}
+.athl-string-escape {
+  color: #828257;
+}
+.athl-string-regex {
+  color: #57826d;
+}
+.athl-string-special {
+  color: #57826d;
+}
+.athl-string-special-symbol {
+  color: #57826d;
+}
+.athl-tag {
+  color: #826d57;
+}
+.athl-text-literal {
+  color: #57826d;
+}
+.athl-title {
+  color: #6d8257;
+}
+.athl-type {
+  color: #6d8257;
+}
+.athl-variable {
+  color: #826d57;
+}
+.athl-variable-special {
+  color: #826d57;
+  font-style: italic;
+}

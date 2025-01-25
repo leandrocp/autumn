@@ -1,0 +1,64 @@
+/* One Dark Pro - One Dark Pro: Zed Theme Importer */
+pre.athl {
+  background-color: #23272e; 
+}
+.athl-attribute {
+  color: #d19a66;
+}
+.athl-comment {
+  color: #7F838C;
+}
+.athl-constant {
+  color: #d19a66;
+}
+.athl-constructor {
+  color: #e06c75;
+}
+.athl-embedded {
+  color: #abb2bf;
+}
+.athl-function {
+  color: #61afef;
+}
+.athl-keyword {
+  color: #c678dd;
+}
+.athl-number {
+  color: #d19a66;
+}
+.athl-operator {
+  color: #abb2bf;
+}
+.athl-property {
+  color: #e06c75;
+}
+.athl-string {
+  color: #98c379;
+}
+.athl-string-escape {
+  color: #98c379;
+}
+.athl-string-regex {
+  color: #98c379;
+}
+.athl-string-special {
+  color: #56b6c2;
+}
+.athl-string-special-symbol {
+  color: #56b6c2;
+}
+.athl-tag {
+  color: #e06c75;
+}
+.athl-text-literal {
+  color: #98c379;
+}
+.athl-type {
+  color: #e5c07b;
+}
+.athl-variable {
+  color: #e06c75;
+}
+.athl-variable-special {
+  color: #e5c07b;
+}

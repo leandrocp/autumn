@@ -1,0 +1,99 @@
+/* Base16 Tokyodark - Tiagovla (https://github.com/tiagovla/) */
+pre.athl {
+  background-color: #11121d; color: #abb2bf;
+}
+.athl-attribute {
+  color: #95c561;
+}
+.athl-boolean {
+  color: #a485dd;
+}
+.athl-comment {
+  color: #393a45;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #393a45;
+  font-style: italic;
+}
+.athl-constant {
+  color: #a485dd;
+}
+.athl-constructor {
+  color: #a485dd;
+}
+.athl-emphasis {
+  color: #a485dd;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #a485dd;
+  font-weight: 700;
+}
+.athl-function {
+  color: #95c561;
+}
+.athl-keyword {
+  color: #ee6d85;
+}
+.athl-label {
+  color: #7199ee;
+}
+.athl-link_text {
+  color: #a485dd;
+}
+.athl-link_uri {
+  color: #a485dd;
+}
+.athl-number {
+  color: #a485dd;
+}
+.athl-punctuation {
+  color: #abb2bf;
+}
+.athl-punctuation-bracket {
+  color: #abb2bf;
+}
+.athl-punctuation-delimiter {
+  color: #abb2bf;
+}
+.athl-punctuation-list_marker {
+  color: #abb2bf;
+}
+.athl-punctuation-special {
+  color: #abb2bf;
+}
+.athl-string {
+  color: #d7a65f;
+}
+.athl-string-escape {
+  color: #a485dd;
+}
+.athl-string-regex {
+  color: #d7a65f;
+}
+.athl-string-special {
+  color: #d7a65f;
+}
+.athl-string-special-symbol {
+  color: #d7a65f;
+}
+.athl-tag {
+  color: #a485dd;
+}
+.athl-text-literal {
+  color: #d7a65f;
+}
+.athl-title {
+  color: #7199ee;
+}
+.athl-type {
+  color: #7199ee;
+}
+.athl-variable {
+  color: #a485dd;
+}
+.athl-variable-special {
+  color: #a485dd;
+  font-style: italic;
+}

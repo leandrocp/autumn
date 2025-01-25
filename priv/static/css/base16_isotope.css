@@ -1,0 +1,99 @@
+/* Base16 Isotope - Jan T. Sott */
+pre.athl {
+  background-color: #000000; color: #d0d0d0;
+}
+.athl-attribute {
+  color: #0066ff;
+}
+.athl-boolean {
+  color: #ff9900;
+}
+.athl-comment {
+  color: #808080;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #808080;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ff9900;
+}
+.athl-constructor {
+  color: #ff0000;
+}
+.athl-emphasis {
+  color: #ff0000;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff0000;
+  font-weight: 700;
+}
+.athl-function {
+  color: #0066ff;
+}
+.athl-keyword {
+  color: #cc00ff;
+}
+.athl-label {
+  color: #ff0099;
+}
+.athl-link_text {
+  color: #ff0000;
+}
+.athl-link_uri {
+  color: #ff0000;
+}
+.athl-number {
+  color: #ff9900;
+}
+.athl-punctuation {
+  color: #d0d0d0;
+}
+.athl-punctuation-bracket {
+  color: #d0d0d0;
+}
+.athl-punctuation-delimiter {
+  color: #d0d0d0;
+}
+.athl-punctuation-list_marker {
+  color: #d0d0d0;
+}
+.athl-punctuation-special {
+  color: #d0d0d0;
+}
+.athl-string {
+  color: #33ff00;
+}
+.athl-string-escape {
+  color: #ff9900;
+}
+.athl-string-regex {
+  color: #33ff00;
+}
+.athl-string-special {
+  color: #33ff00;
+}
+.athl-string-special-symbol {
+  color: #33ff00;
+}
+.athl-tag {
+  color: #ff0000;
+}
+.athl-text-literal {
+  color: #33ff00;
+}
+.athl-title {
+  color: #ff0099;
+}
+.athl-type {
+  color: #ff0099;
+}
+.athl-variable {
+  color: #ff0000;
+}
+.athl-variable-special {
+  color: #ff0000;
+  font-style: italic;
+}

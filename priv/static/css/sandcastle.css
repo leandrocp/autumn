@@ -1,0 +1,123 @@
+/* Sandcastle - Zed Industries */
+pre.athl {
+  background-color: #282c33ff; color: #fdf4c1ff;
+}
+.athl-attribute {
+  color: #518b8bff;
+}
+.athl-boolean {
+  color: #83a598ff;
+}
+.athl-comment {
+  color: #a89984ff;
+}
+.athl-comment-doc {
+  color: #a89984ff;
+}
+.athl-constant {
+  color: #83a598ff;
+}
+.athl-constructor {
+  color: #518b8bff;
+}
+.athl-embedded {
+  color: #fdf4c1ff;
+}
+.athl-emphasis {
+  color: #518b8bff;
+}
+.athl-emphasis-strong {
+  color: #518b8bff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #a07d3aff;
+}
+.athl-function {
+  color: #a07d3aff;
+}
+.athl-hint {
+  color: #727d68ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #518b8bff;
+}
+.athl-label {
+  color: #518b8bff;
+}
+.athl-link_text {
+  color: #a07d3aff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #83a598ff;
+}
+.athl-number {
+  color: #83a598ff;
+}
+.athl-operator {
+  color: #a07d3aff;
+}
+.athl-predictive {
+  color: #5c6152ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #fdf4c1ff;
+}
+.athl-primary {
+  color: #fdf4c1ff;
+}
+.athl-property {
+  color: #518b8bff;
+}
+.athl-punctuation {
+  color: #d5c5a1ff;
+}
+.athl-punctuation-bracket {
+  color: #d5c5a1ff;
+}
+.athl-punctuation-delimiter {
+  color: #d5c5a1ff;
+}
+.athl-punctuation-list_marker {
+  color: #d5c5a1ff;
+}
+.athl-punctuation-special {
+  color: #d5c5a1ff;
+}
+.athl-string {
+  color: #a07d3aff;
+}
+.athl-string-escape {
+  color: #a89984ff;
+}
+.athl-string-regex {
+  color: #a07d3aff;
+}
+.athl-string-special {
+  color: #a07d3aff;
+}
+.athl-string-special-symbol {
+  color: #a07d3aff;
+}
+.athl-tag {
+  color: #518b8bff;
+}
+.athl-text-literal {
+  color: #a07d3aff;
+}
+.athl-title {
+  color: #fdf4c1ff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #83a598ff;
+}
+.athl-variable {
+  color: #fdf4c1ff;
+}
+.athl-variant {
+  color: #518b8bff;
+}

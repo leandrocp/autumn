@@ -1,0 +1,132 @@
+/* Atelier Dune Dark - Zed Industries */
+pre.athl {
+  background-color: #20201dff; color: #fefbecff;
+}
+.athl-attribute {
+  color: #6684e0ff;
+}
+.athl-boolean {
+  color: #5fac39ff;
+}
+.athl-comment {
+  color: #7d7a68ff;
+}
+.athl-comment-doc {
+  color: #a6a28cff;
+}
+.athl-constant {
+  color: #5fac39ff;
+}
+.athl-constructor {
+  color: #6684e0ff;
+}
+.athl-embedded {
+  color: #fefbecff;
+}
+.athl-emphasis {
+  color: #6684e0ff;
+}
+.athl-emphasis-strong {
+  color: #6684e0ff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #b65611ff;
+}
+.athl-function {
+  color: #6583e1ff;
+}
+.athl-function-method {
+  color: #6583e1ff;
+}
+.athl-function-special-definition {
+  color: #ae9512ff;
+}
+.athl-hint {
+  color: #b17272ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #b854d4ff;
+}
+.athl-label {
+  color: #6684e0ff;
+}
+.athl-link_text {
+  color: #b65611ff;
+  font-style: italic;
+}
+.athl-link_uri {
+  color: #5fac39ff;
+}
+.athl-number {
+  color: #b65610ff;
+}
+.athl-operator {
+  color: #a6a28cff;
+}
+.athl-predictive {
+  color: #9c6262ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #fefbecff;
+}
+.athl-primary {
+  color: #e8e4cfff;
+}
+.athl-property {
+  color: #d73737ff;
+}
+.athl-punctuation {
+  color: #e8e4cfff;
+}
+.athl-punctuation-bracket {
+  color: #a6a28cff;
+}
+.athl-punctuation-delimiter {
+  color: #a6a28cff;
+}
+.athl-punctuation-list_marker {
+  color: #e8e4cfff;
+}
+.athl-punctuation-special {
+  color: #d43451ff;
+}
+.athl-string {
+  color: #5fac38ff;
+}
+.athl-string-escape {
+  color: #a6a28cff;
+}
+.athl-string-regex {
+  color: #1ead82ff;
+}
+.athl-string-special {
+  color: #d43451ff;
+}
+.athl-string-special-symbol {
+  color: #5fac38ff;
+}
+.athl-tag {
+  color: #6684e0ff;
+}
+.athl-text-literal {
+  color: #b65611ff;
+}
+.athl-title {
+  color: #fefbecff;
+  font-weight: 700;
+}
+.athl-type {
+  color: #ae9512ff;
+}
+.athl-variable {
+  color: #e8e4cfff;
+}
+.athl-variable-special {
+  color: #b854d4ff;
+}
+.athl-variant {
+  color: #ae9512ff;
+}

@@ -1,0 +1,99 @@
+/* Base16 Nebula - Gabriel Fontes (https://github.com/Misterio77) */
+pre.athl {
+  background-color: #22273b; color: #a4a6a9;
+}
+.athl-attribute {
+  color: #4d6bb6;
+}
+.athl-boolean {
+  color: #94929e;
+}
+.athl-comment {
+  color: #6e6f72;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #6e6f72;
+  font-style: italic;
+}
+.athl-constant {
+  color: #94929e;
+}
+.athl-constructor {
+  color: #777abc;
+}
+.athl-emphasis {
+  color: #777abc;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #777abc;
+  font-weight: 700;
+}
+.athl-function {
+  color: #4d6bb6;
+}
+.athl-keyword {
+  color: #716cae;
+}
+.athl-label {
+  color: #4f9062;
+}
+.athl-link_text {
+  color: #777abc;
+}
+.athl-link_uri {
+  color: #777abc;
+}
+.athl-number {
+  color: #94929e;
+}
+.athl-punctuation {
+  color: #a4a6a9;
+}
+.athl-punctuation-bracket {
+  color: #a4a6a9;
+}
+.athl-punctuation-delimiter {
+  color: #a4a6a9;
+}
+.athl-punctuation-list_marker {
+  color: #a4a6a9;
+}
+.athl-punctuation-special {
+  color: #a4a6a9;
+}
+.athl-string {
+  color: #6562a8;
+}
+.athl-string-escape {
+  color: #94929e;
+}
+.athl-string-regex {
+  color: #6562a8;
+}
+.athl-string-special {
+  color: #6562a8;
+}
+.athl-string-special-symbol {
+  color: #6562a8;
+}
+.athl-tag {
+  color: #777abc;
+}
+.athl-text-literal {
+  color: #6562a8;
+}
+.athl-title {
+  color: #4f9062;
+}
+.athl-type {
+  color: #4f9062;
+}
+.athl-variable {
+  color: #777abc;
+}
+.athl-variable-special {
+  color: #777abc;
+  font-style: italic;
+}

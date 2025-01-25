@@ -1,0 +1,99 @@
+/* Base16 PaperColor Dark - Jon Leopard (http://github.com/jonleopard) based on PaperColor Theme (https://github.com/NLKNguyen/papercolor-theme) */
+pre.athl {
+  background-color: #1c1c1c; color: #808080;
+}
+.athl-attribute {
+  color: #ff5faf;
+}
+.athl-boolean {
+  color: #5faf5f;
+}
+.athl-comment {
+  color: #d7af5f;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #d7af5f;
+  font-style: italic;
+}
+.athl-constant {
+  color: #5faf5f;
+}
+.athl-constructor {
+  color: #585858;
+}
+.athl-emphasis {
+  color: #585858;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #585858;
+  font-weight: 700;
+}
+.athl-function {
+  color: #ff5faf;
+}
+.athl-keyword {
+  color: #00afaf;
+}
+.athl-label {
+  color: #afd700;
+}
+.athl-link_text {
+  color: #585858;
+}
+.athl-link_uri {
+  color: #585858;
+}
+.athl-number {
+  color: #5faf5f;
+}
+.athl-punctuation {
+  color: #808080;
+}
+.athl-punctuation-bracket {
+  color: #808080;
+}
+.athl-punctuation-delimiter {
+  color: #808080;
+}
+.athl-punctuation-list_marker {
+  color: #808080;
+}
+.athl-punctuation-special {
+  color: #808080;
+}
+.athl-string {
+  color: #af87d7;
+}
+.athl-string-escape {
+  color: #5faf5f;
+}
+.athl-string-regex {
+  color: #af87d7;
+}
+.athl-string-special {
+  color: #af87d7;
+}
+.athl-string-special-symbol {
+  color: #af87d7;
+}
+.athl-tag {
+  color: #585858;
+}
+.athl-text-literal {
+  color: #af87d7;
+}
+.athl-title {
+  color: #afd700;
+}
+.athl-type {
+  color: #afd700;
+}
+.athl-variable {
+  color: #585858;
+}
+.athl-variable-special {
+  color: #585858;
+  font-style: italic;
+}

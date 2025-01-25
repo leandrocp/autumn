@@ -1,0 +1,99 @@
+/* Base16 Marrakesh - Alexandre Gavioli (http://github.com/Alexx2/) */
+pre.athl {
+  background-color: #201602; color: #948e48;
+}
+.athl-attribute {
+  color: #477ca1;
+}
+.athl-boolean {
+  color: #b36144;
+}
+.athl-comment {
+  color: #6c6823;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #6c6823;
+  font-style: italic;
+}
+.athl-constant {
+  color: #b36144;
+}
+.athl-constructor {
+  color: #c35359;
+}
+.athl-emphasis {
+  color: #c35359;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #c35359;
+  font-weight: 700;
+}
+.athl-function {
+  color: #477ca1;
+}
+.athl-keyword {
+  color: #8868b3;
+}
+.athl-label {
+  color: #a88339;
+}
+.athl-link_text {
+  color: #c35359;
+}
+.athl-link_uri {
+  color: #c35359;
+}
+.athl-number {
+  color: #b36144;
+}
+.athl-punctuation {
+  color: #948e48;
+}
+.athl-punctuation-bracket {
+  color: #948e48;
+}
+.athl-punctuation-delimiter {
+  color: #948e48;
+}
+.athl-punctuation-list_marker {
+  color: #948e48;
+}
+.athl-punctuation-special {
+  color: #948e48;
+}
+.athl-string {
+  color: #18974e;
+}
+.athl-string-escape {
+  color: #b36144;
+}
+.athl-string-regex {
+  color: #18974e;
+}
+.athl-string-special {
+  color: #18974e;
+}
+.athl-string-special-symbol {
+  color: #18974e;
+}
+.athl-tag {
+  color: #c35359;
+}
+.athl-text-literal {
+  color: #18974e;
+}
+.athl-title {
+  color: #a88339;
+}
+.athl-type {
+  color: #a88339;
+}
+.athl-variable {
+  color: #c35359;
+}
+.athl-variable-special {
+  color: #c35359;
+  font-style: italic;
+}

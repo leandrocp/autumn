@@ -1,0 +1,126 @@
+/* One Dark - Zed Industries */
+pre.athl {
+  background-color: #282c33ff; color: #dce0e5ff;
+}
+.athl-attribute {
+  color: #74ade8ff;
+}
+.athl-boolean {
+  color: #bf956aff;
+}
+.athl-comment {
+  color: #5d636fff;
+}
+.athl-comment-doc {
+  color: #878e98ff;
+}
+.athl-constant {
+  color: #dfc184ff;
+}
+.athl-constructor {
+  color: #73ade9ff;
+}
+.athl-embedded {
+  color: #dce0e5ff;
+}
+.athl-emphasis {
+  color: #74ade8ff;
+}
+.athl-emphasis-strong {
+  color: #bf956aff;
+  font-weight: 700;
+}
+.athl-enum {
+  color: #d07277ff;
+}
+.athl-function {
+  color: #73ade9ff;
+}
+.athl-hint {
+  color: #788ca6ff;
+  font-weight: 700;
+}
+.athl-keyword {
+  color: #b477cfff;
+}
+.athl-label {
+  color: #74ade8ff;
+}
+.athl-link_text {
+  color: #73ade9ff;
+  font-style: normal;
+}
+.athl-link_uri {
+  color: #6eb4bfff;
+}
+.athl-number {
+  color: #bf956aff;
+}
+.athl-operator {
+  color: #6eb4bfff;
+}
+.athl-predictive {
+  color: #5a6a87ff;
+  font-style: italic;
+}
+.athl-preproc {
+  color: #dce0e5ff;
+}
+.athl-primary {
+  color: #acb2beff;
+}
+.athl-property {
+  color: #d07277ff;
+}
+.athl-punctuation {
+  color: #acb2beff;
+}
+.athl-punctuation-bracket {
+  color: #b2b9c6ff;
+}
+.athl-punctuation-delimiter {
+  color: #b2b9c6ff;
+}
+.athl-punctuation-list_marker {
+  color: #d07277ff;
+}
+.athl-punctuation-special {
+  color: #b1574bff;
+}
+.athl-string {
+  color: #a1c181ff;
+}
+.athl-string-escape {
+  color: #878e98ff;
+}
+.athl-string-regex {
+  color: #bf956aff;
+}
+.athl-string-special {
+  color: #bf956aff;
+}
+.athl-string-special-symbol {
+  color: #bf956aff;
+}
+.athl-tag {
+  color: #74ade8ff;
+}
+.athl-text-literal {
+  color: #a1c181ff;
+}
+.athl-title {
+  color: #d07277ff;
+  font-weight: 400;
+}
+.athl-type {
+  color: #6eb4bfff;
+}
+.athl-variable {
+  color: #dce0e5ff;
+}
+.athl-variable-special {
+  color: #bf956aff;
+}
+.athl-variant {
+  color: #73ade9ff;
+}

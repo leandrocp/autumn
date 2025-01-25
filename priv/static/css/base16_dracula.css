@@ -1,0 +1,99 @@
+/* Base16 Dracula - Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula) */
+pre.athl {
+  background-color: #282936; color: #e9e9f4;
+}
+.athl-attribute {
+  color: #62d6e8;
+}
+.athl-boolean {
+  color: #b45bcf;
+}
+.athl-comment {
+  color: #626483;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #626483;
+  font-style: italic;
+}
+.athl-constant {
+  color: #b45bcf;
+}
+.athl-constructor {
+  color: #ea51b2;
+}
+.athl-emphasis {
+  color: #ea51b2;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ea51b2;
+  font-weight: 700;
+}
+.athl-function {
+  color: #62d6e8;
+}
+.athl-keyword {
+  color: #b45bcf;
+}
+.athl-label {
+  color: #00f769;
+}
+.athl-link_text {
+  color: #ea51b2;
+}
+.athl-link_uri {
+  color: #ea51b2;
+}
+.athl-number {
+  color: #b45bcf;
+}
+.athl-punctuation {
+  color: #e9e9f4;
+}
+.athl-punctuation-bracket {
+  color: #e9e9f4;
+}
+.athl-punctuation-delimiter {
+  color: #e9e9f4;
+}
+.athl-punctuation-list_marker {
+  color: #e9e9f4;
+}
+.athl-punctuation-special {
+  color: #e9e9f4;
+}
+.athl-string {
+  color: #ebff87;
+}
+.athl-string-escape {
+  color: #b45bcf;
+}
+.athl-string-regex {
+  color: #ebff87;
+}
+.athl-string-special {
+  color: #ebff87;
+}
+.athl-string-special-symbol {
+  color: #ebff87;
+}
+.athl-tag {
+  color: #ea51b2;
+}
+.athl-text-literal {
+  color: #ebff87;
+}
+.athl-title {
+  color: #00f769;
+}
+.athl-type {
+  color: #00f769;
+}
+.athl-variable {
+  color: #ea51b2;
+}
+.athl-variable-special {
+  color: #ea51b2;
+  font-style: italic;
+}

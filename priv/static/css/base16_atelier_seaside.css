@@ -1,0 +1,99 @@
+/* Base16 Atelier Seaside - Bram de Haan (http://atelierbramdehaan.nl) */
+pre.athl {
+  background-color: #131513; color: #8ca68c;
+}
+.athl-attribute {
+  color: #3d62f5;
+}
+.athl-boolean {
+  color: #87711d;
+}
+.athl-comment {
+  color: #687d68;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #687d68;
+  font-style: italic;
+}
+.athl-constant {
+  color: #87711d;
+}
+.athl-constructor {
+  color: #e6193c;
+}
+.athl-emphasis {
+  color: #e6193c;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #e6193c;
+  font-weight: 700;
+}
+.athl-function {
+  color: #3d62f5;
+}
+.athl-keyword {
+  color: #ad2bee;
+}
+.athl-label {
+  color: #98981b;
+}
+.athl-link_text {
+  color: #e6193c;
+}
+.athl-link_uri {
+  color: #e6193c;
+}
+.athl-number {
+  color: #87711d;
+}
+.athl-punctuation {
+  color: #8ca68c;
+}
+.athl-punctuation-bracket {
+  color: #8ca68c;
+}
+.athl-punctuation-delimiter {
+  color: #8ca68c;
+}
+.athl-punctuation-list_marker {
+  color: #8ca68c;
+}
+.athl-punctuation-special {
+  color: #8ca68c;
+}
+.athl-string {
+  color: #29a329;
+}
+.athl-string-escape {
+  color: #87711d;
+}
+.athl-string-regex {
+  color: #29a329;
+}
+.athl-string-special {
+  color: #29a329;
+}
+.athl-string-special-symbol {
+  color: #29a329;
+}
+.athl-tag {
+  color: #e6193c;
+}
+.athl-text-literal {
+  color: #29a329;
+}
+.athl-title {
+  color: #98981b;
+}
+.athl-type {
+  color: #98981b;
+}
+.athl-variable {
+  color: #e6193c;
+}
+.athl-variable-special {
+  color: #e6193c;
+  font-style: italic;
+}

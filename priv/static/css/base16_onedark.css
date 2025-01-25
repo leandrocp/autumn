@@ -1,0 +1,99 @@
+/* Base16 OneDark - Lalit Magant (http://github.com/tilal6991) */
+pre.athl {
+  background-color: #282c34; color: #abb2bf;
+}
+.athl-attribute {
+  color: #61afef;
+}
+.athl-boolean {
+  color: #d19a66;
+}
+.athl-comment {
+  color: #545862;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #545862;
+  font-style: italic;
+}
+.athl-constant {
+  color: #d19a66;
+}
+.athl-constructor {
+  color: #e06c75;
+}
+.athl-emphasis {
+  color: #e06c75;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #e06c75;
+  font-weight: 700;
+}
+.athl-function {
+  color: #61afef;
+}
+.athl-keyword {
+  color: #c678dd;
+}
+.athl-label {
+  color: #e5c07b;
+}
+.athl-link_text {
+  color: #e06c75;
+}
+.athl-link_uri {
+  color: #e06c75;
+}
+.athl-number {
+  color: #d19a66;
+}
+.athl-punctuation {
+  color: #abb2bf;
+}
+.athl-punctuation-bracket {
+  color: #abb2bf;
+}
+.athl-punctuation-delimiter {
+  color: #abb2bf;
+}
+.athl-punctuation-list_marker {
+  color: #abb2bf;
+}
+.athl-punctuation-special {
+  color: #abb2bf;
+}
+.athl-string {
+  color: #98c379;
+}
+.athl-string-escape {
+  color: #d19a66;
+}
+.athl-string-regex {
+  color: #98c379;
+}
+.athl-string-special {
+  color: #98c379;
+}
+.athl-string-special-symbol {
+  color: #98c379;
+}
+.athl-tag {
+  color: #e06c75;
+}
+.athl-text-literal {
+  color: #98c379;
+}
+.athl-title {
+  color: #e5c07b;
+}
+.athl-type {
+  color: #e5c07b;
+}
+.athl-variable {
+  color: #e06c75;
+}
+.athl-variable-special {
+  color: #e06c75;
+  font-style: italic;
+}

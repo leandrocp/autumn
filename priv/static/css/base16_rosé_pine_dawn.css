@@ -1,0 +1,99 @@
+/* Base16 Rosé Pine Dawn - Emilia Dunfelt &lt;edun@dunfelt.se&gt; */
+pre.athl {
+  background-color: #faf4ed; color: #575279;
+}
+.athl-attribute {
+  color: #907aa9;
+}
+.athl-boolean {
+  color: #ea9d34;
+}
+.athl-comment {
+  color: #9893a5;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #9893a5;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ea9d34;
+}
+.athl-constructor {
+  color: #b4637a;
+}
+.athl-emphasis {
+  color: #b4637a;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #b4637a;
+  font-weight: 700;
+}
+.athl-function {
+  color: #907aa9;
+}
+.athl-keyword {
+  color: #ea9d34;
+}
+.athl-label {
+  color: #d7827e;
+}
+.athl-link_text {
+  color: #b4637a;
+}
+.athl-link_uri {
+  color: #b4637a;
+}
+.athl-number {
+  color: #ea9d34;
+}
+.athl-punctuation {
+  color: #575279;
+}
+.athl-punctuation-bracket {
+  color: #575279;
+}
+.athl-punctuation-delimiter {
+  color: #575279;
+}
+.athl-punctuation-list_marker {
+  color: #575279;
+}
+.athl-punctuation-special {
+  color: #575279;
+}
+.athl-string {
+  color: #286983;
+}
+.athl-string-escape {
+  color: #ea9d34;
+}
+.athl-string-regex {
+  color: #286983;
+}
+.athl-string-special {
+  color: #286983;
+}
+.athl-string-special-symbol {
+  color: #286983;
+}
+.athl-tag {
+  color: #b4637a;
+}
+.athl-text-literal {
+  color: #286983;
+}
+.athl-title {
+  color: #d7827e;
+}
+.athl-type {
+  color: #d7827e;
+}
+.athl-variable {
+  color: #b4637a;
+}
+.athl-variable-special {
+  color: #b4637a;
+  font-style: italic;
+}

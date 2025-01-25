@@ -1,0 +1,99 @@
+/* Base16 Spacemacs - Nasser Alshammari (https://github.com/nashamri/spacemacs-theme) */
+pre.athl {
+  background-color: #1f2022; color: #a3a3a3;
+}
+.athl-attribute {
+  color: #4f97d7;
+}
+.athl-boolean {
+  color: #ffa500;
+}
+.athl-comment {
+  color: #585858;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #585858;
+  font-style: italic;
+}
+.athl-constant {
+  color: #ffa500;
+}
+.athl-constructor {
+  color: #f2241f;
+}
+.athl-emphasis {
+  color: #f2241f;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f2241f;
+  font-weight: 700;
+}
+.athl-function {
+  color: #4f97d7;
+}
+.athl-keyword {
+  color: #a31db1;
+}
+.athl-label {
+  color: #b1951d;
+}
+.athl-link_text {
+  color: #f2241f;
+}
+.athl-link_uri {
+  color: #f2241f;
+}
+.athl-number {
+  color: #ffa500;
+}
+.athl-punctuation {
+  color: #a3a3a3;
+}
+.athl-punctuation-bracket {
+  color: #a3a3a3;
+}
+.athl-punctuation-delimiter {
+  color: #a3a3a3;
+}
+.athl-punctuation-list_marker {
+  color: #a3a3a3;
+}
+.athl-punctuation-special {
+  color: #a3a3a3;
+}
+.athl-string {
+  color: #67b11d;
+}
+.athl-string-escape {
+  color: #ffa500;
+}
+.athl-string-regex {
+  color: #67b11d;
+}
+.athl-string-special {
+  color: #67b11d;
+}
+.athl-string-special-symbol {
+  color: #67b11d;
+}
+.athl-tag {
+  color: #f2241f;
+}
+.athl-text-literal {
+  color: #67b11d;
+}
+.athl-title {
+  color: #b1951d;
+}
+.athl-type {
+  color: #b1951d;
+}
+.athl-variable {
+  color: #f2241f;
+}
+.athl-variable-special {
+  color: #f2241f;
+  font-style: italic;
+}

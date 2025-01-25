@@ -1,0 +1,99 @@
+/* Base16 Shades of Purple - Iolar Demartini Junior (http://github.com/demartini) based on Shades of Purple Theme (https://github.com/ahmadawais/shades-of-purple-vscode). */
+pre.athl {
+  background-color: #1e1e3f; color: #c7c7c7;
+}
+.athl-attribute {
+  color: #6943ff;
+}
+.athl-boolean {
+  color: #f92a1c;
+}
+.athl-comment {
+  color: #808080;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #808080;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f92a1c;
+}
+.athl-constructor {
+  color: #d90429;
+}
+.athl-emphasis {
+  color: #d90429;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #d90429;
+  font-weight: 700;
+}
+.athl-function {
+  color: #6943ff;
+}
+.athl-keyword {
+  color: #ff2c70;
+}
+.athl-label {
+  color: #ffe700;
+}
+.athl-link_text {
+  color: #d90429;
+}
+.athl-link_uri {
+  color: #d90429;
+}
+.athl-number {
+  color: #f92a1c;
+}
+.athl-punctuation {
+  color: #c7c7c7;
+}
+.athl-punctuation-bracket {
+  color: #c7c7c7;
+}
+.athl-punctuation-delimiter {
+  color: #c7c7c7;
+}
+.athl-punctuation-list_marker {
+  color: #c7c7c7;
+}
+.athl-punctuation-special {
+  color: #c7c7c7;
+}
+.athl-string {
+  color: #3ad900;
+}
+.athl-string-escape {
+  color: #f92a1c;
+}
+.athl-string-regex {
+  color: #3ad900;
+}
+.athl-string-special {
+  color: #3ad900;
+}
+.athl-string-special-symbol {
+  color: #3ad900;
+}
+.athl-tag {
+  color: #d90429;
+}
+.athl-text-literal {
+  color: #3ad900;
+}
+.athl-title {
+  color: #ffe700;
+}
+.athl-type {
+  color: #ffe700;
+}
+.athl-variable {
+  color: #d90429;
+}
+.athl-variable-special {
+  color: #d90429;
+  font-style: italic;
+}

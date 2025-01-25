@@ -1,0 +1,99 @@
+/* Base16 Paraiso - Jan T. Sott */
+pre.athl {
+  background-color: #2f1e2e; color: #a39e9b;
+}
+.athl-attribute {
+  color: #06b6ef;
+}
+.athl-boolean {
+  color: #f99b15;
+}
+.athl-comment {
+  color: #776e71;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #776e71;
+  font-style: italic;
+}
+.athl-constant {
+  color: #f99b15;
+}
+.athl-constructor {
+  color: #ef6155;
+}
+.athl-emphasis {
+  color: #ef6155;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ef6155;
+  font-weight: 700;
+}
+.athl-function {
+  color: #06b6ef;
+}
+.athl-keyword {
+  color: #815ba4;
+}
+.athl-label {
+  color: #fec418;
+}
+.athl-link_text {
+  color: #ef6155;
+}
+.athl-link_uri {
+  color: #ef6155;
+}
+.athl-number {
+  color: #f99b15;
+}
+.athl-punctuation {
+  color: #a39e9b;
+}
+.athl-punctuation-bracket {
+  color: #a39e9b;
+}
+.athl-punctuation-delimiter {
+  color: #a39e9b;
+}
+.athl-punctuation-list_marker {
+  color: #a39e9b;
+}
+.athl-punctuation-special {
+  color: #a39e9b;
+}
+.athl-string {
+  color: #48b685;
+}
+.athl-string-escape {
+  color: #f99b15;
+}
+.athl-string-regex {
+  color: #48b685;
+}
+.athl-string-special {
+  color: #48b685;
+}
+.athl-string-special-symbol {
+  color: #48b685;
+}
+.athl-tag {
+  color: #ef6155;
+}
+.athl-text-literal {
+  color: #48b685;
+}
+.athl-title {
+  color: #fec418;
+}
+.athl-type {
+  color: #fec418;
+}
+.athl-variable {
+  color: #ef6155;
+}
+.athl-variable-special {
+  color: #ef6155;
+  font-style: italic;
+}

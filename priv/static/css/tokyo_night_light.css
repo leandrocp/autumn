@@ -1,0 +1,102 @@
+/* Tokyo Night Light - Tokyo Night: Zed Theme Importer */
+pre.athl {
+  background-color: #d5d6db; color: #343b58;
+}
+.athl-attribute {
+  color: #5a4a78;
+}
+.athl-boolean {
+  color: #965027;
+}
+.athl-comment {
+  color: #9699a3;
+}
+.athl-comment-doc {
+  color: #9699a3;
+}
+.athl-constant {
+  color: #965027;
+}
+.athl-constructor {
+  color: #8c4351;
+}
+.athl-emphasis {
+  color: #8c4351;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #8c4351;
+  font-weight: 700;
+}
+.athl-function {
+  color: #34548a;
+}
+.athl-keyword {
+  color: #5a4a78;
+}
+.athl-label {
+  color: #343b58;
+}
+.athl-link_text {
+  color: #33635c;
+}
+.athl-link_uri {
+  color: #33635c;
+}
+.athl-number {
+  color: #965027;
+}
+.athl-operator {
+  color: #4c505e;
+}
+.athl-preproc {
+  color: #33635c;
+}
+.athl-punctuation {
+  color: #4c505e;
+}
+.athl-punctuation-bracket {
+  color: #4c505e;
+}
+.athl-punctuation-delimiter {
+  color: #4c505e;
+}
+.athl-punctuation-list_marker {
+  color: #4c505e;
+}
+.athl-punctuation-special {
+  color: #4c505e;
+}
+.athl-string {
+  color: #485e30;
+}
+.athl-string-escape {
+  color: #5a4a78;
+}
+.athl-string-regex {
+  color: #485e30;
+}
+.athl-string-special {
+  color: #485e30;
+}
+.athl-string-special-symbol {
+  color: #485e30;
+}
+.athl-tag {
+  color: #8c4351;
+}
+.athl-text-literal {
+  color: #485e30;
+}
+.athl-title {
+  color: #965027;
+}
+.athl-type {
+  color: #166775;
+}
+.athl-variable {
+  color: #343b58;
+}
+.athl-variable-special {
+  color: #8c4351;
+}

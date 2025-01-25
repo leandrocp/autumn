@@ -1,0 +1,99 @@
+/* Base16 Hardcore - Chris Caller */
+pre.athl {
+  background-color: #212121; color: #cdcdcd;
+}
+.athl-attribute {
+  color: #66d9ef;
+}
+.athl-boolean {
+  color: #fd971f;
+}
+.athl-comment {
+  color: #4a4a4a;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #4a4a4a;
+  font-style: italic;
+}
+.athl-constant {
+  color: #fd971f;
+}
+.athl-constructor {
+  color: #f92672;
+}
+.athl-emphasis {
+  color: #f92672;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f92672;
+  font-weight: 700;
+}
+.athl-function {
+  color: #66d9ef;
+}
+.athl-keyword {
+  color: #9e6ffe;
+}
+.athl-label {
+  color: #e6db74;
+}
+.athl-link_text {
+  color: #f92672;
+}
+.athl-link_uri {
+  color: #f92672;
+}
+.athl-number {
+  color: #fd971f;
+}
+.athl-punctuation {
+  color: #cdcdcd;
+}
+.athl-punctuation-bracket {
+  color: #cdcdcd;
+}
+.athl-punctuation-delimiter {
+  color: #cdcdcd;
+}
+.athl-punctuation-list_marker {
+  color: #cdcdcd;
+}
+.athl-punctuation-special {
+  color: #cdcdcd;
+}
+.athl-string {
+  color: #a6e22e;
+}
+.athl-string-escape {
+  color: #fd971f;
+}
+.athl-string-regex {
+  color: #a6e22e;
+}
+.athl-string-special {
+  color: #a6e22e;
+}
+.athl-string-special-symbol {
+  color: #a6e22e;
+}
+.athl-tag {
+  color: #f92672;
+}
+.athl-text-literal {
+  color: #a6e22e;
+}
+.athl-title {
+  color: #e6db74;
+}
+.athl-type {
+  color: #e6db74;
+}
+.athl-variable {
+  color: #f92672;
+}
+.athl-variable-special {
+  color: #f92672;
+  font-style: italic;
+}

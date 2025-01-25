@@ -1,0 +1,99 @@
+/* Base16 Silk Light - Gabriel Fontes (https://github.com/Misterio77) */
+pre.athl {
+  background-color: #e9f1ef; color: #385156;
+}
+.athl-attribute {
+  color: #39aac9;
+}
+.athl-boolean {
+  color: #d27f46;
+}
+.athl-comment {
+  color: #5c787b;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #5c787b;
+  font-style: italic;
+}
+.athl-constant {
+  color: #d27f46;
+}
+.athl-constructor {
+  color: #cf432e;
+}
+.athl-emphasis {
+  color: #cf432e;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #cf432e;
+  font-weight: 700;
+}
+.athl-function {
+  color: #39aac9;
+}
+.athl-keyword {
+  color: #6e6582;
+}
+.athl-label {
+  color: #cfad25;
+}
+.athl-link_text {
+  color: #cf432e;
+}
+.athl-link_uri {
+  color: #cf432e;
+}
+.athl-number {
+  color: #d27f46;
+}
+.athl-punctuation {
+  color: #385156;
+}
+.athl-punctuation-bracket {
+  color: #385156;
+}
+.athl-punctuation-delimiter {
+  color: #385156;
+}
+.athl-punctuation-list_marker {
+  color: #385156;
+}
+.athl-punctuation-special {
+  color: #385156;
+}
+.athl-string {
+  color: #6ca38c;
+}
+.athl-string-escape {
+  color: #d27f46;
+}
+.athl-string-regex {
+  color: #6ca38c;
+}
+.athl-string-special {
+  color: #6ca38c;
+}
+.athl-string-special-symbol {
+  color: #6ca38c;
+}
+.athl-tag {
+  color: #cf432e;
+}
+.athl-text-literal {
+  color: #6ca38c;
+}
+.athl-title {
+  color: #cfad25;
+}
+.athl-type {
+  color: #cfad25;
+}
+.athl-variable {
+  color: #cf432e;
+}
+.athl-variable-special {
+  color: #cf432e;
+  font-style: italic;
+}

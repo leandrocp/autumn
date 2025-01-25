@@ -1,0 +1,99 @@
+/* Base16 Tokyo Night Dark - Michaël Ball */
+pre.athl {
+  background-color: #1a1b26; color: #a9b1d6;
+}
+.athl-attribute {
+  color: #2ac3de;
+}
+.athl-boolean {
+  color: #a9b1d6;
+}
+.athl-comment {
+  color: #444b6a;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #444b6a;
+  font-style: italic;
+}
+.athl-constant {
+  color: #a9b1d6;
+}
+.athl-constructor {
+  color: #c0caf5;
+}
+.athl-emphasis {
+  color: #c0caf5;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #c0caf5;
+  font-weight: 700;
+}
+.athl-function {
+  color: #2ac3de;
+}
+.athl-keyword {
+  color: #bb9af7;
+}
+.athl-label {
+  color: #0db9d7;
+}
+.athl-link_text {
+  color: #c0caf5;
+}
+.athl-link_uri {
+  color: #c0caf5;
+}
+.athl-number {
+  color: #a9b1d6;
+}
+.athl-punctuation {
+  color: #a9b1d6;
+}
+.athl-punctuation-bracket {
+  color: #a9b1d6;
+}
+.athl-punctuation-delimiter {
+  color: #a9b1d6;
+}
+.athl-punctuation-list_marker {
+  color: #a9b1d6;
+}
+.athl-punctuation-special {
+  color: #a9b1d6;
+}
+.athl-string {
+  color: #9ece6a;
+}
+.athl-string-escape {
+  color: #a9b1d6;
+}
+.athl-string-regex {
+  color: #9ece6a;
+}
+.athl-string-special {
+  color: #9ece6a;
+}
+.athl-string-special-symbol {
+  color: #9ece6a;
+}
+.athl-tag {
+  color: #c0caf5;
+}
+.athl-text-literal {
+  color: #9ece6a;
+}
+.athl-title {
+  color: #0db9d7;
+}
+.athl-type {
+  color: #0db9d7;
+}
+.athl-variable {
+  color: #c0caf5;
+}
+.athl-variable-special {
+  color: #c0caf5;
+  font-style: italic;
+}

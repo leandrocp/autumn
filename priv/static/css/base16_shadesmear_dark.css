@@ -1,0 +1,99 @@
+/* Base16 ShadeSmear Dark - Kyle Giammarco (http://kyle.giammar.co) */
+pre.athl {
+  background-color: #232323; color: #dbdbdb;
+}
+.athl-attribute {
+  color: #376388;
+}
+.athl-boolean {
+  color: #a64270;
+}
+.athl-comment {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.athl-constant {
+  color: #a64270;
+}
+.athl-constructor {
+  color: #cc5450;
+}
+.athl-emphasis {
+  color: #cc5450;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #cc5450;
+  font-weight: 700;
+}
+.athl-function {
+  color: #376388;
+}
+.athl-keyword {
+  color: #d7ab54;
+}
+.athl-label {
+  color: #307878;
+}
+.athl-link_text {
+  color: #cc5450;
+}
+.athl-link_uri {
+  color: #cc5450;
+}
+.athl-number {
+  color: #a64270;
+}
+.athl-punctuation {
+  color: #dbdbdb;
+}
+.athl-punctuation-bracket {
+  color: #dbdbdb;
+}
+.athl-punctuation-delimiter {
+  color: #dbdbdb;
+}
+.athl-punctuation-list_marker {
+  color: #dbdbdb;
+}
+.athl-punctuation-special {
+  color: #dbdbdb;
+}
+.athl-string {
+  color: #71983b;
+}
+.athl-string-escape {
+  color: #a64270;
+}
+.athl-string-regex {
+  color: #71983b;
+}
+.athl-string-special {
+  color: #71983b;
+}
+.athl-string-special-symbol {
+  color: #71983b;
+}
+.athl-tag {
+  color: #cc5450;
+}
+.athl-text-literal {
+  color: #71983b;
+}
+.athl-title {
+  color: #307878;
+}
+.athl-type {
+  color: #307878;
+}
+.athl-variable {
+  color: #cc5450;
+}
+.athl-variable-special {
+  color: #cc5450;
+  font-style: italic;
+}

@@ -1,0 +1,99 @@
+/* Base16 vice - Thomas Leon Highbaugh thighbaugh@zoho.com */
+pre.athl {
+  background-color: #17191e; color: #8b9cbe;
+}
+.athl-attribute {
+  color: #00eaff;
+}
+.athl-boolean {
+  color: #85ffe0;
+}
+.athl-comment {
+  color: #383a47;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #383a47;
+  font-style: italic;
+}
+.athl-constant {
+  color: #85ffe0;
+}
+.athl-constructor {
+  color: #ff29a8;
+}
+.athl-emphasis {
+  color: #ff29a8;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #ff29a8;
+  font-weight: 700;
+}
+.athl-function {
+  color: #00eaff;
+}
+.athl-keyword {
+  color: #00f6d9;
+}
+.athl-label {
+  color: #f0ffaa;
+}
+.athl-link_text {
+  color: #ff29a8;
+}
+.athl-link_uri {
+  color: #ff29a8;
+}
+.athl-number {
+  color: #85ffe0;
+}
+.athl-punctuation {
+  color: #8b9cbe;
+}
+.athl-punctuation-bracket {
+  color: #8b9cbe;
+}
+.athl-punctuation-delimiter {
+  color: #8b9cbe;
+}
+.athl-punctuation-list_marker {
+  color: #8b9cbe;
+}
+.athl-punctuation-special {
+  color: #8b9cbe;
+}
+.athl-string {
+  color: #0badff;
+}
+.athl-string-escape {
+  color: #85ffe0;
+}
+.athl-string-regex {
+  color: #0badff;
+}
+.athl-string-special {
+  color: #0badff;
+}
+.athl-string-special-symbol {
+  color: #0badff;
+}
+.athl-tag {
+  color: #ff29a8;
+}
+.athl-text-literal {
+  color: #0badff;
+}
+.athl-title {
+  color: #f0ffaa;
+}
+.athl-type {
+  color: #f0ffaa;
+}
+.athl-variable {
+  color: #ff29a8;
+}
+.athl-variable-special {
+  color: #ff29a8;
+  font-style: italic;
+}

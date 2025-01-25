@@ -1,0 +1,99 @@
+/* Base16 Porple - Niek den Breeje (https://github.com/AuditeMarlow) */
+pre.athl {
+  background-color: #292c36; color: #d8d8d8;
+}
+.athl-attribute {
+  color: #8485ce;
+}
+.athl-boolean {
+  color: #d28e5d;
+}
+.athl-comment {
+  color: #65568a;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #65568a;
+  font-style: italic;
+}
+.athl-constant {
+  color: #d28e5d;
+}
+.athl-constructor {
+  color: #f84547;
+}
+.athl-emphasis {
+  color: #f84547;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #f84547;
+  font-weight: 700;
+}
+.athl-function {
+  color: #8485ce;
+}
+.athl-keyword {
+  color: #b74989;
+}
+.athl-label {
+  color: #efa16b;
+}
+.athl-link_text {
+  color: #f84547;
+}
+.athl-link_uri {
+  color: #f84547;
+}
+.athl-number {
+  color: #d28e5d;
+}
+.athl-punctuation {
+  color: #d8d8d8;
+}
+.athl-punctuation-bracket {
+  color: #d8d8d8;
+}
+.athl-punctuation-delimiter {
+  color: #d8d8d8;
+}
+.athl-punctuation-list_marker {
+  color: #d8d8d8;
+}
+.athl-punctuation-special {
+  color: #d8d8d8;
+}
+.athl-string {
+  color: #95c76f;
+}
+.athl-string-escape {
+  color: #d28e5d;
+}
+.athl-string-regex {
+  color: #95c76f;
+}
+.athl-string-special {
+  color: #95c76f;
+}
+.athl-string-special-symbol {
+  color: #95c76f;
+}
+.athl-tag {
+  color: #f84547;
+}
+.athl-text-literal {
+  color: #95c76f;
+}
+.athl-title {
+  color: #efa16b;
+}
+.athl-type {
+  color: #efa16b;
+}
+.athl-variable {
+  color: #f84547;
+}
+.athl-variable-special {
+  color: #f84547;
+  font-style: italic;
+}

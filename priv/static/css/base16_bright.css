@@ -1,0 +1,99 @@
+/* Base16 Bright - Chris Kempson (http://chriskempson.com) */
+pre.athl {
+  background-color: #000000; color: #e0e0e0;
+}
+.athl-attribute {
+  color: #6fb3d2;
+}
+.athl-boolean {
+  color: #fc6d24;
+}
+.athl-comment {
+  color: #b0b0b0;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #b0b0b0;
+  font-style: italic;
+}
+.athl-constant {
+  color: #fc6d24;
+}
+.athl-constructor {
+  color: #fb0120;
+}
+.athl-emphasis {
+  color: #fb0120;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #fb0120;
+  font-weight: 700;
+}
+.athl-function {
+  color: #6fb3d2;
+}
+.athl-keyword {
+  color: #d381c3;
+}
+.athl-label {
+  color: #fda331;
+}
+.athl-link_text {
+  color: #fb0120;
+}
+.athl-link_uri {
+  color: #fb0120;
+}
+.athl-number {
+  color: #fc6d24;
+}
+.athl-punctuation {
+  color: #e0e0e0;
+}
+.athl-punctuation-bracket {
+  color: #e0e0e0;
+}
+.athl-punctuation-delimiter {
+  color: #e0e0e0;
+}
+.athl-punctuation-list_marker {
+  color: #e0e0e0;
+}
+.athl-punctuation-special {
+  color: #e0e0e0;
+}
+.athl-string {
+  color: #a1c659;
+}
+.athl-string-escape {
+  color: #fc6d24;
+}
+.athl-string-regex {
+  color: #a1c659;
+}
+.athl-string-special {
+  color: #a1c659;
+}
+.athl-string-special-symbol {
+  color: #a1c659;
+}
+.athl-tag {
+  color: #fb0120;
+}
+.athl-text-literal {
+  color: #a1c659;
+}
+.athl-title {
+  color: #fda331;
+}
+.athl-type {
+  color: #fda331;
+}
+.athl-variable {
+  color: #fb0120;
+}
+.athl-variable-special {
+  color: #fb0120;
+  font-style: italic;
+}

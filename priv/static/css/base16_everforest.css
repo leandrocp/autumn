@@ -1,0 +1,99 @@
+/* Base16 Everforest - Sainnhe Park (https://github.com/sainnhe) */
+pre.athl {
+  background-color: #2f383e; color: #d3c6aa;
+}
+.athl-attribute {
+  color: #a7c080;
+}
+.athl-boolean {
+  color: #d699b6;
+}
+.athl-comment {
+  color: #859289;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #859289;
+  font-style: italic;
+}
+.athl-constant {
+  color: #d699b6;
+}
+.athl-constructor {
+  color: #7fbbb3;
+}
+.athl-emphasis {
+  color: #7fbbb3;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #7fbbb3;
+  font-weight: 700;
+}
+.athl-function {
+  color: #a7c080;
+}
+.athl-keyword {
+  color: #e67e80;
+}
+.athl-label {
+  color: #dbbc7f;
+}
+.athl-link_text {
+  color: #7fbbb3;
+}
+.athl-link_uri {
+  color: #7fbbb3;
+}
+.athl-number {
+  color: #d699b6;
+}
+.athl-punctuation {
+  color: #d3c6aa;
+}
+.athl-punctuation-bracket {
+  color: #d3c6aa;
+}
+.athl-punctuation-delimiter {
+  color: #d3c6aa;
+}
+.athl-punctuation-list_marker {
+  color: #d3c6aa;
+}
+.athl-punctuation-special {
+  color: #d3c6aa;
+}
+.athl-string {
+  color: #83c092;
+}
+.athl-string-escape {
+  color: #d699b6;
+}
+.athl-string-regex {
+  color: #83c092;
+}
+.athl-string-special {
+  color: #83c092;
+}
+.athl-string-special-symbol {
+  color: #83c092;
+}
+.athl-tag {
+  color: #7fbbb3;
+}
+.athl-text-literal {
+  color: #83c092;
+}
+.athl-title {
+  color: #dbbc7f;
+}
+.athl-type {
+  color: #dbbc7f;
+}
+.athl-variable {
+  color: #7fbbb3;
+}
+.athl-variable-special {
+  color: #7fbbb3;
+  font-style: italic;
+}

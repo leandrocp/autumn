@@ -1,0 +1,99 @@
+/* Base16 Circus - Stephan Boyer (https://github.com/stepchowfun) and Esther Wang (https://github.com/ewang12) */
+pre.athl {
+  background-color: #191919; color: #a7a7a7;
+}
+.athl-attribute {
+  color: #639ee4;
+}
+.athl-boolean {
+  color: #4bb1a7;
+}
+.athl-comment {
+  color: #5f5a60;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #5f5a60;
+  font-style: italic;
+}
+.athl-constant {
+  color: #4bb1a7;
+}
+.athl-constructor {
+  color: #dc657d;
+}
+.athl-emphasis {
+  color: #dc657d;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #dc657d;
+  font-weight: 700;
+}
+.athl-function {
+  color: #639ee4;
+}
+.athl-keyword {
+  color: #b888e2;
+}
+.athl-label {
+  color: #c3ba63;
+}
+.athl-link_text {
+  color: #dc657d;
+}
+.athl-link_uri {
+  color: #dc657d;
+}
+.athl-number {
+  color: #4bb1a7;
+}
+.athl-punctuation {
+  color: #a7a7a7;
+}
+.athl-punctuation-bracket {
+  color: #a7a7a7;
+}
+.athl-punctuation-delimiter {
+  color: #a7a7a7;
+}
+.athl-punctuation-list_marker {
+  color: #a7a7a7;
+}
+.athl-punctuation-special {
+  color: #a7a7a7;
+}
+.athl-string {
+  color: #84b97c;
+}
+.athl-string-escape {
+  color: #4bb1a7;
+}
+.athl-string-regex {
+  color: #84b97c;
+}
+.athl-string-special {
+  color: #84b97c;
+}
+.athl-string-special-symbol {
+  color: #84b97c;
+}
+.athl-tag {
+  color: #dc657d;
+}
+.athl-text-literal {
+  color: #84b97c;
+}
+.athl-title {
+  color: #c3ba63;
+}
+.athl-type {
+  color: #c3ba63;
+}
+.athl-variable {
+  color: #dc657d;
+}
+.athl-variable-special {
+  color: #dc657d;
+  font-style: italic;
+}

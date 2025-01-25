@@ -1,0 +1,99 @@
+/* Base16 dirtysea - Kahlil (Kal) Hodgson */
+pre.athl {
+  background-color: #e0e0e0; color: #000000;
+}
+.athl-attribute {
+  color: #007300;
+}
+.athl-boolean {
+  color: #006565;
+}
+.athl-comment {
+  color: #707070;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #707070;
+  font-style: italic;
+}
+.athl-constant {
+  color: #006565;
+}
+.athl-constructor {
+  color: #840000;
+}
+.athl-emphasis {
+  color: #840000;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #840000;
+  font-weight: 700;
+}
+.athl-function {
+  color: #007300;
+}
+.athl-keyword {
+  color: #000090;
+}
+.athl-label {
+  color: #755b00;
+}
+.athl-link_text {
+  color: #840000;
+}
+.athl-link_uri {
+  color: #840000;
+}
+.athl-number {
+  color: #006565;
+}
+.athl-punctuation {
+  color: #000000;
+}
+.athl-punctuation-bracket {
+  color: #000000;
+}
+.athl-punctuation-delimiter {
+  color: #000000;
+}
+.athl-punctuation-list_marker {
+  color: #000000;
+}
+.athl-punctuation-special {
+  color: #000000;
+}
+.athl-string {
+  color: #730073;
+}
+.athl-string-escape {
+  color: #006565;
+}
+.athl-string-regex {
+  color: #730073;
+}
+.athl-string-special {
+  color: #730073;
+}
+.athl-string-special-symbol {
+  color: #730073;
+}
+.athl-tag {
+  color: #840000;
+}
+.athl-text-literal {
+  color: #730073;
+}
+.athl-title {
+  color: #755b00;
+}
+.athl-type {
+  color: #755b00;
+}
+.athl-variable {
+  color: #840000;
+}
+.athl-variable-special {
+  color: #840000;
+  font-style: italic;
+}

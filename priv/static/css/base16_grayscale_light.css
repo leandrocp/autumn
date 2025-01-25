@@ -1,0 +1,99 @@
+/* Base16 Grayscale Light - Alexandre Gavioli (https://github.com/Alexx2/) */
+pre.athl {
+  background-color: #f7f7f7; color: #464646;
+}
+.athl-attribute {
+  color: #686868;
+}
+.athl-boolean {
+  color: #999999;
+}
+.athl-comment {
+  color: #ababab;
+  font-style: italic;
+}
+.athl-comment-doc {
+  color: #ababab;
+  font-style: italic;
+}
+.athl-constant {
+  color: #999999;
+}
+.athl-constructor {
+  color: #7c7c7c;
+}
+.athl-emphasis {
+  color: #7c7c7c;
+  font-style: italic;
+}
+.athl-emphasis-strong {
+  color: #7c7c7c;
+  font-weight: 700;
+}
+.athl-function {
+  color: #686868;
+}
+.athl-keyword {
+  color: #747474;
+}
+.athl-label {
+  color: #a0a0a0;
+}
+.athl-link_text {
+  color: #7c7c7c;
+}
+.athl-link_uri {
+  color: #7c7c7c;
+}
+.athl-number {
+  color: #999999;
+}
+.athl-punctuation {
+  color: #464646;
+}
+.athl-punctuation-bracket {
+  color: #464646;
+}
+.athl-punctuation-delimiter {
+  color: #464646;
+}
+.athl-punctuation-list_marker {
+  color: #464646;
+}
+.athl-punctuation-special {
+  color: #464646;
+}
+.athl-string {
+  color: #8e8e8e;
+}
+.athl-string-escape {
+  color: #999999;
+}
+.athl-string-regex {
+  color: #8e8e8e;
+}
+.athl-string-special {
+  color: #8e8e8e;
+}
+.athl-string-special-symbol {
+  color: #8e8e8e;
+}
+.athl-tag {
+  color: #7c7c7c;
+}
+.athl-text-literal {
+  color: #8e8e8e;
+}
+.athl-title {
+  color: #a0a0a0;
+}
+.athl-type {
+  color: #a0a0a0;
+}
+.athl-variable {
+  color: #7c7c7c;
+}
+.athl-variable-special {
+  color: #7c7c7c;
+  font-style: italic;
+}
