@@ -28,22 +28,23 @@ defmodule Autumn do
       {"Elixir", ["*.ex", "*.exs"]}
 
   """
-  @spec available_languages() :: [String.t()]
+  @spec available_languages() :: %{
+          (id :: String.t()) => {name :: String.t(), [extension :: String.t()]}
+        }
   def available_languages, do: Autumn.Native.available_languages()
 
   @doc """
   Returns the list of all available themes.
 
+  Use `Theme.fetch/1` to fetch the theme struct.
+
   ## Example
 
-      iex> [{name, fun} | _] = Autumn.available_themes()
-      iex> name
-      "0x96f Theme"
-      iex> fun.().name
-      "0x96f Theme"
+      iex> Autumn.available_themes()
+      ["onedark_darker", "edge_aura", "nightfox", ...]
 
   """
-  @spec available_themes() :: [{name :: String.t(), function :: function()}]
+  @spec available_themes() :: [name :: String.t()]
   def available_themes, do: Autumn.Native.available_themes()
 
   @deprecated "Use highlight/2 instead"

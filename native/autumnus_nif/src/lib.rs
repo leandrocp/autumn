@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use autumnus::{languages, themes};
-use rustler::{Atom, Error, NifStruct};
+use rustler::{Atom, Error, NifResult, NifStruct};
 
 rustler::atoms! {
     ok,
@@ -73,9 +73,16 @@ fn available_languages() -> HashMap<String, (String, Vec<String>)> {
 }
 
 #[rustler::nif]
-fn available_themes() -> Vec<ExTheme> {
+fn available_themes() -> Vec<String> {
     themes::available_themes()
         .into_iter()
-        .map(ExTheme::from)
+        .map(|theme| theme.name.to_owned())
         .collect()
+}
+
+#[rustler::nif]
+fn fetch_theme(name: &str) -> NifResult<(Atom, ExTheme)> {
+    themes::get(name)
+        .map(|theme| (ok(), ExTheme::from(theme)))
+        .map_err(|e| Error::Term(Box::new(e.to_string())))
 }

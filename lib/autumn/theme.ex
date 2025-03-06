@@ -14,6 +14,10 @@ defmodule Autumn.Theme do
         }
 
   defstruct name: nil, appearance: nil, highlights: %{}
+
+  def fetch(name) do
+    Autumn.Native.fetch_theme(name)
+  end
 end
 
 defmodule Autumn.Theme.Style do
