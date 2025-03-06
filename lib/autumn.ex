@@ -19,6 +19,33 @@ defmodule Autumn do
   """
   @type lang_filename_ext :: String.t() | nil
 
+  @doc """
+  Returns the list of all available languages.
+
+  ## Example
+
+      iex> Autumn.available_languages()["elixir"]
+      {"Elixir", ["*.ex", "*.exs"]}
+
+  """
+  @spec available_languages() :: [String.t()]
+  def available_languages, do: Autumn.Native.available_languages()
+
+  @doc """
+  Returns the list of all available themes.
+
+  ## Example
+
+      iex> [{name, fun} | _] = Autumn.available_themes()
+      iex> name
+      "0x96f Theme"
+      iex> fun.().name
+      "0x96f Theme"
+
+  """
+  @spec available_themes() :: [{name :: String.t(), function :: function()}]
+  def available_themes, do: Autumn.Native.available_themes()
+
   @deprecated "Use highlight/2 instead"
   def highlight(lang_filename_ext, source_code, opts) do
     IO.warn("""

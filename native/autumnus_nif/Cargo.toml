@@ -1,0 +1,19 @@
+[package]
+name = "autumnus_nif"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "autumnus_nif"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+rustler = "0.36"
+# autumnus = "0.1.4"
+autumnus = { path = "../../../autumnus/" }
+
+[features]
+default = ["nif_version_2_15"]
+# Feature necessary for Rustler Precompiled.
+nif_version_2_15 = ["rustler/nif_version_2_15"]

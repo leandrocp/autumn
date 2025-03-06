@@ -1,3 +1,0 @@
-[workspace]
-members = ["native/inkjet_nif", "native/autumn"]
-resolver = "2"

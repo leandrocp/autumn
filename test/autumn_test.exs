@@ -22,6 +22,16 @@ defmodule AutumnTest do
     end
   end
 
+  test "available_languages" do
+    available_languages = Autumn.available_languages()
+    assert available_languages |> Map.keys() |> length() == 66
+    assert available_languages["elixir"] == {"Elixir", ["*.ex", "*.exs"]}
+  end
+
+  test "available_themes" do
+    assert Autumn.available_themes() |> length() == 104
+  end
+
   describe "highlight" do
     test "elixir with default opts" do
       assert_output(
