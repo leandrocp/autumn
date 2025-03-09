@@ -8,6 +8,7 @@ defmodule Autumn do
 
   require Logger
   alias Autumn.Options
+  alias Autumn.Theme
 
   @doc """
   Returns the list of all available languages.
@@ -35,7 +36,7 @@ defmodule Autumn do
   @doc """
   Returns the list of all available themes.
 
-  Use `Autumn.Theme.fetch/1` to fetch the actual theme struct.
+  Use `Autumn.Theme.get/1` to get the actual theme struct.
 
   ## Example
 
@@ -130,21 +131,30 @@ defmodule Autumn do
     theme = Keyword.get(opts, :theme) || "onedark"
 
     theme =
-      if String.contains?(theme, " ") do
-        Logger.warning("""
-        Helix themes are deprecated, use Neovim theme names instead.
+      cond do
+        match?(%Theme{}, theme) ->
+          theme
 
-        See `Autumn.available_themes/0` for a list of available themes.
-        """)
+        String.contains?(theme, " ") ->
+          Logger.warning("""
+          Helix themes are deprecated, use Neovim theme names instead.
 
-        theme
-        |> String.downcase()
-        |> String.replace(" ", "_")
-      else
-        theme
+          See `Autumn.available_themes/0` for a list of available themes.
+          """)
+
+          theme
+          |> String.downcase()
+          |> String.replace(" ", "_")
+          |> Theme.get()
+
+        is_binary(theme) ->
+          theme
+          |> String.downcase()
+          |> Theme.get()
+
+        :else ->
+          nil
       end
-
-    # FIXME: highlight with %Theme{}
 
     # backward compatibility
     pre_class =
@@ -226,6 +236,7 @@ defmodule Autumn do
       end
 
     options = %Options{lang_or_file: language, theme: theme, formatter: formatter}
+    # dbg(options)
 
     case Autumn.Native.highlight(source, options) do
       {:error, error} -> raise Autumn.HighlightError, error: error
