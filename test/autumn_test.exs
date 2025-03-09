@@ -1,7 +1,6 @@
 defmodule Autumn.AutumnTest do
   use ExUnit.Case, async: true
-  # FIXME
-  # doctest Autumn
+  import ExUnit.CaptureIO
 
   defp assert_output(source_code, expected, opts) do
     result = Autumn.highlight!(source_code, opts)
@@ -9,27 +8,43 @@ defmodule Autumn.AutumnTest do
     assert String.trim(result) == String.trim(expected)
   end
 
+  defp assert_contains(source_code, expected, opts) do
+    result = Autumn.highlight!(source_code, opts)
+    result = String.trim(result)
+    assert String.contains?(result, expected)
+  end
+
   describe "deprecated still works" do
     test "highlight" do
-      assert {:ok, hl} = Autumn.highlight("elixir", ":test")
-      assert hl =~ "background-color: #282c33ff; color: #dce0e5ff"
+      capture_io(:stderr, fn ->
+        assert {:ok, hl} = Autumn.highlight("elixir", ":test")
 
-      assert {:ok, hl} = Autumn.highlight("elixir", ":test", theme: "dracula")
-      assert hl =~ "background-color: #282a36ff; color: #f8f8f2ff;"
+        assert hl =~
+                 ~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir"|
+
+        assert {:ok, hl} = Autumn.highlight("elixir", ":test", theme: "dracula")
+
+        assert hl =~
+                 ~s|<pre class="athl" style="color: #f8f8f2; background-color: #282a36;"><code class="language-elixir"|
+      end)
     end
 
     test "highlight!" do
-      assert Autumn.highlight!("elixir", ":test") =~
-               "background-color: #282c33ff; color: #dce0e5ff"
+      capture_io(:stderr, fn ->
+        assert Autumn.highlight!("elixir", ":test") =~
+                 ~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir"|
 
-      assert Autumn.highlight!("elixir", ":test", theme: "dracula") =~
-               "background-color: #282a36ff; color: #f8f8f2ff;"
+        assert Autumn.highlight!("elixir", ":test", theme: "dracula") =~
+                 ~s|<pre class="athl" style="color: #f8f8f2; background-color: #282a36;"><code class="language-elixir"|
+      end)
     end
 
-    test "inline_mode" do
-      assert {:ok,
-              "<pre class=\"athl\" style=\"background-color: #282c33ff; color: #dce0e5ff;\"><code class=\"language-elixir\" translate=\"no\"><span style=\"color: #bf956aff;\">:test</span></code></pre>"} =
-               Autumn.highlight(":test", language: "elixir", inline_style: true)
+    test "inline_style option" do
+      capture_io(:stderr, fn ->
+        assert {:ok,
+                "<pre class=\"athl\" style=\"color: #abb2bf; background-color: #282c34;\"><code class=\"language-elixir\" translate=\"no\" tabindex=\"0\"><span class=\"line\" data-line=\"1\"><span style=\"color: #e06c75;\">:test</span>\n</span></code></pre>"} =
+                 Autumn.highlight(":test", language: "elixir", inline_style: true)
+      end)
     end
   end
 
@@ -40,7 +55,7 @@ defmodule Autumn.AutumnTest do
   end
 
   test "available_themes" do
-    assert Autumn.available_themes() |> length() == 104
+    assert Autumn.available_themes() |> length() == 102
   end
 
   describe "formatter: inline" do
@@ -48,9 +63,10 @@ defmodule Autumn.AutumnTest do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
-        <pre class="athl" style="background-color: #282c33ff; color: #dce0e5ff;"><code class="language-elixir" translate="no"><span style="color: #b477cfff;">defmodule</span> <span style="color: #6eb4bfff;">Test</span> <span style="color: #b477cfff;">do</span>
-          <span style="color: #6eb4bfff;">@</span><span style="color: #73ade9ff;">lang</span> <span style="color: #bf956aff;">:elixir</span>
-        <span style="color: #b477cfff;">end</span></code></pre>
+        <pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #c678dd;">defmodule</span> <span style="color: #e5c07b;">Test</span> <span style="color: #c678dd;">do</span>
+        </span><span class="line" data-line="2">  <span style="color: #56b6c2;"><span style="color: #d19a66;">@<span style="color: #61afef;"><span style="color: #d19a66;">lang <span style="color: #e06c75;">:elixir</span></span></span></span></span>
+        </span><span class="line" data-line="3"><span style="color: #c678dd;">end</span>
+        </span></code></pre>
         """,
         language: "elixir"
       )
@@ -60,12 +76,13 @@ defmodule Autumn.AutumnTest do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
-        <pre class="athl" style="background-color: #282a36ff; color: #f8f8f2ff;"><code class="language-elixir" translate="no"><span style="color: #ff79c6ff;">defmodule</span> <span style="color: #8be9fdff;">Test</span> <span style="color: #ff79c6ff;">do</span>
-          <span style="color: #ff79c6ff;">@</span><span style="color: #50fa7bff;">lang</span> <span style="color: #bd93f9ff;">:elixir</span>
-        <span style="color: #ff79c6ff;">end</span></code></pre>
+        <pre class="athl" style="color: #f8f8f2; background-color: #282a36;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #8be9fd;">defmodule</span> <span style="color: #ffb86c;">Test</span> <span style="color: #ff79c6;">do</span>
+        </span><span class="line" data-line="2">  <span style="color: #ff79c6;"><span style="color: #bd93f9;">@<span style="color: #50fa7b;"><span style="color: #bd93f9;">lang <span style="color: #bd93f9;">:elixir</span></span></span></span></span>
+        </span><span class="line" data-line="3"><span style="color: #ff79c6;">end</span>
+        </span></code></pre>
         """,
         language: "elixir",
-        theme: "Dracula"
+        theme: "dracula"
       )
     end
 
@@ -73,49 +90,36 @@ defmodule Autumn.AutumnTest do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
-        <pre class="athl" style="background-color: #282a36ff; color: #f8f8f2ff;"><code class="language-elixir" translate="no"><span style="color: #ff79c6ff;">defmodule</span> <span style="color: #8be9fdff;">Test</span> <span style="color: #ff79c6ff;">do</span>
-          <span style="color: #ff79c6ff;">@</span><span style="color: #50fa7bff;">lang</span> <span style="color: #bd93f9ff;">:elixir</span>
-        <span style="color: #ff79c6ff;">end</span></code></pre>
+        <pre class="athl" style="color: #f8f8f2; background-color: #282a36;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #8be9fd;">defmodule</span> <span style="color: #ffb86c;">Test</span> <span style="color: #ff79c6;">do</span>
+        </span><span class="line" data-line="2">  <span style="color: #ff79c6;"><span style="color: #bd93f9;">@<span style="color: #50fa7b;"><span style="color: #bd93f9;">lang <span style="color: #bd93f9;">:elixir</span></span></span></span></span>
+        </span><span class="line" data-line="3"><span style="color: #ff79c6;">end</span>
+        </span></code></pre>
         """,
         language: "elixir",
-        theme: Autumn.Theme.fetch("dracula")
+        theme: Autumn.Theme.get("dracula")
       )
     end
 
     test "with pre_class" do
-      assert_output(
+      assert_contains(
         "defmodule Test do\n  @lang :elixir\nend",
-        ~s"""
-        <pre class="athl test-pre-class" style="background-color: #282c33ff; color: #dce0e5ff;"><code class="language-elixir" translate="no"><span style="color: #b477cfff;">defmodule</span> <span style="color: #6eb4bfff;">Test</span> <span style="color: #b477cfff;">do</span>
-          <span style="color: #6eb4bfff;">@</span><span style="color: #73ade9ff;">lang</span> <span style="color: #bf956aff;">:elixir</span>
-        <span style="color: #b477cfff;">end</span></code></pre>
-        """,
+        ~s|<pre class="athl test-pre-class"|,
         language: "elixir",
-        pre_class: "test-pre-class"
+        formatter: {:html_inline, pre_class: "test-pre-class"}
       )
     end
 
-    @tag :skip
-    test "with line number" do
+    test "with include_highlights" do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
-        TODO
-        """,
-        language: "elixir"
-      )
-    end
-
-    test "enable debug" do
-      assert_output(
-        "defmodule Test do\n  @lang :elixir\nend",
-        ~s"""
-        <pre class="athl" style="background-color: #282c33ff; color: #dce0e5ff;"><code class="language-elixir" translate="no"><span data-athl-hl="keyword" style="color: #b477cfff;">defmodule</span> <span data-athl-hl="type" style="color: #6eb4bfff;">Test</span> <span data-athl-hl="keyword" style="color: #b477cfff;">do</span>
-          <span data-athl-hl="operator" style="color: #6eb4bfff;">@</span><span data-athl-hl="function" style="color: #73ade9ff;">lang</span> <span data-athl-hl="string.special.symbol" style="color: #bf956aff;">:elixir</span>
-        <span data-athl-hl="keyword" style="color: #b477cfff;">end</span></code></pre>
+        <pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span  data-highlight="keyword.function" style="color: #c678dd;">defmodule</span> <span  data-highlight="module" style="color: #e5c07b;">Test</span> <span  data-highlight="keyword" style="color: #c678dd;">do</span>
+        </span><span class="line" data-line="2">  <span  data-highlight="operator" style="color: #56b6c2;"><span  data-highlight="constant" style="color: #d19a66;">@<span  data-highlight="function.call" style="color: #61afef;"><span  data-highlight="constant" style="color: #d19a66;">lang <span  data-highlight="string.special.symbol" style="color: #e06c75;">:elixir</span></span></span></span></span>
+        </span><span class="line" data-line="3"><span  data-highlight="keyword" style="color: #c678dd;">end</span>
+        </span></code></pre>
         """,
         language: "elixir",
-        debug: true
+        formatter: {:html_inline, include_highlights: true}
       )
     end
   end
@@ -125,9 +129,10 @@ defmodule Autumn.AutumnTest do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
-        <pre class="athl"><code class="language-elixir" translate="no"><span class="athl-keyword">defmodule</span> <span class="athl-type">Test</span> <span class="athl-keyword">do</span>
-          <span class="athl-operator">@</span><span class="athl-function">lang</span> <span class="athl-string athl-string-special athl-string-special-symbol">:elixir</span>
-        <span class="athl-keyword">end</span></code></pre>
+        <pre class="athl"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span class="keyword-function">defmodule</span> <span class="module">Test</span> <span class="keyword">do</span>
+        </span><span class="line" data-line="2">  <span class="operator"><span class="constant">@<span class="function-call"><span class="constant">lang <span class="string-special-symbol">:elixir</span></span></span></span></span>
+        </span><span class="line" data-line="3"><span class="keyword">end</span>
+        </span></code></pre>
         """,
         language: "elixir",
         formatter: :html_linked
@@ -139,29 +144,10 @@ defmodule Autumn.AutumnTest do
     test "with default opts" do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
-        "\e[0m\e[38;2;180;119;207mdefmodule\e[0m \e[0m\e[38;2;110;180;191mTest\e[0m \e[0m\e[38;2;180;119;207mdo\e[0m\n  \e[0m\e[38;2;110;180;191m@\e[0m\e[0m\e[38;2;115;173;233mlang\e[0m \e[0m\e[38;2;191;149;106m:elixir\e[0m\n\e[0m\e[38;2;180;119;207mend\e[0m",
+        "\e[0m\e[38;2;198;120;221mdefmodule\e[0m \e[0m\e[38;2;229;192;123mTest\e[0m \e[0m\e[38;2;198;120;221mdo\e[0m\n  \e[0m\e[38;2;86;182;194m\e[0m\e[38;2;209;154;102m@\e[0m\e[38;2;97;175;239m\e[0m\e[38;2;209;154;102mlang \e[0m\e[38;2;224;108;117m:elixir\e[0m\e[0m\e[0m\e[0m\e[0m\n\e[0m\e[38;2;198;120;221mend\e[0m",
         language: "elixir",
         formatter: :terminal
       )
-    end
-  end
-
-  describe "languages" do
-    test "by name" do
-      assert Autumn.language("elixir") == "elixir"
-      assert Autumn.language("Elixir") == "elixir"
-      assert Autumn.language("ELIXIR") == "elixir"
-    end
-
-    test "by extension" do
-      assert Autumn.language("ex") == "elixir"
-      assert Autumn.language(".ex") == "elixir"
-    end
-
-    test "by file name" do
-      assert Autumn.language("file.rb") == "ruby"
-      assert Autumn.language("/path/to/file.rb") == "ruby"
-      assert Autumn.language("../file.rb") == "ruby"
     end
   end
 end

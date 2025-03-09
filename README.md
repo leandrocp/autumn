@@ -10,6 +10,10 @@
   Syntax highlighter powered by tree-sitter and Neovim themes.
 </p>
 
+<p align="center">
+  <a href="https://autumnus.dev">https://autumnus.dev</a>
+</p>
+
 <div align="center">
   <a href="https://hex.pm/packages/autumn">
     <img alt="Hex Version" src="https://img.shields.io/hexpm/v/autumn">
@@ -22,10 +26,6 @@
   <a href="https://opensource.org/licenses/MIT">
     <img alt="MIT" src="https://img.shields.io/hexpm/l/autumn">
   </a>
-</div>
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/sample.png" alt="Sample">
 </div>
 
 ## Features
@@ -45,25 +45,33 @@ end
 
 ## Usage
 
-_Inline styles with default "One Dark" theme:_
+_Inline styles with default `"onedark"` theme:_
 
 ```elixir
 iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir")
-~s|<pre class=\"athl\" style=\"background-color: #282c33ff; color: #dce0e5ff;\"><code class=\"language-elixir\" translate=\"no\"><span style=\"color: #6eb4bfff;\">Atom</span><span style=\"color: #6eb4bfff;\">.</span><span style=\"color: #73ade9ff;\">to_string</span><span style=\"color: #b2b9c6ff;\">(</span><span style=\"color: #bf956aff;\">:elixir</span><span style=\"color: #b2b9c6ff;\">)</span></code></pre>|
+~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
+</span></code></pre>|
 ```
 
 _Inline styles with custom theme:_
 
 ```elixir
-iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: Autumn.Themes.github_light())
-~s|<pre class=\"athl\" style=\"background-color: #ffffffff; color: #1f2328ff;\"><code class=\"language-javascript\" translate=\"no\"><span style=\"color: #8250dfff;\">setTimeout</span><span style=\"color: #1f2328ff;\">(</span><span style=\"color: #1f2328ff;\">fun</span><span style=\"color: #1f2328ff;\">,</span> <span style=\"color: #0550aeff;\">5000</span><span style=\"color: #1f2328ff;\">)</span><span style=\"color: #1f2328ff;\">;</span></code></pre>|
+iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: "github_light")
+~s|<pre class="athl" style="color: #1f2328; background-color: #ffffff;"><code class="language-javascript" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #6639ba;">setTimeout</span><span style="color: #1f2328;">(</span><span style="color: #1f2328;">fun</span><span style="color: #1f2328;">,</span> <span style="color: #0550ae;">5000</span><span style="color: #1f2328;">)</span><span style="color: #1f2328;">;</span>
+</span></code></pre>|
 ```
 
 _Linked styles:_
 
 ```elixir
 iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", formatter: :html_linked)
-~s|<pre class=\"athl\"><code class=\"language-javascript\" translate=\"no\"><span class=\"athl-function\">setTimeout</span><span class=\"athl-punctuation athl-punctuation-bracket\">(</span><span class=\"athl-variable\">fun</span><span class=\"athl-punctuation athl-punctuation-delimiter\">,</span> <span class=\"athl-number\">5000</span><span class=\"athl-punctuation athl-punctuation-bracket\">)</span><span class=\"athl-punctuation athl-punctuation-delimiter\">;</span></code></pre>|
+~s|<pre class="athl"><code class="language-javascript" translate="no" tabindex="0"><span class="line" data-line="1"><span class="function-call">setTimeout</span><span class="punctuation-bracket">(</span><span class="variable">fun</span><span class="punctuation-delimiter">,</span> <span class="number">5000</span><span class="punctuation-bracket">)</span><span class="punctuation-delimiter">;</span>
+</span></code></pre>|
+```
+
+_Terminal_:
+```
+"\e[0m\e[38;2;97;175;239msetTimeout\e[0m\e[0m\e[38;2;198;120;221m(\e[0m\e[0m\e[38;2;224;108;117mfun\e[0m\e[0m\e[38;2;171;178;191m,\e[0m \e[0m\e[38;2;209;154;102m5000\e[0m\e[0m\e[38;2;198;120;221m)\e[0m\e[0m\e[38;2;171;178;191m;\e[0m"
 ```
 
 ## Formatters

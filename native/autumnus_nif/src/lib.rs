@@ -95,12 +95,10 @@ pub enum ExFormatterOption {
     HtmlInline {
         pre_class: Option<String>,
         italic: bool,
-        include_highlight: bool,
+        include_highlights: bool,
     },
     HtmlLinked {
         pre_class: Option<String>,
-        italic: bool,
-        include_highlight: bool,
     },
     Terminal {
         italic: bool,
@@ -113,21 +111,15 @@ impl From<ExFormatterOption> for FormatterOption {
             ExFormatterOption::HtmlInline {
                 pre_class,
                 italic,
-                include_highlight,
+                include_highlights,
             } => FormatterOption::HtmlInline {
                 pre_class,
                 italic,
-                include_highlight,
+                include_highlights,
             },
-            ExFormatterOption::HtmlLinked {
-                pre_class,
-                italic,
-                include_highlight,
-            } => FormatterOption::HtmlLinked {
-                pre_class,
-                italic,
-                include_highlight,
-            },
+            ExFormatterOption::HtmlLinked { pre_class } => {
+                FormatterOption::HtmlLinked { pre_class }
+            }
             ExFormatterOption::Terminal { italic } => FormatterOption::Terminal { italic },
         }
     }

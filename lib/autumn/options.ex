@@ -37,11 +37,15 @@ defmodule Autumn.Options do
 
   ## Options available
 
-  * `html_linked` and `html_inline`:
+  * `html_inline`:
 
       - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
       - `:italic` (`t:boolean/0` - default: `false`) - enable italic style for the highlighted code.
-      - `:include_highlight` (`t:boolean/0` - default: `false`) - include the highlight scope name in a `data-highlight` attribute. Useful for debugging.
+      - `:include_highlights` (`t:boolean/0` - default: `false`) - include the highlight scope name in a `data-highlight` attribute. Useful for debugging.
+
+  * `html_linked`:
+
+      - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
 
   * `terminal`:
 
@@ -49,9 +53,9 @@ defmodule Autumn.Options do
 
   ## Examples
 
-      {:html_inline, pre_class: "example-01"}
+      {:html_inline, pre_class: "example-01", include_highlights: true}
 
-      {:html_linked, pre_class: "example-01", include_highlight: true}
+      {:html_linked, pre_class: "example-01"}
 
       {:terminal, []}
 
@@ -65,8 +69,8 @@ defmodule Autumn.Options do
   @type formatter_with_options :: {formatter_name, Keyword.t()}
 
   @type t :: %__MODULE__{
-          lang_or_file: nil | lang_or_file(),
-          theme: nil | Autumn.Theme.t(),
+          lang_or_file: lang_or_file() | nil,
+          theme: Autumn.Theme.t() | nil,
           formatter: formatter()
         }
 

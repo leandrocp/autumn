@@ -102,25 +102,37 @@ defmodule Autumn do
 
   ## Examples
 
-  Language name:
+  Defining the language name:
 
       iex> Autumn.highlight("Atom.to_string(:elixir)", language: "elixir")
-      {:ok, ~s|<pre class=\"athl\" style=\"background-color: #282c33ff; color: #dce0e5ff;\"><code class=\"language-elixir\" translate=\"no\"><span style=\"color: #6eb4bfff;\">Atom</span><span style=\"color: #6eb4bfff;\">.</span><span style=\"color: #73ade9ff;\">to_string</span><span style=\"color: #b2b9c6ff;\">(</span><span style=\"color: #bf956aff;\">:elixir</span><span style=\"color: #b2b9c6ff;\">)</span></code></pre>|}
+      {:ok,
+       ~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
+       </span></code></pre>|
+      }
 
-  Custom options:
+  Guessing the language based on the provided source code:
+
+      iex> Autumn.highlight("#!/usr/bin/env bash\\nID=1")
+      {:ok,
+       ~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-bash" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #c678dd;">#!/usr/bin/env bash</span>
+       </span><span class="line" data-line="2"><span style="color: #d19a66;">ID</span><span style="color: #56b6c2;">=</span><span style="color: #d19a66;">1</span>
+       </span></code></pre>|
+      }
+
+  With custom options:
 
       iex> Autumn.highlight("Atom.to_string(:elixir)", language: "example.ex", formatter: {:html_inline, pre_class: "example-elixir"})
-      {:ok, ~s|<pre class=\"athl example-elixir\" style=\"background-color: #282c33ff; color: #dce0e5ff;\"><code class=\"language-elixir\" translate=\"no\"><span style=\"color: #6eb4bfff;\">Atom</span><span style=\"color: #6eb4bfff;\">.</span><span style=\"color: #73ade9ff;\">to_string</span><span style=\"color: #b2b9c6ff;\">(</span><span style=\"color: #bf956aff;\">:elixir</span><span style=\"color: #b2b9c6ff;\">)</span></code></pre>|}
-
-  No language at all which will only apply the theme's background and foreground colors:
-
-      iex> Autumn.highlight("Atom.to_string(:elixir)")
-      {:ok, ~s|<pre class=\"athl\" style=\"background-color: #282c33ff; color: #dce0e5ff;\"><code class=\"language-plaintext\" translate=\"no\">Atom.to_string(:elixir)</code></pre>|}
+      {:ok,
+       ~s|<pre class="athl example-elixir" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
+       </span></code></pre>|
+      }
 
   Terminal formatter:
 
       iex> Autumn.highlight("Atom.to_string(:elixir)", language: "elixir", formatter: :terminal)
-      {:ok, "\e[0m\e[38;2;110;180;191mAtom\e[0m\e[0m\e[38;2;110;180;191m.\e[0m\e[0m\e[38;2;115;173;233mto_string\e[0m\e[0m\e[38;2;178;185;198m(\e[0m\e[0m\e[38;2;191;149;106m:elixir\e[0m\e[0m\e[38;2;178;185;198m)\e[0m"}
+      {:ok, "\e[0m\e[38;2;229;192;123mAtom\e[0m\e[0m\e[38;2;86;182;194m.\e[0m\e[0m\e[38;2;97;175;239mto_string\e[0m\e[0m\e[38;2;198;120;221m(\e[0m\e[0m\e[38;2;224;108;117m:elixir\e[0m\e[0m\e[38;2;198;120;221m)\e[0m"}
+
+  See https://docs.rs/autumnus/latest/autumnus/fn.highlight.html for more info.
 
   """
   @spec highlight(String.t(), keyword()) :: {:ok, String.t()} | {:error, term()}
@@ -214,8 +226,13 @@ defmodule Autumn do
     formatter =
       case formatter do
         {name, opts} when name in [:html_inline, :html_linked, :terminal] and is_list(opts) ->
-        opts = Map.merge(%{pre_class: nil, italic: false, include_highlight: false}, Map.new(opts))
+          opts =
+            Map.merge(%{pre_class: nil, italic: false, include_highlights: false}, Map.new(opts))
+
           {name, opts}
+
+        name when name in [:html_inline, :html_linked, :terminal] ->
+          {name, %{pre_class: nil, italic: false, include_highlights: false}}
 
         :else ->
           message = """
