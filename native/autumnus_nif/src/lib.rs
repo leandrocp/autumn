@@ -154,6 +154,6 @@ fn available_themes() -> Vec<String> {
 #[rustler::nif]
 fn get_theme(name: &str) -> NifResult<ExTheme> {
     themes::get(name)
-        .map(|theme| ExTheme::from(theme))
+        .map(ExTheme::from)
         .map_err(|_e| Error::Atom("error"))
 }

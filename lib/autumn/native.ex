@@ -59,5 +59,5 @@ defmodule Autumn.Native do
   def available_languages(), do: :erlang.nif_error(:nif_not_loaded)
   def available_themes(), do: :erlang.nif_error(:nif_not_loaded)
   def get_theme(_name), do: :erlang.nif_error(:nif_not_loaded)
-  def highlight( _source, _options), do: :erlang.nif_error(:nif_not_loaded)
+  def highlight(_source, _options), do: :erlang.nif_error(:nif_not_loaded)
 end
