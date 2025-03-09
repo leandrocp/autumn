@@ -12,9 +12,9 @@ rustler::init!("Elixir.Autumn.Native");
 
 #[derive(Debug, NifStruct)]
 #[module = "Autumn.Options"]
-pub struct ExOptions<'a> {
-    pub lang_or_file: Option<&'a str>,
-    pub theme: &'a ExTheme,
+pub struct ExOptions {
+    pub lang_or_file: Option<String>,
+    pub theme: ExTheme,
 }
 
 #[derive(Debug, NifStruct)]
@@ -77,7 +77,7 @@ impl Default for FormatterArg {
 }
 
 #[rustler::nif(schedule = "DirtyCpu")]
-pub fn highlight<'a>(env: Env<'a>, source: &str) -> NifResult<Term<'a>> {
+pub fn highlight<'a>(env: Env<'a>, _source: &str, _options: ExOptions) -> NifResult<Term<'a>> {
     let output = "todo".to_string();
     Ok((ok(), output).encode(env))
 }
@@ -96,8 +96,8 @@ fn available_themes() -> Vec<String> {
 }
 
 #[rustler::nif]
-fn fetch_theme(name: &str) -> NifResult<(Atom, ExTheme)> {
+fn get_theme(name: &str) -> NifResult<ExTheme> {
     themes::get(name)
-        .map(|theme| (ok(), ExTheme::from(theme)))
-        .map_err(|e| Error::Term(Box::new(e.to_string())))
+        .map(|theme| ExTheme::from(theme))
+        .map_err(|_e| Error::Atom("error"))
 }

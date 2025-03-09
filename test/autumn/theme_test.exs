@@ -5,14 +5,14 @@ defmodule Autumn.ThemeTest do
 
   describe "fetch" do
     test "fetch existing theme" do
-      assert {:ok, %Theme{name: "github_light", appearance: "light", highlights: highlights}} =
+      assert %Theme{name: "github_light", appearance: "light", highlights: highlights} =
                Theme.get("github_light")
 
       assert highlights["variable"] == %Theme.Style{fg: "#1f2328"}
     end
 
     test "fetch invalid theme" do
-      assert Theme.fetch("invalid") == {:error, "Theme 'invalid' not found"}
+      refute Theme.get("invalid")
     end
   end
 end
