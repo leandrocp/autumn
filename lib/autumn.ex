@@ -214,13 +214,8 @@ defmodule Autumn do
     formatter =
       case formatter do
         {name, opts} when name in [:html_inline, :html_linked, :terminal] and is_list(opts) ->
-          {name, Map.new(opts)}
-
-        name when name in [:html_inline, :html_linked] ->
-          {name, %{pre_class: pre_class}}
-
-        name when name in [:terminal] ->
-          name
+        opts = Map.merge(%{pre_class: nil, italic: false, include_highlight: false}, Map.new(opts))
+          {name, opts}
 
         :else ->
           message = """
@@ -236,7 +231,6 @@ defmodule Autumn do
       end
 
     options = %Options{lang_or_file: language, theme: theme, formatter: formatter}
-    # dbg(options)
 
     case Autumn.Native.highlight(source, options) do
       {:error, error} -> raise Autumn.HighlightError, error: error

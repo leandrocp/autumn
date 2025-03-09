@@ -57,7 +57,7 @@ defmodule Autumn.Theme do
   """
   @spec get(String.t(), any()) :: Autumn.Theme.t() | nil
   def get(name, default \\ nil) when is_binary(name) do
-    case Autumn.Native.get_theme(name) |> dbg do
+    case Autumn.Native.get_theme(name) do
       :error -> default
       theme -> theme
     end

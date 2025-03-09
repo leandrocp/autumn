@@ -49,13 +49,13 @@ defmodule Autumn.Options do
 
   ## Examples
 
-      {:html_inline, [pre_class: "example-01"]}
+      {:html_inline, pre_class: "example-01"}
 
-      {:html_linked, [pre_class: "example-01", include_highlight: true]}
+      {:html_linked, pre_class: "example-01", include_highlight: true}
 
       {:terminal, []}
 
-      {:terminal, [italic: true]}
+      {:terminal, italic: true}
 
   See https://docs.rs/autumnus/latest/autumnus/enum.FormatterOption.html for more info.
 
