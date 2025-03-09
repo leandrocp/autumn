@@ -6,7 +6,7 @@ defmodule Autumn.Theme do
 
   Autumn bundles the most popular themes from the Neovim community,
   you can see the full list with `Autumn.available_themes/0` and
-  then fetch one of the bundled themes with `Autumn.Theme.fetch/1`.
+  then fetch one of the bundled themes with `Autumn.Theme.get/1`.
 
   ## Example
 
@@ -53,20 +53,12 @@ defmodule Autumn.Theme do
   defstruct name: nil, appearance: nil, highlights: %{}
 
   @doc """
-  Fetch a theme by name.
+  Get a theme by name.
   """
-  @spec fetch(String.t()) :: Autumn.Theme.t() | nil
-  def fetch(name) do
-    Autumn.Native.fetch_theme(name)
-  end
-
-  @doc """
-  Fetch a theme by name, raising if not found.
-  """
-  @spec fetch!(String.t()) :: Autumn.Theme.t()
-  def fetch!(name) do
-    case fetch(name) do
-      nil -> raise ArgumentError, "Theme not found: #{name}"
+  @spec get(String.t()) :: Autumn.Theme.t() | nil
+  def get(name) when is_binary(name) do
+    case Autumn.Native.get_theme(name) do
+      {:error, _} -> nil
       theme -> theme
     end
   end
