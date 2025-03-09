@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use autumnus::{languages, themes};
-use rustler::{Atom, Error, NifResult, NifStruct};
+use rustler::{Atom, Encoder, Env, Error, NifResult, NifStruct, Term};
 
 rustler::atoms! {
     ok,
@@ -9,6 +9,13 @@ rustler::atoms! {
 }
 
 rustler::init!("Elixir.Autumn.Native");
+
+#[derive(Debug, NifStruct)]
+#[module = "Autumn.Options"]
+pub struct ExOptions<'a> {
+    pub lang_or_file: Option<&'a str>,
+    pub theme: &'a ExTheme,
+}
 
 #[derive(Debug, NifStruct)]
 #[module = "Autumn.Theme"]
@@ -56,15 +63,23 @@ impl<'a> From<&'a themes::Style> for ExStyle {
     }
 }
 
-#[rustler::nif]
-fn highlight(
-    lang: &str,
-    source: &str,
-    theme: &str,
-    pre_class: Option<&str>,
-    inline_style: bool,
-) -> Result<(Atom, String), Error> {
-    Ok((ok(), "todo".to_string()))
+#[derive(Debug, rustler::NifTaggedEnum)]
+pub enum FormatterArg {
+    HtmlInline { pre_class: Option<String> },
+    HtmlLinked { pre_class: Option<String> },
+    Terminal,
+}
+
+impl Default for FormatterArg {
+    fn default() -> Self {
+        FormatterArg::HtmlInline { pre_class: None }
+    }
+}
+
+#[rustler::nif(schedule = "DirtyCpu")]
+pub fn highlight<'a>(env: Env<'a>, source: &str) -> NifResult<Term<'a>> {
+    let output = "todo".to_string();
+    Ok((ok(), output).encode(env))
 }
 
 #[rustler::nif]
