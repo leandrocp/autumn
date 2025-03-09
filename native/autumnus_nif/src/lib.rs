@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
-use autumnus::{languages, themes};
-use rustler::{Atom, Encoder, Env, Error, NifResult, NifStruct, Term};
+use autumnus::{languages, themes, Options};
+use rustler::{Encoder, Env, Error, NifResult, NifStruct, Term};
 
 rustler::atoms! {
     ok,
@@ -25,6 +25,26 @@ pub struct ExTheme {
     pub highlights: HashMap<String, ExStyle>,
 }
 
+impl From<ExTheme> for themes::Theme {
+    fn from(theme: ExTheme) -> Self {
+        themes::Theme {
+            name: theme.name,
+            appearance: theme.appearance,
+            highlights: theme.highlights
+                .into_iter()
+                .map(|(k, v)| (k, themes::Style {
+                    fg: v.fg,
+                    bg: v.bg,
+                    underline: v.underline,
+                    bold: v.bold,
+                    italic: v.italic,
+                    strikethrough: v.strikethrough,
+                }))
+                .collect(),
+        }
+    }
+}
+
 impl<'a> From<&'a themes::Theme> for ExTheme {
     fn from(theme: &'a themes::Theme) -> Self {
         ExTheme {
@@ -33,7 +53,7 @@ impl<'a> From<&'a themes::Theme> for ExTheme {
             highlights: theme
                 .highlights
                 .iter()
-                .map(|(k, v)| (k.to_owned(), v.into()))
+                .map(|(k, v)| (k.to_owned(), ExStyle::from(v)))
                 .collect(),
         }
     }
@@ -77,8 +97,15 @@ impl Default for FormatterArg {
 }
 
 #[rustler::nif(schedule = "DirtyCpu")]
-pub fn highlight<'a>(env: Env<'a>, _source: &str, _options: ExOptions) -> NifResult<Term<'a>> {
-    let output = "todo".to_string();
+pub fn highlight<'a>(env: Env<'a>, source: &str, options: ExOptions) -> NifResult<Term<'a>> {
+    let theme: themes::Theme = options.theme.into();
+    let options = Options {
+        lang_or_file: options.lang_or_file.as_deref(),
+        theme: &theme,
+        ..Options::default()
+    };
+    let output = autumnus::highlight(source, options);
+
     Ok((ok(), output).encode(env))
 }
 
