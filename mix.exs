@@ -41,8 +41,8 @@ defmodule Autumn.MixProject do
       files: ~w[
         lib/autumn.ex
         lib/autumn
-        native/inkjet_nif/src
-        native/inkjet_nif/Cargo.*
+        native/autumnus_nif/src
+        native/autumnus_nif/Cargo.*
         native/autumn/src
         native/autumn/Cargo.*
         priv/static/css
@@ -83,8 +83,10 @@ defmodule Autumn.MixProject do
     [
       generate_checksum: "rustler_precompiled.download Autumn.Native --all --print",
       "format.all": ["rust.fmt", "format"],
-      "rust.lint": ["cmd cargo clippy --manifest-path=native/inkjet_nif/Cargo.toml -- -Dwarnings"],
-      "rust.fmt": ["cmd cargo fmt --manifest-path=native/inkjet_nif/Cargo.toml --all"]
+      "rust.lint": [
+        "cmd cargo clippy --manifest-path=native/autumnus_nif/Cargo.toml -- -Dwarnings"
+      ],
+      "rust.fmt": ["cmd cargo fmt --manifest-path=native/autumnus_nif/Cargo.toml --all"]
     ]
   end
 end

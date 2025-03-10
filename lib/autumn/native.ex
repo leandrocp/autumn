@@ -31,7 +31,7 @@ defmodule Autumn.Native do
 
   use RustlerPrecompiled,
     otp_app: :autumn,
-    crate: "inkjet_nif",
+    crate: "autumnus_nif",
     version: version,
     base_url: "#{github_url}/releases/download/v#{version}",
     targets: ~w(
@@ -56,6 +56,8 @@ defmodule Autumn.Native do
     mode: mode,
     force_build: System.get_env("AUTUMN_BUILD") in ["1", "true"]
 
-  def highlight(_lang, _source, _theme, _pre_class, _inline_style),
-    do: :erlang.nif_error(:nif_not_loaded)
+  def available_languages(), do: :erlang.nif_error(:nif_not_loaded)
+  def available_themes(), do: :erlang.nif_error(:nif_not_loaded)
+  def get_theme(_name), do: :erlang.nif_error(:nif_not_loaded)
+  def highlight(_source, _options), do: :erlang.nif_error(:nif_not_loaded)
 end

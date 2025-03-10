@@ -1,53 +1,260 @@
-/* catppuccin_frappe */
-pre.autumn-hl { background-color: #303446; color: #c6d0f5; }
-.ahl-info { color: #99d1db; }
-.ahl-label { color: #85c1dc; }
-.ahl-markup.ahl-heading.ahl-marker { font-weight: bold; color: #ef9f76; }
-.ahl-markup.ahl-bold { font-weight: bold; }
-.ahl-namespace { font-style: italic; color: #8caaee; }
-.ahl-keyword.ahl-control.ahl-conditional { font-style: italic; color: #ca9ee6; }
-.ahl-markup.ahl-heading.ahl-1 { color: #babbf1; }
-.ahl-constant.ahl-builtin { color: #ef9f76; }
-.ahl-markup.ahl-heading.ahl-6 { color: #81c8be; }
-.ahl-attribute { color: #8caaee; }
-.ahl-type { color: #e5c890; }
-.ahl-diagnostic.ahl-warning { color: #e5c890; }
-.ahl-hint { color: #81c8be; }
-.ahl-string.ahl-special { color: #8caaee; }
-.ahl-constant { color: #ef9f76; }
-.ahl-punctuation.ahl-special { color: #99d1db; }
-.ahl-warning { color: #e5c890; }
-.ahl-string.ahl-regexp { color: #ef9f76; }
-.ahl-variable { color: #c6d0f5; }
-.ahl-constructor { color: #85c1dc; }
-.ahl-markup.ahl-heading.ahl-2 { color: #ca9ee6; }
-.ahl-keyword.ahl-storage.ahl-modifier.ahl-ref { color: #81c8be; }
-.ahl-diagnostic.ahl-error { color: #e78284; }
-.ahl-diff.ahl-minus { color: #e78284; }
-.ahl-constant.ahl-character { color: #81c8be; }
-.ahl-markup.ahl-raw { color: #eebebe; }
-.ahl-tag { color: #ca9ee6; }
-.ahl-comment { font-style: italic; color: #838ba7; }
-.ahl-markup.ahl-link.ahl-text { color: #8caaee; }
-.ahl-punctuation { color: #949cbb; }
-.ahl-markup.ahl-italic { font-style: italic; }
-.ahl-function.ahl-macro { color: #ca9ee6; }
-.ahl-special { color: #8caaee; }
-.ahl-diff.ahl-plus { color: #a6d189; }
-.ahl-operator { color: #99d1db; }
-.ahl-diagnostic.ahl-info { color: #99d1db; }
-.ahl-constant.ahl-character.ahl-escape { color: #f4b8e4; }
-.ahl-markup.ahl-link.ahl-url {  color: #f2d5cf; }
-.ahl-variable.ahl-builtin { color: #e78284; }
-.ahl-variable.ahl-parameter { font-style: italic; color: #ea999c; }
-.ahl-string { color: #a6d189; }
-.ahl-diff.ahl-delta { color: #8caaee; }
-.ahl-keyword { color: #ca9ee6; }
-.ahl-markup.ahl-heading.ahl-3 { color: #a6d189; }
-.ahl-markup.ahl-heading.ahl-5 { color: #f4b8e4; }
-.ahl-markup.ahl-heading.ahl-4 { color: #e5c890; }
-.ahl-markup.ahl-list { color: #ca9ee6; }
-.ahl-diagnostic.ahl-hint { color: #81c8be; }
-.ahl-variable.ahl-other.ahl-member { color: #81c8be; }
-.ahl-function { color: #8caaee; }
-.ahl-error { color: #e78284; }
+pre.athl {
+  color: #c6d0f5;
+  background-color: #303446;
+}
+.attribute {
+  color: #ef9f76;
+}
+.attribute-builtin {
+  color: #f4b8e4;
+}
+.boolean {
+  color: #ef9f76;
+}
+.character {
+  color: #81c8be;
+}
+.character-special {
+  color: #f4b8e4;
+}
+.comment {
+  color: #949cbb;
+  font-style: italic;
+}
+.comment-documentation {
+  color: #949cbb;
+  font-style: italic;
+}
+.constant {
+  color: #ef9f76;
+}
+.constant-builtin {
+  color: #ef9f76;
+}
+.constant-macro {
+  color: #ca9ee6;
+}
+.constructor {
+  color: #85c1dc;
+}
+.diff-minus {
+  color: #e78284;
+}
+.diff-plus {
+  color: #a6d189;
+}
+.error {
+  color: #e78284;
+}
+.function {
+  color: #8caaee;
+}
+.function-builtin {
+  color: #ef9f76;
+}
+.function-call {
+  color: #8caaee;
+}
+.function-macro {
+  color: #81c8be;
+}
+.function-method {
+  color: #8caaee;
+}
+.function-method-call {
+  color: #8caaee;
+}
+.keyword {
+  color: #ca9ee6;
+}
+.keyword-conditional {
+  color: #ca9ee6;
+  font-style: italic;
+}
+.keyword-conditional-ternary {
+  color: #99d1db;
+}
+.keyword-coroutine {
+  color: #ca9ee6;
+}
+.keyword-debug {
+  color: #ca9ee6;
+}
+.keyword-directive {
+  color: #f4b8e4;
+}
+.keyword-directive-define {
+  color: #f4b8e4;
+}
+.keyword-exception {
+  color: #ca9ee6;
+}
+.keyword-function {
+  color: #ca9ee6;
+}
+.keyword-import {
+  color: #ca9ee6;
+}
+.keyword-modifier {
+  color: #ca9ee6;
+}
+.keyword-operator {
+  color: #99d1db;
+}
+.keyword-repeat {
+  color: #ca9ee6;
+}
+.keyword-return {
+  color: #ca9ee6;
+}
+.keyword-type {
+  color: #ca9ee6;
+}
+.label {
+  color: #85c1dc;
+}
+.markup-heading {
+  color: #8caaee;
+  font-weight: bold;
+}
+.markup-heading-1 {
+  color: #8caaee;
+  font-weight: bold;
+}
+.markup-heading-2 {
+  color: #8caaee;
+  font-weight: bold;
+}
+.markup-heading-3 {
+  color: #8caaee;
+  font-weight: bold;
+}
+.markup-heading-4 {
+  color: #8caaee;
+  font-weight: bold;
+}
+.markup-heading-5 {
+  color: #8caaee;
+  font-weight: bold;
+}
+.markup-heading-6 {
+  color: #8caaee;
+  font-weight: bold;
+}
+.markup-italic {
+  color: #ea999c;
+  font-style: italic;
+}
+.markup-link-label {
+  color: #85c1dc;
+}
+.markup-raw {
+  color: #81c8be;
+}
+.markup-strikethrough {
+  color: #c6d0f5;
+  text-decoration: line-through;
+}
+.markup-strong {
+  color: #ea999c;
+  font-weight: bold;
+}
+.markup-underline {
+  text-decoration: underline;
+}
+.module {
+  color: #babbf1;
+  font-style: italic;
+}
+.module-builtin {
+  color: #f4b8e4;
+}
+.namespace {
+  color: #babbf1;
+  font-style: italic;
+}
+.normal {
+  color: #c6d0f5;
+  background-color: #303446;
+}
+.number {
+  color: #ef9f76;
+}
+.number-float {
+  color: #ef9f76;
+}
+.operator {
+  color: #99d1db;
+}
+.property {
+  color: #babbf1;
+}
+.punctuation-bracket {
+  color: #949cbb;
+}
+.punctuation-delimiter {
+  color: #949cbb;
+}
+.punctuation-special {
+  color: #f4b8e4;
+}
+.string {
+  color: #a6d189;
+}
+.string-documentation {
+  color: #81c8be;
+}
+.string-escape {
+  color: #f4b8e4;
+}
+.string-regexp {
+  color: #ef9f76;
+}
+.string-special {
+  color: #f4b8e4;
+}
+.string-special-path {
+  color: #f4b8e4;
+}
+.string-special-symbol {
+  color: #eebebe;
+}
+.string-special-url {
+  color: #f2d5cf;
+  font-style: italic;
+  text-decoration: underline;
+}
+.tag {
+  color: #ca9ee6;
+}
+.tag-attribute {
+  color: #81c8be;
+  font-style: italic;
+}
+.tag-delimiter {
+  color: #99d1db;
+}
+.type {
+  color: #e5c890;
+}
+.type-builtin {
+  color: #e5c890;
+}
+.type-definition {
+  color: #e5c890;
+}
+.variable {
+  color: #c6d0f5;
+}
+.variable-builtin {
+  color: #e78284;
+}
+.variable-member {
+  color: #babbf1;
+}
+.variable-parameter {
+  color: #ea999c;
+}
+.variable-parameter-builtin {
+  color: #f4b8e4;
+}
