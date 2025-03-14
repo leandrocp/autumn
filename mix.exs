@@ -68,14 +68,13 @@ defmodule Autumn.MixProject do
     [
       {:rustler, "~> 0.29", optional: not (@dev? or @force_build?)},
       {:rustler_precompiled, "~> 0.6"},
-      {:ex_doc, "~> 0.34", only: :dev},
-      {:toml, "~> 0.7", runtime: false}
+      {:ex_doc, "~> 0.34", only: :dev}
     ]
   end
 
   defp aliases do
     [
-      generate_checksum: "rustler_precompiled.download Autumn.Native --all --print",
+      "gen.checksum": "rustler_precompiled.download Autumn.Native --all --print",
       "format.all": ["rust.fmt", "format"],
       "rust.lint": [
         "cmd cargo clippy --manifest-path=native/autumnus_nif/Cargo.toml -- -Dwarnings"
