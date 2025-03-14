@@ -22,10 +22,9 @@ rustflags = [
 lto = true
 
 [target.x86_64-pc-windows-gnu]
-rustflags = [
-  "-C", "target-feature=+crt-static",
-  "-C", "link-arg=-fuse-ld=lld"
-]
+linker = "x86_64-w64-mingw32-gcc"
+ar = "x86_64-w64-mingw32-gcc-ar"
 
 [env]
-CFLAGS = { value = "-fexec-charset=UTF-8", force = true }
+CFLAGS = { value = "-O3 -fno-strict-aliasing", force = true }
+CC_x86_64_pc_windows_gnu = "x86_64-w64-mingw32-gcc"
