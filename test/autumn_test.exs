@@ -42,7 +42,7 @@ defmodule Autumn.AutumnTest do
     test "inline_style option" do
       capture_io(:stderr, fn ->
         assert {:ok,
-                "<pre class=\"athl\" style=\"color: #abb2bf; background-color: #282c34;\"><code class=\"language-elixir\" translate=\"no\" tabindex=\"0\"><span class=\"line\" data-line=\"1\"><span style=\"color: #e06c75;\">:test</span>\n</span></code></pre>"} =
+                "<pre class=\"athl\" style=\"color: #abb2bf; background-color: #282c34;\"><code class=\"language-elixir\" translate=\"no\" tabindex=\"0\"><span class=\"line\" data-line=\"1\"><span style=\"color: #56b6c2;\">:test</span>\n</span></code></pre>"} =
                  Autumn.highlight(":test", language: "elixir", inline_style: true)
       end)
     end
@@ -50,7 +50,7 @@ defmodule Autumn.AutumnTest do
 
   test "available_languages" do
     available_languages = Autumn.available_languages()
-    assert available_languages |> Map.keys() |> length() == 66
+    assert available_languages |> Map.keys() |> length() == 68
     assert available_languages["elixir"] == {"Elixir", ["*.ex", "*.exs"]}
   end
 
@@ -64,7 +64,7 @@ defmodule Autumn.AutumnTest do
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
         <pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #c678dd;">defmodule</span> <span style="color: #e5c07b;">Test</span> <span style="color: #c678dd;">do</span>
-        </span><span class="line" data-line="2">  <span style="color: #56b6c2;"><span style="color: #d19a66;">@<span style="color: #61afef;"><span style="color: #d19a66;">lang <span style="color: #e06c75;">:elixir</span></span></span></span></span>
+        </span><span class="line" data-line="2">  <span style="color: #abb2bf;"><span style="color: #d19a66;">@<span style="color: #61afef;"><span style="color: #d19a66;">lang <span style="color: #56b6c2;">:elixir</span></span></span></span></span>
         </span><span class="line" data-line="3"><span style="color: #c678dd;">end</span>
         </span></code></pre>
         """,
@@ -114,7 +114,7 @@ defmodule Autumn.AutumnTest do
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
         <pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span  data-highlight="keyword.function" style="color: #c678dd;">defmodule</span> <span  data-highlight="module" style="color: #e5c07b;">Test</span> <span  data-highlight="keyword" style="color: #c678dd;">do</span>
-        </span><span class="line" data-line="2">  <span  data-highlight="operator" style="color: #56b6c2;"><span  data-highlight="constant" style="color: #d19a66;">@<span  data-highlight="function.call" style="color: #61afef;"><span  data-highlight="constant" style="color: #d19a66;">lang <span  data-highlight="string.special.symbol" style="color: #e06c75;">:elixir</span></span></span></span></span>
+        </span><span class="line" data-line="2">  <span  data-highlight="operator" style="color: #abb2bf;"><span  data-highlight="constant" style="color: #d19a66;">@<span  data-highlight="function.call" style="color: #61afef;"><span  data-highlight="constant" style="color: #d19a66;">lang <span  data-highlight="string.special.symbol" style="color: #56b6c2;">:elixir</span></span></span></span></span>
         </span><span class="line" data-line="3"><span  data-highlight="keyword" style="color: #c678dd;">end</span>
         </span></code></pre>
         """,
@@ -144,7 +144,7 @@ defmodule Autumn.AutumnTest do
     test "with default opts" do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
-        "\e[0m\e[38;2;198;120;221mdefmodule\e[0m \e[0m\e[38;2;229;192;123mTest\e[0m \e[0m\e[38;2;198;120;221mdo\e[0m\n  \e[0m\e[38;2;86;182;194m\e[0m\e[38;2;209;154;102m@\e[0m\e[38;2;97;175;239m\e[0m\e[38;2;209;154;102mlang \e[0m\e[38;2;224;108;117m:elixir\e[0m\e[0m\e[0m\e[0m\e[0m\n\e[0m\e[38;2;198;120;221mend\e[0m",
+        "\e[0m\e[38;2;198;120;221mdefmodule\e[0m \e[0m\e[38;2;229;192;123mTest\e[0m \e[0m\e[38;2;198;120;221mdo\e[0m\n  \e[0m\e[38;2;171;178;191m\e[0m\e[38;2;209;154;102m@\e[0m\e[38;2;97;175;239m\e[0m\e[38;2;209;154;102mlang \e[0m\e[38;2;86;182;194m:elixir\e[0m\e[0m\e[0m\e[0m\e[0m\n\e[0m\e[38;2;198;120;221mend\e[0m",
         language: "elixir",
         formatter: :terminal
       )
