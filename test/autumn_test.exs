@@ -58,6 +58,27 @@ defmodule Autumn.AutumnTest do
     assert Autumn.available_themes() |> length() == 102
   end
 
+  test "accept empty theme" do
+    assert {:ok, result} = Autumn.highlight("#!/usr/bin/env bash\necho 'test'", theme: "noop")
+    assert result =~ ~s|class="language-bash"|
+  end
+
+  test "detects language from shebang" do
+    assert {:ok, result} = Autumn.highlight("#!/usr/bin/env bash\necho 'test'")
+    assert result =~ ~s|class="language-bash"|
+  end
+
+  test "handles code with unicode characters" do
+    assert {:ok, result} = Autumn.highlight("def π() do\n  3.14\nend", language: "elixir")
+    assert result =~ "π"
+  end
+
+  test "raises on invalid formatter options" do
+    assert_raise Autumn.InputError, ~r/formatter.*invalid/, fn ->
+      Autumn.highlight!("test", formatter: :invalid)
+    end
+  end
+
   describe "formatter: inline" do
     test "with default opts" do
       assert_output(
@@ -124,7 +145,7 @@ defmodule Autumn.AutumnTest do
     end
   end
 
-  describe "linked" do
+  describe "formatter: linked" do
     test "with default opts" do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
@@ -137,6 +158,16 @@ defmodule Autumn.AutumnTest do
         language: "elixir",
         formatter: :html_linked
       )
+    end
+
+    test "with pre_class option" do
+      assert {:ok, result} =
+               Autumn.highlight("defmodule Test do\nend",
+                 language: "elixir",
+                 formatter: {:html_linked, pre_class: "custom-class"}
+               )
+
+      assert result =~ ~s|<pre class="athl custom-class"|
     end
   end
 

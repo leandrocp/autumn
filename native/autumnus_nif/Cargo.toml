@@ -10,7 +10,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rustler = "0.36"
-autumnus = { git = "https://github.com/leandrocp/autumnus" }
+autumnus = "0.1"
 
 [features]
 default = ["nif_version_2_15"]

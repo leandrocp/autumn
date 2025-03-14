@@ -156,7 +156,7 @@ defmodule Autumn do
 
           theme
           |> String.downcase()
-          |> String.replace(" ", "_")
+          |> String.replace(" ", "")
           |> Theme.get()
 
         is_binary(theme) ->
@@ -234,7 +234,7 @@ defmodule Autumn do
         name when name in [:html_inline, :html_linked, :terminal] ->
           {name, %{pre_class: nil, italic: false, include_highlights: false}}
 
-        :else ->
+        _ ->
           message = """
             `:formatter` is invalid, expected a tuple with the formatter name and options or just the formatter name without options
 

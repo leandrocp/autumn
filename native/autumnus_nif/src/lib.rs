@@ -14,7 +14,7 @@ rustler::init!("Elixir.Autumn.Native");
 #[module = "Autumn.Options"]
 pub struct ExOptions {
     pub lang_or_file: Option<String>,
-    pub theme: ExTheme,
+    pub theme: Option<ExTheme>,
     pub formatter: ExFormatterOption,
 }
 
@@ -127,11 +127,12 @@ impl From<ExFormatterOption> for FormatterOption {
 
 #[rustler::nif(schedule = "DirtyCpu")]
 pub fn highlight<'a>(env: Env<'a>, source: &'a str, options: ExOptions) -> NifResult<Term<'a>> {
-    let theme: themes::Theme = options.theme.into();
+    let theme = options.theme.map(themes::Theme::from);
+
     let formatter: FormatterOption = options.formatter.into();
     let options = Options {
         lang_or_file: options.lang_or_file.as_deref(),
-        theme: &theme,
+        theme: theme.as_ref(),
         formatter,
     };
     let output = autumnus::highlight(source, options);
