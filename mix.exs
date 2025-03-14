@@ -36,18 +36,14 @@ defmodule Autumn.MixProject do
       licenses: ["MIT"],
       links: %{
         Changelog: "https://hexdocs.pm/autumn/changelog.html",
-        GitHub: @source_url
+        GitHub: @source_url,
+        Site: "https://autumnus.dev"
       },
       files: ~w[
-        lib/autumn.ex
-        lib/autumn
-        native/autumnus_nif/src
-        native/autumnus_nif/Cargo.*
+        lib
+        native
         priv/static/css
-        Cargo.*
-        Cross.toml
-        .cargo
-        checksum-Elixir.Autumn.Native.exs
+        checksum-*.exs
         mix.exs
         README.md
         LICENSE.md

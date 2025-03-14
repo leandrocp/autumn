@@ -9,7 +9,7 @@ update-css:
     #!/usr/bin/env bash
     set -euo pipefail
 
-    echo "⚠️  This will update all css files in css/"
+    echo "⚠️  This will update all css files in priv/static/css/"
     echo ""
     read -p "Are you sure you want to proceed? (y/N) " -n 1 -r
     echo ""
@@ -20,7 +20,6 @@ update-css:
 
     rm -rf priv/static/css/*.css
 
-    echo "Updating CSS files from Autumnus repository..."
     mkdir -p priv/static/css
     curl -s https://api.github.com/repos/leandrocp/autumnus/contents/css | \
       grep "\"name\":.*\\.css\"" | \
