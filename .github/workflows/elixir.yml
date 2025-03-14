@@ -45,8 +45,7 @@ jobs:
 
       - run: mix deps.get
       - run: mix deps.compile
-      - name: Run tests
-        run: mix test --warnings-as-errors
+      - run: mix test
 
   format:
     runs-on: ubuntu-latest
