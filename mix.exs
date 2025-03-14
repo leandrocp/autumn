@@ -43,8 +43,6 @@ defmodule Autumn.MixProject do
         lib/autumn
         native/autumnus_nif/src
         native/autumnus_nif/Cargo.*
-        native/autumn/src
-        native/autumn/Cargo.*
         priv/static/css
         Cargo.*
         Cross.toml

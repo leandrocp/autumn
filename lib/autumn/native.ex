@@ -31,6 +31,7 @@ defmodule Autumn.Native do
 
   use RustlerPrecompiled,
     otp_app: :autumn,
+    crate: "autumnus_nif",
     version: version,
     base_url: "#{github_url}/releases/download/v#{version}",
     targets: ~w(
