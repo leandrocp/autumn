@@ -78,6 +78,8 @@ iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: "github_
 
 Autumn supports three output formatters:
 
+Both HTML formatters wrap each line in a `<span class="line">` element with a `data-line` attribute containing the line number, making it easy to add line numbers or implement line-based features in your application.
+
 ### HTML Inline (Default)
 
 Generates HTML with inline styles for each token:
