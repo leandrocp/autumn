@@ -2,15 +2,19 @@
 
 <!-- MDOC -->
 
-<p align="center">
+<div align="center">
   <img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/autumn_logo.png" width="512" alt="Autumn logo">
+</div>
+
+<p align="center">
+  Syntax highlighter powered by Tree-sitter and Neovim themes.
 </p>
 
 <p align="center">
-  Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes.
+  <a href="https://autumnus.dev">https://autumnus.dev</a>
 </p>
 
-<p align="center">
+<div align="center">
   <a href="https://hex.pm/packages/autumn">
     <img alt="Hex Version" src="https://img.shields.io/hexpm/v/autumn">
   </a>
@@ -22,65 +26,100 @@
   <a href="https://opensource.org/licenses/MIT">
     <img alt="MIT" src="https://img.shields.io/hexpm/l/autumn">
   </a>
-</p>
+</div>
 
 ## Features
 
-- Support [multiple languages](https://github.com/leandrocp/autumn/blob/main/native/inkjet_nif/Cargo.toml#L16) and [100+ themes](https://github.com/leandrocp/autumn/tree/main/priv/themes). Check out some samples at https://autumn-30n.pages.dev
-- Used by [MDEx](https://github.com/leandrocp/mdex) - a fast 100% CommonMark-compatible GitHub Flavored Markdown parser and formatter for Elixir
-- Use Rust's [inkjet crate](https://crates.io/crates/inkjet) under the hood
+- 🌳 60+ languages with tree-sitter parsing
+- 🎨 100+ Neovim themes
+- 📝 HTML output with inline or linked styles
+- 🖥️ Terminal output with ANSI colors
+- 🔍 Language auto-detection
+- 🎯 Customizable formatting options
 
 ## Installation
-
-Add `:autumn` dependency:
 
 ```elixir
 def deps do
   [
-    {:autumn, "~> 0.2"}
+    {:autumn, "~> 0.3"}
   ]
 end
 ```
 
 ## Usage
 
-```elixir
-Autumn.highlight!("elixir", "Atom.to_string(:elixir)") |> IO.puts()
-#=> <pre class="autumn-hl" style="background-color: #282C34; color: #ABB2BF;">
-#=>   <code class="language-elixir" translate="no">
-#=>     <span class="ahl-namespace" style="color: #61AFEF;">Atom</span><span class="ahl-operator" style="color: #C678DD;">.</span><span class="ahl-function" style="color: #61AFEF;">to_string</span><span class="ahl-punctuation ahl-bracket" style="color: #ABB2BF;">(</span><span class="ahl-string ahl-special ahl-symbol" style="color: #98C379;">:elixir</span><span class="ahl-punctuation ahl-bracket" style="color: #ABB2BF;">)</span>
-#=>   </code>
-#=> </pre>
-```
-
-## Styles mode
-
-There are 2 modes to syntax highlight source code, the default is embedding inline styles in each one of the generated tokens, and the other more effective is relying on CSS classes to style the tokens.
-
-### Inline
-
-Inlining styles will look like:
-
-```html
-<span class="ahl-operator" style="color: #C678DD;">Atom</span>
-```
-
-That mode is easy and works fine for simple cases but in pages with multiple code blocks you might want to use CSS instead.
-
-### Linked
-
-First you need to disable inline styles by passing `false` to the `:inline_style` option:
+### Basic Usage (HTML Inline)
 
 ```elixir
-Autumn.highlight!("elixir", "Atom.to_string(:elixir)", inline_style: false) |> IO.puts()
-# rest ommited for brevity
-# `style` is no longer generated
-#=> <span class="ahl-operator">
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir")
+~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
+</span></code></pre>|
 ```
 
-And then you need to serve any of of the [available CSS themes](https://github.com/leandrocp/autumn/tree/main/priv/static/css) in your app.
+See the HTML Linked and Terminal formatters below for more options.
 
-If you're using Phoenix you can serve them from your app, just add the following `Plug` into your app's `endpoint.ex` file:
+### Language Auto-detection
+
+```elixir
+iex> Autumn.highlight!("#!/usr/bin/env bash\nID=1")
+~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-bash" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #c678dd;">#!/usr/bin/env bash</span>
+</span><span class="line" data-line="2"><span style="color: #d19a66;">ID</span><span style="color: #56b6c2;">=</span><span style="color: #d19a66;">1</span>
+</span></code></pre>|
+```
+
+### Themes
+
+Themes can be specified either by name or by using a theme struct:
+
+```elixir
+# Using theme name
+iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: "github_light")
+~s|<pre class="athl" style="color: #1f2328; background-color: #ffffff;"><code class="language-javascript" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #6639ba;">setTimeout</span><span style="color: #1f2328;">(</span><span style="color: #1f2328;">fun</span><span style="color: #1f2328;">,</span> <span style="color: #0550ae;">5000</span><span style="color: #1f2328;">)</span><span style="color: #1f2328;">;</span>
+</span></code></pre>|
+
+# Using theme struct
+iex> theme = Autumn.Theme.get("github_light")
+iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: theme)
+```
+
+## Formatters
+
+Autumn supports three output formatters:
+
+Both HTML formatters wrap each line in a `<span class="line">` element with a `data-line` attribute containing the line number, making it easy to add line numbers or implement line-based features in your application.
+
+### HTML Inline (Default)
+
+Generates HTML with inline styles for each token:
+
+```elixir
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: :html_inline)
+# or with options
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: {:html_inline, pre_class: "my-code", italic: true, include_highlights: true})
+```
+
+Options:
+- `:pre_class` - CSS class for the `<pre>` tag
+- `:italic` - enable italic styles
+- `:include_highlights` - include highlight scope names in `data-highlight` attributes
+
+### HTML Linked
+
+Generates HTML with CSS classes for styling:
+
+```elixir
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: :html_linked)
+# or with options
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: {:html_linked, pre_class: "my-code"})
+```
+
+Options:
+- `:pre_class` - CSS class for the `<pre>` tag
+
+To use linked styles, you need to include one of the [available CSS themes](https://github.com/leandrocp/autumn/tree/main/priv/static/css) in your app.
+
+For Phoenix apps, add this to your `endpoint.ex`:
 
 ```elixir
 plug Plug.Static,
@@ -89,20 +128,32 @@ plug Plug.Static,
   only: ["dracula.css"] # choose any theme you want
 ```
 
-The style will be served at `/themes/dracula.css`. In your local environemnt that resolves to http://localhost:4000/themes/dracula.css so finally add to your template:
+Then add the stylesheet to your template:
 
 ```html
 <link phx-track-static rel="stylesheet" href={~p"/themes/dracula.css"} />
 ```
 
-You can also copy the content of that theme file into a `<style>` tag in your template or serve that file from a CDN.
+### Terminal
+
+Generates ANSI escape codes for terminal output:
+
+```elixir
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: :terminal)
+# or with options
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: {:terminal, italic: true})
+```
+
+Options:
+- `:italic` - enable italic styles (if supported by your terminal)
+
+## Themes
+
+Use `Autumn.available_themes/0` to list all available themes and `Autumn.Theme.get/1` to get a specific theme. Themes are sourced from popular Neovim colorschemes.
 
 ## Samples
 
-Visit https://autumn-30n.pages.dev to see all [available samples](https://github.com/leandrocp/autumn/tree/main/priv/generated/samples) like the ones below:
-
-<img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/elixir_onedark.png" alt="Elixir source code in onedark theme">
-<img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/elixir_github_light.png" alt="Elixir source code in github_light theme">
+Visit https://autumnus.dev to check out some examples.
 
 ## Looking for help with your Elixir project?
 
@@ -117,3 +168,5 @@ Have a project in mind? [Get in touch](https://dockyard.com/contact/hire-us)!
 
 * [Logo](https://www.flaticon.com/free-icons/fall) created by by pongsakornRed - Flaticon
 * [Logo font](https://fonts.google.com/specimen/Sacramento) designed by [Astigmatic](http://www.astigmatic.com)
+* [Makeup](https://hex.pm/packages/makeup) for setting up the baseline and for the inspiration
+* [Inkjet](https://crates.io/crates/inkjet) for the Rust implementation up to v0.2 and for the inspiration

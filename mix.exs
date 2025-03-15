@@ -18,9 +18,8 @@ defmodule Autumn.MixProject do
       deps: deps(),
       aliases: aliases(),
       name: "Autumn",
-      homepage_url: "https://github.com/leandrocp/autumn",
-      description:
-        "Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes."
+      homepage_url: "https://autumnus.dev",
+      description: "Syntax highlighter powered by Tree-sitter and Neovim themes."
     ]
   end
 
@@ -36,20 +35,14 @@ defmodule Autumn.MixProject do
       licenses: ["MIT"],
       links: %{
         Changelog: "https://hexdocs.pm/autumn/changelog.html",
-        GitHub: @source_url
+        GitHub: @source_url,
+        Site: "https://autumnus.dev"
       },
       files: ~w[
-        lib/autumn.ex
-        lib/autumn
-        native/inkjet_nif/src
-        native/inkjet_nif/Cargo.*
-        native/autumn/src
-        native/autumn/Cargo.*
+        lib
+        native
         priv/static/css
-        Cargo.*
-        Cross.toml
-        .cargo
-        checksum-Elixir.Autumn.Native.exs
+        checksum-*.exs
         mix.exs
         README.md
         LICENSE.md
@@ -74,17 +67,18 @@ defmodule Autumn.MixProject do
     [
       {:rustler, "~> 0.29", optional: not (@dev? or @force_build?)},
       {:rustler_precompiled, "~> 0.6"},
-      {:ex_doc, "~> 0.34", only: :dev},
-      {:toml, "~> 0.7", runtime: false}
+      {:ex_doc, "~> 0.34", only: :dev}
     ]
   end
 
   defp aliases do
     [
-      generate_checksum: "rustler_precompiled.download Autumn.Native --all --print",
+      "gen.checksum": "rustler_precompiled.download Autumn.Native --all --print",
       "format.all": ["rust.fmt", "format"],
-      "rust.lint": ["cmd cargo clippy --manifest-path=native/inkjet_nif/Cargo.toml -- -Dwarnings"],
-      "rust.fmt": ["cmd cargo fmt --manifest-path=native/inkjet_nif/Cargo.toml --all"]
+      "rust.lint": [
+        "cmd cargo clippy --manifest-path=native/autumnus_nif/Cargo.toml -- -Dwarnings"
+      ],
+      "rust.fmt": ["cmd cargo fmt --manifest-path=native/autumnus_nif/Cargo.toml --all"]
     ]
   end
 end

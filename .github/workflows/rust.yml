@@ -1,37 +1,34 @@
 name: Rust CI
-
 on:
-  pull_request:
   push:
     branches:
       - main
-
-defaults:
-  run:
-    working-directory: ./native/inkjet_nif/
+    paths:
+      - "native/**"
+  pull_request:
+    paths:
+      - "native/**"
+  workflow_dispatch:
 
 jobs:
-  lint:
+  lint-rust:
+    name: Lint Rust
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        manifest:
+          - native/autumnus_nif/Cargo.toml
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/checkout@v4
+
+      - uses: Swatinem/rust-cache@v2
         with:
-          toolchain: stable
-          components: rustfmt, clippy
+          workspaces: |
+            native/autumnus_nif
 
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: rust-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: run rustfmt
+        run: cargo fmt --manifest-path=${{ matrix.manifest }} --all -- --check
 
-      - run: cargo fmt -- --check
-
-      - run: |
-          touch src/lib.rs
-          cargo clippy --all-targets --all-features -- -D warnings
+      - name: run clippy
+        run: cargo clippy --manifest-path=${{ matrix.manifest }} -- -Dwarnings
