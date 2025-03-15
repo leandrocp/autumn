@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.3.0 (2025-03-14)
+
+Note this version introduces breaking changes, please open an issue if these changes has caused any issues.
+
+* Now using Neovim themes instead of Helix themes so some themes may look different and others may not be available.
+* Language parsers have been updated so tokens may be different.
+
+### Enhancements
+  * Wrap each line in a span tag with the line number, eg: `<span class="line" data-line="1">...</span>`
+  * Added a `Terminal` formatter that outputs ANSI escape codes
+
+### Changed
+  * Replaced https://crates.io/crates/inkjet with https://crates.io/crates/autumnus
+  * Change class names and structure of the generated HTML
+
 ## 0.2.5 (2025-01-09)
 
 ### Fixes
