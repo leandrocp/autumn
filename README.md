@@ -49,13 +49,15 @@ end
 
 ## Usage
 
-### Basic Usage
+### Basic Usage (HTML Inline)
 
 ```elixir
 iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir")
 ~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
 </span></code></pre>|
 ```
+
+See the HTML Linked and Terminal formatters below for more options.
 
 ### Language Auto-detection
 
@@ -66,12 +68,19 @@ iex> Autumn.highlight!("#!/usr/bin/env bash\nID=1")
 </span></code></pre>|
 ```
 
-### Custom Theme
+### Themes
+
+Themes can be specified either by name or by using a theme struct:
 
 ```elixir
+# Using theme name
 iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: "github_light")
 ~s|<pre class="athl" style="color: #1f2328; background-color: #ffffff;"><code class="language-javascript" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #6639ba;">setTimeout</span><span style="color: #1f2328;">(</span><span style="color: #1f2328;">fun</span><span style="color: #1f2328;">,</span> <span style="color: #0550ae;">5000</span><span style="color: #1f2328;">)</span><span style="color: #1f2328;">;</span>
 </span></code></pre>|
+
+# Using theme struct
+iex> theme = Autumn.Theme.get("github_light")
+iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: theme)
 ```
 
 ## Formatters
