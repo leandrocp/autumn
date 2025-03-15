@@ -83,6 +83,16 @@ iex> theme = Autumn.Theme.get("github_light")
 iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: theme)
 ```
 
+## Incomplete or Malformed code
+
+It's also capable of handling incomplete or malformed code, useful for streaming like in a ChatGPT interface:
+
+```elixir
+iex> Autumn.highlight!("const header = document.getEl", language: "js")
+~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-javascript" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">header</span> <span style="color: #abb2bf;">=</span> <span style="color: #e86671;">document</span><span style="color: #848b98;">.</span><span style="color: #56b6c2;">getEl</span>
+</span></code></pre>|
+```
+
 ## Formatters
 
 Autumn supports three output formatters:
