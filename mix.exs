@@ -18,9 +18,8 @@ defmodule Autumn.MixProject do
       deps: deps(),
       aliases: aliases(),
       name: "Autumn",
-      homepage_url: "https://github.com/leandrocp/autumn",
-      description:
-        "Syntax highlighter for source code parsed with Tree-Sitter and styled with Helix Editor themes."
+      homepage_url: "https://autumnus.dev",
+      description: "Syntax highlighter powered by Tree-sitter and Neovim themes."
     ]
   end
 
