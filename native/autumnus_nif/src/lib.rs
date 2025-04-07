@@ -12,10 +12,10 @@ rustler::init!("Elixir.Autumn.Native");
 
 #[derive(Debug, NifStruct)]
 #[module = "Autumn.Options"]
-pub struct ExOptions {
+pub struct ExOptions<'a> {
     pub lang_or_file: Option<String>,
     pub theme: Option<ExTheme>,
-    pub formatter: ExFormatterOption,
+    pub formatter: ExFormatterOption<'a>,
 }
 
 #[derive(Debug, NifStruct)]
@@ -91,22 +91,20 @@ impl<'a> From<&'a themes::Style> for ExStyle {
 }
 
 #[derive(Debug, NifTaggedEnum)]
-pub enum ExFormatterOption {
+pub enum ExFormatterOption<'a> {
     HtmlInline {
-        pre_class: Option<String>,
+        pre_class: Option<&'a str>,
         italic: bool,
         include_highlights: bool,
     },
     HtmlLinked {
-        pre_class: Option<String>,
+        pre_class: Option<&'a str>,
     },
-    Terminal {
-        italic: bool,
-    },
+    Terminal {},
 }
 
-impl From<ExFormatterOption> for FormatterOption {
-    fn from(formatter: ExFormatterOption) -> Self {
+impl<'a> From<ExFormatterOption<'a>> for FormatterOption<'a> {
+    fn from(formatter: ExFormatterOption<'a>) -> Self {
         match formatter {
             ExFormatterOption::HtmlInline {
                 pre_class,
@@ -120,7 +118,7 @@ impl From<ExFormatterOption> for FormatterOption {
             ExFormatterOption::HtmlLinked { pre_class } => {
                 FormatterOption::HtmlLinked { pre_class }
             }
-            ExFormatterOption::Terminal { italic } => FormatterOption::Terminal { italic },
+            ExFormatterOption::Terminal {} => FormatterOption::Terminal {},
         }
     }
 }

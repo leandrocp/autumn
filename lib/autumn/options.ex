@@ -65,7 +65,8 @@ defmodule Autumn.Options do
   """
   @type formatter ::
           :html_inline
-          | {:html_inline, [{:pre_class, String.t()} | {:italic, boolean()} | {:include_highlights, boolean()}]}
+          | {:html_inline,
+             [{:pre_class, String.t()} | {:italic, boolean()} | {:include_highlights, boolean()}]}
           | :html_linked
           | {:html_linked, [{:pre_class, String.t()}]}
           | :terminal
