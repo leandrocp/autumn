@@ -6,7 +6,7 @@ defmodule Autumn.Options do
   """
 
   @typedoc """
-  A language name, filename, or path with extesion.
+  A language name, filename, or path with extension.
 
   ## Examples
 
@@ -25,17 +25,17 @@ defmodule Autumn.Options do
 
   * `:html_inline` - generates `<span>` tags with inline styles for each token, for example: `<span style="color: #6eb4bff;">Atom</span>`.
   * `:html_linked` - generates `<span>` tags with `class` representing the token type, for example: `<span class="keyword-special">Atom</span>`.
-     Must link an external CSS in order to render colors, see an example in the [Formatters](#module-formatters) section.
+     Must link an external CSS in order to render colors, see more at [HTML Linked](https://hexdocs.pm/autumn/Autumn.html#module-html-linked).
   * `:terminal` - generates ANSI escape codes for terminal output.
 
   You can either pass the formatter as an atom to use default options or a tuple with the formatter name and options, so both are equivalent:
 
       # passing only the formatter name like below:
-      :terminal
+      :html_inline
       # is the same as passing an empty list of options:
-      {:terminal, []}
+      {:html_inline, []}
 
-  ## Options available
+  ## Available Options:
 
   * `html_inline`:
 
@@ -53,20 +53,23 @@ defmodule Autumn.Options do
 
   ## Examples
 
+      :html_linked
+
       {:html_inline, pre_class: "example-01", include_highlights: true}
 
       {:html_linked, pre_class: "example-01"}
 
       {:terminal, []}
 
-      {:terminal, italic: true}
-
   See https://docs.rs/autumnus/latest/autumnus/enum.FormatterOption.html for more info.
-
   """
-  @type formatter :: formatter_name | formatter_with_options
-  @type formatter_name :: :html_inline | :html_linked | :terminal
-  @type formatter_with_options :: {formatter_name, Keyword.t()}
+  @type formatter ::
+          :html_inline
+          | {:html_inline, [{:pre_class, String.t()} | {:italic, boolean()} | {:include_highlights, boolean()}]}
+          | :html_linked
+          | {:html_linked, [{:pre_class, String.t()}]}
+          | :terminal
+          | {:terminal, keyword()}
 
   @type t :: %__MODULE__{
           lang_or_file: lang_or_file() | nil,
