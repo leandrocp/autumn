@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use autumnus::{languages, themes, FormatterOption, Options};
-use rustler::{Encoder, Env, Error, NifResult, NifStruct, NifTaggedEnum, Term};
+use rustler::{Encoder, Env, Error, NifMap, NifResult, NifStruct, NifTaggedEnum, Term};
 
 rustler::atoms! {
     ok,
@@ -10,10 +10,9 @@ rustler::atoms! {
 
 rustler::init!("Elixir.Autumn.Native");
 
-#[derive(Debug, NifStruct)]
-#[module = "Autumn.Options"]
+#[derive(Debug, NifMap)]
 pub struct ExOptions<'a> {
-    pub lang_or_file: Option<String>,
+    pub lang_or_file: Option<&'a str>,
     pub theme: Option<ExTheme>,
     pub formatter: ExFormatterOption<'a>,
 }
@@ -128,12 +127,15 @@ pub fn highlight<'a>(env: Env<'a>, source: &'a str, options: ExOptions) -> NifRe
     let theme = options.theme.map(themes::Theme::from);
 
     let formatter: FormatterOption = options.formatter.into();
+
     let options = Options {
-        lang_or_file: options.lang_or_file.as_deref(),
+        lang_or_file: options.lang_or_file,
         theme: theme.as_ref(),
         formatter,
     };
+
     let output = autumnus::highlight(source, options);
+
     Ok((ok(), output).encode(env))
 }
 

@@ -7,8 +7,114 @@ defmodule Autumn do
              |> Enum.fetch!(1)
 
   require Logger
-  alias Autumn.Options
   alias Autumn.Theme
+
+  @typedoc """
+  A language name, filename, or path with extension.
+
+  ## Examples
+
+      - "elixir"
+      - ".ex"
+      - "app.ex"
+      - "lib/app.ex"
+
+  """
+  @type lang_or_file :: String.t() | nil
+
+  @typedoc """
+  Theme used to apply styles on the highlighted source code.
+
+  See `Autumn.available_themes/0` to list all available themes or visit [available themes](https://docs.rs/autumnus/latest/autumnus/#themes-available) to see a list.
+  """
+  @type theme :: String.t() | Autumn.Theme.t() | nil
+
+  @typedoc """
+  Highlighter formatter and its options.
+
+  Available formatters: `:html_inline`, `:html_linked`, `:terminal`
+
+  * `:html_inline` - generates `<span>` tags with inline styles for each token, for example: `<span style="color: #6eb4bff;">Atom</span>`.
+  * `:html_linked` - generates `<span>` tags with `class` representing the token type, for example: `<span class="keyword-special">Atom</span>`.
+     Must link an external CSS in order to render colors, see more at [HTML Linked](https://hexdocs.pm/autumn/Autumn.html#module-html-linked).
+  * `:terminal` - generates ANSI escape codes for terminal output.
+
+  You can either pass the formatter as an atom to use default options or a tuple with the formatter name and options, so both are equivalent:
+
+      # passing only the formatter name like below:
+      :html_inline
+      # is the same as passing an empty list of options:
+      {:html_inline, []}
+
+  ## Available Options:
+
+  * `html_inline`:
+
+      - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
+      - `:italic` (`t:boolean/0` - default: `false`) - enable italic style for the highlighted code.
+      - `:include_highlights` (`t:boolean/0` - default: `false`) - include the highlight scope name in a `data-highlight` attribute. Useful for debugging.
+
+  * `html_linked`:
+
+      - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
+
+  * `terminal`:
+
+      - `:italic` (`t:boolean/0` - default: `false`) - enable italic style for the highlighted code.
+
+  ## Examples
+
+      :html_linked
+
+      {:html_inline, pre_class: "example-01", include_highlights: true}
+
+      {:html_linked, pre_class: "example-01"}
+
+      {:terminal, []}
+
+  See https://docs.rs/autumnus/latest/autumnus/enum.FormatterOption.html for more info.
+  """
+  @type formatter ::
+          :html_inline
+          | {:html_inline,
+             [pre_class: String.t(), italic: boolean(), include_highlights: boolean()]}
+          | :html_linked
+          | {:html_linked, [pre_class: String.t()]}
+          | :terminal
+          | {:terminal, keyword()}
+
+  @options_schema [
+    lang_or_file: [
+      type: {:or, [:string, nil]},
+      type_spec: quote(do: lang_or_file()),
+      type_doc: "`t:lang_or_file/0`",
+      default: nil,
+      doc: """
+      The language used to highlight source code.
+      You can also pass a filename or extension, for eg: `"enum.ex"` or just `"ex"`. If no language is provided, the highlighter will
+      try to guess it based on the content of the given source code. Use `Autumn.available_languages/0` to list all available languages.
+      """
+    ],
+    theme: [
+      type: {:or, [{:struct, Autumn.Theme}, :string, nil]},
+      type_spec: quote(do: theme()),
+      type_doc: "`t:theme/0`",
+      default: "onedark",
+      doc: """
+      A theme to apply styles on the highlighted source code.
+      You can pass either the theme name or a `Autumn.Theme` struct.
+      """
+    ],
+    formatter: [
+      type: :any,
+      type_spec: quote(do: formatter()),
+      type_doc: "`t:formatter/0`",
+      default: :html_inline,
+      doc: "Formatter to apply on the highlighted source code. See the type doc for more info."
+    ]
+  ]
+
+  @type options() :: [unquote(NimbleOptions.option_typespec(@options_schema))]
 
   @doc """
   Returns the list of all available languages.
@@ -50,9 +156,9 @@ defmodule Autumn do
   @deprecated "Use highlight/2 instead"
   def highlight(lang_or_file, source, opts) do
     IO.warn("""
-      passing the language in the first argument is deprecated, pass a `:language` option instead:
+      passing the language in the first argument is deprecated, pass a `:lang_or_file` option instead:
 
-        Autumn.highlight("import Kernel", language: "elixir")
+        Autumn.highlight("import Kernel", lang_or_file: "elixir")
 
     """)
 
@@ -62,7 +168,7 @@ defmodule Autumn do
         current -> {current, String.capitalize(current)}
       end)
 
-    opts = Keyword.put(opts, :language, lang_or_file)
+    opts = Keyword.put(opts, :lang_or_file, lang_or_file)
 
     highlight(source, opts)
   end
@@ -70,9 +176,9 @@ defmodule Autumn do
   @deprecated "Use highlight!/2 instead"
   def highlight!(lang_or_file, source, opts) do
     IO.warn("""
-      passing the language in the first argument is deprecated, pass a `:language` option instead:
+      passing the language in the first argument is deprecated, pass a `:lang_or_file` option instead:
 
-        Autumn.highlight!("import Kernel", language: "elixir")
+        Autumn.highlight!("import Kernel", lang_or_file: "elixir")
 
     """)
 
@@ -82,7 +188,7 @@ defmodule Autumn do
         current -> {current, String.capitalize(current)}
       end)
 
-    opts = Keyword.put(opts, :language, lang_or_file)
+    opts = Keyword.put(opts, :lang_or_file, lang_or_file)
     highlight!(source, opts)
   end
 
@@ -91,20 +197,13 @@ defmodule Autumn do
 
   ## Options
 
-  * `:language` (`t:Autumn.Options.lang_or_file/0` - default: `nil`) - Optional. The language used to highlight `source`.
-  You can also pass a filename or extension, for eg: `enum.ex` or `ex`. If no `language` is provided, the highlighter will
-  try to guess it based on the content of the given `source` code. Use `Autumn.available_languages/0` to list all available languages.
-
-  * `:theme` (`t:String.t/0` or `t:Autumn.Theme.t/0` - default: `"onedark"`) - Optional. A theme to apply styles on the highlighted source code.
-  You can pass either the theme name or a `%Autumn.Theme{}` struct. See `Autumn.available_themes/0` to list all available themes.
-
-  * `:formatter` (`t:Autumn.Options.formatter/0` - default: `:html_inline`) - See the type doc in `Autumn.Options` for more info and examples.
+  #{NimbleOptions.docs(@options_schema)}
 
   ## Examples
 
   Defining the language name:
 
-      iex> Autumn.highlight("Atom.to_string(:elixir)", language: "elixir")
+      iex> Autumn.highlight("Atom.to_string(:elixir)", lang_or_file: "elixir")
       {:ok,
        ~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
        </span></code></pre>|
@@ -121,7 +220,7 @@ defmodule Autumn do
 
   With custom options:
 
-      iex> Autumn.highlight("Atom.to_string(:elixir)", language: "example.ex", formatter: {:html_inline, pre_class: "example-elixir"})
+      iex> Autumn.highlight("Atom.to_string(:elixir)", lang_or_file: "example.ex", formatter: {:html_inline, pre_class: "example-elixir"})
       {:ok,
        ~s|<pre class="athl example-elixir" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
        </span></code></pre>|
@@ -129,17 +228,17 @@ defmodule Autumn do
 
   Terminal formatter:
 
-      iex> Autumn.highlight("Atom.to_string(:elixir)", language: "elixir", formatter: :terminal)
+      iex> Autumn.highlight("Atom.to_string(:elixir)", lang_or_file: "elixir", formatter: :terminal)
       {:ok, "\e[0m\e[38;2;229;192;123mAtom\e[0m\e[0m\e[38;2;86;182;194m.\e[0m\e[0m\e[38;2;97;175;239mto_string\e[0m\e[0m\e[38;2;198;120;221m(\e[0m\e[0m\e[38;2;224;108;117m:elixir\e[0m\e[0m\e[38;2;198;120;221m)\e[0m"}
 
   See https://docs.rs/autumnus/latest/autumnus/fn.highlight.html for more info.
 
   """
-  @spec highlight(String.t(), keyword()) :: {:ok, String.t()} | {:error, term()}
+  @spec highlight(String.t(), options()) :: {:ok, String.t()} | {:error, term()}
   def highlight(source, opts \\ [])
 
   def highlight(source, opts) when is_binary(source) and is_list(opts) do
-    language = Keyword.get(opts, :language)
+    lang_or_file = Keyword.get(opts, :lang_or_file) || Keyword.get(opts, :language)
     theme = Keyword.get(opts, :theme) || "onedark"
 
     theme =
@@ -247,7 +346,10 @@ defmodule Autumn do
           raise Autumn.InputError, message: message
       end
 
-    options = %Options{lang_or_file: language, theme: theme, formatter: formatter}
+    options =
+      [lang_or_file: lang_or_file, theme: theme, formatter: formatter]
+      |> NimbleOptions.validate!(@options_schema)
+      |> Map.new()
 
     case Autumn.Native.highlight(source, options) do
       {:error, error} -> raise Autumn.HighlightError, error: error
