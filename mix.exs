@@ -29,6 +29,15 @@ defmodule Autumn.MixProject do
     ]
   end
 
+  def cli do
+    [
+      preferred_envs: [
+        docs: :docs,
+        "hex.publish": :docs
+      ]
+    ]
+  end
+
   defp package do
     [
       maintainers: ["Leandro Pereira"],
@@ -67,12 +76,16 @@ defmodule Autumn.MixProject do
     [
       {:rustler, "~> 0.29", optional: not (@dev? or @force_build?)},
       {:rustler_precompiled, "~> 0.6"},
-      {:ex_doc, "~> 0.34", only: :dev}
+      {:ex_doc, ">= 0.0.0", only: :docs},
+      {:makeup_elixir, "~> 1.0", only: :docs},
+      {:makeup_eex, "~> 2.0", only: :docs},
+      {:makeup_syntect, "~> 0.1", only: :docs}
     ]
   end
 
   defp aliases do
     [
+      setup: ["deps.get", "compile"],
       "gen.checksum": "rustler_precompiled.download Autumn.Native --all --print",
       "format.all": ["rust.fmt", "format"],
       "rust.lint": [
