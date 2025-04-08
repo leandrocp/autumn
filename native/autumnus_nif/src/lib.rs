@@ -12,7 +12,7 @@ rustler::init!("Elixir.Autumn.Native");
 
 #[derive(Debug, NifMap)]
 pub struct ExOptions<'a> {
-    pub lang_or_file: Option<&'a str>,
+    pub language: Option<&'a str>,
     pub theme: Option<ExTheme>,
     pub formatter: ExFormatterOption<'a>,
 }
@@ -129,7 +129,7 @@ pub fn highlight<'a>(env: Env<'a>, source: &'a str, options: ExOptions) -> NifRe
     let formatter: FormatterOption = options.formatter.into();
 
     let options = Options {
-        lang_or_file: options.lang_or_file,
+        lang_or_file: options.language,
         theme: theme.as_ref(),
         formatter,
     };

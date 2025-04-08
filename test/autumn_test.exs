@@ -46,6 +46,15 @@ defmodule Autumn.AutumnTest do
                  Autumn.highlight(":test", language: "elixir", inline_style: true)
       end)
     end
+
+    test "pre_class option" do
+      capture_io(:stderr, fn ->
+        assert {:ok, highlighted} =
+                 Autumn.highlight(":test", language: "elixir", pre_class: "deprecated")
+
+        assert highlighted =~ ~s|<pre class="athl deprecated"|
+      end)
+    end
   end
 
   test "available_languages" do
@@ -74,8 +83,12 @@ defmodule Autumn.AutumnTest do
   end
 
   test "raises on invalid formatter options" do
-    assert_raise Autumn.InputError, ~r/formatter.*invalid/, fn ->
+    assert_raise NimbleOptions.ValidationError, fn ->
       Autumn.highlight!("test", formatter: :invalid)
+    end
+
+    assert_raise NimbleOptions.ValidationError, fn ->
+      Autumn.highlight!("test", formatter: {:html_inline, :invalid})
     end
   end
 
