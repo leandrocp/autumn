@@ -13,7 +13,6 @@ rustler::init!("Elixir.Autumn.Native");
 #[derive(Debug, NifMap)]
 pub struct ExOptions<'a> {
     pub language: Option<&'a str>,
-    pub theme: Option<ExTheme>,
     pub formatter: ExFormatterOption<'a>,
 }
 
@@ -37,20 +36,36 @@ impl<'a> From<ExFormatterOption<'a>> for FormatterOption<'a> {
     fn from(formatter: ExFormatterOption<'a>) -> Self {
         match formatter {
             ExFormatterOption::HtmlInline {
+                theme,
                 pre_class,
                 italic,
                 include_highlights,
-                ..
-            } => FormatterOption::HtmlInline {
-                theme: None,
-                pre_class,
-                italic,
-                include_highlights,
-            },
+            } => {
+                let theme = theme.map(|t| {
+                    let theme: themes::Theme = t.into();
+                    let theme = Box::leak(Box::new(theme));
+                    &*theme
+                });
+
+                FormatterOption::HtmlInline {
+                    theme,
+                    pre_class,
+                    italic,
+                    include_highlights,
+                }
+            }
             ExFormatterOption::HtmlLinked { pre_class } => {
                 FormatterOption::HtmlLinked { pre_class }
             }
-            ExFormatterOption::Terminal { .. } => FormatterOption::Terminal { theme: None },
+            ExFormatterOption::Terminal { theme } => {
+                let theme = theme.map(|t| {
+                    let theme: themes::Theme = t.into();
+                    let theme = Box::leak(Box::new(theme));
+                    &*theme
+                });
+
+                FormatterOption::Terminal { theme }
+            }
         }
     }
 }

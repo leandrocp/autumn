@@ -39,6 +39,16 @@ defmodule Autumn.AutumnTest do
       end)
     end
 
+    test "theme option" do
+      capture_io(:stderr, fn ->
+        assert {:ok, highlighted} =
+                 Autumn.highlight(":test", language: "elixir", theme: "github_light")
+
+        assert highlighted =~
+                 ~s|<pre class="athl" style="color: #1f2328; background-color: #ffffff;">|
+      end)
+    end
+
     test "inline_style option" do
       capture_io(:stderr, fn ->
         assert {:ok,
@@ -68,7 +78,7 @@ defmodule Autumn.AutumnTest do
   end
 
   test "accept empty theme" do
-    assert {:ok, result} = Autumn.highlight("#!/usr/bin/env bash\necho 'test'", theme: "noop")
+    assert {:ok, result} = Autumn.highlight("#!/usr/bin/env bash\necho 'test'", formatter: {:html_inline, theme: "noop"})
     assert result =~ ~s|class="language-bash"|
   end
 
@@ -116,7 +126,7 @@ defmodule Autumn.AutumnTest do
         </span></code></pre>
         """,
         language: "elixir",
-        theme: "dracula"
+        formatter: {:html_inline, theme: "dracula"}
       )
     end
 
@@ -130,7 +140,7 @@ defmodule Autumn.AutumnTest do
         </span></code></pre>
         """,
         language: "elixir",
-        theme: Autumn.Theme.get("dracula")
+        formatter: {:html_inline, theme: Autumn.Theme.get("dracula")}
       )
     end
 

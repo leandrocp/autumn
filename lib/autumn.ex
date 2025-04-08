@@ -120,6 +120,10 @@ defmodule Autumn do
       default: :html_inline,
       doc: "Formatter to apply on the highlighted source code. See the type doc for more info."
     ],
+    theme: [
+      type: {:or, [{:struct, Autumn.Theme}, :string, nil]},
+      deprecated: "Use :formatter instead."
+    ],
     inline_style: [
       type: :boolean,
       deprecated: "Use :formatter instead."
@@ -283,13 +287,80 @@ defmodule Autumn do
   def highlight(source, opts \\ [])
 
   def highlight(source, opts) when is_binary(source) and is_list(opts) do
-    opts = NimbleOptions.validate!(opts, @options_schema) |> dbg
+    opts = NimbleOptions.validate!(opts, @options_schema)
 
+    # deprecated options
+    {theme, opts} = Keyword.pop(opts, :theme)
+    theme = theme || "onedark"
     {pre_class, opts} = Keyword.pop(opts, :pre_class)
     {inline_style, opts} = Keyword.pop(opts, :inline_style)
 
-    theme = Keyword.get(opts, :theme) || "onedark"
+    formatter =
+      build_formatter(opts[:formatter], theme, inline_style, pre_class) |> build_theme()
 
+    opts =
+      opts
+      |> Map.new()
+      |> Map.put(:formatter, formatter)
+
+    case Autumn.Native.highlight(source, opts) do
+      {:error, error} -> raise Autumn.HighlightError, error: error
+      output -> output
+    end
+  end
+
+  def highlight(language, source)
+      when is_binary(language) and is_binary(source) do
+    highlight(source, language: language)
+  end
+
+  defp build_formatter(_formatter, theme, true = _inline_style, pre_class) do
+    {:html_inline,
+     %{theme: theme, pre_class: pre_class, italic: false, include_highlights: false}}
+  end
+
+  defp build_formatter(_formatter, _theme, false = _inline_style, pre_class) do
+    {:html_linked, %{pre_class: pre_class}}
+  end
+
+  defp build_formatter({:html_inline, opts}, theme, _inline_style, pre_class) do
+    opts =
+      opts
+      |> Keyword.put(:pre_class, opts[:pre_class] || pre_class)
+      |> Keyword.put_new(:theme, theme)
+      |> Keyword.put_new(:italic, false)
+      |> Keyword.put_new(:include_highlights, false)
+
+    {:html_inline, Map.new(opts)}
+  end
+
+  defp build_formatter({:html_linked, opts}, _theme, _inline_style, pre_class) do
+    opts = Keyword.put(opts, :pre_class, opts[:pre_class] || pre_class)
+    {:html_linked, Map.new(opts)}
+  end
+
+  defp build_formatter({:terminal, opts}, theme, _inline_style, _pre_class) do
+    opts =
+      opts
+      |> Keyword.put_new(:theme, theme)
+
+    {:terminal, Map.new(opts)}
+  end
+
+  defp build_formatter(:html_inline, theme, _inline_style, pre_class) do
+    {:html_inline,
+     %{theme: theme, pre_class: pre_class, italic: false, include_highlights: false}}
+  end
+
+  defp build_formatter(:html_linked, _theme, _inline_style, pre_class) do
+    {:html_linked, %{pre_class: pre_class}}
+  end
+
+  defp build_formatter(:terminal, theme, _inline_style, _pre_class) do
+    {:terminal, %{theme: theme}}
+  end
+
+  defp build_theme({formatter, %{theme: theme} = opts}) do
     theme =
       cond do
         match?(%Theme{}, theme) ->
@@ -316,63 +387,10 @@ defmodule Autumn do
           nil
       end
 
-    formatter = build_formatter(opts[:formatter], inline_style, pre_class)
-
-    opts =
-      opts
-      |> Map.new()
-      |> Map.merge(%{theme: theme, formatter: formatter})
-
-    case Autumn.Native.highlight(source, opts) do
-      {:error, error} -> raise Autumn.HighlightError, error: error
-      output -> output
-    end
+    {formatter, Map.put(opts, :theme, theme)}
   end
 
-  def highlight(language, source)
-      when is_binary(language) and is_binary(source) do
-    highlight(source, language: language)
-  end
-
-  defp build_formatter(_formatter, true = _inline_style, pre_class) do
-    {:html_inline, %{pre_class: pre_class, italic: false, include_highlights: false}}
-  end
-
-  defp build_formatter(_formatter, false = _inline_style, pre_class) do
-    {:html_linked, %{pre_class: pre_class}}
-  end
-
-  defp build_formatter({:html_inline, opts}, _inline_style, pre_class) do
-    opts =
-      opts
-      |> Keyword.put(:pre_class, opts[:pre_class] || pre_class)
-      |> Keyword.put_new(:italic, false)
-      |> Keyword.put_new(:include_highlights, false)
-
-    {:html_inline, Map.new(opts)}
-  end
-
-  defp build_formatter({:html_linked, opts}, _inline_style, pre_class) do
-    opts = Keyword.put(opts, :pre_class, opts[:pre_class] || pre_class)
-    {:html_linked, Map.new(opts)}
-  end
-
-  defp build_formatter({:terminal, opts}, _inline_style, _pre_class) do
-    opts = Keyword.put_new(opts, :italic, false)
-    {:terminal, Map.new(opts)}
-  end
-
-  defp build_formatter(:html_inline, _inline_style, pre_class) do
-    {:html_inline, %{pre_class: pre_class, italic: false, include_highlights: false}}
-  end
-
-  defp build_formatter(:html_linked, _inline_style, pre_class) do
-    {:html_linked, %{pre_class: pre_class}}
-  end
-
-  defp build_formatter(:terminal, _inline_style, _pre_class) do
-    {:terminal, %{italic: false}}
-  end
+  defp build_theme(formatter), do: formatter
 
   @doc """
   Same as `highlight/2` but raises in case of failure.
