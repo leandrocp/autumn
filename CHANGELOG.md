@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.1 (2025-04-08)
 
 ### Enhancements
   * Validate options
