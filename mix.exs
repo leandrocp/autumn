@@ -76,6 +76,7 @@ defmodule Autumn.MixProject do
     [
       {:rustler, "~> 0.29", optional: not (@dev? or @force_build?)},
       {:rustler_precompiled, "~> 0.6"},
+      {:nimble_options, "~> 1.0"},
       {:ex_doc, ">= 0.0.0", only: :docs},
       {:makeup_elixir, "~> 1.0", only: :docs},
       {:makeup_eex, "~> 2.0", only: :docs},

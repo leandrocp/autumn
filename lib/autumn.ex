@@ -7,8 +7,153 @@ defmodule Autumn do
              |> Enum.fetch!(1)
 
   require Logger
-  alias Autumn.Options
   alias Autumn.Theme
+
+  @typedoc """
+  A language name, filename, or path with extension.
+
+  ## Examples
+
+      - "elixir"
+      - ".ex"
+      - "app.ex"
+      - "lib/app.ex"
+
+  """
+  @type language :: String.t() | nil
+
+  @typedoc """
+  Theme used to apply styles on the highlighted source code.
+
+  See `Autumn.available_themes/0` to list all available themes or check out a list of [available themes](https://docs.rs/autumnus/latest/autumnus/#themes-available).
+  """
+  @type theme :: String.t() | Autumn.Theme.t() | nil
+
+  @typedoc """
+  Highlighter formatter and its options.
+
+  Available formatters: `:html_inline`, `:html_linked`, `:terminal`
+
+  * `:html_inline` - generates `<span>` tags with inline styles for each token, for example: `<span style="color: #6eb4bff;">Atom</span>`.
+  * `:html_linked` - generates `<span>` tags with `class` representing the token type, for example: `<span class="keyword-special">Atom</span>`.
+     Must link an external CSS in order to render colors, see more at [HTML Linked](https://hexdocs.pm/autumn/Autumn.html#module-html-linked).
+  * `:terminal` - generates ANSI escape codes for terminal output.
+
+  You can either pass the formatter as an atom to use default options or a tuple with the formatter name and options, so both are equivalent:
+
+      # passing only the formatter name like below:
+      :html_inline
+      # is the same as passing an empty list of options:
+      {:html_inline, []}
+
+  ## Available Options:
+
+  * `html_inline`:
+
+      - `:theme` (`t:theme/0` - default: `nil`) - the theme to apply styles on the highlighted source code.
+      - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
+      - `:italic` (`t:boolean/0` - default: `false`) - enable italic style for the highlighted code.
+      - `:include_highlights` (`t:boolean/0` - default: `false`) - include the highlight scope name in a `data-highlight` attribute. Useful for debugging.
+
+  * `html_linked`:
+
+      - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
+
+  * `terminal`:
+
+      - `:theme` (`t:theme/0` - default: `nil`) - the theme to apply styles on the highlighted source code.
+
+  ## Examples
+
+      :html_inline
+
+      {:html_inline, theme: "onedark", pre_class: "example-01", include_highlights: true}
+
+      {:html_linked, pre_class: "example-01"}
+
+      :terminal
+
+      {:terminal, theme: "github_light"}
+
+  See https://docs.rs/autumnus/latest/autumnus/enum.FormatterOption.html for more info.
+  """
+  @type formatter ::
+          :html_inline
+          | {:html_inline,
+             [
+               theme: theme(),
+               pre_class: String.t(),
+               italic: boolean(),
+               include_highlights: boolean()
+             ]}
+          | :html_linked
+          | {:html_linked, [pre_class: String.t()]}
+          | :terminal
+          | {:terminal, [theme: theme()]}
+
+  @options_schema [
+    language: [
+      type: {:or, [:string, nil]},
+      type_spec: quote(do: language()),
+      type_doc: "`t:language/0`",
+      default: nil,
+      doc: """
+      The language used to highlight source code.
+      You can also pass a filename or extension, for eg: `"enum.ex"` or just `"ex"`. If no language is provided, the highlighter will
+      try to guess it based on the content of the given source code. Use `Autumn.available_languages/0` to list all available languages.
+      """
+    ],
+    formatter: [
+      type: {:custom, Autumn, :formatter_type, []},
+      type_spec: quote(do: formatter()),
+      type_doc: "`t:formatter/0`",
+      default: :html_inline,
+      doc: "Formatter to apply on the highlighted source code. See the type doc for more info."
+    ],
+    theme: [
+      type: {:or, [{:struct, Autumn.Theme}, :string, nil]},
+      deprecated: "Use :formatter instead."
+    ],
+    inline_style: [
+      type: :boolean,
+      deprecated: "Use :formatter instead."
+    ],
+    pre_class: [
+      type: {:or, [:string, nil]},
+      deprecated: "Use :formatter instead."
+    ]
+  ]
+
+  @doc false
+  def formatter_type(formatter) when formatter in [:html_inline, :html_linked, :terminal],
+    do: {:ok, formatter}
+
+  def formatter_type({:html_inline, opts}) when is_list(opts) do
+    case Keyword.keys(opts) -- [:theme, :pre_class, :italic, :include_highlights] do
+      [] -> {:ok, {:html_inline, opts}}
+      invalid -> {:error, "invalid options given to html_inline: #{inspect(invalid)}"}
+    end
+  end
+
+  def formatter_type({:html_linked, opts}) when is_list(opts) do
+    case Keyword.keys(opts) -- [:pre_class] do
+      [] -> {:ok, {:html_linked, opts}}
+      invalid -> {:error, "invalid options given to html_linked: #{inspect(invalid)}"}
+    end
+  end
+
+  def formatter_type({:terminal, opts}) when is_list(opts) do
+    case Keyword.keys(opts) -- [:theme] do
+      [] -> {:ok, {:terminal, opts}}
+      invalid -> {:error, "invalid options given to terminal: #{inspect(invalid)}"}
+    end
+  end
+
+  def formatter_type(other) do
+    {:error, "invalid formatter option: #{inspect(other)}"}
+  end
+
+  @type options() :: [unquote(NimbleOptions.option_typespec(@options_schema))]
 
   @doc """
   Returns the list of all available languages.
@@ -48,7 +193,7 @@ defmodule Autumn do
   def available_themes, do: Autumn.Native.available_themes()
 
   @deprecated "Use highlight/2 instead"
-  def highlight(lang_or_file, source, opts) do
+  def highlight(language, source, opts) do
     IO.warn("""
       passing the language in the first argument is deprecated, pass a `:language` option instead:
 
@@ -62,13 +207,13 @@ defmodule Autumn do
         current -> {current, String.capitalize(current)}
       end)
 
-    opts = Keyword.put(opts, :language, lang_or_file)
+    opts = Keyword.put(opts, :language, language)
 
     highlight(source, opts)
   end
 
   @deprecated "Use highlight!/2 instead"
-  def highlight!(lang_or_file, source, opts) do
+  def highlight!(language, source, opts) do
     IO.warn("""
       passing the language in the first argument is deprecated, pass a `:language` option instead:
 
@@ -82,7 +227,7 @@ defmodule Autumn do
         current -> {current, String.capitalize(current)}
       end)
 
-    opts = Keyword.put(opts, :language, lang_or_file)
+    opts = Keyword.put(opts, :language, language)
     highlight!(source, opts)
   end
 
@@ -91,14 +236,7 @@ defmodule Autumn do
 
   ## Options
 
-  * `:language` (`t:Autumn.Options.lang_or_file/0` - default: `nil`) - Optional. The language used to highlight `source`.
-  You can also pass a filename or extension, for eg: `enum.ex` or `ex`. If no `language` is provided, the highlighter will
-  try to guess it based on the content of the given `source` code. Use `Autumn.available_languages/0` to list all available languages.
-
-  * `:theme` (`t:String.t/0` or `t:Autumn.Theme.t/0` - default: `"onedark"`) - Optional. A theme to apply styles on the highlighted source code.
-  You can pass either the theme name or a `%Autumn.Theme{}` struct. See `Autumn.available_themes/0` to list all available themes.
-
-  * `:formatter` (`t:Autumn.Options.formatter/0` - default: `:html_inline`) - See the type doc in `Autumn.Options` for more info and examples.
+  #{NimbleOptions.docs(@options_schema)}
 
   ## Examples
 
@@ -135,17 +273,88 @@ defmodule Autumn do
   See https://docs.rs/autumnus/latest/autumnus/fn.highlight.html for more info.
 
   """
-  @spec highlight(String.t(), keyword()) :: {:ok, String.t()} | {:error, term()}
+  @spec highlight(String.t(), options()) :: {:ok, String.t()} | {:error, term()}
   def highlight(source, opts \\ [])
 
   def highlight(source, opts) when is_binary(source) and is_list(opts) do
-    language = Keyword.get(opts, :language)
-    theme = Keyword.get(opts, :theme) || "onedark"
+    opts = NimbleOptions.validate!(opts, @options_schema)
 
+    # deprecated options
+    {theme, opts} = Keyword.pop(opts, :theme)
+    theme = theme || "onedark"
+    {pre_class, opts} = Keyword.pop(opts, :pre_class)
+    {inline_style, opts} = Keyword.pop(opts, :inline_style)
+
+    formatter =
+      build_formatter(opts[:formatter], theme, inline_style, pre_class) |> build_theme()
+
+    opts =
+      opts
+      |> Map.new()
+      |> Map.put(:formatter, formatter)
+
+    case Autumn.Native.highlight(source, opts) do
+      {:error, error} -> raise Autumn.HighlightError, error: error
+      output -> output
+    end
+  end
+
+  def highlight(language, source)
+      when is_binary(language) and is_binary(source) do
+    highlight(source, language: language)
+  end
+
+  defp build_formatter(_formatter, theme, true = _inline_style, pre_class) do
+    {:html_inline,
+     %{theme: theme, pre_class: pre_class, italic: false, include_highlights: false}}
+  end
+
+  defp build_formatter(_formatter, _theme, false = _inline_style, pre_class) do
+    {:html_linked, %{pre_class: pre_class}}
+  end
+
+  defp build_formatter({:html_inline, opts}, theme, _inline_style, pre_class) do
+    opts =
+      opts
+      |> Keyword.put(:pre_class, opts[:pre_class] || pre_class)
+      |> Keyword.put_new(:theme, theme)
+      |> Keyword.put_new(:italic, false)
+      |> Keyword.put_new(:include_highlights, false)
+
+    {:html_inline, Map.new(opts)}
+  end
+
+  defp build_formatter({:html_linked, opts}, _theme, _inline_style, pre_class) do
+    opts = Keyword.put(opts, :pre_class, opts[:pre_class] || pre_class)
+    {:html_linked, Map.new(opts)}
+  end
+
+  defp build_formatter({:terminal, opts}, theme, _inline_style, _pre_class) do
+    opts =
+      opts
+      |> Keyword.put_new(:theme, theme)
+
+    {:terminal, Map.new(opts)}
+  end
+
+  defp build_formatter(:html_inline, theme, _inline_style, pre_class) do
+    {:html_inline,
+     %{theme: theme, pre_class: pre_class, italic: false, include_highlights: false}}
+  end
+
+  defp build_formatter(:html_linked, _theme, _inline_style, pre_class) do
+    {:html_linked, %{pre_class: pre_class}}
+  end
+
+  defp build_formatter(:terminal, theme, _inline_style, _pre_class) do
+    {:terminal, %{theme: theme}}
+  end
+
+  defp build_theme({formatter, %{theme: theme} = opts}) do
     theme =
       cond do
         match?(%Theme{}, theme) ->
-          theme
+          {:theme, theme}
 
         String.contains?(theme, " ") ->
           Logger.warning("""
@@ -157,108 +366,21 @@ defmodule Autumn do
           theme
           |> String.downcase()
           |> String.replace(" ", "")
-          |> Theme.get()
+          |> then(&{:string, &1})
 
         is_binary(theme) ->
           theme
           |> String.downcase()
-          |> Theme.get()
+          |> then(&{:string, &1})
 
         :else ->
           nil
       end
 
-    # backward compatibility
-    pre_class =
-      case Keyword.get(opts, :pre_class) do
-        nil ->
-          nil
-
-        pre_class ->
-          Logger.warning("""
-          option `:pre_class` is deprecated, use `:formatter` instead
-
-          Example:
-
-            formatter: {:html_inline, [pre_class: "#{pre_class}"]}
-
-          """)
-
-          if is_binary(pre_class) do
-            pre_class
-          else
-            Logger.warning("""
-            `:pre_class` value is invalid, expected a binary
-
-            Got
-
-              #{inspect(pre_class)}
-
-            """)
-
-            nil
-          end
-      end
-
-    formatter =
-      case Keyword.get(opts, :inline_style) do
-        nil ->
-          Keyword.get(opts, :formatter, {:html_inline, [pre_class: pre_class]})
-
-        # backward compatibility
-        inline_style ->
-          Logger.warning("""
-          option `:inline_style` is deprecated, use `:formatter` instead
-
-          Example:
-
-            formatter: #{if inline_style, do: ":html_inline", else: ":html_linked"}
-
-          """)
-
-          if inline_style do
-            {:html_inline, [pre_class: pre_class]}
-          else
-            {:html_linked, [pres_class: pre_class]}
-          end
-      end
-
-    formatter =
-      case formatter do
-        {name, opts} when name in [:html_inline, :html_linked, :terminal] and is_list(opts) ->
-          opts =
-            Map.merge(%{pre_class: nil, italic: false, include_highlights: false}, Map.new(opts))
-
-          {name, opts}
-
-        name when name in [:html_inline, :html_linked, :terminal] ->
-          {name, %{pre_class: nil, italic: false, include_highlights: false}}
-
-        _ ->
-          message = """
-            `:formatter` is invalid, expected a tuple with the formatter name and options or just the formatter name without options
-
-            Got
-
-              #{inspect(formatter)}
-
-          """
-
-          raise Autumn.InputError, message: message
-      end
-
-    options = %Options{lang_or_file: language, theme: theme, formatter: formatter}
-
-    case Autumn.Native.highlight(source, options) do
-      {:error, error} -> raise Autumn.HighlightError, error: error
-      output -> output
-    end
+    {formatter, Map.put(opts, :theme, theme)}
   end
 
-  def highlight(lang_or_file, source)
-      when is_binary(lang_or_file) and is_binary(source) do
-    highlight(source, language: lang_or_file)
-  end
+  defp build_theme(formatter), do: formatter
 
   @doc """
   Same as `highlight/2` but raises in case of failure.
@@ -283,8 +405,8 @@ defmodule Autumn do
     end
   end
 
-  def highlight!(lang_or_file, source)
-      when is_binary(lang_or_file) and is_binary(source) do
-    highlight!(source, language: lang_or_file)
+  def highlight!(language, source)
+      when is_binary(language) and is_binary(source) do
+    highlight!(source, language: language)
   end
 end

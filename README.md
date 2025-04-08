@@ -70,7 +70,9 @@ iex> Autumn.highlight!("#!/usr/bin/env bash\nID=1")
 
 ### Themes
 
-Themes can be specified either by name or by using a theme struct:
+Themes are sourced from popular Neovim colorschemes.
+
+Use `Autumn.available_themes/0` to list all available themes. You can specify a theme by name directly in the `:theme` option, or use `Autumn.Theme.get/1` to get a specific theme struct if you need to inspect or manipulate its styles.
 
 ```elixir
 # Using theme name
@@ -156,10 +158,6 @@ iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter:
 
 Options:
 - `:italic` - enable italic styles (if supported by your terminal)
-
-## Themes
-
-Use `Autumn.available_themes/0` to list all available themes and `Autumn.Theme.get/1` to get a specific theme. Themes are sourced from popular Neovim colorschemes.
 
 ## Samples
 

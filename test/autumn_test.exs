@@ -39,11 +39,30 @@ defmodule Autumn.AutumnTest do
       end)
     end
 
+    test "theme option" do
+      capture_io(:stderr, fn ->
+        assert {:ok, highlighted} =
+                 Autumn.highlight(":test", language: "elixir", theme: "github_light")
+
+        assert highlighted =~
+                 ~s|<pre class="athl" style="color: #1f2328; background-color: #ffffff;">|
+      end)
+    end
+
     test "inline_style option" do
       capture_io(:stderr, fn ->
         assert {:ok,
                 "<pre class=\"athl\" style=\"color: #abb2bf; background-color: #282c34;\"><code class=\"language-elixir\" translate=\"no\" tabindex=\"0\"><span class=\"line\" data-line=\"1\"><span style=\"color: #56b6c2;\">:test</span>\n</span></code></pre>"} =
                  Autumn.highlight(":test", language: "elixir", inline_style: true)
+      end)
+    end
+
+    test "pre_class option" do
+      capture_io(:stderr, fn ->
+        assert {:ok, highlighted} =
+                 Autumn.highlight(":test", language: "elixir", pre_class: "deprecated")
+
+        assert highlighted =~ ~s|<pre class="athl deprecated"|
       end)
     end
   end
@@ -59,7 +78,11 @@ defmodule Autumn.AutumnTest do
   end
 
   test "accept empty theme" do
-    assert {:ok, result} = Autumn.highlight("#!/usr/bin/env bash\necho 'test'", theme: "noop")
+    assert {:ok, result} =
+             Autumn.highlight("#!/usr/bin/env bash\necho 'test'",
+               formatter: {:html_inline, theme: "noop"}
+             )
+
     assert result =~ ~s|class="language-bash"|
   end
 
@@ -74,8 +97,12 @@ defmodule Autumn.AutumnTest do
   end
 
   test "raises on invalid formatter options" do
-    assert_raise Autumn.InputError, ~r/formatter.*invalid/, fn ->
+    assert_raise NimbleOptions.ValidationError, fn ->
       Autumn.highlight!("test", formatter: :invalid)
+    end
+
+    assert_raise NimbleOptions.ValidationError, fn ->
+      Autumn.highlight!("test", formatter: {:html_inline, :invalid})
     end
   end
 
@@ -103,7 +130,7 @@ defmodule Autumn.AutumnTest do
         </span></code></pre>
         """,
         language: "elixir",
-        theme: "dracula"
+        formatter: {:html_inline, theme: "dracula"}
       )
     end
 
@@ -117,7 +144,7 @@ defmodule Autumn.AutumnTest do
         </span></code></pre>
         """,
         language: "elixir",
-        theme: Autumn.Theme.get("dracula")
+        formatter: {:html_inline, theme: Autumn.Theme.get("dracula")}
       )
     end
 

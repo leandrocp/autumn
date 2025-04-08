@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Enhancements
+  * Validate options
+  * Update Autumnus to v0.2.0
+
 ## 0.3.0 (2025-03-14)
 
 Note this version introduces breaking changes, please open an issue if these changes has caused any issues.

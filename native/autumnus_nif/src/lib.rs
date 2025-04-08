@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use autumnus::{languages, themes, FormatterOption, Options};
-use rustler::{Encoder, Env, Error, NifResult, NifStruct, NifTaggedEnum, Term};
+use rustler::{Encoder, Env, Error, NifMap, NifResult, NifStruct, NifTaggedEnum, Term};
 
 rustler::atoms! {
     ok,
@@ -10,12 +10,82 @@ rustler::atoms! {
 
 rustler::init!("Elixir.Autumn.Native");
 
-#[derive(Debug, NifStruct)]
-#[module = "Autumn.Options"]
+#[derive(Debug, NifMap)]
 pub struct ExOptions<'a> {
-    pub lang_or_file: Option<String>,
-    pub theme: Option<ExTheme>,
+    pub language: Option<&'a str>,
     pub formatter: ExFormatterOption<'a>,
+}
+
+#[derive(Debug, NifTaggedEnum)]
+pub enum ExFormatterOption<'a> {
+    HtmlInline {
+        theme: Option<ThemeOrString<'a>>,
+        pre_class: Option<&'a str>,
+        italic: bool,
+        include_highlights: bool,
+    },
+    HtmlLinked {
+        pre_class: Option<&'a str>,
+    },
+    Terminal {
+        theme: Option<ThemeOrString<'a>>,
+    },
+}
+
+#[derive(Debug, NifTaggedEnum)]
+pub enum ThemeOrString<'a> {
+    Theme(ExTheme),
+    String(&'a str),
+}
+
+impl<'a> From<ExFormatterOption<'a>> for FormatterOption<'a> {
+    fn from(formatter: ExFormatterOption<'a>) -> Self {
+        match formatter {
+            ExFormatterOption::HtmlInline {
+                theme,
+                pre_class,
+                italic,
+                include_highlights,
+            } => {
+                let theme = theme.map(|t| match t {
+                    ThemeOrString::Theme(theme) => {
+                        let theme: themes::Theme = theme.into();
+                        let theme = Box::leak(Box::new(theme));
+                        &*theme
+                    }
+                    ThemeOrString::String(name) => themes::get(name).unwrap_or_else(|_| {
+                        let theme = Box::leak(Box::new(themes::Theme::default()));
+                        &*theme
+                    }),
+                });
+
+                FormatterOption::HtmlInline {
+                    theme,
+                    pre_class,
+                    italic,
+                    include_highlights,
+                }
+            }
+            ExFormatterOption::HtmlLinked { pre_class } => {
+                FormatterOption::HtmlLinked { pre_class }
+            }
+            ExFormatterOption::Terminal { theme } => {
+                let theme = theme.map(|t| match t {
+                    ThemeOrString::Theme(theme) => {
+                        let theme: themes::Theme = theme.into();
+                        let theme = Box::leak(Box::new(theme));
+                        &*theme
+                    }
+                    ThemeOrString::String(name) => themes::get(name).unwrap_or_else(|_| {
+                        let theme = Box::leak(Box::new(themes::Theme::default()));
+                        &*theme
+                    }),
+                });
+
+                FormatterOption::Terminal { theme }
+            }
+        }
+    }
 }
 
 #[derive(Debug, NifStruct)]
@@ -90,50 +160,17 @@ impl<'a> From<&'a themes::Style> for ExStyle {
     }
 }
 
-#[derive(Debug, NifTaggedEnum)]
-pub enum ExFormatterOption<'a> {
-    HtmlInline {
-        pre_class: Option<&'a str>,
-        italic: bool,
-        include_highlights: bool,
-    },
-    HtmlLinked {
-        pre_class: Option<&'a str>,
-    },
-    Terminal {},
-}
-
-impl<'a> From<ExFormatterOption<'a>> for FormatterOption<'a> {
-    fn from(formatter: ExFormatterOption<'a>) -> Self {
-        match formatter {
-            ExFormatterOption::HtmlInline {
-                pre_class,
-                italic,
-                include_highlights,
-            } => FormatterOption::HtmlInline {
-                pre_class,
-                italic,
-                include_highlights,
-            },
-            ExFormatterOption::HtmlLinked { pre_class } => {
-                FormatterOption::HtmlLinked { pre_class }
-            }
-            ExFormatterOption::Terminal {} => FormatterOption::Terminal {},
-        }
-    }
-}
-
 #[rustler::nif(schedule = "DirtyCpu")]
 pub fn highlight<'a>(env: Env<'a>, source: &'a str, options: ExOptions) -> NifResult<Term<'a>> {
-    let theme = options.theme.map(themes::Theme::from);
-
     let formatter: FormatterOption = options.formatter.into();
+
     let options = Options {
-        lang_or_file: options.lang_or_file.as_deref(),
-        theme: theme.as_ref(),
+        lang_or_file: options.language,
         formatter,
     };
+
     let output = autumnus::highlight(source, options);
+
     Ok((ok(), output).encode(env))
 }
 
