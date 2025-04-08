@@ -364,7 +364,7 @@ defmodule Autumn do
     theme =
       cond do
         match?(%Theme{}, theme) ->
-          theme
+          {:theme, theme}
 
         String.contains?(theme, " ") ->
           Logger.warning("""
@@ -376,12 +376,12 @@ defmodule Autumn do
           theme
           |> String.downcase()
           |> String.replace(" ", "")
-          |> Theme.get()
+          |> then(&{:string, &1})
 
         is_binary(theme) ->
           theme
           |> String.downcase()
-          |> Theme.get()
+          |> then(&{:string, &1})
 
         :else ->
           nil

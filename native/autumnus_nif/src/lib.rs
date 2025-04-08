@@ -19,7 +19,7 @@ pub struct ExOptions<'a> {
 #[derive(Debug, NifTaggedEnum)]
 pub enum ExFormatterOption<'a> {
     HtmlInline {
-        theme: Option<ExTheme>,
+        theme: Option<ThemeOrString<'a>>,
         pre_class: Option<&'a str>,
         italic: bool,
         include_highlights: bool,
@@ -28,8 +28,14 @@ pub enum ExFormatterOption<'a> {
         pre_class: Option<&'a str>,
     },
     Terminal {
-        theme: Option<ExTheme>,
+        theme: Option<ThemeOrString<'a>>,
     },
+}
+
+#[derive(Debug, NifTaggedEnum)]
+pub enum ThemeOrString<'a> {
+    Theme(ExTheme),
+    String(&'a str),
 }
 
 impl<'a> From<ExFormatterOption<'a>> for FormatterOption<'a> {
@@ -41,10 +47,16 @@ impl<'a> From<ExFormatterOption<'a>> for FormatterOption<'a> {
                 italic,
                 include_highlights,
             } => {
-                let theme = theme.map(|t| {
-                    let theme: themes::Theme = t.into();
-                    let theme = Box::leak(Box::new(theme));
-                    &*theme
+                let theme = theme.map(|t| match t {
+                    ThemeOrString::Theme(theme) => {
+                        let theme: themes::Theme = theme.into();
+                        let theme = Box::leak(Box::new(theme));
+                        &*theme
+                    }
+                    ThemeOrString::String(name) => themes::get(name).unwrap_or_else(|_| {
+                        let theme = Box::leak(Box::new(themes::Theme::default()));
+                        &*theme
+                    }),
                 });
 
                 FormatterOption::HtmlInline {
@@ -58,10 +70,16 @@ impl<'a> From<ExFormatterOption<'a>> for FormatterOption<'a> {
                 FormatterOption::HtmlLinked { pre_class }
             }
             ExFormatterOption::Terminal { theme } => {
-                let theme = theme.map(|t| {
-                    let theme: themes::Theme = t.into();
-                    let theme = Box::leak(Box::new(theme));
-                    &*theme
+                let theme = theme.map(|t| match t {
+                    ThemeOrString::Theme(theme) => {
+                        let theme: themes::Theme = theme.into();
+                        let theme = Box::leak(Box::new(theme));
+                        &*theme
+                    }
+                    ThemeOrString::String(name) => themes::get(name).unwrap_or_else(|_| {
+                        let theme = Box::leak(Box::new(themes::Theme::default()));
+                        &*theme
+                    }),
                 });
 
                 FormatterOption::Terminal { theme }

@@ -78,7 +78,11 @@ defmodule Autumn.AutumnTest do
   end
 
   test "accept empty theme" do
-    assert {:ok, result} = Autumn.highlight("#!/usr/bin/env bash\necho 'test'", formatter: {:html_inline, theme: "noop"})
+    assert {:ok, result} =
+             Autumn.highlight("#!/usr/bin/env bash\necho 'test'",
+               formatter: {:html_inline, theme: "noop"}
+             )
+
     assert result =~ ~s|class="language-bash"|
   end
 
