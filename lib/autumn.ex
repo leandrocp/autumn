@@ -25,7 +25,7 @@ defmodule Autumn do
   @typedoc """
   Theme used to apply styles on the highlighted source code.
 
-  See `Autumn.available_themes/0` to list all available themes or visit [available themes](https://docs.rs/autumnus/latest/autumnus/#themes-available) to see a list.
+  See `Autumn.available_themes/0` to list all available themes or check out a list of [available themes](https://docs.rs/autumnus/latest/autumnus/#themes-available).
   """
   @type theme :: String.t() | Autumn.Theme.t() | nil
 
@@ -103,16 +103,6 @@ defmodule Autumn do
       try to guess it based on the content of the given source code. Use `Autumn.available_languages/0` to list all available languages.
       """
     ],
-    # theme: [
-    #   type: {:or, [{:struct, Autumn.Theme}, :string, nil]},
-    #   type_spec: quote(do: theme()),
-    #   type_doc: "`t:theme/0`",
-    #   default: "onedark",
-    #   doc: """
-    #   A theme to apply styles on the highlighted source code.
-    #   You can pass either the theme name or a `Autumn.Theme` struct.
-    #   """
-    # ],
     formatter: [
       type: {:custom, Autumn, :formatter_type, []},
       type_spec: quote(do: formatter()),

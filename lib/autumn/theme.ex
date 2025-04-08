@@ -8,7 +8,7 @@ defmodule Autumn.Theme do
   you can see the full list with `Autumn.available_themes/0` and
   then fetch one of the bundled themes with `Autumn.Theme.get/1`.
 
-  Or visit [available themes](https://docs.rs/autumnus/latest/autumnus/#themes-available) to see a list.
+  Or check out all the [available themes](https://docs.rs/autumnus/latest/autumnus/#themes-available).
 
   ## Example
 
