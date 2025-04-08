@@ -50,6 +50,7 @@ defmodule Autumn do
 
   * `html_inline`:
 
+      - `:theme` (`t:theme/0` - default: `nil`) - the theme to apply styles on the highlighted source code.
       - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
       - `:italic` (`t:boolean/0` - default: `false`) - enable italic style for the highlighted code.
       - `:include_highlights` (`t:boolean/0` - default: `false`) - include the highlight scope name in a `data-highlight` attribute. Useful for debugging.
@@ -58,25 +59,37 @@ defmodule Autumn do
 
       - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
 
+  * `terminal`:
+
+      - `:theme` (`t:theme/0` - default: `nil`) - the theme to apply styles on the highlighted source code.
+
   ## Examples
 
       :html_inline
 
-      {:html_inline, pre_class: "example-01", include_highlights: true}
+      {:html_inline, theme: "onedark", pre_class: "example-01", include_highlights: true}
 
       {:html_linked, pre_class: "example-01"}
 
       :terminal
+
+      {:terminal, theme: "github_light"}
 
   See https://docs.rs/autumnus/latest/autumnus/enum.FormatterOption.html for more info.
   """
   @type formatter ::
           :html_inline
           | {:html_inline,
-             [pre_class: String.t(), italic: boolean(), include_highlights: boolean()]}
+             [
+               theme: theme(),
+               pre_class: String.t(),
+               italic: boolean(),
+               include_highlights: boolean()
+             ]}
           | :html_linked
           | {:html_linked, [pre_class: String.t()]}
           | :terminal
+          | {:terminal, [theme: theme()]}
 
   @options_schema [
     language: [
@@ -90,16 +103,16 @@ defmodule Autumn do
       try to guess it based on the content of the given source code. Use `Autumn.available_languages/0` to list all available languages.
       """
     ],
-    theme: [
-      type: {:or, [{:struct, Autumn.Theme}, :string, nil]},
-      type_spec: quote(do: theme()),
-      type_doc: "`t:theme/0`",
-      default: "onedark",
-      doc: """
-      A theme to apply styles on the highlighted source code.
-      You can pass either the theme name or a `Autumn.Theme` struct.
-      """
-    ],
+    # theme: [
+    #   type: {:or, [{:struct, Autumn.Theme}, :string, nil]},
+    #   type_spec: quote(do: theme()),
+    #   type_doc: "`t:theme/0`",
+    #   default: "onedark",
+    #   doc: """
+    #   A theme to apply styles on the highlighted source code.
+    #   You can pass either the theme name or a `Autumn.Theme` struct.
+    #   """
+    # ],
     formatter: [
       type: {:custom, Autumn, :formatter_type, []},
       type_spec: quote(do: formatter()),
@@ -122,7 +135,7 @@ defmodule Autumn do
     do: {:ok, formatter}
 
   def formatter_type({:html_inline, opts}) when is_list(opts) do
-    case Keyword.keys(opts) -- [:pre_class, :italic, :include_highlights] do
+    case Keyword.keys(opts) -- [:theme, :pre_class, :italic, :include_highlights] do
       [] -> {:ok, {:html_inline, opts}}
       invalid -> {:error, "invalid options given to html_inline: #{inspect(invalid)}"}
     end
@@ -135,8 +148,11 @@ defmodule Autumn do
     end
   end
 
-  def formatter_type({:terminal, []}) do
-    {:ok, {:terminal, []}}
+  def formatter_type({:terminal, opts}) when is_list(opts) do
+    case Keyword.keys(opts) -- [:theme] do
+      [] -> {:ok, {:terminal, opts}}
+      invalid -> {:error, "invalid options given to terminal: #{inspect(invalid)}"}
+    end
   end
 
   def formatter_type(other) do
@@ -267,7 +283,7 @@ defmodule Autumn do
   def highlight(source, opts \\ [])
 
   def highlight(source, opts) when is_binary(source) and is_list(opts) do
-    opts = NimbleOptions.validate!(opts, @options_schema)
+    opts = NimbleOptions.validate!(opts, @options_schema) |> dbg
 
     {pre_class, opts} = Keyword.pop(opts, :pre_class)
     {inline_style, opts} = Keyword.pop(opts, :inline_style)

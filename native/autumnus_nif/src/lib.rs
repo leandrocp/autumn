@@ -17,6 +17,44 @@ pub struct ExOptions<'a> {
     pub formatter: ExFormatterOption<'a>,
 }
 
+#[derive(Debug, NifTaggedEnum)]
+pub enum ExFormatterOption<'a> {
+    HtmlInline {
+        theme: Option<ExTheme>,
+        pre_class: Option<&'a str>,
+        italic: bool,
+        include_highlights: bool,
+    },
+    HtmlLinked {
+        pre_class: Option<&'a str>,
+    },
+    Terminal {
+        theme: Option<ExTheme>,
+    },
+}
+
+impl<'a> From<ExFormatterOption<'a>> for FormatterOption<'a> {
+    fn from(formatter: ExFormatterOption<'a>) -> Self {
+        match formatter {
+            ExFormatterOption::HtmlInline {
+                pre_class,
+                italic,
+                include_highlights,
+                ..
+            } => FormatterOption::HtmlInline {
+                theme: None,
+                pre_class,
+                italic,
+                include_highlights,
+            },
+            ExFormatterOption::HtmlLinked { pre_class } => {
+                FormatterOption::HtmlLinked { pre_class }
+            }
+            ExFormatterOption::Terminal { .. } => FormatterOption::Terminal { theme: None },
+        }
+    }
+}
+
 #[derive(Debug, NifStruct)]
 #[module = "Autumn.Theme"]
 pub struct ExTheme {
@@ -89,48 +127,12 @@ impl<'a> From<&'a themes::Style> for ExStyle {
     }
 }
 
-#[derive(Debug, NifTaggedEnum)]
-pub enum ExFormatterOption<'a> {
-    HtmlInline {
-        pre_class: Option<&'a str>,
-        italic: bool,
-        include_highlights: bool,
-    },
-    HtmlLinked {
-        pre_class: Option<&'a str>,
-    },
-    Terminal {},
-}
-
-impl<'a> From<ExFormatterOption<'a>> for FormatterOption<'a> {
-    fn from(formatter: ExFormatterOption<'a>) -> Self {
-        match formatter {
-            ExFormatterOption::HtmlInline {
-                pre_class,
-                italic,
-                include_highlights,
-            } => FormatterOption::HtmlInline {
-                pre_class,
-                italic,
-                include_highlights,
-            },
-            ExFormatterOption::HtmlLinked { pre_class } => {
-                FormatterOption::HtmlLinked { pre_class }
-            }
-            ExFormatterOption::Terminal {} => FormatterOption::Terminal {},
-        }
-    }
-}
-
 #[rustler::nif(schedule = "DirtyCpu")]
 pub fn highlight<'a>(env: Env<'a>, source: &'a str, options: ExOptions) -> NifResult<Term<'a>> {
-    let theme = options.theme.map(themes::Theme::from);
-
     let formatter: FormatterOption = options.formatter.into();
 
     let options = Options {
         lang_or_file: options.language,
-        theme: theme.as_ref(),
         formatter,
     };
 

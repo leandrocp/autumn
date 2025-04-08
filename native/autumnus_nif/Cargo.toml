@@ -10,7 +10,8 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rustler = "0.36"
-autumnus = "0.1"
+# autumnus = "0.1"
+autumnus = { path = "../../../autumnus" }
 
 [features]
 default = ["nif_version_2_15"]
