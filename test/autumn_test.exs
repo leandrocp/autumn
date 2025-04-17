@@ -69,12 +69,35 @@ defmodule Autumn.AutumnTest do
 
   test "available_languages" do
     available_languages = Autumn.available_languages()
-    assert available_languages |> Map.keys() |> length() == 68
+    assert available_languages |> Map.keys() |> length() == 69
     assert available_languages["elixir"] == {"Elixir", ["*.ex", "*.exs"]}
   end
 
   test "available_themes" do
     assert Autumn.available_themes() |> length() == 102
+  end
+
+  describe "formatter_type: :html_inline" do
+    test "default opts" do
+      assert Autumn.formatter_type(:html_inline) ==
+               {:ok,
+                {:html_inline,
+                 %{italic: false, theme: "onedark", pre_class: nil, include_highlights: false}}}
+    end
+  end
+
+  describe "formatter_type: :html_linked" do
+    test "default opts" do
+      assert Autumn.formatter_type(:html_linked) ==
+               {:ok, {:html_linked, %{pre_class: nil}}}
+    end
+  end
+
+  describe "formatter_type: :terminal" do
+    test "default opts" do
+      assert Autumn.formatter_type(:terminal) ==
+               {:ok, {:terminal, %{theme: "onedark"}}}
+    end
   end
 
   test "accept empty theme" do
@@ -205,6 +228,15 @@ defmodule Autumn.AutumnTest do
         "\e[0m\e[38;2;198;120;221mdefmodule\e[0m \e[0m\e[38;2;229;192;123mTest\e[0m \e[0m\e[38;2;198;120;221mdo\e[0m\n  \e[0m\e[38;2;171;178;191m\e[0m\e[38;2;209;154;102m@\e[0m\e[38;2;97;175;239m\e[0m\e[38;2;209;154;102mlang \e[0m\e[38;2;86;182;194m:elixir\e[0m\e[0m\e[0m\e[0m\e[0m\n\e[0m\e[38;2;198;120;221mend\e[0m",
         language: "elixir",
         formatter: :terminal
+      )
+    end
+
+    test "with theme" do
+      assert_output(
+        "defmodule Test do\n  @lang :elixir\nend",
+        "\e[0m\e[38;2;207;34;46mdefmodule\e[0m \e[0m\e[38;2;207;34;46mTest\e[0m \e[0m\e[38;2;207;34;46mdo\e[0m\n  \e[0m\e[38;2;5;80;174m\e[0m\e[38;2;5;80;174m@\e[0m\e[38;2;102;57;186m\e[0m\e[38;2;5;80;174mlang \e[0m\e[38;2;5;80;174m:elixir\e[0m\e[0m\e[0m\e[0m\e[0m\n\e[0m\e[38;2;207;34;46mend\e[0m",
+        language: "elixir",
+        formatter: {:terminal, theme: "github_light"}
       )
     end
   end
