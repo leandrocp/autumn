@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Enhancements
+  * Added target `arm-unknown-linux-gnueabihf`
+  * Added target `riscv64gc-unknown-linux-gnu`
+  * Added `formatter_schema/0` and `options_schema/0` to expose options schema
+  * Update Autumnus to v0.3.0
+
 ## 0.3.1 (2025-04-08)
 
 ### Enhancements
