@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.2 (2025-04-18)
 
 ### Enhancements
   * Added target `arm-unknown-linux-gnueabihf`
