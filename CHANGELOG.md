@@ -4,6 +4,7 @@
 
 ### Enhancements
   * Add neovim light and dark themes - @mhanberg
+  * Update CSS files
   * Update `autumnus` to v0.3.2
 
 ## 0.3.2 (2025-04-18)
