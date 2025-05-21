@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.3 (2025-05-21)
+
+### Enhancements
+  * Add neovim light and dark themes - @mhanberg
+  * Update `autumnus` to v0.3.2
+
 ## 0.3.2 (2025-04-18)
 
 ### Enhancements
