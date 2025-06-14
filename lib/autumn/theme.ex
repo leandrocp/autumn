@@ -15,6 +15,7 @@ defmodule Autumn.Theme do
       %Autumn.Theme{
          name: "github_light",
          appearance: "light",
+         revision: "1.0",
          highlights: %{
            "function.macro" => %Autumn.Theme.Style{
              fg: "#6639ba",
@@ -49,10 +50,11 @@ defmodule Autumn.Theme do
   @type t :: %Autumn.Theme{
           name: String.t(),
           appearance: String.t(),
+          revision: String.t(),
           highlights: map()
         }
 
-  defstruct name: nil, appearance: nil, highlights: %{}
+  defstruct name: nil, appearance: nil, revision: nil, highlights: %{}
 
   @doc """
   Get a theme by name.

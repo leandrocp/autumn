@@ -36,6 +36,8 @@
 - 🖥️ Terminal output with ANSI colors
 - 🔍 Language auto-detection
 - 🎯 Customizable formatting options
+- ✨ Line highlighting with custom styling
+- 🎁 Custom HTML wrappers for code blocks
 
 ## Installation
 
@@ -115,6 +117,44 @@ Options:
 - `:pre_class` - CSS class for the `<pre>` tag
 - `:italic` - enable italic styles
 - `:include_highlights` - include highlight scope names in `data-highlight` attributes
+- `:highlight_lines` - highlight specific lines with custom styling
+- `:header` - wrap the highlighted code with custom HTML elements
+
+#### Line Highlighting
+
+```elixir
+# Default: theme-based highlighting using cursorline from current theme
+highlight_lines = %{
+  lines: [2..4, 6]  # Mix integers and ranges for flexible line specification
+  # style defaults to :theme, which uses the cursorline highlight from theme
+}
+
+# Or with explicit theme styling  
+theme_highlight_lines = %{
+  lines: [1..2],
+  style: :theme  # uses cursorline highlight from theme
+}
+
+# Or with custom CSS styling
+custom_highlight_lines = %{
+  lines: [2..4, 6],  # Multiple lines: 2..4, Single line: 6
+  style: "background-color: #fff3cd; border-left: 3px solid #ffc107;"
+}
+
+Autumn.highlight!(code, language: "elixir", formatter: {:html_inline, highlight_lines: highlight_lines})
+```
+
+#### Custom HTML Wrapper
+
+```elixir
+# Wrap code with custom HTML elements
+header = %{
+  open_tag: "<div class='code-wrapper' data-language='elixir'>",
+  close_tag: "</div>"
+}
+
+Autumn.highlight!(code, language: "elixir", formatter: {:html_inline, header: header})
+```
 
 ### HTML Linked
 
@@ -128,6 +168,29 @@ iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter:
 
 Options:
 - `:pre_class` - CSS class for the `<pre>` tag
+- `:highlight_lines` - highlight specific lines with custom CSS class
+- `:header` - wrap the highlighted code with custom HTML elements
+
+#### Line Highlighting with CSS Classes
+
+```elixir
+# Highlight lines with a CSS class
+highlight_lines = %{
+  lines: [1..3, 7..8],
+  class: "highlighted-line"
+}
+
+Autumn.highlight!(code, language: "elixir", formatter: {:html_linked, highlight_lines: highlight_lines})
+```
+
+You'll need to style the CSS class in your stylesheet:
+
+```css
+.highlighted-line {
+  background-color: #fff3cd;
+  border-left: 3px solid #ffc107;
+}
+```
 
 To use linked styles, you need to include one of the [available CSS themes](https://github.com/leandrocp/autumn/tree/main/priv/static/css) in your app.
 
@@ -159,18 +222,41 @@ iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter:
 Options:
 - `:italic` - enable italic styles (if supported by your terminal)
 
+## Advanced Usage
+
+### Combining Multiple Features
+
+You can combine line highlighting, custom HTML wrappers, and themes for rich code presentation:
+
+```elixir
+# Create highlighted lines for errors or important sections
+error_lines = %{
+  lines: [3, 7..9],  # Single line 3, and lines 7-9
+  style: "background-color: #f8d7da; border-left: 4px solid #dc3545;"
+}
+
+# Wrap with semantic HTML
+code_wrapper = %{
+  open_tag: "<article class='code-example' data-language='elixir' data-theme='dracula'>",
+  close_tag: "</article>"
+}
+
+# Combine everything
+Autumn.highlight!(code, 
+  language: "elixir",
+  formatter: {
+    :html_inline, 
+    theme: "dracula",
+    highlight_lines: error_lines,
+    header: code_wrapper,
+    include_highlights: true
+  }
+)
+```
+
 ## Samples
 
 Visit https://autumnus.dev to check out some examples.
-
-## Looking for help with your Elixir project?
-
-<img src="https://raw.githubusercontent.com/leandrocp/autumn/main/assets/images/dockyard_logo.png" width="256" alt="DockYard logo">
-
-At DockYard we are [ready to help you build your next Elixir project](https://dockyard.com/phoenix-consulting).
-We have a unique expertise in Elixir and Phoenix development that is unmatched and we love to [write about Elixir](https://dockyard.com/blog/categories/elixir).
-
-Have a project in mind? [Get in touch](https://dockyard.com/contact/hire-us)!
 
 ## Acknowledgements
 

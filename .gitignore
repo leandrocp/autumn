@@ -40,3 +40,6 @@ checksum-*.exs
 /priv/generated/themes/module.toml
 /priv/generated/themes/parent.toml
 /priv/generated/themes/child.toml
+
+# AI
+/.claude/
