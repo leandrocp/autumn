@@ -22,13 +22,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: |
             native/autumnus_nif
 
-      - name: run rustfmt
+      - name: fmt
         run: cargo fmt --manifest-path=${{ matrix.manifest }} --all -- --check
 
-      - name: run clippy
+      - name: clippy
         run: cargo clippy --manifest-path=${{ matrix.manifest }} -- -Dwarnings
