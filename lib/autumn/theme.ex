@@ -64,6 +64,28 @@ defmodule Autumn.Theme do
       theme -> theme
     end
   end
+
+  @doc """
+  Load a theme from a JSON file.
+  """
+  @spec from_file(String.t()) :: {:ok, Autumn.Theme.t()} | {:error, term()}
+  def from_file(path) when is_binary(path) do
+    case Autumn.Native.build_theme_from_file(path) do
+      :error -> {:error, :invalid_theme_file}
+      theme -> {:ok, theme}
+    end
+  end
+
+  @doc """
+  Load a theme from a JSON string.
+  """
+  @spec from_json(String.t()) :: {:ok, Autumn.Theme.t()} | {:error, term()}
+  def from_json(json_string) when is_binary(json_string) do
+    case Autumn.Native.build_theme_from_json_string(json_string) do
+      :error -> {:error, :invalid_json}
+      theme -> {:ok, theme}
+    end
+  end
 end
 
 defmodule Autumn.Theme.Style do

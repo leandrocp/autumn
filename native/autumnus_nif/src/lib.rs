@@ -50,3 +50,17 @@ fn get_theme(name: &str) -> NifResult<ExTheme> {
         .map(ExTheme::from)
         .map_err(|_e| Error::Atom("error"))
 }
+
+#[rustler::nif]
+fn build_theme_from_file(path: &str) -> NifResult<ExTheme> {
+    themes::from_file(path)
+        .map(|theme| ExTheme::from(&theme))
+        .map_err(|_e| Error::Atom("error"))
+}
+
+#[rustler::nif]
+fn build_theme_from_json_string(json_string: &str) -> NifResult<ExTheme> {
+    themes::from_json(json_string)
+        .map(|theme| ExTheme::from(&theme))
+        .map_err(|_e| Error::Atom("error"))
+}
