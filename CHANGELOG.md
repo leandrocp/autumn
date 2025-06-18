@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Enhancements
+  * Add `Autumn.Theme.from_file/1` to load themes from JSON files
+  * Add `Autumn.Theme.from_json/1` to load themes from JSON strings
+
 ## 0.3.3 (2025-05-21)
 
 ### Enhancements
