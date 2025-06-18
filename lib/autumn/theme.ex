@@ -15,7 +15,7 @@ defmodule Autumn.Theme do
       %Autumn.Theme{
          name: "github_light",
          appearance: "light",
-         revision: "1.0",
+         revision: "fe70a27afefa6e10db4a59262d31f259f702fd6a",
          highlights: %{
            "function.macro" => %Autumn.Theme.Style{
              fg: "#6639ba",
