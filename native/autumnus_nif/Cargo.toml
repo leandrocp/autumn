@@ -10,9 +10,9 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rustler = "0.36"
-# autumnus = { version = "0.3", features = ["nif_version_2_15", "elixir"] }
-autumnus = { path = "../../../autumnus", features = ["nif_version_2_15", "elixir"] }
-# autumnus = { git = "https://github.com/leandrocp/autumnus", features = ["nif_version_2_15", "elixir"] }
+# autumnus = { version = "0.3", features = ["all-languages", "nif_version_2_15", "elixir"] }
+# autumnus = { path = "../../../autumnus", features = ["all-languages", "nif_version_2_15", "elixir"] }
+autumnus = { git = "https://github.com/leandrocp/autumnus", features = ["all-languages", "nif_version_2_15", "elixir"] }
 
 [features]
 default = ["nif_version_2_15"]
