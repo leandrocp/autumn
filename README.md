@@ -87,6 +87,21 @@ iex> theme = Autumn.Theme.get("github_light")
 iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: theme)
 ```
 
+#### Bring Your Own Theme
+
+You can also load custom themes from JSON files or strings:
+
+```elixir
+# Load from JSON file
+{:ok, theme} = Autumn.Theme.from_file("/path/to/your/theme.json")
+Autumn.highlight!("your code", theme: theme)
+
+# Load from JSON string
+theme_json = ~s({"name": "my_theme", "appearance": "dark", "highlights": {"comment": {"fg": "#808080"}}})
+{:ok, theme} = Autumn.Theme.from_json(theme_json)
+Autumn.highlight!("your code", theme: theme)
+```
+
 ## Incomplete or Malformed code
 
 It's also capable of handling incomplete or malformed code, useful for streaming like in a ChatGPT interface:
