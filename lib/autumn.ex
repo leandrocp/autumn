@@ -276,18 +276,16 @@ defmodule Autumn do
         style = Map.get(hl_map, :style, :theme)
 
         if valid_lines?(lines) and valid_inline_style?(style) do
-          # Convert ranges and integers to tuples for internal format
           converted_lines =
             Enum.map(lines, fn
-              %Range{} = range -> {range.first, range.last}
-              n when is_integer(n) -> {n, n}
+              %Range{} = range -> {:range, %{start: range.first, end: range.last}}
+              n when is_integer(n) -> {:single, n}
             end)
 
-          # Convert string style to internal format
           internal_style =
             case style do
               :theme -> :theme
-              str when is_binary(str) -> {:style, str}
+              str when is_binary(str) -> {:style, %{style: str}}
             end
 
           converted_hl = %Autumn.HtmlInlineHighlightLines{
@@ -314,11 +312,10 @@ defmodule Autumn do
 
       %{lines: lines, class: class} ->
         if valid_lines?(lines) and is_binary(class) do
-          # Convert ranges and integers to tuples for internal format
           converted_lines =
             Enum.map(lines, fn
-              %Range{} = range -> {range.first, range.last}
-              n when is_integer(n) -> {n, n}
+              %Range{} = range -> {:range, %{start: range.first, end: range.last}}
+              n when is_integer(n) -> {:single, n}
             end)
 
           converted_hl = %Autumn.HtmlLinkedHighlightLines{
@@ -639,25 +636,6 @@ defmodule Autumn do
 
         theme_name when is_binary(theme_name) ->
           Map.put(opts, :theme, {:string, theme_name})
-      end
-
-    # Convert highlight_lines style format for Rust NIF
-    opts =
-      case opts[:highlight_lines] do
-        %Autumn.HtmlInlineHighlightLines{style: {:style, css_string}} = hl ->
-          converted_hl = %{hl | style: {:style, %{style: css_string}}}
-          Map.put(opts, :highlight_lines, converted_hl)
-
-        %Autumn.HtmlInlineHighlightLines{style: :theme} ->
-          # :theme is already correct format
-          opts
-
-        %Autumn.HtmlLinkedHighlightLines{} ->
-          # html_linked highlight_lines doesn't need style conversion
-          opts
-
-        nil ->
-          opts
       end
 
     opts

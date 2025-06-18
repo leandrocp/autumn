@@ -69,12 +69,12 @@ defmodule Autumn.AutumnTest do
 
   test "available_languages" do
     available_languages = Autumn.available_languages()
-    assert available_languages |> Map.keys() |> length() == 69
+    assert available_languages |> Map.keys() |> length() == 71
     assert available_languages["elixir"] == {"Elixir", ["*.ex", "*.exs"]}
   end
 
   test "available_themes" do
-    assert Autumn.available_themes() |> length() == 109
+    assert Autumn.available_themes() |> length() == 120
   end
 
   describe "formatter_type: :html_inline" do
