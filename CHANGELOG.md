@@ -1,10 +1,19 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 (2025-06-19)
 
 ### Enhancements
   * Add `Autumn.Theme.from_file/1` to load themes from JSON files
   * Add `Autumn.Theme.from_json/1` to load themes from JSON strings
+  * Add `:highlight_lines` option to HTML formatters to highlight specific lines
+  * Add `:header` option to HTML formatters to include a wrapper tag around the highlighted code
+  * Update parsers: angular, c, cmake, comment, hcl, liquid, llvm, ocaml, perl, vim, vue, yaml
+  * Update queries: cmake, elm, fsharp, html, latex, php, vue
+  * Update themes: flexoki, modus operandi, moonfly, nightfly
+  * Add themes: horizon, horizon_dark, horizon_light, iceberg, molokai, moonlight, nordfox, papercolor_dark, papercolor_light, srcery, zenburn
+  * Add languages: assembly, dart
+  * Add cursorline highlight in themes
+  * Add Elixir ~V live_svelte injection
 
 ## 0.3.3 (2025-05-21)
 
