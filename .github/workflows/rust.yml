@@ -17,8 +17,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  lint-rust:
-    name: Lint Rust
+  quality:
     runs-on: ubuntu-latest
     strategy:
       matrix:

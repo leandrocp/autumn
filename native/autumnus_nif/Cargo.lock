@@ -70,7 +70,7 @@ checksum = "e16d2d3311acee920a9eb8d33b8cbc1787ce4a264e85f964c2404b969bdcd487"
 [[package]]
 name = "autumnus"
 version = "0.3.2"
-source = "git+https://github.com/leandrocp/autumnus#33b4d92e9d079b6a90ff2931c82c825089dca785"
+source = "git+https://github.com/leandrocp/autumnus#fbb9af003b9b1c60e7ec9c237a920460e45a6e96"
 dependencies = [
  "anyhow",
  "cc",
