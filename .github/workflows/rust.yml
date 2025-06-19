@@ -1,4 +1,5 @@
-name: Rust CI
+name: Rust
+
 on:
   push:
     branches:
@@ -8,12 +9,17 @@ on:
   pull_request:
     paths:
       - "native/**"
-  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
 
 jobs:
-  lint-rust:
-    name: Lint Rust
+  quality:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         manifest:
@@ -22,13 +28,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          components: clippy
+
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: |
             native/autumnus_nif
 
-      - name: run rustfmt
-        run: cargo fmt --manifest-path=${{ matrix.manifest }} --all -- --check
+      - name: cargo fmt
+        run: cargo fmt --manifest-path=${{ matrix.manifest }}
 
-      - name: run clippy
-        run: cargo clippy --manifest-path=${{ matrix.manifest }} -- -Dwarnings
+      - uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          push_options: --force
+
+      - run: cargo test --manifest-path=${{ matrix.manifest }} --all-features
+
+      - run: cargo clippy --manifest-path=${{ matrix.manifest }} -- -Dwarnings

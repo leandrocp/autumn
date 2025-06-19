@@ -19,9 +19,15 @@ defmodule Autumn.ThemeTest do
   describe "from_json/1" do
     test "loads theme from valid JSON string" do
       json =
-        ~s({"name": "test_theme", "appearance": "dark", "highlights": {"comment": {"fg": "#808080"}}})
+        ~s({"name": "test_theme", "appearance": "dark", "revision": "test", "highlights": {"comment": {"fg": "#808080"}}})
 
-      assert {:ok, %Theme{name: "test_theme", appearance: "dark", highlights: highlights}} =
+      assert {:ok,
+              %Theme{
+                name: "test_theme",
+                appearance: "dark",
+                revision: "test",
+                highlights: highlights
+              }} =
                Theme.from_json(json)
 
       assert highlights["comment"] == %Theme.Style{fg: "#808080"}
@@ -40,12 +46,18 @@ defmodule Autumn.ThemeTest do
     @tag :tmp_dir
     test "loads theme from valid JSON file", %{tmp_dir: tmp_dir} do
       json_content =
-        ~s({"name": "file_theme", "appearance": "light", "highlights": {"string": {"fg": "#22863a"}}})
+        ~s({"name": "file_theme", "appearance": "light", "revision": "test", "highlights": {"string": {"fg": "#22863a"}}})
 
       temp_file = Path.join(tmp_dir, "test_theme.json")
       File.write!(temp_file, json_content)
 
-      assert {:ok, %Theme{name: "file_theme", appearance: "light", highlights: highlights}} =
+      assert {:ok,
+              %Theme{
+                name: "file_theme",
+                appearance: "light",
+                revision: "test",
+                highlights: highlights
+              }} =
                Theme.from_file(temp_file)
 
       assert highlights["string"] == %Theme.Style{fg: "#22863a"}

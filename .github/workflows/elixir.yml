@@ -1,4 +1,5 @@
-name: Elixir CI
+name: Elixir
+
 on:
   push:
     branches:
@@ -6,9 +7,13 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 env:
   AUTUMN_BUILD: true
   MIX_ENV: test
+  CARGO_TERM_COLOR: always
 
 jobs:
   test:
@@ -43,17 +48,27 @@ jobs:
           otp-version: ${{ matrix.otp_version }}
           elixir-version: ${{ matrix.elixir_version }}
 
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          components: clippy
+
       - run: mix deps.get
       - run: mix deps.compile
       - run: mix test
 
-  format:
+  quality:
     runs-on: ubuntu-latest
-    name: mix format
     steps:
       - uses: actions/checkout@v4
+
       - uses: erlef/setup-beam@v1
         with:
           otp-version: "27"
           elixir-version: "1.18"
-      - run: mix format --check-formatted
+
+      - run: mix format
+
+      - uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          push_options: --force
