@@ -8,7 +8,6 @@ on:
   pull_request:
     paths:
       - "native/**"
-  workflow_dispatch:
 
 jobs:
   lint-rust:
@@ -22,18 +21,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
+
+      - name: Install cargo-sort
+        uses: baptiste0928/cargo-install@v3
+        with:
+          crate: cargo-sort
+
+      - name: Install cargo-sort-derives
+        uses: baptiste0928/cargo-install@v3
+        with:
+          crate: cargo-sort-derives
 
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: |
             native/autumnus_nif
 
-      - name: fmt
-        run: cargo fmt --manifest-path=${{ matrix.manifest }} --all -- --check
+      - run: cargo sort
 
-      - name: clippy
-        run: cargo clippy --manifest-path=${{ matrix.manifest }} -- -Dwarnings
+      - run: cargo sort-derives
+
+      - run: cargo fmt
+
+      - uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          push_options: --force
+
+      - run: cargo test --all-features
+
+      - run: cargo clippy --all-targets --all-features -- -D warnings
