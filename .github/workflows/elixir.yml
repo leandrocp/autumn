@@ -1,4 +1,5 @@
-name: Elixir CI
+name: Elixir
+
 on:
   push:
     branches:
@@ -6,9 +7,13 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 env:
   AUTUMN_BUILD: true
   MIX_ENV: test
+  CARGO_TERM_COLOR: always
 
 jobs:
   test:
