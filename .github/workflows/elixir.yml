@@ -53,6 +53,8 @@ jobs:
           toolchain: stable
           components: clippy
 
+      - run: rustup default stable
+
       - run: mix deps.get
       - run: mix deps.compile
       - run: mix test
