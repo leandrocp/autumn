@@ -31,7 +31,7 @@
 ## Features
 
 - 🌳 60+ languages with tree-sitter parsing
-- 🎨 100+ Neovim themes
+- 🎨 120+ Neovim themes
 - 📝 HTML output with inline or linked styles
 - 🖥️ Terminal output with ANSI colors
 - 🔍 Language auto-detection
@@ -236,38 +236,6 @@ iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter:
 
 Options:
 - `:italic` - enable italic styles (if supported by your terminal)
-
-## Advanced Usage
-
-### Combining Multiple Features
-
-You can combine line highlighting, custom HTML wrappers, and themes for rich code presentation:
-
-```elixir
-# Create highlighted lines for errors or important sections
-error_lines = %{
-  lines: [3, 7..9],  # Single line 3, and lines 7-9
-  style: "background-color: #f8d7da; border-left: 4px solid #dc3545;"
-}
-
-# Wrap with semantic HTML
-code_wrapper = %{
-  open_tag: "<article class='code-example' data-language='elixir' data-theme='dracula'>",
-  close_tag: "</article>"
-}
-
-# Combine everything
-Autumn.highlight!(code, 
-  language: "elixir",
-  formatter: {
-    :html_inline, 
-    theme: "dracula",
-    highlight_lines: error_lines,
-    header: code_wrapper,
-    include_highlights: true
-  }
-)
-```
 
 ## Samples
 
