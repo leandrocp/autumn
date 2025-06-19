@@ -48,6 +48,11 @@ jobs:
           otp-version: ${{ matrix.otp_version }}
           elixir-version: ${{ matrix.elixir_version }}
 
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          components: clippy
+
       - run: mix deps.get
       - run: mix deps.compile
       - run: mix test
