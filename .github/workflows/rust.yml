@@ -18,13 +18,14 @@ env:
 
 jobs:
   quality:
-    name: quality
+    name: "quality: Rust ${{ matrix.rust }}"
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        manifest:
-          - native/autumnus_nif/Cargo.toml
+        include:
+          - rust: "1.86.0"
 
     steps:
       - uses: actions/checkout@v4
@@ -49,26 +50,16 @@ jobs:
           workspaces: |
             native/autumnus_nif
 
-      - name: cargo sort
-      - run: |
-          (cd native/autumnus_nif && cargo sort)
+      - run: (cd native/autumnus_nif && cargo sort)
 
-      - name: cargo sort-derives
-        run: |
-          (cd native/autumnus_nif && cargo sort-derives)
+      - run: (cd native/autumnus_nif && cargo sort-derives)
 
-      - name: cargo fmt
-        run: |
-          (cd native/autumnus_nif && cargo fmt)
+      - run: (cd native/autumnus_nif && cargo fmt)
 
       - uses: stefanzweifel/git-auto-commit-action@v6
         with:
           push_options: --force
 
-      - name: cargo test
-        run: |
-          (cd native/autumnus_nif && cargo test --all-features)
+      - run: (cd native/autumnus_nif && cargo test --all-features)
 
-      - name: cargo clipppy
-        run: |
-          (cd native/autumnus_nif && cargo clippy -- -Dwarnings)
+      - run: (cd native/autumnus_nif && cargo clippy -- -Dwarnings)

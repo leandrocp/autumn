@@ -63,7 +63,7 @@ jobs:
       - run: mix test
 
   quality:
-    name: "quality: OTP ${{matrix.otp}} | Elixir ${{matrix.elixir}})"
+    name: "quality: OTP ${{ matrix.otp }} | Elixir ${{ matrix.elixir }}"
     runs-on: ubuntu-latest
 
     strategy:
@@ -89,6 +89,8 @@ jobs:
         with:
           otp-version: ${{ matrix.otp }}
           elixir-version: ${{ matrix.elixir }}
+
+      - run: mix deps.get
 
       - run: mix compile --warnings-as-errors
 
