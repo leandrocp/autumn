@@ -5,67 +5,94 @@ on:
     branches:
       - main
   pull_request:
-  workflow_dispatch:
 
 permissions:
   contents: write
 
 env:
-  AUTUMN_BUILD: true
   MIX_ENV: test
+  AUTUMN_BUILD: true
   CARGO_TERM_COLOR: always
 
 jobs:
   test:
+    name: "test: OTP ${{ matrix.otp }} | Elixir ${{ matrix.elixir }} | Rust ${{ matrix.rust }}"
+    runs-on: ubuntu-latest
+
     strategy:
+      fail-fast: false
       matrix:
         include:
-          - otp_version: "24"
-            elixir_version: "1.14.0"
+          - otp: "24"
+            elixir: "1.14.0"
+            rust: "1.86.0"
 
-          - otp_version: "27"
-            elixir_version: "1.18"
+          - otp: "27"
+            elixir: "1.18"
+            rust: "1.86.0"
 
-    runs-on: ubuntu-latest
-    name: test
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/cache@v4
         with:
           path: |
-            _build/test/lib/autumn/native/autumnus_nif
+            deps
+            _build
             ~/.cargo/bin/
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-          key: test-native-${{ runner.os }}-${{ hashFiles('native/**/Cargo.lock') }}
+            native/autumnus_nif/target
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}-cargo-${{ hashFiles('native/autumnus_nif/Cargo.lock') }}
           restore-keys: |
-            test-native-${{ runner.os }}
+            ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}-cargo-
+            ${{ runner.os }}-mix-
 
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: ${{ matrix.otp_version }}
-          elixir-version: ${{ matrix.elixir_version }}
+          otp-version: ${{ matrix.otp }}
+          elixir-version: ${{ matrix.elixir }}
 
       - uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: stable
-          components: clippy
+          toolchain: ${{ matrix.rust }}
 
       - run: mix deps.get
-      - run: mix deps.compile
+
       - run: mix test
 
   quality:
+    name: "quality: OTP ${{matrix.otp}} | Elixir ${{matrix.elixir}})"
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - otp: "27"
+            elixir: "1.18"
+
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/cache@v4
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-
+
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: "27"
-          elixir-version: "1.18"
+          otp-version: ${{ matrix.otp }}
+          elixir-version: ${{ matrix.elixir }}
+
+      - run: mix compile --warnings-as-errors
+
+      - run: mix deps.unlock --unused
 
       - run: mix format
 

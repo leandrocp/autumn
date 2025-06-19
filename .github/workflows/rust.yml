@@ -18,6 +18,7 @@ env:
 
 jobs:
   quality:
+    name: quality
     runs-on: ubuntu-latest
 
     strategy:
@@ -30,21 +31,44 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: stable
+          toolchain: "1.86.0"
           components: clippy
+
+      - name: Install cargo-sort
+        uses: baptiste0928/cargo-install@v3
+        with:
+          crate: cargo-sort
+
+      - name: Install cargo-sort-derives
+        uses: baptiste0928/cargo-install@v3
+        with:
+          crate: cargo-sort-derives
 
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: |
             native/autumnus_nif
 
+      - name: cargo sort
+      - run: |
+          (cd native/autumnus_nif && cargo sort)
+
+      - name: cargo sort-derives
+        run: |
+          (cd native/autumnus_nif && cargo sort-derives)
+
       - name: cargo fmt
-        run: cargo fmt --manifest-path=${{ matrix.manifest }}
+        run: |
+          (cd native/autumnus_nif && cargo fmt)
 
       - uses: stefanzweifel/git-auto-commit-action@v6
         with:
           push_options: --force
 
-      - run: cargo test --manifest-path=${{ matrix.manifest }} --all-features
+      - name: cargo test
+        run: |
+          (cd native/autumnus_nif && cargo test --all-features)
 
-      - run: cargo clippy --manifest-path=${{ matrix.manifest }} -- -Dwarnings
+      - name: cargo clipppy
+        run: |
+          (cd native/autumnus_nif && cargo clippy -- -Dwarnings)
