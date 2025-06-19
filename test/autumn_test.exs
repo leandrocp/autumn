@@ -356,12 +356,12 @@ defmodule Autumn.AutumnTest do
         Autumn.highlight!(
           "def test\nend",
           language: "ruby",
-          formatter: {:html_inline, highlight_lines: highlight_lines}
+          formatter: {:html_inline, theme: "dracula", highlight_lines: highlight_lines}
         )
 
       assert String.contains?(
                result,
-               ~s|<span class="line" style="background-color: #282c34;" data-line="1">|
+               ~s|<span class="line" style="background-color: #44475a;" data-line="1">|
              )
     end
 
@@ -375,12 +375,12 @@ defmodule Autumn.AutumnTest do
         Autumn.highlight!(
           "def test\nend",
           language: "ruby",
-          formatter: {:html_inline, highlight_lines: highlight_lines}
+          formatter: {:html_inline, theme: "dracula", highlight_lines: highlight_lines}
         )
 
       assert String.contains?(
                result,
-               ~s|<span class="line" style="background-color: #282c34;" data-line="1">|
+               ~s|<span class="line" style="background-color: #44475a;" data-line="1">|
              )
     end
 
