@@ -20,5 +20,8 @@ The library supports three output formatters:
 - Do not remove existing code comments unless I explicitly ask you to
 - Write concise `@moduledoc` and `@doc` for modules and functions
 
+## Changelog
+- Use https://common-changelog.org as a reference
+
 ## Important Notes
 - Options are defined using nimble_options so fetch https://hexdocs.pm/nimble_options/NimbleOptions.html before making changes
