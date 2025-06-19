@@ -1,3 +1,7 @@
+/* nightfly
+ * revision: 8c55003e89f321a48a8cd4bb426dd3e7c58f0646
+ */
+
 pre.athl {
   color: #c3ccdc;
   background-color: #011627;
@@ -50,6 +54,9 @@ pre.athl {
 .constructor {
   color: #21c7a8;
 }
+.cursorline {
+  background-color: #092236;
+}
 .diff-delta {
   background-color: #2c3043;
 }
@@ -59,9 +66,6 @@ pre.athl {
 }
 .diff-plus {
   background-color: #2a4e57;
-}
-.error {
-  color: #fc514e;
 }
 .function {
   color: #82aaff;
@@ -199,9 +203,6 @@ pre.athl {
 }
 .module-builtin {
   color: #a1cd5e;
-}
-.namespace {
-  color: #7fdbca;
 }
 .normal {
   color: #c3ccdc;

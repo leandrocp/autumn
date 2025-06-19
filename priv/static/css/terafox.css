@@ -1,3 +1,7 @@
+/* terafox
+ * revision: ba47d4b4c5ec308718641ba7402c143836f35aa9
+ */
+
 pre.athl {
   color: #e6eaea;
   background-color: #152528;
@@ -50,6 +54,9 @@ pre.athl {
 }
 .constructor {
   color: #a1cdd8;
+}
+.cursorline {
+  background-color: #254147;
 }
 .diff-delta {
   color: #fda47f;

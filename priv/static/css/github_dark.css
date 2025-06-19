@@ -1,3 +1,7 @@
+/* github_dark
+ * revision: c106c9472154d6b2c74b74565616b877ae8ed31d
+ */
+
 pre.athl {
   color: #e6edf3;
   background-color: #30363d;
@@ -49,6 +53,9 @@ pre.athl {
 }
 .constructor {
   color: #ffa657;
+}
+.cursorline {
+  background-color: #484f58;
 }
 .diff-delta {
   color: #d29922;

@@ -1,3 +1,7 @@
+/* catppuccin_frappe
+ * revision: fa42eb5e26819ef58884257d5ae95dd0552b9a66
+ */
+
 pre.athl {
   color: #c6d0f5;
   background-color: #303446;
@@ -52,6 +56,9 @@ pre.athl {
 }
 .constructor {
   color: #85c1dc;
+}
+.cursorline {
+  background-color: #3b3f52;
 }
 .diff-delta {
   color: #8caaee;

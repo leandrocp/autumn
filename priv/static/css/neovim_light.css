@@ -1,3 +1,7 @@
+/* neovim_light
+ * revision: 6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a
+ */
+
 pre.athl {
   color: #14161b;
   background-color: #e0e2ea;
@@ -47,6 +51,9 @@ pre.athl {
 }
 .constructor {
   color: #007373;
+}
+.cursorline {
+  background-color: #c4c6cd;
 }
 .diff-delta {
   color: #007373;

@@ -1,3 +1,7 @@
+/* neosolarized_dark
+ * revision: 742deb0b2b1e110b09494206611509e3992aac35
+ */
+
 pre.athl {
   color: #839496;
 }
@@ -48,6 +52,9 @@ pre.athl {
 }
 .constructor {
   color: #cb4b16;
+}
+.cursorline {
+  background-color: #073642;
 }
 .diff-delta {
   color: #8cf8f7;

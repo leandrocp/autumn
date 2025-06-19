@@ -1,3 +1,7 @@
+/* aura_soft_dark
+ * revision: 6e4f659e74577cae7cb152a96f84c23bc9213f1b
+ */
+
 pre.athl {
   color: #edecee;
   background-color: #21202e;
@@ -51,6 +55,9 @@ pre.athl {
 }
 .constructor {
   color: #a277ff;
+}
+.cursorline {
+  background-color: #21202e;
 }
 .diff-delta {
   color: #8cf8f7;

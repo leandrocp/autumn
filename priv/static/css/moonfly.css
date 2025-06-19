@@ -1,3 +1,7 @@
+/* moonfly
+ * revision: ff822100c5d268e0db79e8e725cbd3ade3470de3
+ */
+
 pre.athl {
   color: #c6c6c6;
   background-color: #080808;
@@ -26,7 +30,7 @@ pre.athl {
   font-style: italic;
 }
 .comment-error {
-  color: #ff5454;
+  color: #ff5d5d;
 }
 .comment-note {
   color: #949494;
@@ -50,6 +54,9 @@ pre.athl {
 .constructor {
   color: #36c692;
 }
+.cursorline {
+  background-color: #1c1c1c;
+}
 .diff-delta {
   background-color: #2e2e2e;
 }
@@ -59,9 +66,6 @@ pre.athl {
 }
 .diff-plus {
   background-color: #314940;
-}
-.error {
-  color: #ff5454;
 }
 .function {
   color: #74b2ff;
@@ -199,9 +203,6 @@ pre.athl {
 }
 .module-builtin {
   color: #8cc85f;
-}
-.namespace {
-  color: #79dac8;
 }
 .normal {
   color: #c6c6c6;

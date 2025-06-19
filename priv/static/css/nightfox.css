@@ -1,3 +1,7 @@
+/* nightfox
+ * revision: ba47d4b4c5ec308718641ba7402c143836f35aa9
+ */
+
 pre.athl {
   color: #cdcecf;
   background-color: #192330;
@@ -50,6 +54,9 @@ pre.athl {
 }
 .constructor {
   color: #63cdcf;
+}
+.cursorline {
+  background-color: #29394f;
 }
 .diff-delta {
   color: #dbc074;

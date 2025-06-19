@@ -1,3 +1,7 @@
+/* bamboo_vulgaris
+ * revision: ab8393d1a314d96314605369b4b1e6bc7737f2b5
+ */
+
 pre.athl {
   color: #f1e9d2;
   background-color: #252623;
@@ -57,6 +61,9 @@ pre.athl {
 .constructor {
   color: #dbb651;
   font-weight: bold;
+}
+.cursorline {
+  background-color: #2f312c;
 }
 .diff-delta {
   background-color: #2a3a57;

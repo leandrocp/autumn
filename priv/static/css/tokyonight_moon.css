@@ -1,3 +1,7 @@
+/* tokyonight_moon
+ * revision: 057ef5d260c1931f1dffd0f052c685dcd14100a3
+ */
+
 pre.athl {
   color: #c8d3f5;
   background-color: #222436;
@@ -48,6 +52,9 @@ pre.athl {
 }
 .constructor {
   color: #c099ff;
+}
+.cursorline {
+  background-color: #2f334d;
 }
 .diff-delta {
   background-color: #252a3f;

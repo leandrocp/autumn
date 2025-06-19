@@ -1,3 +1,7 @@
+/* bluloco_light
+ * revision: 29322e83d4e5a1577c20532fee7173a9e7c9bd2b
+ */
+
 pre.athl {
   color: #383a42;
   background-color: #fafafa;
@@ -47,6 +51,9 @@ pre.athl {
 }
 .constructor {
   color: #d32752;
+}
+.cursorline {
+  background-color: #dee1e3;
 }
 .diff-delta {
   color: #255ee4;

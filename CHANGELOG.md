@@ -14,6 +14,7 @@
   * Add languages: assembly, dart
   * Add cursorline highlight in themes
   * Add Elixir ~V live_svelte injection
+  * Update CSS files
 
 ## 0.3.3 (2025-05-21)
 

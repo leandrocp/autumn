@@ -1,3 +1,7 @@
+/* github_light_tritanopia
+ * revision: c106c9472154d6b2c74b74565616b877ae8ed31d
+ */
+
 pre.athl {
   color: #1b1f24;
   background-color: #ffffff;
@@ -50,6 +54,9 @@ pre.athl {
 .constructor {
   color: #a40e26;
 }
+.cursorline {
+  background-color: #eaeef2;
+}
 .diff-delta {
   color: #9a6700;
   background-color: #fef6d8;
@@ -69,7 +76,7 @@ pre.athl {
   color: #6639ba;
 }
 .function-macro {
-  color: #6639ba;
+  color: #cf222e;
 }
 .function-method {
   color: #6639ba;
@@ -90,7 +97,7 @@ pre.athl {
   color: #cf222e;
 }
 .keyword-debug {
-  color: #cf222e;
+  color: #1b1f24;
 }
 .keyword-directive {
   color: #cf222e;
@@ -120,7 +127,7 @@ pre.athl {
   color: #cf222e;
 }
 .keyword-type {
-  color: #cf222e;
+  color: #a40e26;
 }
 .label {
   color: #0550ae;
@@ -165,7 +172,6 @@ pre.athl {
   color: #1b1f24;
 }
 .markup-link-url {
-  color: #1b1f24;
   text-decoration: underline;
 }
 .markup-list {

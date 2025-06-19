@@ -1,3 +1,7 @@
+/* material_deep_ocean
+ * revision: 0004ec60f91d581d47563a39f7dac62cb758f7ea
+ */
+
 pre.athl {
   color: #a6accd;
   background-color: #0f111a;
@@ -49,6 +53,9 @@ pre.athl {
 }
 .constructor {
   color: #82aaff;
+}
+.cursorline {
+  background-color: #1a1c25;
 }
 .diff-delta {
   color: #82aaff;
@@ -102,9 +109,6 @@ pre.athl {
 }
 .keyword-directive-define {
   color: #89ddff;
-}
-.keyword-exception {
-  color: #f07178;
 }
 .keyword-function {
   color: #89ddff;

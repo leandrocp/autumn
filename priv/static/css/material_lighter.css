@@ -1,3 +1,7 @@
+/* material_lighter
+ * revision: 0004ec60f91d581d47563a39f7dac62cb758f7ea
+ */
+
 pre.athl {
   color: #546e7a;
   background-color: #fafafa;
@@ -50,6 +54,9 @@ pre.athl {
 .constructor {
   color: #6182b8;
 }
+.cursorline {
+  background-color: #e7e7e8;
+}
 .diff-delta {
   color: #6182b8;
 }
@@ -95,7 +102,7 @@ pre.athl {
   font-style: italic;
 }
 .keyword-debug {
-  color: #39adb5;
+  color: #e53935;
 }
 .keyword-directive {
   color: #39adb5;
@@ -125,7 +132,7 @@ pre.athl {
   color: #39adb5;
 }
 .keyword-type {
-  color: #39adb5;
+  color: #7c4dff;
 }
 .label {
   color: #f6a434;

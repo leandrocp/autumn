@@ -1,3 +1,7 @@
+/* modus_vivendi
+ * revision: 61b8c10ec636f42baf6c845edb14b9ae2723711f
+ */
+
 pre.athl {
   color: #ffffff;
   background-color: #000000;
@@ -30,7 +34,7 @@ pre.athl {
   color: #ff7f9f;
 }
 .comment-note {
-  color: #6ae4b9;
+  color: #9ac8e0;
 }
 .comment-todo {
   color: #feacd0;
@@ -50,6 +54,9 @@ pre.athl {
 }
 .constructor {
   color: #dfaf7a;
+}
+.cursorline {
+  background-color: #2f3849;
 }
 .diff-delta {
   color: #efef80;

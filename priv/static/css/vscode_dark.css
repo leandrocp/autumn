@@ -1,3 +1,7 @@
+/* vscode_dark
+ * revision: 4d1c3c64d1afddd7934fb0e687fd9557fc66be41
+ */
+
 pre.athl {
   color: #d4d4d4;
   background-color: #1f1f1f;
@@ -51,6 +55,9 @@ pre.athl {
 }
 .constructor {
   color: #569cd6;
+}
+.cursorline {
+  background-color: #222222;
 }
 .diff-delta {
   background-color: #4b1818;

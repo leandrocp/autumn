@@ -1,3 +1,7 @@
+/* darkplus
+ * revision: 6101ffce60682208e9e076710299d189ce11c40d
+ */
+
 pre.athl {
   color: #d4d4d4;
   background-color: #1e1e1e;
@@ -50,6 +54,9 @@ pre.athl {
 }
 .constructor {
   color: #c586c0;
+}
+.cursorline {
+  background-color: #252525;
 }
 .diff-delta {
   color: #8cf8f7;
