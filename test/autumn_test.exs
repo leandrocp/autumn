@@ -384,6 +384,56 @@ defmodule Autumn.AutumnTest do
              )
     end
 
+    test "html_linked with single line and default theme" do
+      highlight_lines = %{
+        lines: [1]
+      }
+
+      result =
+        Autumn.highlight!(
+          "line 1\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9",
+          language: "text",
+          formatter: {:html_linked, highlight_lines: highlight_lines}
+        )
+
+      assert String.contains?(result, ~s|<span class="line cursorline" data-line="1">|)
+    end
+
+    test "html_linked with multiple lines and default theme " do
+      highlight_lines = %{
+        lines: [1, 2]
+      }
+
+      result =
+        Autumn.highlight!(
+          "line 1\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9",
+          language: "text",
+          formatter: {:html_linked, highlight_lines: highlight_lines}
+        )
+
+      assert String.contains?(result, ~s|<span class="line cursorline" data-line="1">|)
+      assert String.contains?(result, ~s|<span class="line cursorline" data-line="2">|)
+      refute String.contains?(result, ~s|<span class="line cursorline" data-line="3">|)
+    end
+
+    test "html_linked with mixes lines and ranges and default theme " do
+      highlight_lines = %{
+        lines: [1, 2, 2..4]
+      }
+
+      result =
+        Autumn.highlight!(
+          "line 1\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9",
+          language: "text",
+          formatter: {:html_linked, highlight_lines: highlight_lines}
+        )
+
+      assert String.contains?(result, ~s|<span class="line cursorline" data-line="1">|)
+      assert String.contains?(result, ~s|<span class="line cursorline" data-line="2">|)
+      assert String.contains?(result, ~s|<span class="line cursorline" data-line="3">|)
+      refute String.contains?(result, ~s|<span class="line cursorline" data-line="5">|)
+    end
+
     test "html_linked with CSS class" do
       highlight_lines = %{
         lines: [1],
@@ -416,7 +466,7 @@ defmodule Autumn.AutumnTest do
         style: :theme
       }
 
-      assert_raise NimbleOptions.ValidationError, ~r/invalid highlight_lines format/, fn ->
+      assert_raise NimbleOptions.ValidationError, ~r/invalid value for :highlight_lines/, fn ->
         Autumn.highlight!(
           "test",
           language: "text",
@@ -431,7 +481,7 @@ defmodule Autumn.AutumnTest do
         style: 123
       }
 
-      assert_raise NimbleOptions.ValidationError, ~r/invalid highlight_lines format/, fn ->
+      assert_raise NimbleOptions.ValidationError, ~r/invalid value for :style option/, fn ->
         Autumn.highlight!(
           "test",
           language: "text",
@@ -476,7 +526,7 @@ defmodule Autumn.AutumnTest do
       }
 
       assert_raise NimbleOptions.ValidationError,
-                   ~r/header must be a map with :open_tag and :close_tag keys/,
+                   ~r/invalid value for :header option/,
                    fn ->
                      Autumn.highlight!(
                        "test",
@@ -493,7 +543,7 @@ defmodule Autumn.AutumnTest do
       }
 
       assert_raise NimbleOptions.ValidationError,
-                   ~r/header open_tag and close_tag must be strings/,
+                   ~r/invalid value for :open_tag option/,
                    fn ->
                      Autumn.highlight!(
                        "test",

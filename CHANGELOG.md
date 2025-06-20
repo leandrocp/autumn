@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+  * Doc `:highlight_lines` and :`header` options in HTML formatters
+  * Properly validate `:highlight_lines` option in HTML formatters
+  * Properly validate `:header` option in HTML formatters
+
 ## 0.4.0 (2025-06-19)
 
 ### Enhancements

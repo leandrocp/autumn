@@ -44,7 +44,7 @@
 ```elixir
 def deps do
   [
-    {:autumn, "~> 0.3"}
+    {:autumn, "~> 0.4"}
   ]
 end
 ```
@@ -118,6 +118,8 @@ Autumn supports three output formatters:
 
 Both HTML formatters wrap each line in a `<span class="line">` element with a `data-line` attribute containing the line number, making it easy to add line numbers or implement line-based features in your application.
 
+See [t:formatter/0](https://hexdocs.pm/autumn/Autumn.html#t:formatter/0) for more info examples.
+
 ### HTML Inline (Default)
 
 Generates HTML with inline styles for each token:
@@ -135,42 +137,6 @@ Options:
 - `:highlight_lines` - highlight specific lines with custom styling
 - `:header` - wrap the highlighted code with custom HTML elements
 
-#### Line Highlighting
-
-```elixir
-# Default: theme-based highlighting using cursorline from current theme
-highlight_lines = %{
-  lines: [2..4, 6]  # Mix integers and ranges for flexible line specification
-  # style defaults to :theme, which uses the cursorline highlight from theme
-}
-
-# Or with explicit theme styling  
-theme_highlight_lines = %{
-  lines: [1..2],
-  style: :theme  # uses cursorline highlight from theme
-}
-
-# Or with custom CSS styling
-custom_highlight_lines = %{
-  lines: [2..4, 6],  # Multiple lines: 2..4, Single line: 6
-  style: "background-color: #fff3cd; border-left: 3px solid #ffc107;"
-}
-
-Autumn.highlight!(code, language: "elixir", formatter: {:html_inline, highlight_lines: highlight_lines})
-```
-
-#### Custom HTML Wrapper
-
-```elixir
-# Wrap code with custom HTML elements
-header = %{
-  open_tag: "<div class='code-wrapper' data-language='elixir'>",
-  close_tag: "</div>"
-}
-
-Autumn.highlight!(code, language: "elixir", formatter: {:html_inline, header: header})
-```
-
 ### HTML Linked
 
 Generates HTML with CSS classes for styling:
@@ -185,27 +151,6 @@ Options:
 - `:pre_class` - CSS class for the `<pre>` tag
 - `:highlight_lines` - highlight specific lines with custom CSS class
 - `:header` - wrap the highlighted code with custom HTML elements
-
-#### Line Highlighting with CSS Classes
-
-```elixir
-# Highlight lines with a CSS class
-highlight_lines = %{
-  lines: [1..3, 7..8],
-  class: "highlighted-line"
-}
-
-Autumn.highlight!(code, language: "elixir", formatter: {:html_linked, highlight_lines: highlight_lines})
-```
-
-You'll need to style the CSS class in your stylesheet:
-
-```css
-.highlighted-line {
-  background-color: #fff3cd;
-  border-left: 3px solid #ffc107;
-}
-```
 
 To use linked styles, you need to include one of the [available CSS themes](https://github.com/leandrocp/autumn/tree/main/priv/static/css) in your app.
 
