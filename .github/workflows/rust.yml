@@ -9,6 +9,7 @@ on:
   pull_request:
     paths:
       - "native/**"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -21,15 +22,15 @@ jobs:
     name: "quality: Rust ${{ matrix.rust }}"
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: native/autumnus_nif
-
     strategy:
       fail-fast: false
       matrix:
         include:
           - rust: "1.86.0"
+
+    defaults:
+      run:
+        working-directory: native/autumnus_nif
 
     steps:
       - uses: actions/checkout@v4
