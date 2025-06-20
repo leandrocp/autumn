@@ -14,6 +14,8 @@ defmodule Autumn do
   @typedoc """
   A language name, filename, or path with extension.
 
+  See `Autumn.available_languages/0` to list all available languages or check out a list of [available languages](https://docs.rs/autumnus/latest/autumnus/#languages-available).
+
   ## Examples
 
       - "elixir"
@@ -30,6 +32,36 @@ defmodule Autumn do
   See `Autumn.available_themes/0` to list all available themes or check out a list of [available themes](https://docs.rs/autumnus/latest/autumnus/#themes-available).
   """
   @type theme :: String.t() | Autumn.Theme.t() | nil
+
+  @typedoc """
+  Highlight lines options for Inline HTML formatter.
+  """
+  @type html_inline_highlight_lines ::
+          %{
+            lines: [pos_integer() | Range.t()],
+            style: :theme | String.t()
+          }
+          | nil
+
+  @typedoc """
+  Highlight lines options for Linked HTML formatter.
+  """
+  @type html_linked_highlight_lines ::
+          %{
+            lines: [pos_integer() | Range.t()],
+            class: String.t()
+          }
+          | nil
+
+  @typedoc """
+  Wraps the highlighted code with custom open and close HTML tags.
+  """
+  @type header ::
+          %{
+            close_tag: String.t(),
+            open_tag: String.t()
+          }
+          | nil
 
   @typedoc """
   Highlighter formatter and its options.
@@ -56,15 +88,14 @@ defmodule Autumn do
       - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
       - `:italic` (`t:boolean/0` - default: `false`) - enable italic style for the highlighted code.
       - `:include_highlights` (`t:boolean/0` - default: `false`) - include the highlight scope name in a `data-highlight` attribute. Useful for debugging.
-      - `:highlight_lines` (map - default: `nil`) - highlight specific lines with custom styling: `%{lines: [pos_integer() | Range.t()], style: :theme | String.t()}`. 
-        The `:style` field is optional and defaults to `:theme`, which uses the `cursorline` highlight from the current theme. You can also pass a CSS string for custom styling.
-      - `:header` (map - default: `nil`) - wrap the highlighted code with custom HTML elements: `%{open_tag: String.t(), close_tag: String.t()}`.
+      - `:highlight_lines` (`t:html_inline_highlight_lines/0` - default: `nil`) - highlight specific lines either using the theme `cursorline` highlight style or with custom CSS styling.
+      - `:header` (`t:header/0` - default: `nil`) - wrap the highlighted code with custom open and close HTML tags.
 
   * `html_linked`:
 
       - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
-      - `:highlight_lines` (map - default: `nil`) - highlight specific lines with custom CSS class: `%{lines: [pos_integer() | Range.t()], class: String.t()}`.
-      - `:header` (map - default: `nil`) - wrap the highlighted code with custom HTML elements: `%{open_tag: String.t(), close_tag: String.t()}`.
+      - `:highlight_lines` (`t:html_linked_highlight_lines/0` - default: `nil`) - highlight specific lines either using the `cursorline` class from themes or with a custom CSS class.
+      - `:header` (`t:header/0` - default: `nil`) - wrap the highlighted code with custom open and close HTML tags.
 
   * `terminal`:
 
@@ -72,42 +103,42 @@ defmodule Autumn do
 
   ## Examples
 
+  ### Inline HTML formatter with default options
+
       :html_inline
+
+  ### Inline HTML formatter with custom options
 
       {:html_inline, theme: "onedark", pre_class: "example-01", include_highlights: true}
 
-      # Highlighting specific lines with theme-based styling (default)
-      highlight_lines = %{
-        lines: [2..4, 6]  # Range for multiple lines, integer for single line
-        # style: :theme is the default - uses cursorline highlight from theme
-      }
-      {:html_inline, highlight_lines: highlight_lines}
+  ### HTML Inline: highlight specific lines
 
-      # Or with custom CSS styling
-      custom_highlight_lines = %{
-        lines: [1, 3..5, 8],  # Mix of single lines and ranges
-        style: "background-color: #fff3cd; border-left: 3px solid #ffc107;"
-      }
-      {:html_inline, highlight_lines: custom_highlight_lines}
+      # apply theme's `cursorline` style
+      {:html_inline, highlight_lines: %{lines: [2..4, 6], style: :theme}}
 
-      # Wrapping with custom HTML elements
+      # style: :theme is the default
+      {:html_inline, highlight_lines: %{lines: [1, 2, 3]}}
+
+      # overrides default style
+      {:html_inline, highlight_lines: %{lines: [1, 3..5, 8], style: "background-color: #fff3cd; border-left: 3px solid #ffc107;"}}
+
+  ### HTML Linked: highlight specific lines
+
+      # use default `cursorline` class (already present in themes)
+      {:html_linked, highlight_lines: %{lines: [2..4, 6]}}
+
+      # use custom class
+      {:html_linked, highlight_lines: %{lines: [1, 2, 3], class: "error-line"}}
+
+  ### Wrap with custom open and close HTML tags
+
       header = %{
-        open_tag: "<div class=\"code-wrapper\" data-language=\"elixir\">",
+        open_tag: "<div class=\"code-header\"><span>file: app.ex</span>",
         close_tag: "</div>"
       }
       {:html_inline, header: header}
 
-      # Combining multiple features
-      {:html_inline, theme: "dracula", header: header, highlight_lines: highlight_lines}
-
-      {:html_linked, pre_class: "example-01"}
-
-      # HTML linked with line highlighting
-      linked_highlight_lines = %{
-        lines: [1, 3..5],  # Single line 1, and range 3-5
-        class: "highlighted-line"
-      }
-      {:html_linked, highlight_lines: linked_highlight_lines, header: header}
+  ### Terminal formatter
 
       :terminal
 
@@ -123,24 +154,21 @@ defmodule Autumn do
                pre_class: String.t(),
                italic: boolean(),
                include_highlights: boolean(),
-               highlight_lines: %{
-                 lines: [pos_integer() | Range.t()],
-                 style: :theme | String.t()
-               },
-               header: %{open_tag: String.t(), close_tag: String.t()}
+               highlight_lines: html_inline_highlight_lines(),
+               header: header()
              ]}
           | :html_linked
           | {:html_linked,
              [
                pre_class: String.t(),
-               highlight_lines: %{
-                 lines: [pos_integer() | Range.t()],
-                 class: String.t()
-               },
-               header: %{open_tag: String.t(), close_tag: String.t()}
+               highlight_lines: html_linked_highlight_lines(),
+               header: header()
              ]}
           | :terminal
-          | {:terminal, [theme: theme()]}
+          | {:terminal,
+             [
+               theme: theme()
+             ]}
 
   @formatter_schema [
     type: {:custom, Autumn, :formatter_type, []},
@@ -192,8 +220,30 @@ defmodule Autumn do
       pre_class: [type: {:or, [:string, nil]}, default: nil],
       italic: [type: :boolean, default: false],
       include_highlights: [type: :boolean, default: false],
-      highlight_lines: [type: {:or, [:map, nil]}, default: nil],
-      header: [type: {:or, [:map, nil]}, default: nil]
+      highlight_lines: [
+        type:
+          {:or,
+           [
+             nil,
+             map: [
+               lines: [type: {:list, {:custom, Autumn, :highlight_lines_type, []}}],
+               style: [type: {:or, [:string, {:in, [:theme]}]}, default: :theme]
+             ]
+           ]},
+        default: nil
+      ],
+      header: [
+        type:
+          {:or,
+           [
+             nil,
+             map: [
+               open_tag: [type: :string],
+               close_tag: [type: :string]
+             ]
+           ]},
+        default: nil
+      ]
     ]
 
     case NimbleOptions.validate(options, schema) do
@@ -214,8 +264,30 @@ defmodule Autumn do
   def formatter_type({:html_linked, options}) when is_list(options) do
     schema = [
       pre_class: [type: {:or, [:string, nil]}, default: nil],
-      highlight_lines: [type: {:or, [:map, nil]}, default: nil],
-      header: [type: {:or, [:map, nil]}, default: nil]
+      highlight_lines: [
+        type:
+          {:or,
+           [
+             nil,
+             map: [
+               lines: [type: {:list, {:custom, Autumn, :highlight_lines_type, []}}],
+               class: [type: :string, default: "cursorline"]
+             ]
+           ]},
+        default: nil
+      ],
+      header: [
+        type:
+          {:or,
+           [
+             nil,
+             map: [
+               open_tag: [type: :string],
+               close_tag: [type: :string]
+             ]
+           ]},
+        default: nil
+      ]
     ]
 
     case NimbleOptions.validate(options, schema) do
@@ -271,36 +343,25 @@ defmodule Autumn do
       nil ->
         {:ok, opts}
 
-      %{lines: lines} = hl_map ->
-        # Default style to :theme if not provided
-        style = Map.get(hl_map, :style, :theme)
+      hl ->
+        lines =
+          Enum.map(hl[:lines] || [], fn
+            %Range{} = range -> {:range, %{start: range.first, end: range.last}}
+            n when is_integer(n) -> {:single, n}
+          end)
 
-        if valid_lines?(lines) and valid_inline_style?(style) do
-          converted_lines =
-            Enum.map(lines, fn
-              %Range{} = range -> {:range, %{start: range.first, end: range.last}}
-              n when is_integer(n) -> {:single, n}
-            end)
+        style =
+          case hl[:style] || :theme do
+            :theme -> :theme
+            str when is_binary(str) -> {:style, %{style: str}}
+          end
 
-          internal_style =
-            case style do
-              :theme -> :theme
-              str when is_binary(str) -> {:style, %{style: str}}
-            end
-
-          converted_hl = %Autumn.HtmlInlineHighlightLines{
-            lines: converted_lines,
-            style: internal_style
-          }
-
-          {:ok, Keyword.put(opts, :highlight_lines, converted_hl)}
-        else
-          {:error, "invalid highlight_lines format"}
-        end
-
-      _ ->
-        {:error,
-         "highlight_lines must be a map with :lines key containing a list of ranges (and optional :style key)"}
+        opts
+        |> Keyword.put(:highlight_lines, %Autumn.HtmlInlineHighlightLines{
+          lines: lines,
+          style: style
+        })
+        |> then(&{:ok, &1})
     end
   end
 
@@ -310,27 +371,21 @@ defmodule Autumn do
       nil ->
         {:ok, opts}
 
-      %{lines: lines, class: class} ->
-        if valid_lines?(lines) and is_binary(class) do
-          converted_lines =
-            Enum.map(lines, fn
-              %Range{} = range -> {:range, %{start: range.first, end: range.last}}
-              n when is_integer(n) -> {:single, n}
-            end)
+      hl ->
+        lines =
+          Enum.map(hl[:lines] || [], fn
+            %Range{} = range -> {:range, %{start: range.first, end: range.last}}
+            n when is_integer(n) -> {:single, n}
+          end)
 
-          converted_hl = %Autumn.HtmlLinkedHighlightLines{
-            lines: converted_lines,
-            class: class
-          }
+        class = hl[:class] || "cursorline"
 
-          {:ok, Keyword.put(opts, :highlight_lines, converted_hl)}
-        else
-          {:error, "invalid highlight_lines format"}
-        end
-
-      _ ->
-        {:error,
-         "highlight_lines must be a map with :lines key containing a list of ranges and :class key"}
+        opts
+        |> Keyword.put(:highlight_lines, %Autumn.HtmlLinkedHighlightLines{
+          lines: lines,
+          class: class
+        })
+        |> then(&{:ok, &1})
     end
   end
 
@@ -341,47 +396,26 @@ defmodule Autumn do
         {:ok, opts}
 
       %{open_tag: open_tag, close_tag: close_tag} ->
-        if is_binary(open_tag) and is_binary(close_tag) do
-          converted_header = %Autumn.HtmlElement{
-            open_tag: open_tag,
-            close_tag: close_tag
-          }
-
-          {:ok, Keyword.put(opts, :header, converted_header)}
-        else
-          {:error, "header open_tag and close_tag must be strings"}
-        end
+        opts
+        |> Keyword.put(:header, %Autumn.HtmlElement{
+          open_tag: open_tag,
+          close_tag: close_tag
+        })
+        |> then(&{:ok, &1})
 
       _ ->
-        {:error, "header must be a map with :open_tag and :close_tag keys"}
+        {:error,
+         "invalid value for :header option, must be a map with :open_tag and :close_tag keys"}
     end
   end
 
   @doc false
-  defp valid_lines?(lines) do
-    is_list(lines) and
-      Enum.all?(lines, fn
-        %Range{} = range ->
-          # Validate that range contains only integers and is finite
-          range.first != nil and range.last != nil and
-            is_integer(range.first) and is_integer(range.last)
+  def highlight_lines_type(line) when is_integer(line), do: {:ok, line}
 
-        n when is_integer(n) and n > 0 ->
-          true
+  def highlight_lines_type(%Range{} = range), do: {:ok, range}
 
-        _ ->
-          false
-      end)
-  end
-
-  @doc false
-  defp valid_inline_style?(style) do
-    case style do
-      :theme -> true
-      str when is_binary(str) -> true
-      _ -> false
-    end
-  end
+  def highlight_lines_type(other),
+    do: {:error, "invalid highlight line type: #{inspect(other)}"}
 
   @typedoc """
   #{NimbleOptions.docs(@options_schema)}
@@ -478,57 +512,62 @@ defmodule Autumn do
   Defining the language name:
 
       iex> Autumn.highlight("Atom.to_string(:elixir)", language: "elixir")
-      {:ok,
-       ~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
-       </span></code></pre>|
+      {
+        :ok,
+        <pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
+        </span></code></pre>
       }
 
   Guessing the language based on the provided source code:
 
       iex> Autumn.highlight("#!/usr/bin/env bash\\nID=1")
-      {:ok,
-       ~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-bash" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #c678dd;">#!/usr/bin/env bash</span>
-       </span><span class="line" data-line="2"><span style="color: #d19a66;">ID</span><span style="color: #56b6c2;">=</span><span style="color: #d19a66;">1</span>
-       </span></code></pre>|
-      }
+      {:ok, "<pre class=\"athl\" ...><code class=\"language-bash\" ...>...</code></pre>"}
 
   With custom options:
 
       iex> Autumn.highlight("Atom.to_string(:elixir)", language: "example.ex", formatter: {:html_inline, pre_class: "example-elixir"})
-      {:ok,
-       ~s|<pre class="athl example-elixir" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
-       </span></code></pre>|
-      }
+      {:ok, "<pre class=\"athl example-elixir\" ...><code ...>...</code></pre>"}
 
   Terminal formatter:
 
       iex> Autumn.highlight("Atom.to_string(:elixir)", language: "elixir", formatter: :terminal)
       {:ok, "\e[0m\e[38;2;229;192;123mAtom\e[0m\e[0m\e[38;2;86;182;194m.\e[0m\e[0m\e[38;2;97;175;239mto_string\e[0m\e[0m\e[38;2;198;120;221m(\e[0m\e[0m\e[38;2;224;108;117m:elixir\e[0m\e[0m\e[38;2;198;120;221m)\e[0m"}
 
-  Highlighting specific lines:
+  Highlighting specific lines in HTML Inline formatter:
 
-      iex> code = "defmodule Example do\\n  def hello, do: :world\\n  def goodbye, do: :farewell\\nend"
-      iex> # Using default theme-based highlighting (cursorline from theme)
-      iex> highlight_lines = %{lines: [2..2]}
+      iex> code = \"""
+      ...> defmodule Example do
+      ...>   @lang = :elixir
+      ...>   def lang, do: @lang
+      ...> end
+      ...> \"""
+      iex> highlight_lines = %{lines: [2]}
       iex> Autumn.highlight(code, language: "elixir", formatter: {:html_inline, highlight_lines: highlight_lines})
-      # Returns HTML with line 2 highlighted using theme's cursorline style
+      # Line 2 will be highlighted with the theme's `cursorline` style:
+      <span class=\"line\" style=\"background-color: #282c34;\" data-line=\"2\">...</span>
+
+  Highlighting specific lines in HTML Linked formatter:
       
-      iex> # Or with custom CSS styling
-      iex> custom_highlight_lines = %{
-      ...>   lines: [2..2],
-      ...>   style: "background-color: #fff3cd;"
-      ...> }
-      iex> Autumn.highlight(code, language: "elixir", formatter: {:html_inline, highlight_lines: custom_highlight_lines})
-      # Returns HTML with line 2 highlighted with custom yellow background
+      iex> code = \"""
+      ...> defmodule Example do
+      ...>   @lang = :elixir
+      ...>   def lang, do: @lang
+      ...> end
+      ...> \"""
+      iex> highlight_lines = %{lines: [2]}
+      iex> Autumn.highlight(code, language: "elixir", formatter: {:html_linked, highlight_lines: highlight_lines})
+      # Line 2 will contain a `cursorline` class:
+      </span><span class=\"line cursorline\" data-line=\"2\">
 
   Wrapping with custom HTML:
 
       iex> header = %{
-      ...>   open_tag: "<div class='code-block' data-lang='elixir'>",
-      ...>   close_tag: "</div>"
+      ...>   open_tag: "<figure><span>file: example.exs</span>",
+      ...>   close_tag: "</figure>"
       ...> }
       iex> Autumn.highlight("IO.puts('hello')", language: "elixir", formatter: {:html_inline, header: header})
       # Returns: "<div class='code-block' data-lang='elixir'><pre class='athl'>...</pre></div>"
+      {:ok, "<figure><span>file: example.exs</span><pre...><code ...>...</code></pre></figure>"}
 
   See https://docs.rs/autumnus/latest/autumnus/fn.highlight.html for more info.
 
