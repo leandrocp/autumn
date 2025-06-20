@@ -21,6 +21,10 @@ jobs:
     name: "quality: Rust ${{ matrix.rust }}"
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: native/autumnus_nif
+
     strategy:
       fail-fast: false
       matrix:
@@ -50,16 +54,16 @@ jobs:
           workspaces: |
             native/autumnus_nif
 
-      - run: (cd native/autumnus_nif && cargo sort)
+      - run: cargo sort
 
-      - run: (cd native/autumnus_nif && cargo sort-derives)
+      - run: cargo sort-derives
 
-      - run: (cd native/autumnus_nif && cargo fmt)
+      - run: cargo fmt
 
       - uses: stefanzweifel/git-auto-commit-action@v6
         with:
           push_options: --force
 
-      - run: (cd native/autumnus_nif && cargo test --all-features)
+      - run: cargo test --all-features
 
-      - run: (cd native/autumnus_nif && cargo clippy -- -Dwarnings)
+      - run: cargo clippy -- -Dwarnings
