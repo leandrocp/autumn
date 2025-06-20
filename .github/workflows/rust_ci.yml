@@ -1,4 +1,4 @@
-name: Rust
+name: Rust Quality Check
 
 on:
   push:
