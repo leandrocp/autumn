@@ -74,7 +74,7 @@ defmodule Autumn.AutumnTest do
   end
 
   test "available_themes" do
-    assert Autumn.available_themes() |> length() == 120
+    assert Autumn.available_themes() |> length() == 119
   end
 
   describe "formatter_type: :html_inline" do
@@ -361,7 +361,7 @@ defmodule Autumn.AutumnTest do
 
       assert String.contains?(
                result,
-               ~s|<span class="line" style="background-color: #44475a;" data-line="1">|
+               ~s|<span class="line" style="background-color: #3e4452;" data-line="1">|
              )
     end
 
@@ -380,7 +380,7 @@ defmodule Autumn.AutumnTest do
 
       assert String.contains?(
                result,
-               ~s|<span class="line" style="background-color: #44475a;" data-line="1">|
+               ~s|<span class="line" style="background-color: #3e4452;" data-line="1">|
              )
     end
 
