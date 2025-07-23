@@ -5,10 +5,10 @@ end
 
 defmodule Autumn.HtmlInlineHighlightLines do
   @moduledoc false
-  defstruct lines: [], style: :theme
+  defstruct lines: [], style: :theme, class: nil
 end
 
 defmodule Autumn.HtmlLinkedHighlightLines do
   @moduledoc false
-  defstruct lines: [], class: nil
+  defstruct lines: [], class: "highlighted"
 end

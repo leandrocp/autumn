@@ -154,7 +154,7 @@ defmodule Autumn.AutumnTest do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
-        <pre class="athl" style="color: #f8f8f2; background-color: #282a36;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #8be9fd;">defmodule</span> <span style="color: #ffb86c;">Test</span> <span style="color: #ff79c6;">do</span>
+        <pre class="athl" style="color: #f8f8f2; background-color: #282a36;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #ff79c6;">defmodule</span> <span style="color: #ffb86c;">Test</span> <span style="color: #ff79c6;">do</span>
         </span><span class="line" data-line="2">  <span style="color: #ff79c6;"><span style="color: #bd93f9;">@<span style="color: #50fa7b;"><span style="color: #bd93f9;">lang <span style="color: #bd93f9;">:elixir</span></span></span></span></span>
         </span><span class="line" data-line="3"><span style="color: #ff79c6;">end</span>
         </span></code></pre>
@@ -168,7 +168,7 @@ defmodule Autumn.AutumnTest do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
-        <pre class="athl" style="color: #f8f8f2; background-color: #282a36;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #8be9fd;">defmodule</span> <span style="color: #ffb86c;">Test</span> <span style="color: #ff79c6;">do</span>
+        <pre class="athl" style="color: #f8f8f2; background-color: #282a36;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #ff79c6;">defmodule</span> <span style="color: #ffb86c;">Test</span> <span style="color: #ff79c6;">do</span>
         </span><span class="line" data-line="2">  <span style="color: #ff79c6;"><span style="color: #bd93f9;">@<span style="color: #50fa7b;"><span style="color: #bd93f9;">lang <span style="color: #bd93f9;">:elixir</span></span></span></span></span>
         </span><span class="line" data-line="3"><span style="color: #ff79c6;">end</span>
         </span></code></pre>
@@ -191,7 +191,7 @@ defmodule Autumn.AutumnTest do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
-        <pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span data-highlight="keyword.function" style="color: #c678dd;">defmodule</span> <span data-highlight="module" style="color: #e5c07b;">Test</span> <span data-highlight="keyword" style="color: #c678dd;">do</span>
+        <pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span data-highlight="keyword" style="color: #c678dd;">defmodule</span> <span data-highlight="module" style="color: #e5c07b;">Test</span> <span data-highlight="keyword" style="color: #c678dd;">do</span>
         </span><span class="line" data-line="2">  <span data-highlight="operator" style="color: #56b6c2;"><span data-highlight="constant" style="color: #d19a66;">@<span data-highlight="function.call" style="color: #61afef;"><span data-highlight="constant" style="color: #d19a66;">lang <span data-highlight="string.special.symbol" style="color: #e06c75;">:elixir</span></span></span></span></span>
         </span><span class="line" data-line="3"><span data-highlight="keyword" style="color: #c678dd;">end</span>
         </span></code></pre>
@@ -207,7 +207,7 @@ defmodule Autumn.AutumnTest do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
         ~s"""
-        <pre class="athl"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span class="keyword-function">defmodule</span> <span class="module">Test</span> <span class="keyword">do</span>
+        <pre class="athl"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span class="keyword">defmodule</span> <span class="module">Test</span> <span class="keyword">do</span>
         </span><span class="line" data-line="2">  <span class="operator"><span class="constant">@<span class="function-call"><span class="constant">lang <span class="string-special-symbol">:elixir</span></span></span></span></span>
         </span><span class="line" data-line="3"><span class="keyword">end</span>
         </span></code></pre>
@@ -361,7 +361,7 @@ defmodule Autumn.AutumnTest do
 
       assert String.contains?(
                result,
-               ~s|<span class="line" style="background-color: #3e4452;" data-line="1">|
+               ~s|<span class="line" style="background-color: #3e4452; transition: background-color .5s; width: 100%; display: inline-block;" data-line="1">|
              )
     end
 
@@ -380,8 +380,69 @@ defmodule Autumn.AutumnTest do
 
       assert String.contains?(
                result,
-               ~s|<span class="line" style="background-color: #3e4452;" data-line="1">|
+               ~s|<span class="line" style="background-color: #3e4452; transition: background-color .5s; width: 100%; display: inline-block;" data-line="1">|
              )
+    end
+
+    test "html_inline with class option" do
+      highlight_lines = %{
+        lines: [1, 2],
+        class: "highlight-custom"
+      }
+
+      result =
+        Autumn.highlight!(
+          "def test\n  puts 'hello'\nend",
+          language: "ruby",
+          formatter: {:html_inline, highlight_lines: highlight_lines}
+        )
+
+      assert String.contains?(
+               result,
+               ~s|<span class="line highlight-custom" style="background-color: #414858; transition: background-color .5s; width: 100%; display: inline-block;" data-line="1">|
+             )
+
+      assert String.contains?(
+               result,
+               ~s|<span class="line highlight-custom" style="background-color: #414858; transition: background-color .5s; width: 100%; display: inline-block;" data-line="2">|
+             )
+    end
+
+    test "html_inline with both style and class" do
+      highlight_lines = %{
+        lines: [2],
+        style: "background-color: #ffcccc;",
+        class: "error-line"
+      }
+
+      result =
+        Autumn.highlight!(
+          "def test\n  raise 'error'\nend",
+          language: "ruby",
+          formatter: {:html_inline, highlight_lines: highlight_lines}
+        )
+
+      assert String.contains?(
+               result,
+               ~s|<span class="line error-line" style="background-color: #ffcccc;" data-line="2">|
+             )
+    end
+
+    test "html_inline with nil style and class" do
+      highlight_lines = %{
+        lines: [1],
+        style: nil,
+        class: "custom-highlight"
+      }
+
+      result =
+        Autumn.highlight!(
+          "def test\nend",
+          language: "ruby",
+          formatter: {:html_inline, highlight_lines: highlight_lines}
+        )
+
+      assert String.contains?(result, ~s|<span class="line custom-highlight" data-line="1">|)
     end
 
     test "html_linked with single line and default theme" do
@@ -396,7 +457,7 @@ defmodule Autumn.AutumnTest do
           formatter: {:html_linked, highlight_lines: highlight_lines}
         )
 
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="1">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="1">|)
     end
 
     test "html_linked with multiple lines and default theme " do
@@ -411,8 +472,8 @@ defmodule Autumn.AutumnTest do
           formatter: {:html_linked, highlight_lines: highlight_lines}
         )
 
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="1">|)
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="2">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="1">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="2">|)
       refute String.contains?(result, ~s|<span class="line cursorline" data-line="3">|)
     end
 
@@ -428,9 +489,9 @@ defmodule Autumn.AutumnTest do
           formatter: {:html_linked, highlight_lines: highlight_lines}
         )
 
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="1">|)
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="2">|)
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="3">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="1">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="2">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="3">|)
       refute String.contains?(result, ~s|<span class="line cursorline" data-line="5">|)
     end
 

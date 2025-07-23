@@ -39,7 +39,8 @@ defmodule Autumn do
   @type html_inline_highlight_lines ::
           %{
             lines: [pos_integer() | Range.t()],
-            style: :theme | String.t()
+            style: :theme | String.t() | nil,
+            class: String.t() | nil
           }
           | nil
 
@@ -88,7 +89,7 @@ defmodule Autumn do
       - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
       - `:italic` (`t:boolean/0` - default: `false`) - enable italic style for the highlighted code.
       - `:include_highlights` (`t:boolean/0` - default: `false`) - include the highlight scope name in a `data-highlight` attribute. Useful for debugging.
-      - `:highlight_lines` (`t:html_inline_highlight_lines/0` - default: `nil`) - highlight specific lines either using the theme `cursorline` highlight style or with custom CSS styling.
+      - `:highlight_lines` (`t:html_inline_highlight_lines/0` - default: `nil`) - highlight specific lines either using the theme `visual` highlight style or with custom CSS styling.
       - `:header` (`t:header/0` - default: `nil`) - wrap the highlighted code with custom open and close HTML tags.
 
   * `html_linked`:
@@ -119,8 +120,14 @@ defmodule Autumn do
       # style: :theme is the default
       {:html_inline, highlight_lines: %{lines: [1, 2, 3]}}
 
+      # explicitly use theme style
+      {:html_inline, highlight_lines: %{lines: [1, 2, 3], style: :theme}}
+
       # overrides default style
       {:html_inline, highlight_lines: %{lines: [1, 3..5, 8], style: "background-color: #fff3cd; border-left: 3px solid #ffc107;"}}
+
+      # with only class and no style
+      {:html_inline, highlight_lines: %{lines: [1, 2, 3], style: nil, class: "transition-colors duration-500 w-full inline-block bg-yellow-500"}}
 
   ### HTML Linked: highlight specific lines
 
@@ -227,7 +234,8 @@ defmodule Autumn do
              nil,
              map: [
                lines: [type: {:list, {:custom, Autumn, :highlight_lines_type, []}}],
-               style: [type: {:or, [:string, {:in, [:theme]}]}, default: :theme]
+               style: [type: {:or, [:string, {:in, [:theme]}, nil]}, default: :theme],
+               class: [type: {:or, [:string, nil]}, default: nil]
              ]
            ]},
         default: nil
@@ -271,7 +279,7 @@ defmodule Autumn do
              nil,
              map: [
                lines: [type: {:list, {:custom, Autumn, :highlight_lines_type, []}}],
-               class: [type: :string, default: "cursorline"]
+               class: [type: :string, default: "highlighted"]
              ]
            ]},
         default: nil
@@ -351,15 +359,20 @@ defmodule Autumn do
           end)
 
         style =
-          case hl[:style] || :theme do
+          case hl[:style] do
             :theme -> :theme
             str when is_binary(str) -> {:style, %{style: str}}
+            nil -> nil
+            _ -> :theme
           end
+
+        class = hl[:class]
 
         opts
         |> Keyword.put(:highlight_lines, %Autumn.HtmlInlineHighlightLines{
           lines: lines,
-          style: style
+          style: style,
+          class: class
         })
         |> then(&{:ok, &1})
     end
@@ -378,7 +391,7 @@ defmodule Autumn do
             n when is_integer(n) -> {:single, n}
           end)
 
-        class = hl[:class] || "cursorline"
+        class = hl[:class] || "highlighted"
 
         opts
         |> Keyword.put(:highlight_lines, %Autumn.HtmlLinkedHighlightLines{
@@ -556,8 +569,8 @@ defmodule Autumn do
       ...> \"""
       iex> highlight_lines = %{lines: [2]}
       iex> Autumn.highlight(code, language: "elixir", formatter: {:html_linked, highlight_lines: highlight_lines})
-      # Line 2 will contain a `cursorline` class:
-      </span><span class=\"line cursorline\" data-line=\"2\">
+      # Line 2 will contain a `highlighted` class:
+      </span><span class=\"line highlighted\" data-line=\"2\">
 
   Wrapping with custom HTML:
 
