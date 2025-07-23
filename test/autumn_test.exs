@@ -474,7 +474,7 @@ defmodule Autumn.AutumnTest do
 
       assert String.contains?(result, ~s|<span class="line highlighted" data-line="1">|)
       assert String.contains?(result, ~s|<span class="line highlighted" data-line="2">|)
-      refute String.contains?(result, ~s|<span class="line cursorline" data-line="3">|)
+      refute String.contains?(result, ~s|<span class="line highlighted" data-line="3">|)
     end
 
     test "html_linked with mixes lines and ranges and default theme " do
@@ -492,7 +492,7 @@ defmodule Autumn.AutumnTest do
       assert String.contains?(result, ~s|<span class="line highlighted" data-line="1">|)
       assert String.contains?(result, ~s|<span class="line highlighted" data-line="2">|)
       assert String.contains?(result, ~s|<span class="line highlighted" data-line="3">|)
-      refute String.contains?(result, ~s|<span class="line cursorline" data-line="5">|)
+      refute String.contains?(result, ~s|<span class="line highlighted" data-line="5">|)
     end
 
     test "html_linked with CSS class" do

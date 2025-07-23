@@ -89,13 +89,13 @@ defmodule Autumn do
       - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
       - `:italic` (`t:boolean/0` - default: `false`) - enable italic style for the highlighted code.
       - `:include_highlights` (`t:boolean/0` - default: `false`) - include the highlight scope name in a `data-highlight` attribute. Useful for debugging.
-      - `:highlight_lines` (`t:html_inline_highlight_lines/0` - default: `nil`) - highlight specific lines either using the theme `visual` highlight style or with custom CSS styling.
+      - `:highlight_lines` (`t:html_inline_highlight_lines/0` - default: `nil`) - highlight specific lines either using the theme `highlighted` style or with custom CSS styling.
       - `:header` (`t:header/0` - default: `nil`) - wrap the highlighted code with custom open and close HTML tags.
 
   * `html_linked`:
 
       - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
-      - `:highlight_lines` (`t:html_linked_highlight_lines/0` - default: `nil`) - highlight specific lines either using the `cursorline` class from themes or with a custom CSS class.
+      - `:highlight_lines` (`t:html_linked_highlight_lines/0` - default: `nil`) - highlight specific lines either using the `highlighted` class from themes or with a custom CSS class.
       - `:header` (`t:header/0` - default: `nil`) - wrap the highlighted code with custom open and close HTML tags.
 
   * `terminal`:
@@ -114,7 +114,7 @@ defmodule Autumn do
 
   ### HTML Inline: highlight specific lines
 
-      # apply theme's `cursorline` style
+      # apply theme's `highlighted` style
       {:html_inline, highlight_lines: %{lines: [2..4, 6], style: :theme}}
 
       # style: :theme is the default
@@ -131,7 +131,7 @@ defmodule Autumn do
 
   ### HTML Linked: highlight specific lines
 
-      # use default `cursorline` class (already present in themes)
+      # use default `highlighted` class (already present in themes)
       {:html_linked, highlight_lines: %{lines: [2..4, 6]}}
 
       # use custom class
@@ -556,7 +556,7 @@ defmodule Autumn do
       ...> \"""
       iex> highlight_lines = %{lines: [2]}
       iex> Autumn.highlight(code, language: "elixir", formatter: {:html_inline, highlight_lines: highlight_lines})
-      # Line 2 will be highlighted with the theme's `cursorline` style:
+      # Line 2 will be highlighted with the theme's `highlighted` style:
       <span class=\"line\" style=\"background-color: #282c34;\" data-line=\"2\">...</span>
 
   Highlighting specific lines in HTML Linked formatter:
