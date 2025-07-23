@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- **Breaking** Change default highlight class for html_linked formatter from "cursorline" to "highlighted"
+- Include `transition; width; display` properties into `<span>` tags in html_inline formatter on highlighted lines
+- Add support for class option in html_inline highlight_lines
+- Allow to disable inline styles in html_inline highlight_lines
+- Add language `caddy`
+- Add language `fish`
+- Update themes
+- Update CSS files
+
 ## 0.4.1 (2025-06-20)
 
 ### Changed

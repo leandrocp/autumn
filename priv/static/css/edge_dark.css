@@ -1,5 +1,5 @@
 /* edge_dark
- * revision: 8eeab1bc9d93eec3511cb4d3c87d2d599c7ce3d4
+ * revision: b279ccb1205a51eab8a513b6a3d123b25ac83394
  */
 
 pre.athl {
@@ -61,9 +61,6 @@ pre.athl {
 .constructor {
   color: #6cb6eb;
 }
-.cursorline {
-  background-color: #33353f;
-}
 .diff-delta {
   color: #6cb6eb;
 }
@@ -93,6 +90,12 @@ pre.athl {
 }
 .function-method-call {
   color: #6cb6eb;
+}
+.highlighted {
+  background-color: #3b3e48;
+  transition: background-color .5s;
+  width: 100%;
+  display: inline-block;
 }
 .keyword {
   color: #d38aea;

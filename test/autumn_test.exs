@@ -69,7 +69,7 @@ defmodule Autumn.AutumnTest do
 
   test "available_languages" do
     available_languages = Autumn.available_languages()
-    assert available_languages |> Map.keys() |> length() == 71
+    assert available_languages |> Map.keys() |> length() == 73
     assert available_languages["elixir"] == {"Elixir", ["*.ex", "*.exs"]}
   end
 
@@ -361,7 +361,7 @@ defmodule Autumn.AutumnTest do
 
       assert String.contains?(
                result,
-               ~s|<span class="line" style="background-color: #3e4452;" data-line="1">|
+               ~s|<span class="line" style="background-color: #3e4452; transition: background-color .5s; width: 100%; display: inline-block;" data-line="1">|
              )
     end
 
@@ -380,8 +380,69 @@ defmodule Autumn.AutumnTest do
 
       assert String.contains?(
                result,
-               ~s|<span class="line" style="background-color: #3e4452;" data-line="1">|
+               ~s|<span class="line" style="background-color: #3e4452; transition: background-color .5s; width: 100%; display: inline-block;" data-line="1">|
              )
+    end
+
+    test "html_inline with class option" do
+      highlight_lines = %{
+        lines: [1, 2],
+        class: "highlight-custom"
+      }
+
+      result =
+        Autumn.highlight!(
+          "def test\n  puts 'hello'\nend",
+          language: "ruby",
+          formatter: {:html_inline, highlight_lines: highlight_lines}
+        )
+
+      assert String.contains?(
+               result,
+               ~s|<span class="line highlight-custom" style="background-color: #414858; transition: background-color .5s; width: 100%; display: inline-block;" data-line="1">|
+             )
+
+      assert String.contains?(
+               result,
+               ~s|<span class="line highlight-custom" style="background-color: #414858; transition: background-color .5s; width: 100%; display: inline-block;" data-line="2">|
+             )
+    end
+
+    test "html_inline with both style and class" do
+      highlight_lines = %{
+        lines: [2],
+        style: "background-color: #ffcccc;",
+        class: "error-line"
+      }
+
+      result =
+        Autumn.highlight!(
+          "def test\n  raise 'error'\nend",
+          language: "ruby",
+          formatter: {:html_inline, highlight_lines: highlight_lines}
+        )
+
+      assert String.contains?(
+               result,
+               ~s|<span class="line error-line" style="background-color: #ffcccc;" data-line="2">|
+             )
+    end
+
+    test "html_inline with nil style and class" do
+      highlight_lines = %{
+        lines: [1],
+        style: nil,
+        class: "custom-highlight"
+      }
+
+      result =
+        Autumn.highlight!(
+          "def test\nend",
+          language: "ruby",
+          formatter: {:html_inline, highlight_lines: highlight_lines}
+        )
+
+      assert String.contains?(result, ~s|<span class="line custom-highlight" data-line="1">|)
     end
 
     test "html_linked with single line and default theme" do
@@ -396,7 +457,7 @@ defmodule Autumn.AutumnTest do
           formatter: {:html_linked, highlight_lines: highlight_lines}
         )
 
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="1">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="1">|)
     end
 
     test "html_linked with multiple lines and default theme " do
@@ -411,9 +472,9 @@ defmodule Autumn.AutumnTest do
           formatter: {:html_linked, highlight_lines: highlight_lines}
         )
 
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="1">|)
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="2">|)
-      refute String.contains?(result, ~s|<span class="line cursorline" data-line="3">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="1">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="2">|)
+      refute String.contains?(result, ~s|<span class="line highlighted" data-line="3">|)
     end
 
     test "html_linked with mixes lines and ranges and default theme " do
@@ -428,10 +489,10 @@ defmodule Autumn.AutumnTest do
           formatter: {:html_linked, highlight_lines: highlight_lines}
         )
 
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="1">|)
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="2">|)
-      assert String.contains?(result, ~s|<span class="line cursorline" data-line="3">|)
-      refute String.contains?(result, ~s|<span class="line cursorline" data-line="5">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="1">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="2">|)
+      assert String.contains?(result, ~s|<span class="line highlighted" data-line="3">|)
+      refute String.contains?(result, ~s|<span class="line highlighted" data-line="5">|)
     end
 
     test "html_linked with CSS class" do
