@@ -1,5 +1,5 @@
 /* ayu_dark
- * revision: f5da37a8ddd62fc3a7b28900c4d1b807a3582584
+ * revision: 30e53f8a0f3708e92c84d4df676898cd16b8b64f
  */
 
 pre.athl {
@@ -53,9 +53,6 @@ pre.athl {
 .constructor {
   color: #e6b450;
 }
-.cursorline {
-  background-color: #11151c;
-}
 .diff-delta {
   color: #73b8ff;
 }
@@ -82,6 +79,12 @@ pre.athl {
 }
 .function-method-call {
   color: #ffb454;
+}
+.highlighted {
+  background-color: #122132;
+  transition: background-color .5s;
+  width: 100%;
+  display: inline-block;
 }
 .keyword {
   color: #ff8f40;

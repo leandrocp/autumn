@@ -1,5 +1,5 @@
 /* bluloco_dark
- * revision: 29322e83d4e5a1577c20532fee7173a9e7c9bd2b
+ * revision: afc95b6696a0a568a5a186a7e563f6c9947d0d79
  */
 
 pre.athl {
@@ -52,9 +52,6 @@ pre.athl {
 .constructor {
   color: #ff6682;
 }
-.cursorline {
-  background-color: #384252;
-}
 .diff-delta {
   color: #3892ff;
 }
@@ -84,6 +81,12 @@ pre.athl {
 }
 .function-method-call {
   color: #3fc66c;
+}
+.highlighted {
+  background-color: #284671;
+  transition: background-color .5s;
+  width: 100%;
+  display: inline-block;
 }
 .keyword {
   color: #10b3fe;
