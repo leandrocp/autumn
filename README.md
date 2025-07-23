@@ -32,7 +32,7 @@
 
 - 🌳 60+ languages with tree-sitter parsing
 - 🎨 120+ Neovim themes
-- 📝 HTML output with inline or linked styles
+- 📝 HTML output with inline styles or CSS classes
 - 🖥️ Terminal output with ANSI colors
 - 🔍 Language auto-detection
 - 🎯 Customizable formatting options

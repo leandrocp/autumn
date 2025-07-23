@@ -557,7 +557,7 @@ defmodule Autumn do
       iex> highlight_lines = %{lines: [2]}
       iex> Autumn.highlight(code, language: "elixir", formatter: {:html_inline, highlight_lines: highlight_lines})
       # Line 2 will be highlighted with the theme's `highlighted` style:
-      <span class=\"line\" style=\"background-color: #282c34;\" data-line=\"2\">...</span>
+      <span class=\"line\" style=\"background-color: #414858; transition: background-color .5s; width: 100%; display: inline-block;\" data-line=\"2\">...</span>
 
   Highlighting specific lines in HTML Linked formatter:
       
