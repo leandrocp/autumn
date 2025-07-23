@@ -4,10 +4,12 @@
 
 ### Changed
 
+- **Breaking** Change default highlight class for html_linked formatter from "cursorline" to "highlighted"
 - Update highlight_lines styles from autumnus crate - inline styles now include transition, width and display properties
-- Change default highlight class for html_linked formatter from "cursorline" to "highlighted"
 - Add support for class option in html_inline highlight_lines
 - Allow to disable inline styles in html_inline highlight_lines
+- Update themes
+- Update CSS files
 
 ## 0.4.1 (2025-06-20)
 
