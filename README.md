@@ -30,7 +30,7 @@
 
 ## Features
 
-- 🌳 60+ languages with tree-sitter parsing
+- 🌳 70+ languages with tree-sitter parsing
 - 🎨 120+ Neovim themes
 - 📝 HTML output with inline styles or CSS classes
 - 🖥️ Terminal output with ANSI colors
@@ -44,7 +44,7 @@
 ```elixir
 def deps do
   [
-    {:autumn, "~> 0.4"}
+    {:autumn, "~> 0.5"}
   ]
 end
 ```

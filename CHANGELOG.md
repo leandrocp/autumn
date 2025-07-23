@@ -5,9 +5,11 @@
 ### Changed
 
 - **Breaking** Change default highlight class for html_linked formatter from "cursorline" to "highlighted"
-- Update highlight_lines styles from autumnus crate - inline styles now include transition, width and display properties
+- Include `transition; width; display` properties into `<span>` tags in html_inline formatter on highlighted lines
 - Add support for class option in html_inline highlight_lines
 - Allow to disable inline styles in html_inline highlight_lines
+- Add language `caddy`
+- Add language `fish`
 - Update themes
 - Update CSS files
 
