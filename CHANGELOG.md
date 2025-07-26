@@ -13,6 +13,7 @@
 - Add language `fish`
 - Update themes
 - Update CSS files
+- Build target `x86_64-pc-windows-msvc` on Windows 2022
 
 ## 0.4.1 (2025-06-20)
 
