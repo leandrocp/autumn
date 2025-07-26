@@ -55,7 +55,7 @@ end
 
 ```elixir
 iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir")
-~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
+~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><div class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
 </span></code></pre>|
 ```
 
@@ -65,8 +65,8 @@ See the HTML Linked and Terminal formatters below for more options.
 
 ```elixir
 iex> Autumn.highlight!("#!/usr/bin/env bash\nID=1")
-~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-bash" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #c678dd;">#!/usr/bin/env bash</span>
-</span><span class="line" data-line="2"><span style="color: #d19a66;">ID</span><span style="color: #56b6c2;">=</span><span style="color: #d19a66;">1</span>
+~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-bash" translate="no" tabindex="0"><div class="line" data-line="1"><span style="color: #c678dd;">#!/usr/bin/env bash</span>
+</div><div class="line" data-line="2"><span style="color: #d19a66;">ID</span><span style="color: #56b6c2;">=</span><span style="color: #d19a66;">1</span>
 </span></code></pre>|
 ```
 
@@ -79,7 +79,7 @@ Use `Autumn.available_themes/0` to list all available themes. You can specify a 
 ```elixir
 # Using theme name
 iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: "github_light")
-~s|<pre class="athl" style="color: #1f2328; background-color: #ffffff;"><code class="language-javascript" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #6639ba;">setTimeout</span><span style="color: #1f2328;">(</span><span style="color: #1f2328;">fun</span><span style="color: #1f2328;">,</span> <span style="color: #0550ae;">5000</span><span style="color: #1f2328;">)</span><span style="color: #1f2328;">;</span>
+~s|<pre class="athl" style="color: #1f2328; background-color: #ffffff;"><code class="language-javascript" translate="no" tabindex="0"><div class="line" data-line="1"><span style="color: #6639ba;">setTimeout</span><span style="color: #1f2328;">(</span><span style="color: #1f2328;">fun</span><span style="color: #1f2328;">,</span> <span style="color: #0550ae;">5000</span><span style="color: #1f2328;">)</span><span style="color: #1f2328;">;</span>
 </span></code></pre>|
 
 # Using theme struct
@@ -108,7 +108,7 @@ It's also capable of handling incomplete or malformed code, useful for streaming
 
 ```elixir
 iex> Autumn.highlight!("const header = document.getEl", language: "js")
-~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-javascript" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">header</span> <span style="color: #abb2bf;">=</span> <span style="color: #e86671;">document</span><span style="color: #848b98;">.</span><span style="color: #56b6c2;">getEl</span>
+~s|<pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-javascript" translate="no" tabindex="0"><div class="line" data-line="1"><span style="color: #c678dd;">const</span> <span style="color: #abb2bf;">header</span> <span style="color: #abb2bf;">=</span> <span style="color: #e86671;">document</span><span style="color: #848b98;">.</span><span style="color: #56b6c2;">getEl</span>
 </span></code></pre>|
 ```
 
@@ -116,7 +116,7 @@ iex> Autumn.highlight!("const header = document.getEl", language: "js")
 
 Autumn supports three output formatters:
 
-Both HTML formatters wrap each line in a `<span class="line">` element with a `data-line` attribute containing the line number, making it easy to add line numbers or implement line-based features in your application.
+Both HTML formatters wrap each line in a `<div class="line">` element with a `data-line` attribute containing the line number, making it easy to add line numbers or implement line-based features in your application.
 
 See [t:formatter/0](https://hexdocs.pm/autumn/Autumn.html#t:formatter/0) for more info examples.
 
