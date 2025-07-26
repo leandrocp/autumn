@@ -23,10 +23,7 @@ defmodule Autumn.Theme do
              underline: false,
              bold: false,
              italic: false,
-             strikethrough: false,
-             display: nil,
-             width: nil,
-             transition: nil
+             strikethrough: false
            },
            "variable.builtin" => %Autumn.Theme.Style{
              fg: "#0550ae",
@@ -34,10 +31,7 @@ defmodule Autumn.Theme do
              underline: false,
              bold: false,
              italic: false,
-             strikethrough: false,
-             display: nil,
-             width: nil,
-             transition: nil
+             strikethrough: false
            },
            "character" => %Autumn.Theme.Style{
              fg: "#0a3069",
@@ -45,10 +39,7 @@ defmodule Autumn.Theme do
              underline: false,
              bold: false,
              italic: false,
-             strikethrough: false,
-             display: nil,
-             width: nil,
-             transition: nil
+             strikethrough: false
            },
            ...
          }
@@ -112,10 +103,7 @@ defmodule Autumn.Theme.Style do
           underline: boolean(),
           bold: boolean(),
           italic: boolean(),
-          strikethrough: boolean(),
-          display: nil | String.t(),
-          width: nil | String.t(),
-          transition: nil | String.t()
+          strikethrough: boolean()
         }
 
   defstruct fg: nil,
@@ -123,8 +111,5 @@ defmodule Autumn.Theme.Style do
             underline: false,
             bold: false,
             italic: false,
-            strikethrough: false,
-            display: nil,
-            width: nil,
-            transition: nil
+            strikethrough: false
 end

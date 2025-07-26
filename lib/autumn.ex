@@ -527,8 +527,8 @@ defmodule Autumn do
       iex> Autumn.highlight("Atom.to_string(:elixir)", language: "elixir")
       {
         :ok,
-        <pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><span class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
-        </span></code></pre>
+        <pre class="athl" style="color: #abb2bf; background-color: #282c34;"><code class="language-elixir" translate="no" tabindex="0"><div class="line" data-line="1"><span style="color: #e5c07b;">Atom</span><span style="color: #56b6c2;">.</span><span style="color: #61afef;">to_string</span><span style="color: #c678dd;">(</span><span style="color: #e06c75;">:elixir</span><span style="color: #c678dd;">)</span>
+        </div></code></pre>
       }
 
   Guessing the language based on the provided source code:
@@ -557,7 +557,7 @@ defmodule Autumn do
       iex> highlight_lines = %{lines: [2]}
       iex> Autumn.highlight(code, language: "elixir", formatter: {:html_inline, highlight_lines: highlight_lines})
       # Line 2 will be highlighted with the theme's `highlighted` style:
-      <span class=\"line\" style=\"background-color: #414858; transition: background-color .5s; width: 100%; display: inline-block;\" data-line=\"2\">...</span>
+      <div class=\"line\" style=\"background-color: #414858;\" data-line=\"2\">...</div>
 
   Highlighting specific lines in HTML Linked formatter:
       
@@ -570,7 +570,7 @@ defmodule Autumn do
       iex> highlight_lines = %{lines: [2]}
       iex> Autumn.highlight(code, language: "elixir", formatter: {:html_linked, highlight_lines: highlight_lines})
       # Line 2 will contain a `highlighted` class:
-      </span><span class=\"line highlighted\" data-line=\"2\">
+      <div class=\"line highlighted\" data-line=\"2\">...
 
   Wrapping with custom HTML:
 
