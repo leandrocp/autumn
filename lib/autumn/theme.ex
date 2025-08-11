@@ -47,11 +47,13 @@ defmodule Autumn.Theme do
 
   """
 
+
+  @typedoc "A Neovim theme with name, appearance (light or dark), revision, and highlight styles."
   @type t :: %Autumn.Theme{
           name: String.t(),
           appearance: String.t(),
           revision: String.t(),
-          highlights: map()
+          highlights: %{String.t() => Autumn.Theme.Style.t()}
         }
 
   defstruct name: nil, appearance: nil, revision: nil, highlights: %{}
@@ -97,6 +99,7 @@ defmodule Autumn.Theme.Style do
   Contains the colors and styles of each highlight of a theme.
   """
 
+  @typedoc "A highlight style with foreground/background colors and text decorations."
   @type t :: %Autumn.Theme.Style{
           fg: nil | String.t(),
           bg: nil | String.t(),
