@@ -47,7 +47,6 @@ defmodule Autumn.Theme do
 
   """
 
-
   @typedoc "A Neovim theme with name, appearance (light or dark), revision, and highlight styles."
   @type t :: %Autumn.Theme{
           name: String.t(),
