@@ -74,7 +74,7 @@ defmodule Autumn.AutumnTest do
   end
 
   test "available_themes" do
-    assert Autumn.available_themes() |> length() == 119
+    assert Autumn.available_themes() |> length() == 120
   end
 
   describe "formatter_type: :html_inline" do
