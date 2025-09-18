@@ -1,14 +1,13 @@
 # Changelog
 
-## Unreleased
+## 0.5.3 (2025-09-18)
 
 ### Enhancements
-- Add `default_options/0`
+- Add `default_options/0` to expose default options
 
 ### Changed
 - Hide `formatter_schema/0` which was supposed to be private, although it's still available
 - Hide `options_schema/0` which was supposed to be private, although it's still available
-
 
 ## 0.5.2 (2025-08-20)
 
