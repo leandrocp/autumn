@@ -77,33 +77,60 @@ defmodule Autumn.AutumnTest do
     assert Autumn.available_themes() |> length() == 120
   end
 
+  test "default_options/0" do
+    assert [formatter: {:html_inline, formatter_opts}, language: nil] =
+             Autumn.default_options()
+
+    assert Keyword.equal?(
+             [
+               header: nil,
+               italic: false,
+               theme: "onedark",
+               pre_class: nil,
+               include_highlights: false,
+               highlight_lines: nil
+             ],
+             formatter_opts
+           )
+  end
+
   describe "formatter_type: :html_inline" do
     test "default opts" do
-      assert Autumn.formatter_type(:html_inline) ==
-               {:ok,
-                {:html_inline,
-                 %{
-                   italic: false,
-                   theme: "onedark",
-                   pre_class: nil,
-                   include_highlights: false,
-                   highlight_lines: nil,
-                   header: nil
-                 }}}
+      assert {:ok, {:html_inline, formatter_opts}} = Autumn.formatter_type(:html_inline)
+
+      assert Keyword.equal?(
+               [
+                 italic: false,
+                 theme: "onedark",
+                 pre_class: nil,
+                 include_highlights: false,
+                 highlight_lines: nil,
+                 header: nil
+               ],
+               formatter_opts
+             )
     end
   end
 
   describe "formatter_type: :html_linked" do
     test "default opts" do
-      assert Autumn.formatter_type(:html_linked) ==
-               {:ok, {:html_linked, %{pre_class: nil, highlight_lines: nil, header: nil}}}
+      assert {:ok, {:html_linked, formatter_opts}} = Autumn.formatter_type(:html_linked)
+
+      assert Keyword.equal?(
+               [
+                 pre_class: nil,
+                 highlight_lines: nil,
+                 header: nil
+               ],
+               formatter_opts
+             )
     end
   end
 
   describe "formatter_type: :terminal" do
     test "default opts" do
       assert Autumn.formatter_type(:terminal) ==
-               {:ok, {:terminal, %{theme: "onedark"}}}
+               {:ok, {:terminal, theme: "onedark"}}
     end
   end
 

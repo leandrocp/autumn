@@ -212,7 +212,10 @@ defmodule Autumn do
     ]
   ]
 
+  @doc false
   def formatter_schema, do: @formatter_schema
+
+  @doc false
   def options_schema, do: @options_schema
 
   @doc false
@@ -317,7 +320,7 @@ defmodule Autumn do
     case Keyword.keys(options) -- [:theme] do
       [] ->
         default_opts = [theme: @default_theme]
-        opts = Keyword.merge(default_opts, options) |> Map.new()
+        opts = Keyword.merge(default_opts, options)
         {:ok, {:terminal, opts}}
 
       invalid ->
@@ -333,7 +336,7 @@ defmodule Autumn do
   defp convert_html_inline_options(opts) do
     with {:ok, opts} <- convert_highlight_lines_inline(opts),
          {:ok, opts} <- convert_header(opts) do
-      {:ok, Map.new(opts)}
+      {:ok, opts}
     end
   end
 
@@ -341,7 +344,7 @@ defmodule Autumn do
   defp convert_html_linked_options(opts) do
     with {:ok, opts} <- convert_highlight_lines_linked(opts),
          {:ok, opts} <- convert_header(opts) do
-      {:ok, Map.new(opts)}
+      {:ok, opts}
     end
   end
 
@@ -436,6 +439,12 @@ defmodule Autumn do
   See each option type for more info.
   """
   @type options() :: [unquote(NimbleOptions.option_typespec(@options_schema))]
+
+  @doc """
+  Returns all default options.
+  """
+  @spec default_options() :: options()
+  def default_options, do: NimbleOptions.validate!([], @options_schema)
 
   @doc """
   Returns the list of all available languages.
@@ -595,10 +604,10 @@ defmodule Autumn do
 
     # deprecated options
     {theme, options} = Keyword.pop(options, :theme)
-    theme = build_theme(theme || formatter_opts[:theme])
+    theme = build_theme(theme || Keyword.get(formatter_opts, :theme))
 
     {pre_class, options} = Keyword.pop(options, :pre_class)
-    pre_class = pre_class || formatter_opts[:pre_class]
+    pre_class = pre_class || Keyword.get(formatter_opts, :pre_class)
 
     {inline_style, options} = Keyword.pop(options, :inline_style)
 
@@ -609,11 +618,12 @@ defmodule Autumn do
         nil -> formatter
       end
 
-    # Convert formatter tuple to tagged enum format for Rust NIF
+    formatter_opts_map = Map.new(formatter_opts)
+
     rust_formatter =
       convert_formatter_for_nif(
         formatter,
-        Map.merge(formatter_opts, %{theme: theme, pre_class: pre_class})
+        Map.merge(formatter_opts_map, %{theme: theme, pre_class: pre_class})
       )
 
     options =
