@@ -702,4 +702,320 @@ defmodule Autumn.AutumnTest do
       assert String.contains?(result, "background-color: #282a36")
     end
   end
+
+  describe "validate_options!/1" do
+    test "validates valid options" do
+      assert [
+               language: "elixir",
+               formatter:
+                 {:html_inline,
+                  [
+                    header: nil,
+                    highlight_lines: nil,
+                    include_highlights: false,
+                    italic: false,
+                    pre_class: nil,
+                    theme: "onedark"
+                  ]}
+             ] = Autumn.validate_options!(language: "elixir", formatter: :html_inline)
+    end
+
+    test "validates options with default values" do
+      assert [
+               formatter:
+                 {:html_inline,
+                  [
+                    header: nil,
+                    highlight_lines: nil,
+                    include_highlights: false,
+                    italic: false,
+                    pre_class: nil,
+                    theme: "onedark"
+                  ]},
+               language: nil
+             ] = Autumn.validate_options!([])
+    end
+
+    test "validates formatter options" do
+      assert [
+               language: nil,
+               formatter:
+                 {:html_inline,
+                  [
+                    header: nil,
+                    highlight_lines: nil,
+                    include_highlights: false,
+                    pre_class: nil,
+                    theme: "dracula",
+                    italic: true
+                  ]}
+             ] =
+               Autumn.validate_options!(formatter: {:html_inline, theme: "dracula", italic: true})
+    end
+
+    test "validates deprecated options" do
+      capture_io(:stderr, fn ->
+        assert [
+                 formatter:
+                   {:html_inline,
+                    [
+                      header: nil,
+                      highlight_lines: nil,
+                      include_highlights: false,
+                      italic: false,
+                      pre_class: nil,
+                      theme: "onedark"
+                    ]},
+                 language: nil,
+                 theme: "dracula",
+                 inline_style: true,
+                 pre_class: "custom"
+               ] =
+                 Autumn.validate_options!(
+                   theme: "dracula",
+                   inline_style: true,
+                   pre_class: "custom"
+                 )
+      end)
+    end
+
+    test "raises on invalid language type" do
+      assert_raise NimbleOptions.ValidationError, fn ->
+        Autumn.validate_options!(language: 123)
+      end
+    end
+
+    test "raises on invalid formatter" do
+      assert_raise NimbleOptions.ValidationError, fn ->
+        Autumn.validate_options!(formatter: :invalid_formatter)
+      end
+    end
+
+    test "raises on invalid formatter options" do
+      assert_raise NimbleOptions.ValidationError, fn ->
+        Autumn.validate_options!(formatter: {:html_inline, invalid_option: true})
+      end
+    end
+  end
+
+  describe "rust_options!/1" do
+    test "converts basic options to rust format" do
+      options =
+        Autumn.validate_options!(language: "elixir", formatter: {:html_inline, theme: "onedark"})
+
+      assert %{
+               language: "elixir",
+               formatter:
+                 {:html_inline,
+                  %{
+                    header: nil,
+                    highlight_lines: nil,
+                    include_highlights: false,
+                    italic: false,
+                    pre_class: nil,
+                    theme: {:string, "onedark"}
+                  }}
+             } = Autumn.rust_options!(options)
+    end
+
+    test "handles deprecated theme option" do
+      capture_io(:stderr, fn ->
+        options =
+          Autumn.validate_options!(
+            formatter: {:html_inline, theme: "dracula"},
+            theme: "github_light"
+          )
+
+        assert %{
+                 formatter:
+                   {:html_inline,
+                    %{
+                      header: nil,
+                      highlight_lines: nil,
+                      include_highlights: false,
+                      italic: false,
+                      pre_class: nil,
+                      theme: {:string, "github_light"}
+                    }}
+               } = Autumn.rust_options!(options)
+      end)
+    end
+
+    test "handles deprecated pre_class option" do
+      capture_io(:stderr, fn ->
+        options =
+          Autumn.validate_options!(
+            formatter: {:html_inline, pre_class: "formatter-class"},
+            pre_class: "deprecated-class"
+          )
+
+        assert %{
+                 formatter:
+                   {:html_inline,
+                    %{
+                      header: nil,
+                      highlight_lines: nil,
+                      include_highlights: false,
+                      italic: false,
+                      pre_class: "deprecated-class",
+                      theme: {:string, "onedark"}
+                    }}
+               } = Autumn.rust_options!(options)
+      end)
+    end
+
+    test "handles deprecated inline_style option converting to html_inline" do
+      capture_io(:stderr, fn ->
+        options = Autumn.validate_options!(formatter: :html_linked, inline_style: true)
+
+        assert %{
+                 formatter:
+                   {:html_inline,
+                    %{
+                      header: nil,
+                      highlight_lines: nil,
+                      include_highlights: false,
+                      italic: false,
+                      pre_class: nil,
+                      theme: nil
+                    }},
+                 language: nil
+               } = Autumn.rust_options!(options)
+      end)
+    end
+
+    test "handles deprecated inline_style option converting to html_linked" do
+      capture_io(:stderr, fn ->
+        options = Autumn.validate_options!(formatter: :html_inline, inline_style: false)
+
+        assert %{
+                 formatter:
+                   {:html_linked,
+                    %{
+                      header: nil,
+                      highlight_lines: nil,
+                      pre_class: nil
+                    }},
+                 language: nil
+               } = Autumn.rust_options!(options)
+      end)
+    end
+
+    test "converts theme struct to rust format" do
+      theme = Autumn.Theme.get("dracula")
+      options = Autumn.validate_options!(formatter: {:html_inline, theme: theme})
+
+      assert %{
+               formatter:
+                 {:html_inline,
+                  %{
+                    header: nil,
+                    highlight_lines: nil,
+                    include_highlights: false,
+                    italic: false,
+                    pre_class: nil,
+                    theme: {:theme, ^theme}
+                  }}
+             } = Autumn.rust_options!(options)
+    end
+
+    test "converts theme string to rust format" do
+      options = Autumn.validate_options!(formatter: {:html_inline, theme: "dracula"})
+
+      assert %{
+               formatter:
+                 {:html_inline,
+                  %{
+                    header: nil,
+                    highlight_lines: nil,
+                    include_highlights: false,
+                    italic: false,
+                    pre_class: nil,
+                    theme: {:string, "dracula"}
+                  }}
+             } = Autumn.rust_options!(options)
+    end
+
+    test "handles nil theme" do
+      options = Autumn.validate_options!(formatter: {:html_inline, theme: nil})
+
+      assert %{
+               formatter:
+                 {:html_inline,
+                  %{
+                    header: nil,
+                    highlight_lines: nil,
+                    include_highlights: false,
+                    italic: false,
+                    pre_class: nil,
+                    theme: nil
+                  }}
+             } = Autumn.rust_options!(options)
+    end
+
+    test "converts html_linked formatter" do
+      options = Autumn.validate_options!(formatter: {:html_linked, pre_class: "test"})
+
+      assert %{
+               formatter:
+                 {:html_linked,
+                  %{
+                    header: nil,
+                    highlight_lines: nil,
+                    pre_class: "test"
+                  }}
+             } = Autumn.rust_options!(options)
+    end
+
+    test "converts terminal formatter" do
+      options = Autumn.validate_options!(formatter: {:terminal, theme: "github_light"})
+
+      assert %{formatter: {:terminal, %{theme: {:string, "github_light"}}}} =
+               Autumn.rust_options!(options)
+    end
+
+    test "handles highlight_lines option" do
+      highlight_lines = %{lines: [1, 2..4], style: :theme, class: nil}
+
+      options =
+        Autumn.validate_options!(formatter: {:html_inline, highlight_lines: highlight_lines})
+
+      assert %{
+               formatter:
+                 {:html_inline,
+                  %{
+                    header: nil,
+                    highlight_lines: %Autumn.HtmlInlineHighlightLines{},
+                    include_highlights: false,
+                    italic: false,
+                    pre_class: nil,
+                    theme: {:string, "onedark"}
+                  }}
+             } = Autumn.rust_options!(options)
+    end
+
+    test "handles header option" do
+      header = %{open_tag: "<div>", close_tag: "</div>"}
+      options = Autumn.validate_options!(formatter: {:html_inline, header: header})
+
+      assert %{
+               formatter:
+                 {:html_inline,
+                  %{
+                    header: %Autumn.HtmlElement{open_tag: "<div>", close_tag: "</div>"},
+                    highlight_lines: nil,
+                    include_highlights: false,
+                    italic: false,
+                    pre_class: nil,
+                    theme: {:string, "onedark"}
+                  }}
+             } = Autumn.rust_options!(options)
+    end
+
+    test "returns map instead of keyword list" do
+      options = Autumn.validate_options!(language: "elixir", formatter: :html_inline)
+
+      assert %{} = Autumn.rust_options!(options)
+    end
+  end
 end

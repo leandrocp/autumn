@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Enhancements
+- Add utility function `validate_options!/1` function to validate options against the schema
+
 ## 0.5.3 (2025-09-18)
 
 ### Enhancements
