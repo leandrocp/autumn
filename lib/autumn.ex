@@ -444,7 +444,7 @@ defmodule Autumn do
   Returns all default options.
   """
   @spec default_options() :: options()
-  def default_options, do: NimbleOptions.validate!([], @options_schema)
+  def default_options, do: validate_options!([])
 
   @doc """
   Returns the list of all available languages.
@@ -598,38 +598,10 @@ defmodule Autumn do
   def highlight(source, options \\ [])
 
   def highlight(source, options) when is_binary(source) and is_list(options) do
-    options = NimbleOptions.validate!(options, @options_schema)
-
-    {formatter, formatter_opts} = options[:formatter]
-
-    # deprecated options
-    {theme, options} = Keyword.pop(options, :theme)
-    theme = build_theme(theme || Keyword.get(formatter_opts, :theme))
-
-    {pre_class, options} = Keyword.pop(options, :pre_class)
-    pre_class = pre_class || Keyword.get(formatter_opts, :pre_class)
-
-    {inline_style, options} = Keyword.pop(options, :inline_style)
-
-    formatter =
-      case inline_style do
-        true -> :html_inline
-        false -> :html_linked
-        nil -> formatter
-      end
-
-    formatter_opts_map = Map.new(formatter_opts)
-
-    rust_formatter =
-      convert_formatter_for_nif(
-        formatter,
-        Map.merge(formatter_opts_map, %{theme: theme, pre_class: pre_class})
-      )
-
     options =
       options
-      |> Keyword.put(:formatter, rust_formatter)
-      |> Map.new()
+      |> validate_options!()
+      |> rust_options!()
 
     case Autumn.Native.highlight(source, options) do
       {:error, error} -> raise Autumn.HighlightError, error: error
@@ -640,6 +612,66 @@ defmodule Autumn do
   def highlight(language, source)
       when is_binary(language) and is_binary(source) do
     highlight(source, language: language)
+  end
+
+  @doc """
+  Validates the given options against the options schema.
+
+  This function validates the provided options using NimbleOptions and the defined schema.
+  It ensures that all options are valid and properly typed before being passed to the
+  highlighting functions.
+
+  ## Examples
+
+      iex> Autumn.validate_options!(language: "elixir")
+      [language: "elixir", formatter: {:html_inline, [header: nil, highlight_lines: nil, include_highlights: false, italic: false, pre_class: nil, theme: "onedark"]}]
+
+      iex> Autumn.validate_options!(formatter: {:html_inline, theme: "dracula"})
+      [language: nil, formatter: {:html_inline, [theme: "dracula", ...]}]
+
+      iex> Autumn.validate_options!(language: :invalid)
+      ** (NimbleOptions.ValidationError)
+
+  """
+  @spec validate_options!(options()) :: options()
+  def validate_options!(options) do
+    NimbleOptions.validate!(options, @options_schema)
+  end
+
+  @doc false
+  def rust_options!(options) do
+    {formatter, formatter_opts} = options[:formatter]
+    {theme, options} = Keyword.pop(options, :theme)
+    theme = build_theme(theme || Keyword.get(formatter_opts, :theme))
+
+    {pre_class, options} = Keyword.pop(options, :pre_class)
+    pre_class = pre_class || Keyword.get(formatter_opts, :pre_class)
+
+    {inline_style, options} = Keyword.pop(options, :inline_style)
+
+    {formatter, formatter_opts} =
+      case inline_style do
+        true ->
+          {:ok, {_type, default_opts}} = formatter_type(:html_inline)
+          {:html_inline, Keyword.merge(default_opts, formatter_opts)}
+
+        false ->
+          {:ok, {_type, default_opts}} = formatter_type(:html_linked)
+          {:html_linked, Keyword.merge(default_opts, formatter_opts)}
+
+        nil ->
+          {formatter, formatter_opts}
+      end
+
+    rust_formatter =
+      convert_formatter_for_nif(
+        formatter,
+        Map.merge(Map.new(formatter_opts), %{theme: theme, pre_class: pre_class})
+      )
+
+    options
+    |> Keyword.put(:formatter, rust_formatter)
+    |> Map.new()
   end
 
   @doc false
@@ -670,9 +702,18 @@ defmodule Autumn do
     end
   end
 
-  @doc false
   defp convert_formatter_for_nif(:html_inline, opts) do
-    {:html_inline, convert_theme_for_nif(opts)}
+    opts = convert_theme_for_nif(opts)
+
+    {:html_inline,
+     Map.take(opts, [
+       :theme,
+       :pre_class,
+       :italic,
+       :include_highlights,
+       :highlight_lines,
+       :header
+     ])}
   end
 
   defp convert_formatter_for_nif(:html_linked, opts) do
@@ -680,27 +721,24 @@ defmodule Autumn do
   end
 
   defp convert_formatter_for_nif(:terminal, opts) do
-    {:terminal, convert_theme_for_nif(opts)}
+    opts = convert_theme_for_nif(opts)
+    {:terminal, Map.take(opts, [:theme])}
   end
 
-  @doc false
   defp convert_theme_for_nif(opts) do
-    opts =
-      case opts[:theme] do
-        {:theme, %Theme{} = theme} ->
-          Map.put(opts, :theme, {:theme, theme})
+    case opts[:theme] do
+      {:theme, %Theme{} = theme} ->
+        Map.put(opts, :theme, {:theme, theme})
 
-        {:string, theme_name} when is_binary(theme_name) ->
-          Map.put(opts, :theme, {:string, theme_name})
+      {:string, theme_name} when is_binary(theme_name) ->
+        Map.put(opts, :theme, {:string, theme_name})
 
-        nil ->
-          Map.put(opts, :theme, nil)
+      nil ->
+        Map.put(opts, :theme, nil)
 
-        theme_name when is_binary(theme_name) ->
-          Map.put(opts, :theme, {:string, theme_name})
-      end
-
-    opts
+      theme_name when is_binary(theme_name) ->
+        Map.put(opts, :theme, {:string, theme_name})
+    end
   end
 
   @doc """
