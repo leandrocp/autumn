@@ -621,18 +621,6 @@ defmodule Autumn do
   It ensures that all options are valid and properly typed before being passed to the
   highlighting functions.
 
-  ## Parameters
-
-  - `options` - A keyword list of options to validate
-
-  ## Returns
-
-  Returns a validated keyword list with all options properly typed and default values applied.
-
-  ## Raises
-
-  Raises `NimbleOptions.ValidationError` if any option is invalid.
-
   ## Examples
 
       iex> Autumn.validate_options!(language: "elixir")
@@ -714,21 +702,18 @@ defmodule Autumn do
     end
   end
 
-  @doc false
   defp convert_formatter_for_nif(:html_inline, opts) do
-    opts_with_theme = convert_theme_for_nif(opts)
+    opts = convert_theme_for_nif(opts)
 
-    all_opts =
-      Map.take(opts_with_theme, [
-        :theme,
-        :pre_class,
-        :italic,
-        :include_highlights,
-        :highlight_lines,
-        :header
-      ])
-
-    {:html_inline, all_opts}
+    {:html_inline,
+     Map.take(opts, [
+       :theme,
+       :pre_class,
+       :italic,
+       :include_highlights,
+       :highlight_lines,
+       :header
+     ])}
   end
 
   defp convert_formatter_for_nif(:html_linked, opts) do
@@ -736,29 +721,24 @@ defmodule Autumn do
   end
 
   defp convert_formatter_for_nif(:terminal, opts) do
-    opts_with_theme = convert_theme_for_nif(opts)
-    all_opts = Map.take(opts_with_theme, [:theme])
-    {:terminal, all_opts}
+    opts = convert_theme_for_nif(opts)
+    {:terminal, Map.take(opts, [:theme])}
   end
 
-  @doc false
   defp convert_theme_for_nif(opts) do
-    opts =
-      case opts[:theme] do
-        {:theme, %Theme{} = theme} ->
-          Map.put(opts, :theme, {:theme, theme})
+    case opts[:theme] do
+      {:theme, %Theme{} = theme} ->
+        Map.put(opts, :theme, {:theme, theme})
 
-        {:string, theme_name} when is_binary(theme_name) ->
-          Map.put(opts, :theme, {:string, theme_name})
+      {:string, theme_name} when is_binary(theme_name) ->
+        Map.put(opts, :theme, {:string, theme_name})
 
-        nil ->
-          Map.put(opts, :theme, nil)
+      nil ->
+        Map.put(opts, :theme, nil)
 
-        theme_name when is_binary(theme_name) ->
-          Map.put(opts, :theme, {:string, theme_name})
-      end
-
-    opts
+      theme_name when is_binary(theme_name) ->
+        Map.put(opts, :theme, {:string, theme_name})
+    end
   end
 
   @doc """
