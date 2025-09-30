@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.5.5 - 2025-09-30
 
 ### Changed
 - Updated languages: latex, markdown, powershell, c_sharp, fsharp, go, make, ocaml, proto, python, scala, zig, css, proto
