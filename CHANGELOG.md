@@ -4,6 +4,7 @@
 
 ### Changed
 - Updated languages: latex, markdown, powershell, c_sharp, fsharp, go, make, ocaml, proto, python, scala, zig, css, proto
+- Updated CSS: flexoki_dark, flexoki_light, tokyonight_day, tokyonight_moon, tokyonight_night, tokyonight_storm
 
 ## 0.5.4 (2025-09-18)
 
