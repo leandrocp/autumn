@@ -21,7 +21,12 @@ The library supports three output formatters:
 - Write concise `@moduledoc` and `@doc` for modules and functions
 
 ## Changelog
-- Use https://common-changelog.org as a reference
+- Follow the https://common-changelog.org format
+- Create a "## Unreleased" section if it doesn't exist yet
+- Add new entries into the "## Unreleased" section
+- Short and concise descriptions
+- Review existing entries for accuracy and clarity
+- Fetch commits from latest release tag to HEAD
 
 ## Important Notes
 - Options are defined using nimble_options so fetch https://hexdocs.pm/nimble_options/NimbleOptions.html before making changes
