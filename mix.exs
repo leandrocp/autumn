@@ -59,6 +59,7 @@ defmodule Autumn.MixProject do
         README.md
         LICENSE.md
         CHANGELOG.md
+        usage-rules.md
       ]
     ]
   end
