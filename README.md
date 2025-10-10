@@ -74,17 +74,17 @@ iex> Autumn.highlight!("#!/usr/bin/env bash\nID=1")
 
 Themes are sourced from popular Neovim colorschemes.
 
-Use `Autumn.available_themes/0` to list all available themes. You can specify a theme by name directly in the `:theme` option, or use `Autumn.Theme.get/1` to get a specific theme struct if you need to inspect or manipulate its styles.
+Use `Autumn.available_themes/0` to list all available themes. You can specify a theme by name in the formatter options, or use `Autumn.Theme.get/1` to get a specific theme struct if you need to inspect or manipulate its styles.
 
 ```elixir
-# Using theme name
-iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: "github_light")
+# Using theme name in formatter options
+iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", formatter: {:html_inline, theme: "github_light"})
 ~s|<pre class="athl" style="color: #1f2328; background-color: #ffffff;"><code class="language-javascript" translate="no" tabindex="0"><div class="line" data-line="1"><span style="color: #6639ba;">setTimeout</span><span style="color: #1f2328;">(</span><span style="color: #1f2328;">fun</span><span style="color: #1f2328;">,</span> <span style="color: #0550ae;">5000</span><span style="color: #1f2328;">)</span><span style="color: #1f2328;">;</span>
 </span></code></pre>|
 
 # Using theme struct
 iex> theme = Autumn.Theme.get("github_light")
-iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", theme: theme)
+iex> Autumn.highlight!("setTimeout(fun, 5000);", language: "js", formatter: {:html_inline, theme: theme})
 ```
 
 #### Bring Your Own Theme
