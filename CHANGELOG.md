@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changed
+- Update `autumnus` to v0.7.5
+- Add usage-rules.md for LLMs
+
 ## 0.5.5 - 2025-09-30
 
 ### Changed

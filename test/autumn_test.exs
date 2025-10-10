@@ -69,7 +69,7 @@ defmodule Autumn.AutumnTest do
 
   test "available_languages" do
     available_languages = Autumn.available_languages()
-    assert available_languages |> Map.keys() |> length() == 73
+    assert available_languages |> Map.keys() |> length() == 74
     assert available_languages["elixir"] == {"Elixir", ["*.ex", "*.exs"]}
   end
 
