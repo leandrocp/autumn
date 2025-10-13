@@ -41,7 +41,7 @@ jobs:
       - name: cargo fmt
         run: cargo fmt --manifest-path=${{ matrix.manifest }}
 
-      - uses: stefanzweifel/git-auto-commit-action@v6
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           push_options: --force
 
