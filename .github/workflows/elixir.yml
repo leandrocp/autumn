@@ -1,74 +1,13 @@
-name: Elixir
+name: Elixir CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
-env:
-  AUTUMN_BUILD: true
-  MIX_ENV: test
-  CARGO_TERM_COLOR: always
-
 jobs:
   test:
-    strategy:
-      matrix:
-        include:
-          - otp_version: "24"
-            elixir_version: "1.14.0"
-
-          - otp_version: "27"
-            elixir_version: "1.18"
-
-    runs-on: ubuntu-latest
-    name: test
-    steps:
-      - uses: actions/checkout@v5
-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            _build/test/lib/autumn/native/autumnus_nif
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-          key: test-native-${{ runner.os }}-${{ hashFiles('native/**/Cargo.lock') }}
-          restore-keys: |
-            test-native-${{ runner.os }}
-
-      - uses: erlef/setup-beam@v1
-        with:
-          otp-version: ${{ matrix.otp_version }}
-          elixir-version: ${{ matrix.elixir_version }}
-
-      - uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: stable
-          components: clippy
-
-      - run: mix deps.get
-      - run: mix deps.compile
-      - run: mix test
-
-  quality:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-
-      - uses: erlef/setup-beam@v1
-        with:
-          otp-version: "27"
-          elixir-version: "1.18"
-
-      - run: mix format
-
-      - uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          push_options: --force
+    uses: leandrocp/github-actions/.github/workflows/elixir-test.yml@main
+  lint:
+    uses: leandrocp/github-actions/.github/workflows/elixir-lint.yml@main

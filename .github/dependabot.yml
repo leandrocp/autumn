@@ -1,14 +1,10 @@
 version: 2
+
 updates:
   - package-ecosystem: "mix"
     directory: "/"
     schedule:
       interval: "weekly"
-    groups:
-      production-dependencies:
-        dependency-type: "production"
-      development-dependencies:
-        dependency-type: "development"
 
   - package-ecosystem: "cargo"
     directory: "/native/autumnus_nif"
