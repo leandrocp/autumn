@@ -1,50 +1,17 @@
-name: Rust
+name: Rust CI
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - "native/**"
+    branches: [ main ]
   pull_request:
-    paths:
-      - "native/**"
-
-permissions:
-  contents: write
-
-env:
-  CARGO_TERM_COLOR: always
+  workflow_dispatch:
 
 jobs:
-  quality:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        manifest:
-          - native/autumnus_nif/Cargo.toml
-
-    steps:
-      - uses: actions/checkout@v5
-
-      - uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: stable
-          components: clippy, rustfmt
-
-      - uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: |
-            native/autumnus_nif
-
-      - name: cargo fmt
-        run: cargo fmt --manifest-path=${{ matrix.manifest }}
-
-      - uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          push_options: --force
-
-      - run: cargo test --manifest-path=${{ matrix.manifest }} --all-features
-
-      - run: cargo clippy --manifest-path=${{ matrix.manifest }} -- -Dwarnings
+  test:
+    uses: leandrocp/github-actions/.github/workflows/rust-test.yml@main
+    with:
+      manifest-path: 'native/autumn_nif/Cargo.toml'
+  lint:
+    uses: leandrocp/github-actions/.github/workflows/rust-lint.yml@main
+    with:
+      manifest-path: 'native/autumn_nif/Cargo.toml'
