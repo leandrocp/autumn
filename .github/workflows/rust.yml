@@ -10,8 +10,8 @@ jobs:
   test:
     uses: leandrocp/github-actions/.github/workflows/rust-test.yml@main
     with:
-      manifest-path: 'native/autumn_nif/Cargo.toml'
+      manifest-path: 'native/autumnus_nif/Cargo.toml'
   lint:
     uses: leandrocp/github-actions/.github/workflows/rust-lint.yml@main
     with:
-      manifest-path: 'native/autumn_nif/Cargo.toml'
+      manifest-path: 'native/autumnus_nif/Cargo.toml'
