@@ -3,15 +3,15 @@ name: NIF Release
 on:
   push:
     branches: [main]
-    paths: ["native/**", ".github/workflows/release.yml"]
+    paths: ["native/**", ".github/workflows/nif-release.yml"]
     tags: ["*"]
   pull_request:
-    paths: [".github/workflows/release.yml"]
+    paths: [".github/workflows/nif-release.yml"]
   workflow_dispatch:
 
 jobs:
   release:
-    uses: leandrocp/github-actions/.github/workflows/nif_release.yml@main
+    uses: leandrocp/github-actions/.github/workflows/nif-release.yml@main
     with:
       project-name: autumnus_nif
       project-dir: native/autumnus_nif
