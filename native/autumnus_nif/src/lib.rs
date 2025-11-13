@@ -64,3 +64,29 @@ fn build_theme_from_json_string(json_string: &str) -> NifResult<ExTheme> {
         .map(|theme| ExTheme::from(&theme))
         .map_err(|_e| Error::Atom("error"))
 }
+
+#[cfg(test)]
+mod tests {
+    use autumnus::Options;
+
+    #[test]
+    fn test_highlight_works() {
+        let source = "@test :test";
+
+        let result = autumnus::highlight(source, Options::default());
+
+        assert!(!result.is_empty(), "Output should not be empty");
+
+        assert!(
+            result.contains("<pre"),
+            "Output should contain opening <pre> tag"
+        );
+
+        assert!(result.contains("<code"), "Output should contain <code> tag");
+
+        assert!(
+            result.contains("test"),
+            "Output should contain 'defmodule' keyword"
+        );
+    }
+}
