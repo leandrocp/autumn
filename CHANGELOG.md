@@ -1,6 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.5.7 - 2025-11-13
+
+### Changed
+- Update `autumnus` to v0.7.8
 
 ## 0.5.6 - 2025-10-10
 
