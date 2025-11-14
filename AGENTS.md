@@ -6,9 +6,10 @@
 - **CSS Assets**: `priv/static/css/` - Pre-generated CSS files for the html_linked formatter
 - **Precompiled Binaries**: Uses `rustler_precompiled` for distributing precompiled NIFs across multiple platforms
 
-The library supports three output formatters:
+The library supports four output formatters:
 - `:html_inline` - HTML with inline styles (default)
 - `:html_linked` - HTML with CSS classes (requires linking CSS from `priv/static/css/`)
+- `:html_multi_themes` - HTML with CSS custom properties for multiple themes (light/dark mode support)
 - `:terminal` - ANSI escape codes for terminal output
 
 Lines are wrapped in `<div class="line" data-line="N">` elements
@@ -37,6 +38,9 @@ Lines are wrapped in `<div class="line" data-line="N">` elements
 - Do not add code comments unless I explicitly ask you to,
 - Do not remove existing code comments unless I explicitly ask you to
 - Write concise `@moduledoc` and `@doc` for modules and functions
+
+## Rust
+- From the root dir, run `mix list.rust` and `test.rust` to check changes or the regular `cargo` commands if working directly in the `native/autumnus_nif/` dir
 
 ## Changelog
 - Follow the https://common-changelog.org format

@@ -114,9 +114,9 @@ iex> Autumn.highlight!("const header = document.getEl", language: "js")
 
 ## Formatters
 
-Autumn supports three output formatters:
+Autumn supports four output formatters:
 
-Both HTML formatters wrap each line in a `<div class="line">` element with a `data-line` attribute containing the line number, making it easy to add line numbers or implement line-based features in your application.
+All HTML formatters wrap each line in a `<div class="line">` element with a `data-line` attribute containing the line number, making it easy to add line numbers or implement line-based features in your application.
 
 See [t:formatter/0](https://hexdocs.pm/autumn/Autumn.html#t:formatter/0) for more info examples.
 
@@ -176,11 +176,70 @@ Generates ANSI escape codes for terminal output:
 ```elixir
 iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: :terminal)
 # or with options
-iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: {:terminal, italic: true})
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: {:terminal, theme: "github_light"})
 ```
 
 Options:
-- `:italic` - enable italic styles (if supported by your terminal)
+- `:theme` - theme to apply styles
+
+### HTML Multi-Themes
+
+Generates HTML with CSS custom properties (variables) for multiple themes, enabling light/dark mode support. Inspired by [Shiki Dual Themes](https://shiki.style/guide/dual-themes).
+
+```elixir
+# Basic dual theme with CSS variables
+iex> Autumn.highlight!("Atom.to_string(:elixir)",
+  language: "elixir",
+  formatter: {:html_multi_themes,
+    themes: [light: "github_light", dark: "github_dark"]
+  }
+)
+
+# With light-dark() function for automatic theme switching
+iex> Autumn.highlight!("Atom.to_string(:elixir)",
+  language: "elixir",
+  formatter: {:html_multi_themes,
+    themes: [light: "github_light", dark: "github_dark"],
+    default_theme: "light-dark()"
+  }
+)
+```
+
+The generated HTML includes CSS custom properties like `--athl-light`, `--athl-dark`, `--athl-{theme}-bg`, and font styling variables (`-font-style`, `-font-weight`, `-text-decoration`) that can be used with CSS media queries or JavaScript for theme switching:
+
+```css
+/* Automatic light/dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  .athl,
+  .athl span {
+    color: var(--athl-dark) !important;
+    background-color: var(--athl-dark-bg) !important;
+    font-style: var(--athl-dark-font-style) !important;
+    font-weight: var(--athl-dark-font-weight) !important;
+    text-decoration: var(--athl-dark-text-decoration) !important;
+  }
+}
+
+/* Manual control with class-based switching */
+html.dark .athl,
+html.dark .athl span {
+  color: var(--athl-dark) !important;
+  background-color: var(--athl-dark-bg) !important;
+  font-style: var(--athl-dark-font-style) !important;
+  font-weight: var(--athl-dark-font-weight) !important;
+  text-decoration: var(--athl-dark-text-decoration) !important;
+}
+```
+
+Options:
+- `:themes` (required) - keyword list mapping theme identifiers to theme names, e.g., `[light: "github_light", dark: "github_dark"]`
+- `:default_theme` - controls inline color rendering: theme identifier for inline colors, `"light-dark()"` for CSS function, or `nil` for CSS variables only
+- `:css_variable_prefix` - custom CSS variable prefix (default: `"--athl"`)
+- `:pre_class` - CSS class for the `<pre>` tag
+- `:italic` - enable italic styles
+- `:include_highlights` - include highlight scope names in `data-highlight` attributes
+- `:highlight_lines` - highlight specific lines with custom styling
+- `:header` - wrap the highlighted code with custom HTML elements
 
 ## Samples
 

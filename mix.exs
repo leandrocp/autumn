@@ -2,7 +2,7 @@ defmodule Autumn.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/leandrocp/autumn"
-  @version "0.5.7"
+  @version "0.6.0-dev"
   @dev? String.ends_with?(@version, "-dev")
   @force_build? System.get_env("AUTUMN_BUILD") in ["1", "true"]
 
@@ -33,7 +33,10 @@ defmodule Autumn.MixProject do
     [
       preferred_envs: [
         docs: :docs,
-        "hex.publish": :docs
+        "hex.publish": :docs,
+        "test.rust": :test,
+        "test.all": :test,
+        quality: :test
       ]
     ]
   end
@@ -54,6 +57,7 @@ defmodule Autumn.MixProject do
         native/autumnus_nif/Cargo.*
         native/autumnus_nif/Cross.toml
         priv/static/css
+        examples
         checksum-*.exs
         mix.exs
         README.md
@@ -71,7 +75,12 @@ defmodule Autumn.MixProject do
       logo: "assets/images/autumn_icon.png",
       source_ref: "v#{@version}",
       source_url: @source_url,
-      extras: ["CHANGELOG.md"],
+      extras: [
+        "CHANGELOG.md",
+        "examples/light_dark_manual.livemd",
+        "examples/light_dark_vars.livemd",
+        "examples/light_dark_function.livemd"
+      ],
       skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
     ]
   end
@@ -91,12 +100,15 @@ defmodule Autumn.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "compile"],
+      quality: ["format.all", "lint.rust", "test.all"],
       "gen.checksum": "rustler_precompiled.download Autumn.Native --all --print",
-      "format.all": ["rust.fmt", "format"],
-      "rust.lint": [
+      "format.all": ["format.rust", "format"],
+      "test.all": ["test.rust", "test"],
+      "format.rust": ["cmd cargo fmt --manifest-path=native/autumnus_nif/Cargo.toml --all"],
+      "lint.rust": [
         "cmd cargo clippy --manifest-path=native/autumnus_nif/Cargo.toml -- -Dwarnings"
       ],
-      "rust.fmt": ["cmd cargo fmt --manifest-path=native/autumnus_nif/Cargo.toml --all"]
+      "test.rust": ["cmd cargo test --manifest-path=native/autumnus_nif/Cargo.toml"]
     ]
   end
 end

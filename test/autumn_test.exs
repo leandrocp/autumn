@@ -74,7 +74,7 @@ defmodule Autumn.AutumnTest do
   end
 
   test "available_themes" do
-    assert Autumn.available_themes() |> length() == 120
+    assert Autumn.available_themes() |> length() == 117
   end
 
   test "default_options/0" do
@@ -259,7 +259,7 @@ defmodule Autumn.AutumnTest do
     test "with default opts" do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
-        "\e[0m\e[38;2;198;120;221mdefmodule\e[0m \e[0m\e[38;2;229;192;123mTest\e[0m \e[0m\e[38;2;198;120;221mdo\e[0m\n  \e[0m\e[38;2;86;182;194m\e[0m\e[38;2;209;154;102m@\e[0m\e[38;2;97;175;239m\e[0m\e[38;2;209;154;102mlang \e[0m\e[38;2;224;108;117m:elixir\e[0m\e[0m\e[0m\e[0m\e[0m\n\e[0m\e[38;2;198;120;221mend\e[0m",
+        "\e[0m\e[38;2;198;120;221mdefmodule\e[0m \e[0m\e[38;2;229;192;123mTest\e[0m \e[0m\e[38;2;198;120;221mdo\e[0m\n  \e[0m\e[38;2;209;154;102m@\e[0m\e[0m\e[38;2;209;154;102mlang \e[0m\e[0m\e[38;2;224;108;117m:elixir\e[0m\n\e[0m\e[38;2;198;120;221mend\e[0m",
         language: "elixir",
         formatter: :terminal
       )
@@ -268,10 +268,176 @@ defmodule Autumn.AutumnTest do
     test "with theme" do
       assert_output(
         "defmodule Test do\n  @lang :elixir\nend",
-        "\e[0m\e[38;2;207;34;46mdefmodule\e[0m \e[0m\e[38;2;207;34;46mTest\e[0m \e[0m\e[38;2;207;34;46mdo\e[0m\n  \e[0m\e[38;2;5;80;174m\e[0m\e[38;2;5;80;174m@\e[0m\e[38;2;102;57;186m\e[0m\e[38;2;5;80;174mlang \e[0m\e[38;2;5;80;174m:elixir\e[0m\e[0m\e[0m\e[0m\e[0m\n\e[0m\e[38;2;207;34;46mend\e[0m",
+        "\e[0m\e[38;2;207;34;46mdefmodule\e[0m \e[0m\e[38;2;207;34;46mTest\e[0m \e[0m\e[38;2;207;34;46mdo\e[0m\n  \e[0m\e[38;2;5;80;174m@\e[0m\e[0m\e[38;2;5;80;174mlang \e[0m\e[0m\e[38;2;5;80;174m:elixir\e[0m\n\e[0m\e[38;2;207;34;46mend\e[0m",
         language: "elixir",
         formatter: {:terminal, theme: "github_light"}
       )
+    end
+  end
+
+  describe "formatter: html_multi_themes" do
+    test "with basic dual theme support" do
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "defmodule Test do\nend",
+                 language: "elixir",
+                 formatter:
+                   {:html_multi_themes, themes: [light: "github_light", dark: "github_dark"]}
+               )
+
+      assert result =~ "--athl-light"
+      assert result =~ "--athl-dark"
+      assert result =~ ~r/class="athl athl-themes[^"]*\bdark\b/
+      assert result =~ ~r/class="athl athl-themes[^"]*\blight\b/
+    end
+
+    test "with single theme" do
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "test code",
+                 language: "elixir",
+                 formatter: {:html_multi_themes, themes: [main: "onedark"]}
+               )
+
+      assert result =~ "--athl-main"
+      assert result =~ ~s|class="athl athl-themes main"|
+    end
+
+    test "with default_theme renders inline colors" do
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "test",
+                 language: "elixir",
+                 formatter:
+                   {:html_multi_themes, themes: [light: "github_light"], default_theme: "light"}
+               )
+
+      assert result =~ ~r/color:#/
+    end
+
+    test "with light-dark() function" do
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "test",
+                 language: "elixir",
+                 formatter:
+                   {:html_multi_themes,
+                    themes: [light: "github_light", dark: "github_dark"],
+                    default_theme: "light-dark()"}
+               )
+
+      assert result =~ "light-dark("
+    end
+
+    test "with custom css_variable_prefix" do
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "test",
+                 language: "elixir",
+                 formatter:
+                   {:html_multi_themes,
+                    themes: [light: "github_light"], css_variable_prefix: "--custom"}
+               )
+
+      assert result =~ "--custom-light-"
+      refute result =~ "--athl-"
+    end
+
+    test "with pre_class option" do
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "test",
+                 language: "elixir",
+                 formatter:
+                   {:html_multi_themes, themes: [main: "onedark"], pre_class: "custom-class"}
+               )
+
+      assert result =~ ~r/class="[^"]*custom-class/
+    end
+
+    test "with highlight_lines option" do
+      highlight_lines = %{
+        lines: [1],
+        style: "background-color: yellow;",
+        class: nil
+      }
+
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "line1\nline2",
+                 language: "elixir",
+                 formatter:
+                   {:html_multi_themes,
+                    themes: [main: "onedark"], highlight_lines: highlight_lines}
+               )
+
+      assert result =~ ~s|style="background-color: yellow;"|
+    end
+
+    test "with header option" do
+      header = %{
+        open_tag: ~s|<div class="code-wrapper">|,
+        close_tag: "</div>"
+      }
+
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "test",
+                 language: "elixir",
+                 formatter: {:html_multi_themes, themes: [main: "onedark"], header: header}
+               )
+
+      assert result =~ ~s|<div class="code-wrapper">|
+      assert result =~ "</div>"
+    end
+
+    test "with Theme struct" do
+      theme = Autumn.Theme.get("onedark")
+
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "test",
+                 language: "elixir",
+                 formatter: {:html_multi_themes, themes: [main: theme]}
+               )
+
+      assert result =~ "--athl-main"
+      assert result =~ ~s|class="athl athl-themes main"|
+    end
+
+    test "with mixed string and Theme struct" do
+      theme = Autumn.Theme.get("onedark")
+
+      assert {:ok, result} =
+               Autumn.highlight(
+                 "test",
+                 language: "elixir",
+                 formatter: {:html_multi_themes, themes: [light: "github_light", dark: theme]}
+               )
+
+      assert result =~ "--athl-light"
+      assert result =~ "--athl-dark"
+    end
+
+    test "raises when themes option is missing" do
+      assert_raise NimbleOptions.ValidationError, ~r/required :themes option not found/, fn ->
+        Autumn.highlight("test", language: "elixir", formatter: :html_multi_themes)
+      end
+    end
+
+    test "raises when themes list is empty" do
+      assert_raise NimbleOptions.ValidationError, ~r/empty/, fn ->
+        Autumn.highlight("test", language: "elixir", formatter: {:html_multi_themes, themes: []})
+      end
+    end
+
+    test "raises when theme not found" do
+      assert_raise NimbleOptions.ValidationError, ~r/not found/, fn ->
+        Autumn.highlight("test",
+          language: "elixir",
+          formatter: {:html_multi_themes, themes: [main: "nonexistent"]}
+        )
+      end
     end
   end
 
