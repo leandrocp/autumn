@@ -10,6 +10,8 @@ Mix.install([
 
 ## HtmlMultiThemes Formatter
 
+Use JavaScript to switch between Light and Dark colors.
+
 ```elixir
 defmodule SyntaxHighlighterLive do
   use Phoenix.LiveView

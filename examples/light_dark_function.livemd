@@ -10,6 +10,8 @@ Mix.install([
 
 ## HtmlMultiThemes Formatter
 
+Use the [light-dark()](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/light-dark) CSS function to resolve the theme. It requires both `light` and `dark` theme defined in `:themes` option.
+
 ```elixir
 defmodule SyntaxHighlighterLive do
   use Phoenix.LiveView

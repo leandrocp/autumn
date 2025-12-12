@@ -10,6 +10,8 @@ Mix.install([
 
 ## HtmlMultiThemes Formatter
 
+Define CSS vars to resolve the colors and style based on [@media prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme).
+
 ```elixir
 defmodule SyntaxHighlighterLive do
   use Phoenix.LiveView
