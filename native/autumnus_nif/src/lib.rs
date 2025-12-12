@@ -1,8 +1,24 @@
 use std::collections::HashMap;
 
 use autumnus::elixir::{ExFormatterOption, ExTheme};
-use autumnus::{languages, themes, FormatterOption, Options};
+use autumnus::{languages, themes, Options};
+use once_cell::sync::Lazy;
+use parking_lot::RwLock;
 use rustler::{Encoder, Env, Error, NifMap, NifResult, Term};
+
+/// Lazy per-theme cache to eliminate repeated allocations.
+/// Themes are converted and cached on first access, amortizing the cost.
+static THEME_CACHE: Lazy<RwLock<HashMap<String, ExTheme>>> =
+    Lazy::new(|| RwLock::new(HashMap::new()));
+
+/// Cached list of theme names to avoid repeated allocations.
+/// Built once on first call to available_themes().
+static THEME_NAMES: Lazy<Vec<String>> = Lazy::new(|| {
+    themes::available_themes()
+        .into_iter()
+        .map(|theme| theme.name.to_owned())
+        .collect()
+});
 
 rustler::atoms! {
     ok,
@@ -19,10 +35,14 @@ pub struct ExOptions<'a> {
 
 #[rustler::nif(schedule = "DirtyCpu")]
 pub fn highlight<'a>(env: Env<'a>, source: &'a str, options: ExOptions) -> NifResult<Term<'a>> {
-    let formatter: FormatterOption = options.formatter.into();
+    let language = autumnus::languages::Language::guess(options.language, source);
+    let formatter = options
+        .formatter
+        .into_formatter(language)
+        .map_err(|e| Error::Term(Box::new(e)))?;
 
     let options = Options {
-        lang_or_file: options.language,
+        language: options.language,
         formatter,
     };
 
@@ -38,17 +58,32 @@ fn available_languages() -> HashMap<String, (String, Vec<String>)> {
 
 #[rustler::nif]
 fn available_themes() -> Vec<String> {
-    themes::available_themes()
-        .into_iter()
-        .map(|theme| theme.name.to_owned())
-        .collect()
+    // Return a clone of the cached theme names list
+    // This is cheaper than rebuilding the list every time
+    THEME_NAMES.clone()
 }
 
 #[rustler::nif]
 fn get_theme(name: &str) -> NifResult<ExTheme> {
-    themes::get(name)
-        .map(ExTheme::from)
-        .map_err(|_e| Error::Atom("error"))
+    // Fast path: check if theme is already cached (read lock)
+    {
+        let cache = THEME_CACHE.read();
+        if let Some(cached_theme) = cache.get(name) {
+            return Ok(cached_theme.clone());
+        }
+    }
+
+    // Slow path: load theme, convert, and cache it (write lock)
+    let theme = themes::get(name).map_err(|_e| Error::Atom("error"))?;
+    let ex_theme = ExTheme::from(&theme);
+
+    // Cache the converted theme for future calls
+    {
+        let mut cache = THEME_CACHE.write();
+        cache.insert(name.to_string(), ex_theme.clone());
+    }
+
+    Ok(ex_theme)
 }
 
 #[rustler::nif]
@@ -67,13 +102,20 @@ fn build_theme_from_json_string(json_string: &str) -> NifResult<ExTheme> {
 
 #[cfg(test)]
 mod tests {
-    use autumnus::Options;
+    use autumnus::{languages::Language, HtmlInlineBuilder, Options};
 
     #[test]
     fn test_highlight_works() {
         let source = "@test :test";
+        let lang = Language::guess(Some("elixir"), source);
+        let formatter = HtmlInlineBuilder::new().lang(lang).build().unwrap();
 
-        let result = autumnus::highlight(source, Options::default());
+        let options = Options {
+            language: Some("elixir"),
+            formatter: Box::new(formatter),
+        };
+
+        let result = autumnus::highlight(source, options);
 
         assert!(!result.is_empty(), "Output should not be empty");
 
@@ -86,7 +128,7 @@ mod tests {
 
         assert!(
             result.contains("test"),
-            "Output should contain 'defmodule' keyword"
+            "Output should contain 'test' keyword"
         );
     }
 }

@@ -87,7 +87,7 @@ Map.has_key?(Autumn.available_languages(), "elixir")
 
 ## Formatters
 
-Autumn supports three formatters. The formatter option controls the output format.
+Autumn supports four formatters. The formatter option controls the output format.
 
 ### HTML Inline (Default)
 
@@ -169,6 +169,96 @@ Autumn.highlight!(code,
 
 Available options for `:terminal`:
 - `:theme` - Theme name (string) or `Autumn.Theme` struct
+
+### HTML Multi-Themes
+
+Generates HTML with CSS custom properties (variables) for multiple themes, enabling light/dark mode support. Inspired by [Shiki Dual Themes](https://shiki.style/guide/dual-themes).
+
+```elixir
+# Basic dual theme with CSS variables
+Autumn.highlight!(code,
+  language: "elixir",
+  formatter: {:html_multi_themes,
+    themes: [light: "github_light", dark: "github_dark"]
+  }
+)
+
+# With light-dark() function for automatic theme switching
+Autumn.highlight!(code,
+  language: "elixir",
+  formatter: {:html_multi_themes,
+    themes: [light: "github_light", dark: "github_dark"],
+    default_theme: "light-dark()"
+  }
+)
+
+# With inline colors for default theme
+Autumn.highlight!(code,
+  language: "elixir",
+  formatter: {:html_multi_themes,
+    themes: [light: "github_light", dark: "github_dark"],
+    default_theme: "light"
+  }
+)
+
+# Multiple themes with custom prefix
+Autumn.highlight!(code,
+  language: "elixir",
+  formatter: {:html_multi_themes,
+    themes: [light: "github_light", dark: "github_dark", dim: "catppuccin_frappe"],
+    css_variable_prefix: "--code"
+  }
+)
+```
+
+**How it works:**
+- Generates CSS custom properties like `--athl-light-fg`, `--athl-dark-fg`, etc.
+- Theme identifiers (from the keyword list keys) become CSS class names
+- Use CSS media queries or JavaScript to switch between themes
+- The `default_theme` option controls inline color rendering:
+  - `nil` (default): Only CSS variables, no inline colors
+  - A theme identifier (e.g., `"light"`): Renders inline colors for that theme plus CSS variables for all themes
+  - `"light-dark()"`: Uses CSS light-dark() function for automatic theme switching
+
+**CSS Integration Examples:**
+
+```css
+/* Automatic light/dark mode based on system preference */
+@media (prefers-color-scheme: light) {
+  .athl-themes {
+    color: var(--athl-light);
+    background-color: var(--athl-light-bg);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .athl-themes {
+    color: var(--athl-dark);
+    background-color: var(--athl-dark-bg);
+  }
+}
+
+/* Manual control with data attributes */
+[data-theme="light"] .athl-themes {
+  color: var(--athl-light);
+  background-color: var(--athl-light-bg);
+}
+
+[data-theme="dark"] .athl-themes {
+  color: var(--athl-dark);
+  background-color: var(--athl-dark-bg);
+}
+```
+
+Available options for `:html_multi_themes`:
+- `:themes` (required) - Keyword list mapping theme identifiers to theme names or structs, e.g., `[light: "github_light", dark: "github_dark"]`
+- `:default_theme` - Controls inline color rendering: theme identifier, `"light-dark()"`, or `nil` (default: `nil`)
+- `:css_variable_prefix` - Custom CSS variable prefix (default: `"--athl"`)
+- `:pre_class` - CSS class to add to the `<pre>` tag
+- `:italic` - Enable italic styles (default: `false`)
+- `:include_highlights` - Add `data-highlight` attributes for debugging (default: `false`)
+- `:highlight_lines` - Highlight specific lines (same options as `:html_inline`)
+- `:header` - Wrap with custom HTML tags (same options as other formatters)
 
 ## Themes
 
@@ -612,6 +702,24 @@ opts = Autumn.default_options()
     :terminal |
     {:terminal, [
       theme: "onedark" | %Autumn.Theme{}
+    ]} |
+    :html_multi_themes |
+    {:html_multi_themes, [
+      themes: [light: "github_light", dark: "github_dark"],  # required
+      default_theme: "light" | "light-dark()" | nil,
+      css_variable_prefix: "--custom",
+      pre_class: "my-class",
+      italic: false,
+      include_highlights: false,
+      highlight_lines: %{
+        lines: [1, 2..5],
+        style: :theme | "custom-css" | nil,
+        class: "custom-class"
+      },
+      header: %{
+        open_tag: "<div>",
+        close_tag: "</div>"
+      }
     ]}
 ]
 ```
@@ -624,11 +732,12 @@ Autumn is a fast, reliable syntax highlighter for Elixir. Key points to remember
 2. **Use `raw/1` in Phoenix templates** to prevent HTML escaping
 3. **Cache highlighted output** when possible
 4. **Use `:html_linked` for large applications** to reduce HTML size
-5. **Include CSS files** when using `:html_linked` formatter
-6. **Handles incomplete code** gracefully for streaming scenarios
-7. **70+ languages** with auto-detection support
-8. **120+ Neovim themes** available
-9. **Line numbers** are 1-indexed in the `data-line` attribute
-10. **Validate options** with `validate_options!/1` when needed
+5. **Use `:html_multi_themes` for light/dark mode** support with CSS custom properties
+6. **Include CSS files** when using `:html_linked` formatter
+7. **Handles incomplete code** gracefully for streaming scenarios
+8. **70+ languages** with auto-detection support
+9. **117 Neovim themes** available
+10. **Line numbers** are 1-indexed in the `data-line` attribute
+11. **Validate options** with `validate_options!/1` when needed
 
 For more information, see the [HexDocs](https://hexdocs.pm/autumn) or the [GitHub repository](https://github.com/leandrocp/autumn).

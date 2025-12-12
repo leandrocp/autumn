@@ -65,13 +65,34 @@ defmodule Autumn do
           | nil
 
   @typedoc """
+  Options for HTML Multi-Themes formatter.
+
+  The themes are specified as a keyword list where keys are CSS identifiers (atoms)
+  and values are theme names (strings) or Theme structs.
+  """
+  @type html_multi_themes_options ::
+          %{
+            themes: keyword(theme()),
+            default_theme: String.t() | nil,
+            css_variable_prefix: String.t() | nil,
+            pre_class: String.t() | nil,
+            italic: boolean(),
+            include_highlights: boolean(),
+            highlight_lines: html_inline_highlight_lines() | nil,
+            header: header()
+          }
+          | nil
+
+  @typedoc """
   Highlighter formatter and its options.
 
-  Available formatters: `:html_inline`, `:html_linked`, `:terminal`
+  Available formatters: `:html_inline`, `:html_linked`, `:html_multi_themes`, `:terminal`
 
   * `:html_inline` - generates `<span>` tags with inline styles for each token, for example: `<span style="color: #6eb4bff;">Atom</span>`.
   * `:html_linked` - generates `<span>` tags with `class` representing the token type, for example: `<span class="keyword-special">Atom</span>`.
      Must link an external CSS in order to render colors, see more at [HTML Linked](https://hexdocs.pm/autumn/Autumn.html#module-html-linked).
+  * `:html_multi_themes` - generates HTML with CSS custom properties (variables) for multiple themes, enabling light/dark mode support.
+     Inspired by [Shiki Dual Themes](https://shiki.style/guide/dual-themes).
   * `:terminal` - generates ANSI escape codes for terminal output.
 
   You can either pass the formatter as an atom to use default options or a tuple with the formatter name and options, so both are equivalent:
@@ -96,6 +117,17 @@ defmodule Autumn do
 
       - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
       - `:highlight_lines` (`t:html_linked_highlight_lines/0` - default: `nil`) - highlight specific lines either using the `highlighted` class from themes or with a custom CSS class.
+      - `:header` (`t:header/0` - default: `nil`) - wrap the highlighted code with custom open and close HTML tags.
+
+  * `html_multi_themes`:
+
+      - `:themes` (`keyword(theme())` - required) - keyword list of theme identifiers to theme names/structs. Theme identifiers become CSS class names and CSS variable prefixes. Example: `[light: "github_light", dark: "github_dark"]`.
+      - `:default_theme` (`t:String.t/0` - default: `nil`) - controls inline color rendering: specify a theme identifier for inline colors, use `"light-dark()"` for CSS light-dark() function, or `nil` for CSS variables only.
+      - `:css_variable_prefix` (`t:String.t/0` - default: `nil`) - CSS variable prefix (defaults to `"--athl"` if nil). Generates variables like `--athl-light` (color), `--athl-light-bg` (background), `--athl-light-font-style`, etc.
+      - `:pre_class` (`t:String.t/0` - default: `nil`) - the CSS class to append into the wrapping `<pre>` tag.
+      - `:italic` (`t:boolean/0` - default: `false`) - enable italic style for the highlighted code.
+      - `:include_highlights` (`t:boolean/0` - default: `false`) - include the highlight scope name in a `data-highlight` attribute.
+      - `:highlight_lines` (`t:html_inline_highlight_lines/0` - default: `nil`) - highlight specific lines (same as html_inline).
       - `:header` (`t:header/0` - default: `nil`) - wrap the highlighted code with custom open and close HTML tags.
 
   * `terminal`:
@@ -145,6 +177,31 @@ defmodule Autumn do
       }
       {:html_inline, header: header}
 
+  ### HTML Multi-Themes: Light/Dark mode support
+
+      # Basic dual theme with CSS variables
+      {:html_multi_themes, themes: [light: "github_light", dark: "github_dark"]}
+
+      # With light-dark() function for automatic theme switching based on system preference
+      {:html_multi_themes,
+       themes: [light: "github_light", dark: "github_dark"],
+       default_theme: "light-dark()"}
+
+      # With inline colors for default theme and CSS variables for others
+      {:html_multi_themes,
+       themes: [light: "github_light", dark: "github_dark"],
+       default_theme: "light"}
+
+      # Multiple themes with custom prefix
+      {:html_multi_themes,
+       themes: [light: "github_light", dark: "github_dark", dim: "catppuccin_frappe"],
+       css_variable_prefix: "--code"}
+
+      # With Theme structs instead of strings
+      light_theme = Autumn.Theme.get("github_light")
+      dark_theme = Autumn.Theme.get("github_dark")
+      {:html_multi_themes, themes: [light: light_theme, dark: dark_theme]}
+
   ### Terminal formatter
 
       :terminal
@@ -169,6 +226,18 @@ defmodule Autumn do
              [
                pre_class: String.t(),
                highlight_lines: html_linked_highlight_lines(),
+               header: header()
+             ]}
+          | :html_multi_themes
+          | {:html_multi_themes,
+             [
+               themes: keyword(theme()),
+               default_theme: String.t(),
+               css_variable_prefix: String.t(),
+               pre_class: String.t(),
+               italic: boolean(),
+               include_highlights: boolean(),
+               highlight_lines: html_inline_highlight_lines(),
                header: header()
              ]}
           | :terminal
@@ -220,7 +289,7 @@ defmodule Autumn do
 
   @doc false
   def formatter_type(formatter)
-      when formatter in [:html_inline, :html_linked, :terminal] do
+      when formatter in [:html_inline, :html_linked, :html_multi_themes, :terminal] do
     formatter_type({formatter, []})
   end
 
@@ -316,6 +385,70 @@ defmodule Autumn do
     end
   end
 
+  def formatter_type({:html_multi_themes, options}) when is_list(options) do
+    schema = [
+      themes: [
+        type: :keyword_list,
+        required: true,
+        doc:
+          "Keyword list of theme identifiers to theme names/structs, e.g., [light: \"github_light\", dark: \"github_dark\"]"
+      ],
+      default_theme: [
+        type: {:or, [:string, nil]},
+        default: nil,
+        doc:
+          "Default theme rendering mode: theme name, \"light-dark()\", or nil for CSS variables only"
+      ],
+      css_variable_prefix: [
+        type: {:or, [:string, nil]},
+        default: nil,
+        doc: "CSS variable prefix (defaults to \"--athl\" if nil)"
+      ],
+      pre_class: [type: {:or, [:string, nil]}, default: nil],
+      italic: [type: :boolean, default: false],
+      include_highlights: [type: :boolean, default: false],
+      highlight_lines: [
+        type:
+          {:or,
+           [
+             nil,
+             map: [
+               lines: [type: {:list, {:custom, Autumn, :highlight_lines_type, []}}],
+               style: [type: {:or, [:string, {:in, [:theme]}, nil]}, default: :theme],
+               class: [type: {:or, [:string, nil]}, default: nil]
+             ]
+           ]},
+        default: nil
+      ],
+      header: [
+        type:
+          {:or,
+           [
+             nil,
+             map: [
+               open_tag: [type: :string],
+               close_tag: [type: :string]
+             ]
+           ]},
+        default: nil
+      ]
+    ]
+
+    case NimbleOptions.validate(options, schema) do
+      {:ok, validated_opts} ->
+        case convert_html_multi_themes_options(validated_opts) do
+          {:ok, converted_opts} ->
+            {:ok, {:html_multi_themes, converted_opts}}
+
+          {:error, error} ->
+            {:error, "invalid options given to html_multi_themes: #{error}"}
+        end
+
+      {:error, error} ->
+        {:error, "invalid options given to html_multi_themes: #{inspect(error)}"}
+    end
+  end
+
   def formatter_type({:terminal, options}) when is_list(options) do
     case Keyword.keys(options) -- [:theme] do
       [] ->
@@ -346,6 +479,65 @@ defmodule Autumn do
          {:ok, opts} <- convert_header(opts) do
       {:ok, opts}
     end
+  end
+
+  defp convert_html_multi_themes_options(opts) do
+    with {:ok, opts} <- validate_and_convert_themes(opts),
+         {:ok, opts} <- convert_highlight_lines_inline(opts),
+         {:ok, opts} <- convert_header(opts) do
+      {:ok, opts}
+    end
+  end
+
+  defp validate_and_convert_themes(opts) do
+    case opts[:themes] do
+      nil ->
+        {:error, "themes option is required for html_multi_themes"}
+
+      [] ->
+        {:error, "themes list cannot be empty"}
+
+      themes when is_list(themes) ->
+        convert_themes_keyword_list(themes, opts)
+
+      _ ->
+        {:error, "themes must be a keyword list"}
+    end
+  end
+
+  defp convert_themes_keyword_list(themes, opts) do
+    themes
+    |> Enum.reduce_while({:ok, %{}}, fn {id, theme_value}, {:ok, acc} ->
+      theme_id = to_string(id)
+
+      case resolve_theme(theme_value) do
+        {:ok, theme_struct} ->
+          {:cont, {:ok, Map.put(acc, theme_id, theme_struct)}}
+
+        {:error, reason} ->
+          {:halt, {:error, "failed to resolve theme #{inspect(id)}: #{reason}"}}
+      end
+    end)
+    |> case do
+      {:ok, themes_map} ->
+        {:ok, Keyword.put(opts, :themes, themes_map)}
+
+      {:error, _} = error ->
+        error
+    end
+  end
+
+  defp resolve_theme(%Autumn.Theme{} = theme), do: {:ok, theme}
+
+  defp resolve_theme(theme_name) when is_binary(theme_name) do
+    case Autumn.Theme.get(theme_name) do
+      nil -> {:error, "theme '#{theme_name}' not found"}
+      theme -> {:ok, theme}
+    end
+  end
+
+  defp resolve_theme(other) do
+    {:error, "expected theme name (string) or Autumn.Theme struct, got: #{inspect(other)}"}
   end
 
   @doc false
@@ -723,6 +915,20 @@ defmodule Autumn do
   defp convert_formatter_for_nif(:terminal, opts) do
     opts = convert_theme_for_nif(opts)
     {:terminal, Map.take(opts, [:theme])}
+  end
+
+  defp convert_formatter_for_nif(:html_multi_themes, opts) do
+    {:html_multi_themes,
+     Map.take(opts, [
+       :themes,
+       :default_theme,
+       :css_variable_prefix,
+       :pre_class,
+       :italic,
+       :include_highlights,
+       :highlight_lines,
+       :header
+     ])}
   end
 
   defp convert_theme_for_nif(opts) do
