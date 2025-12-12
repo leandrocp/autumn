@@ -118,7 +118,7 @@ Autumn supports four output formatters:
 
 All HTML formatters wrap each line in a `<div class="line">` element with a `data-line` attribute containing the line number, making it easy to add line numbers or implement line-based features in your application.
 
-See [t:formatter/0](https://hexdocs.pm/autumn/Autumn.html#t:formatter/0) for more info examples.
+See the [Livebook examples](https://github.com/leandrocp/autumn/tree/main/examples) and [t:formatter/0](https://hexdocs.pm/autumn/Autumn.html#t:formatter/0) for more.
 
 ### HTML Inline (Default)
 
@@ -168,19 +168,6 @@ Then add the stylesheet to your template:
 ```html
 <link phx-track-static rel="stylesheet" href={~p"/themes/dracula.css"} />
 ```
-
-### Terminal
-
-Generates ANSI escape codes for terminal output:
-
-```elixir
-iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: :terminal)
-# or with options
-iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: {:terminal, theme: "github_light"})
-```
-
-Options:
-- `:theme` - theme to apply styles
 
 ### HTML Multi-Themes
 
@@ -240,6 +227,19 @@ Options:
 - `:include_highlights` - include highlight scope names in `data-highlight` attributes
 - `:highlight_lines` - highlight specific lines with custom styling
 - `:header` - wrap the highlighted code with custom HTML elements
+
+### Terminal
+
+Generates ANSI escape codes for terminal output:
+
+```elixir
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: :terminal)
+# or with options
+iex> Autumn.highlight!("Atom.to_string(:elixir)", language: "elixir", formatter: {:terminal, theme: "github_light"})
+```
+
+Options:
+- `:theme` - theme to apply styles
 
 ## Samples
 
