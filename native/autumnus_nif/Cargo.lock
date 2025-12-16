@@ -69,9 +69,9 @@ checksum = "a23eb6b1614318a8071c9b2521f36b424b2c83db5eb3a0fead4a6c0809af6e61"
 
 [[package]]
 name = "autumnus"
-version = "0.8.0-beta.1"
+version = "0.8.0-beta.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "82a356861b7286287326ad4845131c5f164087380f6fad2e9c6faf1431971282"
+checksum = "8ce2c0cf0233fe572046b96a560f3f192f782f579f2b534143bc1761a2fd7f53"
 dependencies = [
  "anyhow",
  "cc",
@@ -87,10 +87,12 @@ dependencies = [
  "rustler",
  "serde",
  "serde_json",
+ "streaming-iterator",
  "strum",
  "syn",
  "tempfile",
  "termcolor",
+ "thiserror",
  "tree-sitter",
  "tree-sitter-asm",
  "tree-sitter-bash",
@@ -1049,9 +1051,9 @@ dependencies = [
 
 [[package]]
 name = "tree-sitter-language"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c4013970217383f67b18aef68f6fb2e8d409bc5755227092d32efb0422ba24b8"
+checksum = "4ae62f7eae5eb549c71b76658648b72cc6111f2d87d24a1e31fa907f4943e3ce"
 
 [[package]]
 name = "tree-sitter-lua"
