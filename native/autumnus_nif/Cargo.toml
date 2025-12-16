@@ -10,10 +10,10 @@ path = "src/lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
-once_cell = "1.20"
+once_cell = "1.21"
 parking_lot = "0.12"
 rustler = "0.37"
-autumnus = { version = "0.8.0-beta.1", features = ["all-languages", "nif_version_2_15", "elixir-nif"] }
+autumnus = { version = "0.8.0-beta.3", features = ["all-languages", "nif_version_2_15", "elixir-nif"] }
 # autumnus = { git = "https://github.com/leandrocp/autumnus", features = ["all-languages", "nif_version_2_15", "elixir-nif"] }
 
 [features]
