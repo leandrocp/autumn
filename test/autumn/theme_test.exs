@@ -8,7 +8,10 @@ defmodule Autumn.ThemeTest do
       assert %Theme{name: "github_light", appearance: "light", highlights: highlights} =
                Theme.get("github_light")
 
-      assert highlights["variable"] == %Theme.Style{fg: "#1f2328"}
+      assert %Theme.Style{
+               fg: "#1f2328",
+               text_decoration: %Theme.TextDecoration{}
+             } = highlights["variable"]
     end
 
     test "fetch invalid theme" do
@@ -30,7 +33,18 @@ defmodule Autumn.ThemeTest do
               }} =
                Theme.from_json(json)
 
-      assert highlights["comment"] == %Theme.Style{fg: "#808080"}
+      assert highlights["comment"].fg == "#808080"
+    end
+
+    test "loads theme with text_decoration from JSON" do
+      json =
+        ~s({"name": "test_theme", "appearance": "dark", "revision": "test", "highlights": {"comment": {"fg": "#808080", "undercurl": true, "strikethrough": true}}})
+
+      assert {:ok, %Theme{highlights: highlights}} = Theme.from_json(json)
+
+      assert %Theme.Style{
+               text_decoration: %Theme.TextDecoration{underline: :wavy, strikethrough: true}
+             } = highlights["comment"]
     end
 
     test "returns error for invalid JSON" do
@@ -60,7 +74,7 @@ defmodule Autumn.ThemeTest do
               }} =
                Theme.from_file(temp_file)
 
-      assert highlights["string"] == %Theme.Style{fg: "#22863a"}
+      assert %Theme.Style{fg: "#22863a"} = highlights["string"]
     end
 
     test "returns error for non-existent file" do
