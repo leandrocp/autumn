@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use autumnus::elixir::{ExFormatterOption, ExTheme};
-use autumnus::{languages, themes, Options};
+use autumnus::{languages, themes};
 use once_cell::sync::Lazy;
 use parking_lot::RwLock;
 use rustler::{Encoder, Env, Error, NifMap, NifResult, Term};
@@ -30,7 +30,7 @@ rustler::init!("Elixir.Autumn.Native");
 #[derive(Debug, NifMap)]
 pub struct ExOptions<'a> {
     pub language: Option<&'a str>,
-    pub formatter: ExFormatterOption<'a>,
+    pub formatter: ExFormatterOption,
 }
 
 #[rustler::nif(schedule = "DirtyCpu")]
@@ -41,12 +41,7 @@ pub fn highlight<'a>(env: Env<'a>, source: &'a str, options: ExOptions) -> NifRe
         .into_formatter(language)
         .map_err(|e| Error::Term(Box::new(e)))?;
 
-    let options = Options {
-        language: options.language,
-        formatter,
-    };
-
-    let output = autumnus::highlight(source, options);
+    let output = autumnus::highlight(source, formatter);
 
     Ok((ok(), output).encode(env))
 }
@@ -102,7 +97,7 @@ fn build_theme_from_json_string(json_string: &str) -> NifResult<ExTheme> {
 
 #[cfg(test)]
 mod tests {
-    use autumnus::{languages::Language, HtmlInlineBuilder, Options};
+    use autumnus::{languages::Language, HtmlInlineBuilder};
 
     #[test]
     fn test_highlight_works() {
@@ -110,12 +105,7 @@ mod tests {
         let lang = Language::guess(Some("elixir"), source);
         let formatter = HtmlInlineBuilder::new().lang(lang).build().unwrap();
 
-        let options = Options {
-            language: Some("elixir"),
-            formatter: Box::new(formatter),
-        };
-
-        let result = autumnus::highlight(source, options);
+        let result = autumnus::highlight(source, formatter);
 
         assert!(!result.is_empty(), "Output should not be empty");
 

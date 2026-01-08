@@ -20,26 +20,12 @@ defmodule Autumn.Theme do
            "function.macro" => %Autumn.Theme.Style{
              fg: "#6639ba",
              bg: nil,
-             underline: false,
              bold: false,
              italic: false,
-             strikethrough: false
-           },
-           "variable.builtin" => %Autumn.Theme.Style{
-             fg: "#0550ae",
-             bg: nil,
-             underline: false,
-             bold: false,
-             italic: false,
-             strikethrough: false
-           },
-           "character" => %Autumn.Theme.Style{
-             fg: "#0a3069",
-             bg: nil,
-             underline: false,
-             bold: false,
-             italic: false,
-             strikethrough: false
+             text_decoration: %Autumn.Theme.TextDecoration{
+               underline: :solid,
+               strikethrough: false
+             }
            },
            ...
          }
@@ -91,6 +77,32 @@ defmodule Autumn.Theme do
   end
 end
 
+defmodule Autumn.Theme.TextDecoration do
+  @moduledoc """
+  Text decoration settings for a highlight style.
+
+  Contains the underline style and strikethrough flag.
+  """
+
+  @typedoc """
+  Text decoration with underline style and strikethrough.
+
+  The underline style can be one of:
+  - `nil` - no underline
+  - `:solid` - solid underline
+  - `:wavy` - wavy/curly underline (undercurl)
+  - `:double` - double underline
+  - `:dotted` - dotted underline
+  - `:dashed` - dashed underline
+  """
+  @type t :: %Autumn.Theme.TextDecoration{
+          underline: nil | :solid | :wavy | :double | :dotted | :dashed,
+          strikethrough: boolean()
+        }
+
+  defstruct underline: nil, strikethrough: false
+end
+
 defmodule Autumn.Theme.Style do
   @moduledoc """
   A highlight style.
@@ -102,16 +114,14 @@ defmodule Autumn.Theme.Style do
   @type t :: %Autumn.Theme.Style{
           fg: nil | String.t(),
           bg: nil | String.t(),
-          underline: boolean(),
           bold: boolean(),
           italic: boolean(),
-          strikethrough: boolean()
+          text_decoration: Autumn.Theme.TextDecoration.t()
         }
 
   defstruct fg: nil,
             bg: nil,
-            underline: false,
             bold: false,
             italic: false,
-            strikethrough: false
+            text_decoration: %Autumn.Theme.TextDecoration{}
 end
