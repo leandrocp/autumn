@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.6.0 - 2026-01-09
 
 **Important:** this release introduces breaking changes, please check the guide below.
 
@@ -10,6 +10,7 @@
 - **BREAKING** `Autumn.Theme.Style` now uses `:text_decoration` (`Autumn.Theme.TextDecoration`) instead of flat boolean fields
 - Add `Autumn.Theme.TextDecoration` struct with `underline` (`:solid`, `:wavy`, `:double`, `:dotted`, `:dashed`, or `nil`) and `strikethrough` (boolean)
 - Add `:html_multi_themes` formatter for light/dark mode support with CSS custom properties
+- Update CSS files
 
 #### Breaking Changes
 
