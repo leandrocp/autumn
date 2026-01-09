@@ -2,12 +2,60 @@
 
 ## Unreleased
 
+**Important:** this release introduces breaking changes, please check the guide below.
+
 ### Changed
 - Update `autumnus` to v0.8.0-beta.4
 - **BREAKING** `Autumn.Theme` field `:appearance` type changed from `String.t()` to `Autumn.Theme.Appearance.t()` (atom `:dark` or `:light`)
 - **BREAKING** `Autumn.Theme.Style` now uses `:text_decoration` (`Autumn.Theme.TextDecoration`) instead of flat boolean fields
 - Add `Autumn.Theme.TextDecoration` struct with `underline` (`:solid`, `:wavy`, `:double`, `:dotted`, `:dashed`, or `nil`) and `strikethrough` (boolean)
 - Add `:html_multi_themes` formatter for light/dark mode support with CSS custom properties
+
+#### Breaking Changes
+
+These only affect users who create or manipulate theme structs directly.
+
+1. Change `:appearance` field in `Autumn.Theme` from string to atom
+
+**Before:**
+
+```elixir
+appearance: "dark"
+```
+
+**After:**
+
+```elixir
+appearance: :dark
+```
+
+2. Move text decoration fields into `Autumn.Theme.TextDecoration`
+
+**Before:**
+
+The struct had flat fields in `%Autumn.Theme.Style{}`:
+
+```elixir
+%Autumn.Theme.Style{
+  fg: "#ffffff",
+  underline: true,
+  # ...
+}
+```
+
+**After:**
+
+The struct now uses `text_decoration`:
+
+```elixir
+%Autumn.Theme.Style{
+  fg: "#ffffff",
+  text_decoration: %Autumn.Theme.TextDecoration{
+    underline: :solid,
+    strikethrough: false
+  }
+}
+```
 
 ## 0.5.7 - 2025-11-13
 
