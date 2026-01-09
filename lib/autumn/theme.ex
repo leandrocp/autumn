@@ -14,7 +14,7 @@ defmodule Autumn.Theme do
 
       %Autumn.Theme{
          name: "github_light",
-         appearance: "light",
+         appearance: :light,
          revision: "fe70a27afefa6e10db4a59262d31f259f702fd6a",
          highlights: %{
            "function.macro" => %Autumn.Theme.Style{
@@ -33,10 +33,12 @@ defmodule Autumn.Theme do
 
   """
 
-  @typedoc "A Neovim theme with name, appearance (light or dark), revision, and highlight styles."
+  @type appearance :: :light | :dark
+
+  @typedoc "A Neovim theme with name, appearance (:light or :dark), revision, and highlight styles."
   @type t :: %Autumn.Theme{
           name: String.t(),
-          appearance: String.t(),
+          appearance: appearance(),
           revision: String.t(),
           highlights: %{String.t() => Autumn.Theme.Style.t()}
         }

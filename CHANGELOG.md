@@ -4,6 +4,7 @@
 
 ### Changed
 - Update `autumnus` to v0.8.0-beta.4
+- **BREAKING** `Autumn.Theme` field `:appearance` type changed from `String.t()` to `Autumn.Theme.Appearance.t()` (atom `:dark` or `:light`)
 - **BREAKING** `Autumn.Theme.Style` now uses `:text_decoration` (`Autumn.Theme.TextDecoration`) instead of flat boolean fields
 - Add `Autumn.Theme.TextDecoration` struct with `underline` (`:solid`, `:wavy`, `:double`, `:dotted`, `:dashed`, or `nil`) and `strikethrough` (boolean)
 - Add `:html_multi_themes` formatter for light/dark mode support with CSS custom properties
