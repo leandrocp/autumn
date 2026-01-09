@@ -15,7 +15,6 @@ static THEME_CACHE: Lazy<RwLock<HashMap<String, ExTheme>>> =
 /// Built once on first call to available_themes().
 static THEME_NAMES: Lazy<Vec<String>> = Lazy::new(|| {
     themes::available_themes()
-        .into_iter()
         .map(|theme| theme.name.to_owned())
         .collect()
 });

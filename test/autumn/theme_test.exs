@@ -5,7 +5,7 @@ defmodule Autumn.ThemeTest do
 
   describe "fetch" do
     test "fetch existing theme" do
-      assert %Theme{name: "github_light", appearance: "light", highlights: highlights} =
+      assert %Theme{name: "github_light", appearance: :light, highlights: highlights} =
                Theme.get("github_light")
 
       assert %Theme.Style{
@@ -27,7 +27,7 @@ defmodule Autumn.ThemeTest do
       assert {:ok,
               %Theme{
                 name: "test_theme",
-                appearance: "dark",
+                appearance: :dark,
                 revision: "test",
                 highlights: highlights
               }} =
@@ -68,7 +68,7 @@ defmodule Autumn.ThemeTest do
       assert {:ok,
               %Theme{
                 name: "file_theme",
-                appearance: "light",
+                appearance: :light,
                 revision: "test",
                 highlights: highlights
               }} =
