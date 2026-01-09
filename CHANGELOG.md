@@ -11,6 +11,7 @@
 - Add `Autumn.Theme.TextDecoration` struct with `underline` (`:solid`, `:wavy`, `:double`, `:dotted`, `:dashed`, or `nil`) and `strikethrough` (boolean)
 - Add `:html_multi_themes` formatter for light/dark mode support with CSS custom properties
 - Update CSS files
+- Build Rust binary on MacOS 14 (v13 runner is no longer available on GitHub Actions)
 
 #### Breaking Changes
 
