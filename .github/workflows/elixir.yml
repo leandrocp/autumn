@@ -9,5 +9,10 @@ on:
 jobs:
   test:
     uses: leandrocp/github-actions/.github/workflows/elixir-test.yml@main
+    with:
+      env_vars: '{"AUTUMN_BUILD": "1"}'
+
   lint:
     uses: leandrocp/github-actions/.github/workflows/elixir-lint.yml@main
+    with:
+      env_vars: '{"AUTUMN_BUILD": "1"}'
