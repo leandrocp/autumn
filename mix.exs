@@ -3,8 +3,6 @@ defmodule Autumn.MixProject do
 
   @source_url "https://github.com/leandrocp/autumn"
   @version "0.6.0"
-  @dev? String.ends_with?(@version, "-dev")
-  @force_build? System.get_env("AUTUMN_BUILD") in ["1", "true"]
 
   def project do
     [
@@ -87,13 +85,13 @@ defmodule Autumn.MixProject do
 
   defp deps do
     [
-      {:rustler, "~> 0.29", optional: not (@dev? or @force_build?)},
+      {:rustler, "~> 0.29", optional: true},
       {:rustler_precompiled, "~> 0.6"},
       {:nimble_options, "~> 1.0"},
       {:ex_doc, ">= 0.0.0", only: :docs},
-      {:makeup_elixir, "~> 1.0", only: :docs},
-      {:makeup_eex, "~> 2.0", only: :docs},
-      {:makeup_syntect, "~> 0.1", only: :docs}
+      {:makeup_elixir, ">= 0.0.0", only: :docs},
+      {:makeup_eex, ">= 0.0.0", only: :docs},
+      {:makeup_syntect, ">= 0.0.0", only: :docs}
     ]
   end
 
