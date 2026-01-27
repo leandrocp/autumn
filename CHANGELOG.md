@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.7.0 - 2026-01-27
+
+This package has been renamed from `autumn` to `lumis`. Note that `lumis` v0.1.0 has the same API as `autumn` v0.6.0.
+
+Please follow the migration guide below:
+
+1. Update your `mix.exs`:
+
+```elixir
+# Before
+{:autumn, "~> 0.6"}
+
+# After
+{:lumis, "~> 0.1"}
+```
+
+2. Update alias/imports:
+
+```elixir
+# Before
+alias Autumn
+alias Autumn.Theme
+
+# After
+alias Lumis
+alias Lumis.Theme
+```
+
 ## 0.6.0 - 2026-01-09
 
 **Important:** this release introduces breaking changes, please check the guide below.
