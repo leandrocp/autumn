@@ -28,6 +28,11 @@
   </a>
 </div>
 
+## Renamed to `lumis`
+
+> This package has been renamed to [`lumis`](https://hex.pm/packages/lumis). Please update your dependencies.
+> Note that `lumis` v0.1.0 has the same API as `autumn` v0.6.0.
+
 ## Features
 
 - 🌳 70+ languages with tree-sitter parsing

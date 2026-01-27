@@ -69,7 +69,7 @@ defmodule Autumn.MixProject do
   defp docs do
     [
       main: "Autumn",
-      assets: "assets/images",
+      assets: %{"assets/images" => "images"},
       logo: "assets/images/autumn_icon.png",
       source_ref: "v#{@version}",
       source_url: @source_url,
