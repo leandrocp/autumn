@@ -17,7 +17,8 @@ defmodule Autumn.MixProject do
       aliases: aliases(),
       name: "Autumn",
       homepage_url: "https://autumnus.dev",
-      description: "[RENAMED to :lumis] Syntax highlighter powered by Tree-sitter and Neovim themes."
+      description:
+        "[RENAMED to :lumis] Syntax highlighter powered by Tree-sitter and Neovim themes."
     ]
   end
 
@@ -85,6 +86,7 @@ defmodule Autumn.MixProject do
 
   defp deps do
     [
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:rustler, "~> 0.29", optional: true},
       {:rustler_precompiled, "~> 0.6"},
       {:nimble_options, "~> 1.0"},

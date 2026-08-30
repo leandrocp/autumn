@@ -58,8 +58,8 @@ defmodule Autumn.Native do
     mode: mode,
     force_build: System.get_env("AUTUMN_BUILD") in ["1", "true"]
 
-  def available_languages(), do: :erlang.nif_error(:nif_not_loaded)
-  def available_themes(), do: :erlang.nif_error(:nif_not_loaded)
+  def available_languages, do: :erlang.nif_error(:nif_not_loaded)
+  def available_themes, do: :erlang.nif_error(:nif_not_loaded)
   def get_theme(_name), do: :erlang.nif_error(:nif_not_loaded)
   def build_theme_from_file(_path), do: :erlang.nif_error(:nif_not_loaded)
   def build_theme_from_json_string(_json_string), do: :erlang.nif_error(:nif_not_loaded)

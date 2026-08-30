@@ -16,6 +16,10 @@ rustler = "0.37"
 autumnus = { version = "0.8.0", features = ["all-languages", "nif_version_2_15", "elixir-nif"] }
 # autumnus = { git = "https://github.com/leandrocp/autumnus", features = ["all-languages", "nif_version_2_15", "elixir-nif"] }
 
+[lints.clippy]
+# Threshold in clippy.toml.
+cognitive_complexity = "deny"
+
 [features]
 default = ["nif_version_2_15"]
 # Feature necessary for Rustler Precompiled.
